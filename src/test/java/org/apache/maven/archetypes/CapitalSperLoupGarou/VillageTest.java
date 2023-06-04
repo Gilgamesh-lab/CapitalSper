@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.ZeroVillage;
+package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
 import java.io.IOException;
 
