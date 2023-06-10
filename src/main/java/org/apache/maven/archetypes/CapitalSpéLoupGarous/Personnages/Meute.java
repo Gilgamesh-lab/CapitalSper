@@ -17,8 +17,9 @@ public class Meute {
 		return this.meute;
 	}
 	
-	public void ajouterLoup(LoupGarou loupGarou) {
+	public void enrolerUnLoupGarou(LoupGarou loupGarou) {
 		this.meute.add(loupGarou);
+		loupGarou.rejoindreUneMeute(this);
 	}
 
 	public void setVillage(Village village) {
@@ -28,9 +29,9 @@ public class Meute {
 	
 	public void attaquerVillage() {
 		int nb = (int) (Math.random() * ( (this.village.getNbVillageois() )  - 0 ));
-		this.village.getVillage().remove(this.village.getVillageois().get(nb));
-		this.village.getVillageois().remove(nb);
-		System.out.println("Un villageois a été tué la nuit par les loups-garous");
+		System.out.println(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
+		this.village.getVillageois().get(nb).meurt();
+		
 	}
 
 }

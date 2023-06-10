@@ -13,16 +13,25 @@ public class Partie {
 	private Integer nbTour;
 	private Map<String ,Integer > tabResult = new HashMap<>();
 	private List<Integer> donnée = new ArrayList<Integer>();
+	public static  Log log;
 	
 	public Partie(Village village) {
 		this.savegardeVillage = village;
+		this.log = new Log();
 		this.nbTour = 0;
 	}
 	
-	public int start () {
-		System.out.println();
+	public Partie(Village village, Log log) {
+		this.savegardeVillage = village;
+		this.log = log;
+		this.nbTour = 0;
+	}
+	
+	private int start () {
 		init();
+		System.out.println();
 		System.out.println("Lancement de la partie avec " +  this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
+		System.out.println();
 		this.village.getMeute().attaquerVillage();
 		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 			this.village.voter();
@@ -31,15 +40,16 @@ public class Partie {
 			}
 			this.nbTour++;
 		}
+		System.out.println();
 		if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() ) {
 			System.out.println("Victoire des Loups-Garous en " + this.nbTour + " tours");
-			System.out.println(this.village.getNbLoupGarou() + " Loups-Garou(s) survivant(s)");
+			System.out.println(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
 			this.donnée.add(this.nbTour) ;
 			return -1 ;  
 		}
 		else if (this.village.getNbLoupGarou() == 0) {  
 			System.out.println("Victoire des villageois en " + this.nbTour + " tours");
-			System.out.println(this.village.getNbVillageois() + " villageoi(s) survivant(s)");
+			System.out.println(this.village.getNbVillageois() + " villageois survivant(s)");
 			donnée.add(this.nbTour) ;
 			return 1;
 		}   
@@ -76,13 +86,14 @@ public class Partie {
 				nbVictoireLoupGarou++;
 			}
 		}
-		
-		System.out.println();
-		System.out.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + ((nbVictoireVillage / compteur) * 100 ) + "%");
-		System.out.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + ((nbVictoireLoupGarou / compteur) * 100 ) + "%");
-		System.out.println("Le nombre minimun de tour est de " +  this.donnée.stream().reduce(Integer::min).get());
-		System.out.println("Le nombre maximun de tour est de " +  this.donnée.stream().reduce(Integer::max).get());
-		System.out.println();
+		if(nb > 1 ) {
+			System.out.println();
+			System.out.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + ((nbVictoireVillage / compteur) * 100 ) + "%");
+			System.out.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + ((nbVictoireLoupGarou / compteur) * 100 ) + "%");
+			System.out.println("Le nombre minimun de tour est de " +  this.donnée.stream().reduce(Integer::min).get());
+			System.out.println("Le nombre maximun de tour est de " +  this.donnée.stream().reduce(Integer::max).get());
+			System.out.println();
+		}
 		/*System.out.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
 		System.out.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/
 	}

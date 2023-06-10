@@ -14,6 +14,7 @@ import org.junit.Test;
 
 
 
+
 public class VillageTest {
 	private SimpleVillageois simpleVillageois = new SimpleVillageois();
 	private LoupGarouSimple loupGarou = new LoupGarouSimple();
@@ -28,12 +29,17 @@ public class VillageTest {
 
 	@Test
 	public void ajouterPersonnageTest()  {
+		System.out.println();
+		System.out.println("Lancement de ajouterPersonnageTest");
+		System.out.println();
+		
 		this.village.ajouterPersonnage(loupGarou);
 		
 		Assert.assertEquals(1, this.village.getNbLoupGarou());
 		Assert.assertEquals(1 ,this.village.getNbPersonnage());
 		
 		this.village.ajouterPersonnage(simpleVillageois);
+		
 		Assert.assertEquals(1 , this.village.getNbLoupGarou());
 		Assert.assertEquals(2, this.village.getNbPersonnage());
 		
@@ -42,6 +48,7 @@ public class VillageTest {
 		Assert.assertEquals(1 ,this.village.getNbLoupGarou());
 		Assert.assertEquals(1 , this.village.getNbPersonnage());
 		
+		/*this.village.ajouterPersonnage(simpleVillageois);
 		this.village.voter();
 		
 		Assert.assertEquals(0 , this.village.getNbLoupGarou());
@@ -50,8 +57,27 @@ public class VillageTest {
 		this.village.ajouterPersonnage(simpleVillageois);
 		
 		Assert.assertEquals(0 , this.village.getNbLoupGarou());
-		Assert.assertEquals(1 , this.village.getNbPersonnage());
+		Assert.assertEquals(1 , this.village.getNbPersonnage());*/
 		
+		
+	}
+	
+	@Test
+	public void voterTest()  {
+		System.out.println();
+		System.out.println("Lancement de voterTest");
+		System.out.println();
+		this.village = new Village(1,2);
+		Assert.assertEquals(1, this.village.getNbVillageois());
+		Assert.assertEquals(1, this.village.getNbVillageois());
+		Assert.assertEquals(3, this.village.getNbPersonnage());
+		this.village.voter();
+		Assert.assertEquals(0, this.village.getNbVillageois());
+		this.village.ajouterPersonnage(simpleVillageois);
+		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getMeute().get(0).voter());
+		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getMeute().get(1).voter());
+		this.village.getVillage().remove(0);
+		this.village.voter();
 		
 	}
 	
