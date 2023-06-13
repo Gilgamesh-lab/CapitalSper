@@ -18,15 +18,17 @@ public  class Village {
 
 	private ArrayList<Personnage> village;
 	private ArrayList<Villageois> villageois;
-	private  int nbLoupGarou = 0;
 	private  Meute meute ;
-	private  int compteurId = 0;
 	
-	public Village(int nbVillageois, int nbLoupGarous) {
+	public Village() {
 		this.village = new ArrayList<Personnage>();
 		this.villageois = new ArrayList<Villageois>();
 		this.meute = new Meute();
-		
+		this.meute.setVillage(this);
+	}
+	
+	public Village(int nbVillageois, int nbLoupGarous) {
+		this();
 		for(int i = 0 ; i < nbVillageois ; i++) {
 			this.ajouterPersonnage(new SimpleVillageois());
 		}
@@ -35,28 +37,37 @@ public  class Village {
 		}
 	}
 	
-	public Village() {
-		this.village = new ArrayList<Personnage>();
-		this.villageois = new ArrayList<Villageois>();
-		
-		this.meute = new Meute();
-		
+	public Village(ArrayList<Personnage> personnages) {
+		this();
+		for(int i = 0 ; i < personnages.size() ; i++) {
+			this.ajouterPersonnage(personnages.get(i));
+		}
 	}
 	
+	public Village(int nbVillageois, int nbLoupGarous, ArrayList<Personnage> personnages) {
+		this(nbVillageois,  nbLoupGarous);
+		for(int i = 0 ; i < personnages.size() ; i++) {
+			this.ajouterPersonnage(personnages.get(i));
+		}
+	}
+	
+	
+	
+	
 	public void ajouterPersonnage(Personnage personnage) {
+		this.inscrire(personnage);
+		this.village.add(personnage);
+		personnage.setVillage(this);
+		personnage.setId(this.village.size());
+	}
+	
+	public void inscrire(Personnage personnage) {
 		if(personnage.estUnVillageois()) {
 			this.villageois.add((Villageois) personnage);
 		}
 		else {
-			this.nbLoupGarou++;
-			this.meute.setVillage(this);
 			this.meute.enrolerUnLoupGarou((LoupGarou) personnage);
-			
 		}
-		this.village.add(personnage);
-		personnage.setVillage(this);
-		personnage.setId(compteurId);
-		compteurId++;
 	}
 	
 	

@@ -67,8 +67,6 @@ public class Partie {
 		}
 	}
 	
-	// idée : générer un nombre binaire, dont chacun des nombres correspond à la mort d'un lg ou vi
-	// qui explorait toutes les possiblilités d'une partie
 	
 	public void simulation(int nb) {
 		int compteur ;
@@ -90,8 +88,10 @@ public class Partie {
 			System.out.println();
 			System.out.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + ((nbVictoireVillage / compteur) * 100 ) + "%");
 			System.out.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + ((nbVictoireLoupGarou / compteur) * 100 ) + "%");
+			System.out.println();
 			System.out.println("Le nombre minimun de tour est de " +  this.donnée.stream().reduce(Integer::min).get());
 			System.out.println("Le nombre maximun de tour est de " +  this.donnée.stream().reduce(Integer::max).get());
+			System.out.println("Le nombre moyen de tour est de " +  this.donnée.stream().mapToInt(e -> e).average().getAsDouble());
 			System.out.println();
 		}
 		/*System.out.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
