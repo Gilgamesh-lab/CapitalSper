@@ -55,10 +55,6 @@ public abstract class Personnage {
 	
 	
 
-	public boolean isEstUnVillageois() {
-		return estUnVillageois;
-	}
-
 	public void setEstUnVillageois(boolean estUnVillageois) {
 		this.estUnVillageois = estUnVillageois;
 	}

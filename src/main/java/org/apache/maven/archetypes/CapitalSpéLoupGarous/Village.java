@@ -144,6 +144,25 @@ public  class Village {
 		personnageCondamner.meurt();
 	}
 	
+	public void voter(char vote) {
+		Personnage personnageCondamner;
+		if(vote == '0') {
+			personnageCondamner = this.village.stream().filter(x->x.estUnVillageois()).findAny().get();
+		}
+		else {
+			personnageCondamner = this.village.stream().filter(x->!x.estUnVillageois()).findAny().get();
+		}
+		
+		if(personnageCondamner.estUnVillageois()) {
+			System.out.println("Un villageois a été tué lors du vote");
+			
+		}
+		else {
+			System.out.println("Un loup-garou a été tué lors du vote");
+		}
+		personnageCondamner.meurt();
+	}
+	
 	
 	
 	@Override

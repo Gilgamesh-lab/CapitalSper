@@ -2,6 +2,8 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
 import java.io.IOException;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Log;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
@@ -20,6 +22,9 @@ public class VillageTest {
 	private LoupGarouSimple loupGarou = new LoupGarouSimple();
 	private Village village = new Village(0,0);
 	
+	private Log log = new Log();
+	//log.setDetailVoteVillage(true);
+	private Partie partie = new Partie(village, log);
 	
 	
 	@Before
@@ -79,6 +84,19 @@ public class VillageTest {
 		this.village.getVillage().remove(0);
 		this.village.voter();
 		
+	}
+	
+	@Test
+	public void explorationTest()  {
+		System.out.println();
+		System.out.println("Lancement d'explorationTest");
+		System.out.println();
+		this.village = new Village(1,2);
+		this.village.voter('0');
+		Assert.assertEquals(0, this.village.getNbVillageois());
+		this.village.ajouterPersonnage(simpleVillageois);
+		this.village.voter('1');
+		Assert.assertEquals(1, this.village.getMeute().getMeute().size());
 	}
 	
 	
