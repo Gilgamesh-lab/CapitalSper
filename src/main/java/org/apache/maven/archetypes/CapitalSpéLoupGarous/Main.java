@@ -18,7 +18,7 @@ public class Main {
 		
 		
 		
-		//partie.startExploration("11110000000000000");
+		//partie.startExploration("11000000000000");
 		
 		/*
 		 palier 1 = 1 (+ 0)
