@@ -116,13 +116,16 @@ public class Partie {
 		tab[1] = "1";
 		int TourMaximal = this.savegardeVillage.getNbVillageois();
 		
-		if(TourMaximal % 2 != 0) {
+		if(TourMaximal % 2 == 0) {
+			TourMaximal -= 2;
+		}
+		else {
 			TourMaximal -= 1;
 		}
 		
 		TourMaximal /= 2;
 		
-		if(this.savegardeVillage.getNbLoupGarou() >= 3) {
+		if(this.savegardeVillage.getNbLoupGarou() >= 2) {
 			TourMaximal += this.savegardeVillage.getNbLoupGarou() / 2 ;
 		}
 		
@@ -150,12 +153,21 @@ public class Partie {
 		
 		for (int i=0; i < tab.length; i++) {
 			long countLgmort = branche.chars().filter(ch -> ch == '1').count();
-			long countVimort = branche.chars().filter(ch -> ch == '0').count();
+			
 			
 			if(countLgmort < this.savegardeVillage.getNbLoupGarou() || tab[i] != "1") { // pour pas loup mort soit compter
 				//if(this.savegardeVillage.getNbVillageois() - countVimort - 1 > this.savegardeVillage.getNbLoupGarou() ||  tab[i] == "0") {
 				//if(countVimort < this.savegardeVillage.getNbVillageois() - this.savegardeVillage.getNbLoupGarou() - 1 && tab[i] == "1") {
 					point +=  tab[i];
+					//System.out.println("point = " + point );
+					long countVimort = point.chars().filter(ch -> ch == '0').count();
+					countLgmort = branche.chars().filter(ch -> ch == '1').count();
+					// 1,6 en 00
+					/*if(this.savegardeVillage.getNbVillageois() - countVimort * 2 -1 - this.savegardeVillage.getNbLoupGarou() ==0 && this.savegardeVillage.getNbLoupGarou() - countLgmort != 0  ) {
+						System.out.println("true");
+						this.startExploration(point);
+						return;
+					}*/
 					if(compteur !=0) {
 						explorationBranche(tab, point, compteur);
 					}
