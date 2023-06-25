@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		int nbVillageois = 5;
+		int nbVillageois =  10;
 		int nbLoupGarous = 1;
-		int nbPartie = 1000;//100000
+		int nbPartie = 10000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Log log = new Log();
@@ -17,8 +17,9 @@ public class Main {
 		//partie.simulation(nbPartie);
 		
 		
-		
-		//partie.startExploration("11000000000000");
+		/*50.78125%
+Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
+		// partie.startExploration("111");
 		
 		/*
 		 palier 1 = 1 (+ 0)
@@ -33,7 +34,8 @@ public class Main {
 		long count = test.chars().filter(ch -> ch == '1').count();*/
 
 		
-		partie.exploration();
+		partie.exploration(); // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,
+		// certaine branches continue même après la victoire des loups-garous
 		
 		
 		/*String tab[] = {"0","1" };

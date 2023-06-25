@@ -72,7 +72,7 @@ public  class Village {
 	
 	
 	public int getNbPersonnage() {
-		return this.village.size()  ;
+		return this.village.size();
 	}
 	
 	public ArrayList<Villageois> getVillageois() {
@@ -148,16 +148,10 @@ public  class Village {
 		Personnage personnageCondamner;
 		if(vote == '0') {
 			personnageCondamner = this.village.stream().filter(x->x.estUnVillageois()).findAny().get();
+			System.out.println("Un villageois a été tué lors du vote");
 		}
 		else {
 			personnageCondamner = this.village.stream().filter(x->!x.estUnVillageois()).findAny().get();
-		}
-		
-		if(personnageCondamner.estUnVillageois()) {
-			System.out.println("Un villageois a été tué lors du vote");
-			
-		}
-		else {
 			System.out.println("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();
