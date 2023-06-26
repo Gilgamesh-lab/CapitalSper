@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		int nbVillageois =  10;
+		int nbVillageois =  3;
 		int nbLoupGarous = 1;
 		int nbPartie = 10000;//100000
 		

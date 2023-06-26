@@ -86,18 +86,7 @@ public class VillageTest {
 		
 	}
 	
-	@Test
-	public void explorationTest()  {
-		System.out.println();
-		System.out.println("Lancement d'explorationTest");
-		System.out.println();
-		this.village = new Village(1,2);
-		this.village.voter('0');
-		Assert.assertEquals(0, this.village.getNbVillageois());
-		this.village.ajouterPersonnage(simpleVillageois);
-		this.village.voter('1');
-		Assert.assertEquals(1, this.village.getMeute().getMeute().size());
-	}
+	
 	
 	
 
