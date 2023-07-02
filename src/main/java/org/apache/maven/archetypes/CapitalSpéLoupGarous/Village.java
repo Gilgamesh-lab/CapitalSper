@@ -129,11 +129,10 @@ public  class Village {
 		int maxVoteId = listeMaxVoteId.get((int) (Math.random() * ( listeMaxVoteId.size()    - 0 )));// si plusieurs maxVote
 				//.reduce(Integer::max).get();
 		Personnage personnageCondamner = this.village.stream().filter(x-> x.getId() == maxVoteId ).findFirst().get();
-		if(Partie.log.isDetailVoteVillageOn()) {
-			Log.println("");
-			Log.println("Le village est composé de : " + this.village);
-			Log.println(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVote + " vote contre lui ");
-		}
+		Log.println("");
+		Log.println("Le village est composé de : " + this.village);
+		Log.println(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVote + " vote contre lui ");
+
 		if(personnageCondamner.estUnVillageois()) {
 			Log.println("Un villageois a été tué lors du vote");
 			

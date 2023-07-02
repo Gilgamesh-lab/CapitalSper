@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		int nbVillageois = 30;
-		int nbLoupGarous = 3;
-		int nbPartie = 560;//100000
+		int nbVillageois = 6;
+		int nbLoupGarous = 2;
+		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Log log = new Log();
 		//log.setDetailVoteVillage(true);
-		log.setOnFichierOutput();
-		//log.setOffAfficherLog();
+		//log.setOnFichierOutput();
+		//log.setOffAfficherLogDetailsPartie();
 		Partie partie = new Partie(village, log);
 		
 		

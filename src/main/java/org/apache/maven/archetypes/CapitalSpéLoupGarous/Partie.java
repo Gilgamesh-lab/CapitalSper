@@ -214,7 +214,8 @@ public class Partie {
 	public void simulation(int nb) {
 		this.reset();
 		if (log.isFichierOutput()) {
-			log.start("Simulation", savegardeVillage);
+			String mode = "Simultation sur " + nb + " parties";
+			log.start(mode, savegardeVillage);
 		}
 		int compteur ;
 
@@ -225,18 +226,17 @@ public class Partie {
 		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
 		this.pourcentWinVillage = (double) ((this.nbVictoireVillage / compteur) * 100 );
 		
-		if(nb > 1 ) {
-			log.setOnAfficherLogDetailsPartie();
-			Log.println("");
-			Log.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%");
-			Log.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%");
-			Log.println("");
-			Log.println("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
-			Log.println("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
-			Log.println("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
-			Log.println("");
-			log.setOffAfficherLogDetailsPartie();
-		}
+		log.setOnAfficherLogDetailsPartie();
+		Log.println("");
+		Log.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%");
+		Log.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%");
+		Log.println("");
+		Log.println("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
+		Log.println("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
+		Log.println("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
+		Log.println("");
+		log.setOffAfficherLogDetailsPartie();
+		
 		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
 		Log.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/
 	}

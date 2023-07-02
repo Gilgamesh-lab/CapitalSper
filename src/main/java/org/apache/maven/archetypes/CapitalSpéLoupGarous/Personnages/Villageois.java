@@ -25,9 +25,7 @@ public abstract class Villageois extends Personnage {
 		}
 		this.getListeDeVote().remove(this);
 		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-		if(Partie.log.isDetailVoteVillageOn()) {
-			Log.println(this + " a voté contre " + this.getListeDeVote().get(nb));
-		}
+		Log.println(this + " a voté contre " + this.getListeDeVote().get(nb), 1);
 		return this.getListeDeVote().get(nb).getId();
 		
 	}

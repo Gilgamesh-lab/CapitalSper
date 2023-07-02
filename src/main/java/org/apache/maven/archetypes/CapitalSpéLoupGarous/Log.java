@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 public class Log {
-	private boolean detailVoteVillage;
+	private static boolean detailVoteVillage;
 	private static boolean fichierOutput;
 	private static PrintWriter writer;
 	private static boolean afficherLogDetailsPartie;
@@ -72,6 +72,19 @@ public class Log {
 			if(fichierOutput) {
 				writer.println(log);
 			}
+		}
+	}
+	
+	public static void  println(String log, int nb) {
+		if(nb == 1) {
+			if(detailVoteVillage) {
+				System.out.println(log);
+				
+			}
+		}
+	
+		if(fichierOutput) {
+			writer.println(log);
 		}
 	}
 	
