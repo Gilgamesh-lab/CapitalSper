@@ -2,6 +2,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Log;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 
 public abstract class Villageois extends Personnage {
@@ -25,7 +26,7 @@ public abstract class Villageois extends Personnage {
 		this.getListeDeVote().remove(this);
 		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 		if(Partie.log.isDetailVoteVillageOn()) {
-			System.out.println(this + " a voté contre " + this.getListeDeVote().get(nb));
+			Log.println(this + " a voté contre " + this.getListeDeVote().get(nb));
 		}
 		return this.getListeDeVote().get(nb).getId();
 		

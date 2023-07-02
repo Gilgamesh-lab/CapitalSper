@@ -202,5 +202,8 @@ fabric.properties
 .history
 .ionide
 
+### Capital spé ###
+log/
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,intellij,visualstudiocode
 

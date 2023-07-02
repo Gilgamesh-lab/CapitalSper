@@ -37,9 +37,9 @@ public class Partie {
 	
 	private void startSimulation () {
 		init();
-		System.out.println();
-		System.out.println("Lancement de la partie avec " +  this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
-		System.out.println();
+		Log.println("");
+		Log.println("Lancement de la partie avec " +  this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
+		Log.println("");
 		this.village.getMeute().attaquerVillage();
 		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 			this.village.voter();
@@ -48,21 +48,21 @@ public class Partie {
 			}
 			this.nbTour++;
 		}
-		System.out.println();
+		Log.println("");
 		if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 ) {
-			System.out.println("Victoire des Loups-Garous en " + this.nbTour + " tours");
-			System.out.println(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
+			Log.println("Victoire des Loups-Garous en " + this.nbTour + " tours");
+			Log.println(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
 			this.listeTours.add(this.nbTour) ;
 			this.nbVictoireLoupGarou++;
 		}
 		else if (this.village.getNbLoupGarou() == 0 && this.village.getNbVillageois() != 0) { 
-			System.out.println("Victoire des villageois en " + this.nbTour + " tours");
-			System.out.println(this.village.getNbVillageois() + " villageois survivant(s)");
+			Log.println("Victoire des villageois en " + this.nbTour + " tours");
+			Log.println(this.village.getNbVillageois() + " villageois survivant(s)");
 			this.listeTours.add(this.nbTour);
 			this.nbVictoireVillage++;
 		}   
 		else {
-			System.out.println("Égalité");
+			Log.println("Égalité");
 			this.listeTours.add(this.nbTour) ;
 			this.nbÉgalité++;
 		}
@@ -71,9 +71,9 @@ public class Partie {
 	public void startExploration (String branche) {
 		init();
 		double pourcentageBranche = 1;
-		System.out.println();
-		System.out.println("Lancement de la partie suivant la branche " + branche + " avec " + this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
-		System.out.println();
+		Log.println("");
+		Log.println("Lancement de la partie suivant la branche " + branche + " avec " + this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
+		Log.println("");
 		this.compteur++;
 		this.village.getMeute().attaquerVillage();
 		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
@@ -83,33 +83,33 @@ public class Partie {
 			else {
 				pourcentageBranche *= (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage();
 			}
-			System.out.println("pourcentVictoire = " + pourcentageBranche);
+			Log.println("pourcentVictoire = " + pourcentageBranche);
 			this.village.voter(branche.charAt(this.nbTour));
 			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 				this.village.getMeute().attaquerVillage();
 			}
 			this.nbTour++;
 		}
-		System.out.println("pourcentVictoire final = " + pourcentageBranche);
-		System.out.println();
+		Log.println("pourcentVictoire final = " + pourcentageBranche);
+		Log.println("");
 		
 		if(this.village.getNbLoupGarou() >= this.village.getNbVillageois() && this.village.getNbLoupGarou() != 0 ) {
-			System.out.println("Victoire des Loups-Garous en " + this.nbTour + " tours");
-			System.out.println(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
+			Log.println("Victoire des Loups-Garous en " + this.nbTour + " tours");
+			Log.println(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
 			this.listeTours.add(this.nbTour) ;
 			this.nbVictoireLoupGarou++;
 			this.pourcentWinLoupGarous += pourcentageBranche;
 			
 		}
 		else if (this.village.getNbLoupGarou() == 0 && this.village.getNbVillageois() != 0) {  
-			System.out.println("Victoire des villageois en " + this.nbTour + " tours");
-			System.out.println(this.village.getNbVillageois() + " villageois survivant(s)");
+			Log.println("Victoire des villageois en " + this.nbTour + " tours");
+			Log.println(this.village.getNbVillageois() + " villageois survivant(s)");
 			listeTours.add(this.nbTour) ;
 			this.nbVictoireVillage++;
 			this.pourcentWinVillage += pourcentageBranche;
 		}   
 		else {
-			System.out.println("Égalité");
+			Log.println("Égalité");
 			listeTours.add(this.nbTour) ;
 			this.nbÉgalité++;
 			this.pourcentÉgalité += pourcentageBranche;
@@ -118,6 +118,10 @@ public class Partie {
 	
 	
 	public void exploration() {
+		this.reset();
+		if (log.isFichierOutput()) {
+			log.start("Exploration", savegardeVillage);
+		}
 		String tab[] = new String[2];
 		tab[0] = "0";
 		tab[1] = "1";
@@ -138,20 +142,20 @@ public class Partie {
 		if(this.savegardeVillage.getNbLoupGarou() % 2 == 0 && this.savegardeVillage.getNbVillageois() % 2 == 0) {
 			TourMaximal++;
 		}
-		//System.out.println(TourMaximal);
+		//Log.println(TourMaximal);
 		this.explorationBranche(tab, "", TourMaximal, 0);
 		
 		this.pourcentWinVillage = this.pourcentWinVillage * 100;
 		this.pourcentWinLoupGarous = this.pourcentWinLoupGarous * 100;
 		
-		System.out.println();
-		System.out.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage + "%");
-		System.out.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous  + "%");
-		System.out.println();
-		System.out.println("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
-		System.out.println("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
-		System.out.println("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
-		System.out.println();
+		Log.println("");
+		Log.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage + "%");
+		Log.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous  + "%");
+		Log.println("");
+		Log.println("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
+		Log.println("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
+		Log.println("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
+		Log.println("");
 		
 	}
 	
@@ -169,7 +173,7 @@ public class Partie {
 				//if(this.savegardeVillage.getNbVillageois() - countVimort - 1 > this.savegardeVillage.getNbLoupGarou() ||  tab[i] == "0") {
 				//if(countVimort < this.savegardeVillage.getNbVillageois() - this.savegardeVillage.getNbLoupGarou() - 1 && tab[i] == "1") {
 					point +=  tab[i];
-					//System.out.println("point = " + point );
+					//Log.println("point = " + point );
 					long countVimort = point.chars().filter(ch -> ch == '0').count();
 					countLgmort = branche.chars().filter(ch -> ch == '1').count();
 					
@@ -189,7 +193,7 @@ public class Partie {
     }
 	
 	
-	public void init() {
+	private void init() {
 		this.nbTour = 0;
 		this.village = new Village();
 		for(int i = 0; i < this.savegardeVillage.getNbPersonnage(); i++) {
@@ -197,28 +201,43 @@ public class Partie {
 		}
 	}
 	
+	private void reset() {
+		this.pourcentWinLoupGarous = 0;
+		this.pourcentWinVillage = 0;
+		this.nbVictoireLoupGarou = 0;
+		this.nbVictoireVillage = 0;
+	}
+	
 	
 	
 	public void simulation(int nb) {
+		this.reset();
+		if (log.isFichierOutput()) {
+			log.start("Simulation", savegardeVillage);
+		}
 		int compteur ;
 
 		
 		for (compteur = 0; compteur < nb ; compteur ++) {
 			this.startSimulation();
 		}
+		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
+		this.pourcentWinVillage = (double) ((this.nbVictoireVillage / compteur) * 100 );
 		
 		if(nb > 1 ) {
-			System.out.println();
-			System.out.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + ((this.nbVictoireVillage / compteur) * 100 ) + "%");
-			System.out.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + ((this.nbVictoireLoupGarou / compteur) * 100 ) + "%");
-			System.out.println();
-			System.out.println("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
-			System.out.println("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
-			System.out.println("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
-			System.out.println();
+			log.setOnAfficherLog();
+			Log.println("");
+			Log.println("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%");
+			Log.println("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%");
+			Log.println("");
+			Log.println("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
+			Log.println("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
+			Log.println("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
+			Log.println("");
+			log.setOffAfficherLog();
 		}
-		/*System.out.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
-		System.out.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/
+		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
+		Log.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/
 	}
 
 	

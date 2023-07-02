@@ -5,17 +5,34 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		int nbVillageois =  3;
+		int nbVillageois = 10;
 		int nbLoupGarous = 1;
-		int nbPartie = 10000;//100000
+		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Log log = new Log();
 		//log.setDetailVoteVillage(true);
+		log.setOnFichierOutput();
+		//log.setOffAfficherLog();
 		Partie partie = new Partie(village, log);
 		
-		//partie.simulation(nbPartie);
 		
+		//partie.simulation(nbPartie);
+		double lg = partie.getPourcentWinLoupGarous();
+		double vi = partie.getPourcentWinVillage();
+		
+		
+		partie.exploration();
+		
+		log.finish();
+		 // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,
+		/*double lg2 = partie.getPourcentWinLoupGarous();
+		double vi2 = partie.getPourcentWinVillage();
+		
+		System.out.println(lg);
+		System.out.println(vi);
+		System.out.println(lg2);
+		System.out.println(vi2);*/
 		
 		/*50.78125%
 Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
@@ -34,7 +51,7 @@ Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
 		long count = test.chars().filter(ch -> ch == '1').count();*/
 
 		
-		partie.exploration(); // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,
+		
 		// certaine branches continue même après la victoire des loups-garous
 		
 		

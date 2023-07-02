@@ -130,16 +130,16 @@ public  class Village {
 				//.reduce(Integer::max).get();
 		Personnage personnageCondamner = this.village.stream().filter(x-> x.getId() == maxVoteId ).findFirst().get();
 		if(Partie.log.isDetailVoteVillageOn()) {
-			System.out.println();
-			System.out.println("Le village est composé de : " + this.village);
-			System.out.println(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVote + " vote contre lui ");
+			Log.println("");
+			Log.println("Le village est composé de : " + this.village);
+			Log.println(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVote + " vote contre lui ");
 		}
 		if(personnageCondamner.estUnVillageois()) {
-			System.out.println("Un villageois a été tué lors du vote");
+			Log.println("Un villageois a été tué lors du vote");
 			
 		}
 		else {
-			System.out.println("Un loup-garou a été tué lors du vote");
+			Log.println("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();
 	}
@@ -148,11 +148,11 @@ public  class Village {
 		Personnage personnageCondamner;
 		if(vote == '0') {
 			personnageCondamner = this.village.stream().filter(x->x.estUnVillageois()).findAny().get();
-			System.out.println("Un villageois a été tué lors du vote");
+			Log.println("Un villageois a été tué lors du vote");
 		}
 		else {
 			personnageCondamner = this.village.stream().filter(x->!x.estUnVillageois()).findAny().get();
-			System.out.println("Un loup-garou a été tué lors du vote");
+			Log.println("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();
 	}
