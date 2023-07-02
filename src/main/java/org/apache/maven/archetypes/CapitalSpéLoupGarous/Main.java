@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		int nbVillageois = 10;
-		int nbLoupGarous = 1;
-		int nbPartie = 100000;//100000
+		int nbVillageois = 30;
+		int nbLoupGarous = 3;
+		int nbPartie = 560;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Log log = new Log();
@@ -17,12 +17,12 @@ public class Main {
 		Partie partie = new Partie(village, log);
 		
 		
-		//partie.simulation(nbPartie);
+		partie.simulation(nbPartie);
 		double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();
 		
 		
-		partie.exploration();
+		//partie.exploration();
 		
 		log.finish();
 		 // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,

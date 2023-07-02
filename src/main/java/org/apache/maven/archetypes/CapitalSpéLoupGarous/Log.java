@@ -8,7 +8,7 @@ public class Log {
 	private boolean detailVoteVillage;
 	private static boolean fichierOutput;
 	private static PrintWriter writer;
-	private static boolean afficherLog;
+	private static boolean afficherLogDetailsPartie;
 	
 	
 	
@@ -16,7 +16,7 @@ public class Log {
 	public Log() {
 		this.detailVoteVillage = false;
 		this.fichierOutput = false;
-		this.afficherLog = true;
+		this.afficherLogDetailsPartie = true;
 	}
 
 	public boolean isDetailVoteVillageOn() {
@@ -35,12 +35,12 @@ public class Log {
 		return this.fichierOutput;
 	}
 	
-	public void setOnAfficherLog() {
-		this.afficherLog = true;
+	public void setOnAfficherLogDetailsPartie() {
+		this.afficherLogDetailsPartie = true;
 	}
 	
-	public void setOffAfficherLog() {
-		this.afficherLog = false;
+	public void setOffAfficherLogDetailsPartie() {
+		this.afficherLogDetailsPartie = false;
 	}
 	
 	public void start (String mode, Village village) {
@@ -67,7 +67,7 @@ public class Log {
 	}
 	
 	public static void  println(String log) {
-		if(afficherLog) {
+		if(afficherLogDetailsPartie) {
 			System.out.println(log);
 			if(fichierOutput) {
 				writer.println(log);
