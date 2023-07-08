@@ -2,7 +2,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Log;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 
 public class Meute {
@@ -27,11 +27,17 @@ public class Meute {
 		this.village = village;
 	}
 	
+	public boolean estEnVie() {
+		return this.meute.size() != 0;
+	}
+	
 	
 	public void attaquerVillage() {
-		int nb = (int) (Math.random() * ( (this.village.getNbVillageois() )  - 0 ));
-		Log.println(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
-		this.village.getVillageois().get(nb).meurt();
+		if(this.village.getNbVillageois() !=0) {
+			int nb = (int) (Math.random() * ( (this.village.getNbVillageois() )  - 0 ));
+			Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
+			this.village.getVillageois().get(nb).meurt();
+		}
 		
 	}
 

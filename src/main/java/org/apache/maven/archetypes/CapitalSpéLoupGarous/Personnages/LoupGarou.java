@@ -1,6 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Log;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 
 public class LoupGarou extends Personnage {
@@ -9,7 +9,7 @@ public class LoupGarou extends Personnage {
 	
 
 	public LoupGarou() {
-		super(false);
+		super(false, 1);
 	}
 	
 	@Override
@@ -36,13 +36,13 @@ public class LoupGarou extends Personnage {
 	public int voter() {
 		this.getListeDeVote().clear();
 		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			this.getListeDeVote().add(this.getVillage().getVillage().get(i));
+			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
 		}
 		for(int i = 0 ; i < this.getMeute().getMeute().size() ; i++) {
 			this.getListeDeVote().remove(this.getMeute().getMeute().get(i));
 		}
 		int nb = (int) (Math.random() * ( this.getListeDeVote().size()   - 0 ));
-		Log.println(this + " a voté contre " + this.getListeDeVote().get(nb), 1);
+		Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
 
 		return this.getListeDeVote().get(nb).getId();
 		

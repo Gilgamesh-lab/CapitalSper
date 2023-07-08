@@ -1,6 +1,6 @@
 package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Log;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
@@ -16,7 +16,7 @@ public class PartieTest {
 	private Village village = new Village(0,0);
 	private double delta;
 	
-	private Log log = new Log();
+	private Logger log = new Logger();
 	//log.setDetailVoteVillage(true);
 	private Partie partie ;
 	

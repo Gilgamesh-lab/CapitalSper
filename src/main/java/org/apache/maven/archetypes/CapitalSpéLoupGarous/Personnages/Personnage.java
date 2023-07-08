@@ -9,11 +9,13 @@ public abstract class Personnage {
 	
 	private boolean estUnVillageois;
 	private int id;
+	private int idDeRole;
 	private Village village;
 	private ArrayList<Personnage> listeDeVote;
 	
-	public Personnage(Boolean estUnVillageois) {
+	public Personnage(Boolean estUnVillageois, int idDeRole) {
 		this.estUnVillageois = estUnVillageois;
+		this.idDeRole = idDeRole;
 		this.listeDeVote = new ArrayList<Personnage>();
 	}
 
@@ -44,7 +46,7 @@ public abstract class Personnage {
 	public abstract void agir();
 	
 	public void meurt() {
-		this.village.getVillage().remove(this);
+		this.village.getHabitants().remove(this);
 	}
 
 	public void setVillage(Village village) {

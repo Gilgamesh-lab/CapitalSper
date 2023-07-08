@@ -79,7 +79,7 @@ public  class Village {
 		return this.villageois ;
 	}
 	
-	public ArrayList<Personnage> getVillage() {
+	public ArrayList<Personnage> getHabitants() {
 		return this.village ;
 	}
 	
@@ -91,9 +91,6 @@ public  class Village {
 		return this.getNbPersonnage() - this.getNbLoupGarou() ;
 	}
 	
-	/*public void perdreHabitant() {
-		this.getNbPersonnage-- ;
-	}*/
 	
 	public int getNbLoupGarou() {
 		return this.meute.getMeute().size() ;
@@ -108,37 +105,42 @@ public  class Village {
 	public void voter() {
 		
 		Personnage votant;
-		Map<Integer, Integer> tableauDeVote = new HashMap<>();
+		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
-		for(int i = 0 ; i < this.getVillage().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
-			tableauDeVote.put(i, 0);
+		for(int i = 0 ; i < this.getHabitants().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
+			tableauDeVotes.put(i, 0);
 		}
 		
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
-			votant = this.getVillage().get(i);
-			 vote  = votant.voter();
-			 
-			tableauDeVote.put(vote, tableauDeVote.get(vote) + 1);
+			votant = this.getHabitants().get(i);
+			vote  = votant.voter();
+			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + 1);
 		}
 		
-		Integer plusGrandNombreDeVote = tableauDeVote.entrySet().stream()
+		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
 				  .map(Map.Entry::getValue)
-				  .reduce(Integer::max).get();
+				  .reduce(Integer::max)
+				  .get();
 		
-		List<Integer> listeMaxVoteId = tableauDeVote.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVote).map(Map.Entry::getKey).collect(Collectors.toList());
-		int maxVoteId = listeMaxVoteId.get((int) (Math.random() * ( listeMaxVoteId.size()    - 0 )));// si plusieurs maxVote
+		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
+		int idPersonneAyantPlusDeVotes;
+		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
+			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));// si plusieurs maxVote
 				//.reduce(Integer::max).get();
-		Personnage personnageCondamner = this.village.stream().filter(x-> x.getId() == maxVoteId ).findFirst().get();
-		Log.println("");
-		Log.println("Le village est composé de : " + this.village);
-		Log.println(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVote + " vote contre lui ");
-
-		if(personnageCondamner.estUnVillageois()) {
-			Log.println("Un villageois a été tué lors du vote");
-			
 		}
 		else {
-			Log.println("Un loup-garou a été tué lors du vote");
+			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
+		}
+		Personnage personnageCondamner = this.village.stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
+		Logger.log("");
+		Logger.log("Le village est composé de : " + this.village, "vote");
+		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", "vote");
+
+		if(personnageCondamner.estUnVillageois()) {
+			Logger.log("Un villageois a été tué lors du vote");
+		}
+		else {
+			Logger.log("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();
 	}
@@ -147,11 +149,11 @@ public  class Village {
 		Personnage personnageCondamner;
 		if(vote == '0') {
 			personnageCondamner = this.village.stream().filter(x->x.estUnVillageois()).findAny().get();
-			Log.println("Un villageois a été tué lors du vote");
+			Logger.log("Un villageois a été tué lors du vote");
 		}
 		else {
 			personnageCondamner = this.village.stream().filter(x->!x.estUnVillageois()).findAny().get();
-			Log.println("Un loup-garou a été tué lors du vote");
+			Logger.log("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();
 	}

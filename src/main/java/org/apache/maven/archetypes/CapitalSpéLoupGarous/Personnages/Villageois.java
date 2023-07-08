@@ -2,22 +2,22 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Log;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 
 public abstract class Villageois extends Personnage {
 	private ArrayList<Personnage> alliés;
 	
 	public Villageois() {
-		super(true);
+		super(true, 1);
 		this.alliés = new ArrayList<Personnage>();
 	}
 	
 	@Override
 	public int voter() {
-		this.resetListeDeVote();
+		this.getListeDeVote().clear();
 		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			this.getListeDeVote().add(this.getVillage().getVillage().get(i));
+			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
 		}
 		
 		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
@@ -25,7 +25,7 @@ public abstract class Villageois extends Personnage {
 		}
 		this.getListeDeVote().remove(this);
 		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-		Log.println(this + " a voté contre " + this.getListeDeVote().get(nb), 1);
+		Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
 		return this.getListeDeVote().get(nb).getId();
 		
 	}

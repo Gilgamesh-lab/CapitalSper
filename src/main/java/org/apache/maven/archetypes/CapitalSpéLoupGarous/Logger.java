@@ -4,19 +4,21 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-public class Log {
+public class Logger {
 	private static boolean detailVoteVillage;
 	private static boolean fichierOutput;
 	private static PrintWriter writer;
 	private static boolean afficherLogDetailsPartie;
+	private static boolean afficherLogDetailsPourcentage;
 	
 	
 	
 
-	public Log() {
+	public Logger() {
 		this.detailVoteVillage = false;
 		this.fichierOutput = false;
 		this.afficherLogDetailsPartie = true;
+		this.afficherLogDetailsPourcentage = false;
 	}
 
 	public boolean isDetailVoteVillageOn() {
@@ -43,7 +45,15 @@ public class Log {
 		this.afficherLogDetailsPartie = false;
 	}
 	
-	public void start (String mode, Village village) {
+	public void setOnAfficherLogDetailsPourcentage() {
+		this.afficherLogDetailsPourcentage = true;
+	}
+	
+	public void setOffAfficherLogDetailsPourcentage() {
+		this.afficherLogDetailsPourcentage = false;
+	}
+	
+	public void écrireFichier (String mode, Village village) {
 		int tab[] = referentiel(village);
 		try {
 			this.writer = new PrintWriter("log/" + mode + " avec " + tab[0] + " simpleVillageois et " + tab[1] + " loups-garous.txt" , "UTF-8");
@@ -66,7 +76,7 @@ public class Log {
 		
 	}
 	
-	public static void  println(String log) {
+	public static void  log (String log) {
 		if(afficherLogDetailsPartie) {
 			System.out.println(log);
 			if(fichierOutput) {
@@ -75,17 +85,26 @@ public class Log {
 		}
 	}
 	
-	public static void  println(String log, int nb) {
-		if(nb == 1) {
+	public static void  log (String messageDeLog, String typeDeLog) {
+		if(typeDeLog.equals("vote")) {
 			if(detailVoteVillage) {
-				System.out.println(log);
+				System.out.println(messageDeLog);
+				if(fichierOutput) {
+					writer.println(messageDeLog);
+				}
 				
 			}
 		}
-	
-		if(fichierOutput) {
-			writer.println(log);
+		else if (typeDeLog.equals("pourcentage")) {
+			if(afficherLogDetailsPourcentage) {
+				System.out.println(messageDeLog);
+				if(fichierOutput) {
+					writer.println(messageDeLog);
+				}
+			}
 		}
+	
+		
 	}
 	
 

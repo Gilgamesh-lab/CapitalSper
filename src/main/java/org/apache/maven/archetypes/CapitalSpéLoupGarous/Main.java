@@ -7,13 +7,14 @@ public class Main {
 	public static void main(String[] args) {
 		int nbVillageois = 6;
 		int nbLoupGarous = 2;
-		int nbPartie = 1;//100000
+		int nbPartie = 20;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
-		Log log = new Log();
+		Logger log = new Logger();
 		//log.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
 		//log.setOffAfficherLogDetailsPartie();
+		//log.setOnAfficherLogDetailsPourcentage();
 		Partie partie = new Partie(village, log);
 		
 		
@@ -24,7 +25,7 @@ public class Main {
 		
 		//partie.exploration();
 		
-		log.finish();
+		
 		 // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,
 		/*double lg2 = partie.getPourcentWinLoupGarous();
 		double vi2 = partie.getPourcentWinVillage();
