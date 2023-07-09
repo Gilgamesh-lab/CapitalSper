@@ -41,9 +41,6 @@ public class Meute {
 	public void attaquerVillage() {
 		if(this.village.getNbVillageois() !=0) {
 			int nb = (int) (Math.random() * ( (this.village.getNbVillageois() )  - 0 ));
-			while(this.meute.size() == 1 && this.village.getVillageois().get(nb).equals(this.meute.get(0).getAmoureux())){
-				nb = (int) (Math.random() * ( (this.village.getNbVillageois() )  - 0 ));
-			}
 			Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
 			this.village.getVillageois().get(nb).meurt();
 		}

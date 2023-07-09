@@ -20,9 +20,11 @@ public class Partie {
 	private float nbVictoireVillage = 0;
 	private float nbVictoireLoupGarou = 0 ;
 	private float nbÉgalité = 0 ;
+	private float nbVictoireAmoureux = 0 ;
 	private double pourcentWinVillage = 0;
 	private double pourcentWinLoupGarous = 0;
 	private double pourcentÉgalité = 0;
+	private double pourcentWinAmoureux = 0;
 	private int compteur;
 	private List<String> listeBranches = new ArrayList<String>();
 	
@@ -44,7 +46,7 @@ public class Partie {
 		Logger.log("Lancement de la partie avec " +  this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
 		Logger.log("");
 		this.village.premièreNuit();
-		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
+		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
 			this.village.voter();
 			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 				this.village.getMeute().attaquerVillage();
@@ -53,13 +55,14 @@ public class Partie {
 		}
 		Logger.log("");
 		
-		/*if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
+		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
-			Logger.log(this.village.getNbVillageois() + " villageois survivant(s)");
+			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
 			this.listeTours.add(this.nbTour);
-		}*/
+			this.nbVictoireAmoureux++;
+		}
 		
-		if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 ) {
+		else if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 ) {
 			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
 			this.listeTours.add(this.nbTour) ;
@@ -219,7 +222,7 @@ public class Partie {
 		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
 		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			personnages.add(new Cupidon());
-			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou(), personnages);
+			this.village = new Village(this.savegardeVillage.getNbVillageois() - personnages.size(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}
 		else {
 			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou());
@@ -232,6 +235,7 @@ public class Partie {
 		this.pourcentWinVillage = 0;
 		this.nbVictoireLoupGarou = 0;
 		this.nbVictoireVillage = 0;
+		this.nbVictoireAmoureux = 0;
 	}
 	
 	
@@ -254,12 +258,17 @@ public class Partie {
 		}
 		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
 		this.pourcentWinVillage = (double) ((this.nbVictoireVillage / compteur) * 100 );
+		this.pourcentWinAmoureux = (double) ((this.nbVictoireAmoureux / compteur) * 100 );
 		this.pourcentÉgalité = (double) ((this.nbÉgalité / compteur) * 100 );
+		
 		
 		log.setOnAfficherLogDetailsPartie();
 		Logger.log("");
 		Logger.log("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%");
 		Logger.log("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%");
+		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
+			Logger.log("Sur " + compteur + " parties, les amoureux ont eu un taux de victoire de " + this.pourcentWinAmoureux  + "%");
+		}
 		if(this.nbÉgalité > 0) {
 			Logger.log("Sur " + compteur + " parties, les villageois et les loups-garous ont terminés sur une égalité avec un taux de " + this.pourcentÉgalité + "%");
 		}

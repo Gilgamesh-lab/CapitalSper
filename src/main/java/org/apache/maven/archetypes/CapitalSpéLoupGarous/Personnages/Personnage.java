@@ -91,7 +91,7 @@ public abstract class Personnage {
 		this.statut.estMort();
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
 			this.statut.getAmoureux().meurt();
-			Logger.log("Après la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin de l'amour ");
+			Logger.log("Après la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 		}
 		this.statut = new Statut(this);
 		this.village.getHabitants().remove(this);
