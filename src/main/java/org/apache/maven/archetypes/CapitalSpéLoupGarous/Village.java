@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
@@ -102,6 +103,21 @@ public  class Village {
 		return this.village.get(nb);
 	}
 	
+	public void premièreNuit() {
+		if(this.getHabitants().stream().filter(x -> x.getIdDeRole() == 4).findFirst().orElse(null) != null) {
+			Cupidon cupidon = (Cupidon) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 4).findFirst().get();
+			int nb = (int) (Math.random() * ( this.getHabitants().size()    - 0 ));
+			int nb2 = (int) (Math.random() * ( this.getHabitants().size()    - 0 ));
+			while(nb == nb2) {
+				nb2 = (int) (Math.random() * ( this.getHabitants().size()    - 0 ));
+			}
+			cupidon.flecheDeLAmour(this.getPersonnage(nb), this.getPersonnage(nb2));
+		}
+		if(this.meute.estEnVie()) {
+			this.meute.attaquerVillage();
+		}
+	}
+	
 	public void voter() {
 		
 		Personnage votant;
@@ -136,12 +152,8 @@ public  class Village {
 		Logger.log("Le village est composé de : " + this.village, "vote");
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", "vote");
 
-		if(personnageCondamner.estUnVillageois()) {
-			Logger.log("Un villageois a été tué lors du vote");
-		}
-		else {
-			Logger.log("Un loup-garou a été tué lors du vote");
-		}
+		Logger.log(personnageCondamner + " a été tué lors du vote");
+
 		personnageCondamner.meurt();
 	}
 	

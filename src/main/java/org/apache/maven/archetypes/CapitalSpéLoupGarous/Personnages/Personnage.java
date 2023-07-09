@@ -3,6 +3,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 
 public abstract class Personnage {
@@ -12,11 +13,27 @@ public abstract class Personnage {
 	private int idDeRole;
 	private Village village;
 	private ArrayList<Personnage> listeDeVote;
+	private Statut statut;
+	private ArrayList<Personnage> alliés;
 	
 	public Personnage(Boolean estUnVillageois, int idDeRole) {
 		this.estUnVillageois = estUnVillageois;
 		this.idDeRole = idDeRole;
 		this.listeDeVote = new ArrayList<Personnage>();
+		this.statut = new Statut(this);
+		this.alliés = new ArrayList<Personnage>();
+	}
+	
+	public ArrayList<Personnage> getAlliés() {
+		return alliés;
+	}
+
+	public void setAlliés(ArrayList<Personnage> alliés) {
+		this.alliés = alliés;
+	}
+	
+	public void ajouterAlliés(Personnage allié) {
+		this.alliés.add(allié);
 	}
 
 
@@ -32,6 +49,11 @@ public abstract class Personnage {
 		this.id = id;
 	}
 	
+	public void tomberAmoureux(Personnage amoureux) {
+		this.statut.setAmoureux(amoureux);
+		this.ajouterAlliés(amoureux);
+	}
+	
 	public void resetListeDeVote() {
 		this.listeDeVote = new ArrayList<Personnage>();
 	}
@@ -45,7 +67,33 @@ public abstract class Personnage {
 	
 	public abstract void agir();
 	
+	public boolean estAmoureux() {
+		return this.statut.isEstAmoureux();
+	}
+	
+	public Personnage getAmoureux() {
+		return this.statut.getAmoureux();
+	}
+	
+	public boolean estEnvie() {
+		return this.statut.estEnVie();
+	}
+	
+	public Statut getStatut() {
+		return this.statut;
+	}
+	
+	public void setStatut(Statut statut) {
+		this.statut = statut;
+	}
+	
 	public void meurt() {
+		this.statut.estMort();
+		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
+			this.statut.getAmoureux().meurt();
+			Logger.log("Après la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin de l'amour ");
+		}
+		this.statut = new Statut(this);
 		this.village.getHabitants().remove(this);
 	}
 
@@ -53,7 +101,34 @@ public abstract class Personnage {
 		this.village = village;
 	}
 	
-	public abstract int voter(); 
+	@SuppressWarnings("finally")
+	public int voter() {
+		this.getListeDeVote().clear();
+		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
+			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+		}
+		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
+			this.getListeDeVote().remove(this.getAlliés().get(i));
+		}
+		this.getListeDeVote().remove(this);
+		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+		try {
+			Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
+			
+		}
+		
+		catch ( IndexOutOfBoundsException e ){
+			System.out.println(this);
+			System.out.println("Personnage = " + this.village.getHabitants());
+			System.out.println("Alliée = " + this.getAlliés());
+			System.out.println("Liste de Vote = " + this.getListeDeVote());
+			throw e;
+		}
+		
+		finally {
+			return this.getListeDeVote().get(nb).getId();	
+		}
+	}
 	
 	
 
@@ -69,6 +144,13 @@ public abstract class Personnage {
 	public Village getVillage() {
 		return village;
 	}
+	
+	
+
+	public int getIdDeRole() {
+		return idDeRole;
+	}
+
 
 	@Override
 	public int hashCode() {

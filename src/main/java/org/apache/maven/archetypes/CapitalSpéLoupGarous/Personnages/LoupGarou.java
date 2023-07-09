@@ -8,8 +8,8 @@ public class LoupGarou extends Personnage {
 	
 	
 
-	public LoupGarou() {
-		super(false, 1);
+	public LoupGarou(int idRole) {
+		super(false, idRole);
 	}
 	
 	@Override
@@ -32,21 +32,7 @@ public class LoupGarou extends Personnage {
 		this.meute = meute;
 	}
 
-	@Override
-	public int voter() {
-		this.getListeDeVote().clear();
-		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
-		}
-		for(int i = 0 ; i < this.getMeute().getMeute().size() ; i++) {
-			this.getListeDeVote().remove(this.getMeute().getMeute().get(i));
-		}
-		int nb = (int) (Math.random() * ( this.getListeDeVote().size()   - 0 ));
-		Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
 
-		return this.getListeDeVote().get(nb).getId();
-		
-	}
 
 
 }

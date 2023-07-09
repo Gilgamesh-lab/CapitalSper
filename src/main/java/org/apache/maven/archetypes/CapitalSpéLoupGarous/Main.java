@@ -2,12 +2,14 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import java.util.ArrayList;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+
 public class Main {
 
 	public static void main(String[] args) {
-		int nbVillageois = 6;
-		int nbLoupGarous = 2;
-		int nbPartie = 20;//100000
+		int nbVillageois = 9;
+		int nbLoupGarous = 1;
+		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger log = new Logger();
@@ -15,6 +17,9 @@ public class Main {
 		//log.setOnFichierOutput();
 		//log.setOffAfficherLogDetailsPartie();
 		//log.setOnAfficherLogDetailsPourcentage();
+		log.setOffAfficherLogDetailsRoleAction();
+		Cupidon cupidon = new Cupidon();
+		village.ajouterPersonnage(cupidon);
 		Partie partie = new Partie(village, log);
 		
 		

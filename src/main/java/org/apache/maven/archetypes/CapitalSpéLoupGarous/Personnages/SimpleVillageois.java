@@ -4,7 +4,7 @@ public class SimpleVillageois extends Villageois {
 
 	
 	public SimpleVillageois() {
-		super();
+		super(0);
 	}
 
 	@Override

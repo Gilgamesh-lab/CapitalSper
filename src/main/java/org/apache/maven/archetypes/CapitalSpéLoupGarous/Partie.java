@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+
 public class Partie {
-	private Village savegardeVillage;
+	private static Village savegardeVillage;
 	private Village village ;
 	private Integer nbTour;
 	private Map<String ,Integer > tabResult = new HashMap<>();
@@ -40,9 +43,7 @@ public class Partie {
 		Logger.log("");
 		Logger.log("Lancement de la partie avec " +  this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
 		Logger.log("");
-		if(this.village.getMeute().estEnVie()) {
-			this.village.getMeute().attaquerVillage();
-		}
+		this.village.premièreNuit();
 		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 			this.village.voter();
 			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
@@ -51,6 +52,13 @@ public class Partie {
 			this.nbTour++;
 		}
 		Logger.log("");
+		
+		/*if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
+			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
+			Logger.log(this.village.getNbVillageois() + " villageois survivant(s)");
+			this.listeTours.add(this.nbTour);
+		}*/
+		
 		if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 ) {
 			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
@@ -62,7 +70,8 @@ public class Partie {
 			Logger.log(this.village.getNbVillageois() + " villageois survivant(s)");
 			this.listeTours.add(this.nbTour);
 			this.nbVictoireVillage++;
-		}   
+		}
+		
 		else {
 			Logger.log("Égalité");
 			this.listeTours.add(this.nbTour) ;
@@ -207,9 +216,15 @@ public class Partie {
 	private void init() {
 		this.nbTour = 0;
 		this.village = new Village();
-		for(int i = 0; i < this.savegardeVillage.getNbPersonnage(); i++) {
-			this.village.ajouterPersonnage(this.savegardeVillage.getPersonnage(i));
+		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
+		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
+			personnages.add(new Cupidon());
+			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}
+		else {
+			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou());
+		}
+		
 	}
 	
 	private void reset() {

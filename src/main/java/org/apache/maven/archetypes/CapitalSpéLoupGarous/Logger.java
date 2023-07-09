@@ -10,6 +10,7 @@ public class Logger {
 	private static PrintWriter writer;
 	private static boolean afficherLogDetailsPartie;
 	private static boolean afficherLogDetailsPourcentage;
+	private static boolean afficherLogDetailsRoleAction;
 	
 	
 	
@@ -19,6 +20,15 @@ public class Logger {
 		this.fichierOutput = false;
 		this.afficherLogDetailsPartie = true;
 		this.afficherLogDetailsPourcentage = false;
+		this.afficherLogDetailsRoleAction = false ;
+	}
+	
+	public void setOnAfficherLogDetailsRoleAction() {
+		this.afficherLogDetailsRoleAction = true;
+	}
+	
+	public void setOffAfficherLogDetailsRoleAction() {
+		this.afficherLogDetailsRoleAction = true;
 	}
 
 	public boolean isDetailVoteVillageOn() {
@@ -97,6 +107,15 @@ public class Logger {
 		}
 		else if (typeDeLog.equals("pourcentage")) {
 			if(afficherLogDetailsPourcentage) {
+				System.out.println(messageDeLog);
+				if(fichierOutput) {
+					writer.println(messageDeLog);
+				}
+			}
+		}
+		
+		else if (typeDeLog.equals("role")) {
+			if(afficherLogDetailsRoleAction) {
 				System.out.println(messageDeLog);
 				if(fichierOutput) {
 					writer.println(messageDeLog);

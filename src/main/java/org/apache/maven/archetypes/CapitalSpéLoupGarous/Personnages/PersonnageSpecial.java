@@ -1,9 +1,9 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
-public abstract class PersonnageSpecial extends Personnage {
+public abstract class PersonnageSpecial extends Villageois {
 
 	public PersonnageSpecial(int idDeRole) {
-		super(true, idDeRole);
+		super(idDeRole);
 	}
 	
 	public  abstract void agir();
