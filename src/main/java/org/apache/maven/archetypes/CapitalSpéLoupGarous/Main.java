@@ -1,10 +1,14 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 
 public class Main {
+	
+	private static List<String> listeBranches = new ArrayList<String>();
+	private static int compteur = 0;
 
 	public static void main(String[] args) {
 		int nbVillageois = 9;
@@ -13,11 +17,26 @@ public class Main {
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger log = new Logger();
+		String[] tabVote = new String[2];
+		tabVote[0] = "0";
+		tabVote[1] = "1";
+		
+		String[] tabCupidon = new String[2];
+		tabCupidon[0] = "a";
+		tabCupidon[1] = "b";
+		
+		/*String[][] tab = new String[2][2];
+		tab[0] = tabVote;
+		tab[1] = */
+		
+		
+		explorationBranche(tabVote, "", tabCupidon) ;
+		
 		//log.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
 		//log.setOffAfficherLogDetailsPartie();
 		//log.setOnAfficherLogDetailsPourcentage();
-		log.setOffAfficherLogDetailsRoleAction();
+		/*log.setOffAfficherLogDetailsRoleAction();
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Partie partie = new Partie(village, log);
@@ -25,7 +44,7 @@ public class Main {
 		
 		partie.simulation(nbPartie);
 		double lg = partie.getPourcentWinLoupGarous();
-		double vi = partie.getPourcentWinVillage();
+		double vi = partie.getPourcentWinVillage();*/
 		
 		
 		//partie.exploration();
@@ -66,7 +85,54 @@ Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
 		
 	}	
 	
-	static void CombinationPossible(String tab[], String branche, int compteur) {
+	static void explorationBranche(String[] tab, String branche, String[] tabCupidon) {
+		String point = branche;
+		
+		for (int i=0; i < tab.length; i++) {
+			
+			long countLgmort = branche.chars().filter(ch -> ch == '1').count();
+			
+			
+			if(countLgmort < 1 || tab[i] != "1") { // pour pas loup mort soit compter
+				//if(this.savegardeVillage.getNbVillageois() - countVimort - 1 > this.savegardeVillage.getNbLoupGarou() ||  tab[i] == "0") {
+				//if(countVimort < this.savegardeVillage.getNbVillageois() - this.savegardeVillage.getNbLoupGarou() - 1 && tab[i] == "1") {
+				point +=  tab[i];
+				//System.out.println(point);
+				//Log.println("point = " + point );
+				long countVimort = point.chars().filter(ch -> ch == '0').count();
+				countLgmort = branche.chars().filter(ch -> ch == '1').count();
+				try {
+					for (int n = 0; n < 2 ; n++) {
+						if(branche.equals("")) {
+							point +=  tabCupidon[n];
+						}
+						if (!listeBranches.contains(point)){
+							if(point.length() >= 3){ // compteur <= 0 remplacer cette condition par condition de victoire
+								listeBranches.add(point);
+								System.out.println("point = " + point);
+							}
+							else {
+								explorationBranche(tab, point, tabCupidon);
+								
+							}
+						point = branche + tab[i];
+						//System.out.println("point2 = " + point +  " taille = " + point.length());
+						//System.out.println(branche);
+						}
+					}
+					point = branche;
+				}
+				catch(StackOverflowError e){
+					System.out.println("Branche = " + branche);
+					System.out.println("Condition = " + (3 - countVimort - (branche.length() - 3 )  - (1 - countLgmort)  <= 0 || 1 - countLgmort <= 0));
+					System.exit(0);
+				}
+			}
+					
+		}
+	}
+	
+	static void CombinationPossible(String[] tab, String branche, int compteur) {
 		compteur --;
 		String branche2 = branche;
 		/*String branche2 = "";
