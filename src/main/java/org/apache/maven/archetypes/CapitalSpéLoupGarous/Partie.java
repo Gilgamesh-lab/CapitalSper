@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Référentiel;
 
 public class Partie {
 	private static Village savegardeVillage;
@@ -28,23 +29,26 @@ public class Partie {
 	private double pourcentWinAmoureux = 0;
 	private int compteur;
 	private List<String> listeBranches = new ArrayList<String>();
+	private Référentiel référentiel;
 	
 	public Partie(Village village) {
 		this.savegardeVillage = village;
 		this.log = new Logger();
 		this.nbTour = 0;
+		this.référentiel = new Référentiel();
 	}
 	
 	public Partie(Village village, Logger log) {
 		this.savegardeVillage = village;
 		this.log = log;
 		this.nbTour = 0;
+		this.référentiel = new Référentiel();
 	}
 	
 	private void startSimulation () {
 		init();
 		Logger.log("");
-		Logger.log("Lancement de la partie avec " +  this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
+		Logger.log("Lancement de la partie avec " +  this.référentiel.message(this.village));
 		Logger.log("");
 		this.village.premièreNuit();
 		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
@@ -223,14 +227,9 @@ public class Partie {
 	private void init() {
 		this.nbTour = 0;
 		this.village = new Village();
-		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
+		
 		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
-			if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)){
-				personnages.add(new Cupidon());
-			} // à changer
-			if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5)){
-				personnages.add(new Chasseur());
-			}
+			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);
 			this.village = new Village(this.savegardeVillage.getNbVillageois() - personnages.size(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}
 		else {

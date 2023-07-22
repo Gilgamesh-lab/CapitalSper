@@ -149,6 +149,7 @@ public  class Village {
 
 		Logger.log(personnageCondamner + " a été tué lors du vote");
 
+
 		personnageCondamner.meurt();
 	}
 	

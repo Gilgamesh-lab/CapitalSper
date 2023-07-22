@@ -4,7 +4,7 @@ public class LoupGarouSimple extends LoupGarou {
 
 	
 	public LoupGarouSimple() {
-		super(1);
+		super(1, false);
 	}
 	
 	/*@Override

@@ -8,8 +8,9 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 public abstract class Villageois extends Personnage {
 	
 	
-	public Villageois(int idRole) {
-		super(true, idRole);
+	public Villageois(int idRole, boolean aUnPouvoirSpecial) {
+		super(true, idRole, aUnPouvoirSpecial);
+		
 	}
 	
 	

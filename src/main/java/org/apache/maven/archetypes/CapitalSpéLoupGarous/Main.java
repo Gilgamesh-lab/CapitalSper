@@ -13,8 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		int nbVillageois = 8;
-		int nbLoupGarous = 1;
-		int nbPartie = 20;//100000
+		int nbLoupGarous = 2;
+		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger log = new Logger();

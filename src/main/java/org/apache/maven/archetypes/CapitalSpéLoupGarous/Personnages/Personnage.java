@@ -15,15 +15,26 @@ public abstract class Personnage {
 	private ArrayList<Personnage> listeDeVote;
 	private Statut statut;
 	private ArrayList<Personnage> alliés;
+	private boolean aUnPouvoirSpecial;
 	
-	public Personnage(Boolean estUnVillageois, int idDeRole) {
+	public Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
 		this.estUnVillageois = estUnVillageois;
 		this.idDeRole = idDeRole;
 		this.listeDeVote = new ArrayList<Personnage>();
 		this.statut = new Statut(this);
 		this.alliés = new ArrayList<Personnage>();
+		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
+		this.alliés.add(this);
 	}
 	
+	
+	
+	public boolean aUnPouvoirSpecial() {
+		return aUnPouvoirSpecial;
+	}
+
+
+
 	public ArrayList<Personnage> getAlliés() {
 		return alliés;
 	}
@@ -90,8 +101,8 @@ public abstract class Personnage {
 	public void meurt() {
 		this.statut.estMort();
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
+			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
-			Logger.log("Après la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 		}
 		this.statut = new Statut(this);
 		this.village.getHabitants().remove(this);
@@ -110,7 +121,6 @@ public abstract class Personnage {
 		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
 			this.getListeDeVote().remove(this.getAlliés().get(i));
 		}
-		this.getListeDeVote().remove(this);
 		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 		try {
 			Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");

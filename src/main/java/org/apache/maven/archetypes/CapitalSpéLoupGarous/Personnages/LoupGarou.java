@@ -8,8 +8,8 @@ public class LoupGarou extends Personnage {
 	
 	
 
-	public LoupGarou(int idRole) {
-		super(false, idRole);
+	public LoupGarou(int idRole, boolean aUnPouvoirSpecial) {
+		super(false, idRole, aUnPouvoirSpecial);
 	}
 	
 	@Override
