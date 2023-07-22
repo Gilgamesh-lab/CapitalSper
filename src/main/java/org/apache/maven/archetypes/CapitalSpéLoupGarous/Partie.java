@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
@@ -55,7 +56,10 @@ public class Partie {
 		}
 		Logger.log("");
 		
-		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
+		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()) && (this.village.getNbPersonnage() != 0)) {
+			/*System.out.println(this.village.getNbPersonnage() + " , " + (this.village.getNbPersonnage() != 0));
+			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
+			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() && (this.village.getNbPersonnage() != 0)));*/
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
 			this.listeTours.add(this.nbTour);
@@ -76,7 +80,7 @@ public class Partie {
 		}
 		
 		else {
-			Logger.log("Égalité");
+			Logger.log("Égalité en " + this.nbTour + " tours");
 			this.listeTours.add(this.nbTour) ;
 			this.nbÉgalité++;
 		}
@@ -220,8 +224,13 @@ public class Partie {
 		this.nbTour = 0;
 		this.village = new Village();
 		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
-		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
-			personnages.add(new Cupidon());
+		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
+			if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)){
+				personnages.add(new Cupidon());
+			} // à changer
+			if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5)){
+				personnages.add(new Chasseur());
+			}
 			this.village = new Village(this.savegardeVillage.getNbVillageois() - personnages.size(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}
 		else {

@@ -28,7 +28,7 @@ public class Logger {
 	}
 	
 	public void setOffAfficherLogDetailsRoleAction() {
-		this.afficherLogDetailsRoleAction = true;
+		this.afficherLogDetailsRoleAction = false;
 	}
 
 	public boolean isDetailVoteVillageOn() {

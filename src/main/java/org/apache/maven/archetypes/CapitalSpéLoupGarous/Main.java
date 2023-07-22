@@ -3,6 +3,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 
 public class Main {
@@ -11,13 +12,35 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 9;
+		int nbVillageois = 8;
 		int nbLoupGarous = 1;
 		int nbPartie = 20;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger log = new Logger();
-		String[] tabVote = new String[2];
+		
+		
+		//log.setDetailVoteVillage(true);
+		//log.setOnFichierOutput();
+		//log.setOffAfficherLogDetailsPartie();
+		//log.setOnAfficherLogDetailsPourcentage();
+		//log.setOnAfficherLogDetailsRoleAction();
+		Cupidon cupidon = new Cupidon();
+		village.ajouterPersonnage(cupidon);
+		Chasseur chasseur = new Chasseur();
+		village.ajouterPersonnage(chasseur);
+		Partie partie = new Partie(village, log);
+		
+		
+		partie.simulation(nbPartie);
+		double lg = partie.getPourcentWinLoupGarous();
+		double vi = partie.getPourcentWinVillage();
+		
+		
+		//partie.exploration();
+		
+		
+		/*String[] tabVote = new String[2];
 		tabVote[0] = "0";
 		tabVote[1] = "1";
 		
@@ -25,29 +48,8 @@ public class Main {
 		tabCupidon[0] = "a";
 		tabCupidon[1] = "b";
 		
-		/*String[][] tab = new String[2][2];
-		tab[0] = tabVote;
-		tab[1] = */
 		
-		
-		explorationBranche(tabVote, "", tabCupidon) ;
-		
-		//log.setDetailVoteVillage(true);
-		//log.setOnFichierOutput();
-		//log.setOffAfficherLogDetailsPartie();
-		//log.setOnAfficherLogDetailsPourcentage();
-		/*log.setOffAfficherLogDetailsRoleAction();
-		Cupidon cupidon = new Cupidon();
-		village.ajouterPersonnage(cupidon);
-		Partie partie = new Partie(village, log);
-		
-		
-		partie.simulation(nbPartie);
-		double lg = partie.getPourcentWinLoupGarous();
-		double vi = partie.getPourcentWinVillage();*/
-		
-		
-		//partie.exploration();
+		explorationBranche(tabVote, "", tabCupidon) ;*/
 		
 		
 		 // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,

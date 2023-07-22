@@ -106,12 +106,7 @@ public  class Village {
 	public void premièreNuit() {
 		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
 			Cupidon cupidon = (Cupidon) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 4).findFirst().get();
-			int nb = (int) (Math.random() * ( this.getHabitants().size()    - 0 ));
-			int nb2 = (int) (Math.random() * ( this.getHabitants().size()    - 0 ));
-			while(nb == nb2) {
-				nb2 = (int) (Math.random() * ( this.getHabitants().size()    - 0 ));
-			}
-			cupidon.flecheDeLAmour(this.getPersonnage(nb), this.getPersonnage(nb2));
+			cupidon.flecheDeLAmour();
 		}
 		if(this.meute.estEnVie()) {
 			this.meute.attaquerVillage();
