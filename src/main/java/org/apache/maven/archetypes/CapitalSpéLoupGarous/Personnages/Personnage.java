@@ -32,6 +32,12 @@ public abstract class Personnage {
 	public boolean aUnPouvoirSpecial() {
 		return aUnPouvoirSpecial;
 	}
+	
+	public void reset() {
+		this.alliés.clear();
+		this.alliés.add(this);
+		this.statut = new Statut(this);
+	}
 
 
 
@@ -104,7 +110,7 @@ public abstract class Personnage {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
 		}
-		this.statut = new Statut(this);
+		//this.statut = new Statut(this);
 		this.village.getHabitants().remove(this);
 	}
 
@@ -164,40 +170,29 @@ public abstract class Personnage {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (estUnVillageois ? 1231 : 1237);
-		result = prime * result + id;
-		result = prime * result + ((listeDeVote == null) ? 0 : listeDeVote.hashCode());
-		result = prime * result + ((village == null) ? 0 : village.hashCode());
-		return result;
+		return Objects.hash(aUnPouvoirSpecial, alliés, estUnVillageois, id, idDeRole, listeDeVote, statut, village);
 	}
+
+	
+
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		/*if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Personnage other = (Personnage) obj;
-		if (estUnVillageois != other.estUnVillageois)
-			return false;
-		if (id != other.id)
-			return false;
-		if (listeDeVote == null) {
-			if (other.listeDeVote != null)
-				return false;
-		} else if (!listeDeVote.equals(other.listeDeVote))
-			return false;
-		if (village == null) {
-			if (other.village != null)
-				return false;
-		} else if (!village.equals(other.village))
-			return false;
-		return true;
+		return aUnPouvoirSpecial == other.aUnPouvoirSpecial && Objects.equals(alliés, other.alliés)
+				&& estUnVillageois == other.estUnVillageois && id == other.id && idDeRole == other.idDeRole
+				&& Objects.equals(listeDeVote, other.listeDeVote) && Objects.equals(statut, other.statut)
+				&& Objects.equals(village, other.village);*/
+		
+		return this == obj;
 	}
+
 
 
 	@Override

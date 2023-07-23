@@ -1,11 +1,22 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
-public abstract class PersonnageSpecial extends Villageois {
 
-	public PersonnageSpecial(int idDeRole) {
+import java.util.List;
+
+public abstract class PersonnageSpecial extends Villageois {
+	private List<TypeDePouvoir> typeDePouvoir;
+	
+	public PersonnageSpecial(int idDeRole, List<TypeDePouvoir> typeDePouvoir) {
 		super(idDeRole, true);
+		this.typeDePouvoir = typeDePouvoir;
+		
 	}
 	
 	public  abstract void agir();
+
+	public List<TypeDePouvoir> getTypeDePouvoir() {
+		return typeDePouvoir;
+	}
+	
 
 }

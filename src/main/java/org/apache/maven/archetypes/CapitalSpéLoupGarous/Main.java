@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		int nbVillageois = 8;
-		int nbLoupGarous = 2;
+		int nbLoupGarous = 1;
 		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
@@ -24,7 +24,7 @@ public class Main {
 		//log.setOnFichierOutput();
 		//log.setOffAfficherLogDetailsPartie();
 		//log.setOnAfficherLogDetailsPourcentage();
-		//log.setOnAfficherLogDetailsRoleAction();
+		log.setOnAfficherLogDetailsRoleAction();
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();

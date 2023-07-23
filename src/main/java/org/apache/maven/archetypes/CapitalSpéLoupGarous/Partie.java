@@ -48,10 +48,16 @@ public class Partie {
 	private void startSimulation () {
 		init();
 		Logger.log("");
-		Logger.log("Lancement de la partie avec " +  this.référentiel.message(this.village));
+		Logger.log("Lancement de la partie avec " +  this.référentiel.messageDebutPartie(this.village));
 		Logger.log("");
 		this.village.premièreNuit();
-		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux())) {
+		/*System.out.println((this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie())));
+		System.out.println((this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie()) && this.village.getNbLoupGarou() == 1));
+		|| (this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie()) && this.village.getNbLoupGarou() == 1)*/
+		while((this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux()))) {
+			if(this.village.getHabitants().stream().filter(x->x.estAmoureux()).count() > 2){
+				System.out.println("Erreur");
+			}
 			this.village.voter();
 			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 				this.village.getMeute().attaquerVillage();
@@ -226,7 +232,7 @@ public class Partie {
 	
 	private void init() {
 		this.nbTour = 0;
-		this.village = new Village();
+		this.village = null;
 		
 		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);

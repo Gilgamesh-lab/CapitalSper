@@ -74,6 +74,7 @@ public  class Village {
 	
 	public int getNbPersonnage() {
 		return this.village.size();
+		//return (int) this.village.stream().filter(x->x.estEnvie()).count();
 	}
 	
 	public ArrayList<Villageois> getVillageois() {
