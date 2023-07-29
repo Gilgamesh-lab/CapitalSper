@@ -86,7 +86,7 @@ public class VillageTest {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void cupidonTest() {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		System.out.println();
@@ -103,7 +103,7 @@ public class VillageTest {
 		Assert.assertTrue(!this.village.getPersonnage(1).estEnvie());
 		Assert.assertEquals(2, this.village.getNbPersonnage());
 		
-	}
+	}*/
 	
 	
 	

@@ -55,6 +55,10 @@ public class Logger {
 		this.afficherLogDetailsPartie = false;
 	}
 	
+	public boolean isAfficherLogDetailsPartie() {
+		return this.afficherLogDetailsPartie ;
+	}
+	
 	public void setOnAfficherLogDetailsPourcentage() {
 		this.afficherLogDetailsPourcentage = true;
 	}

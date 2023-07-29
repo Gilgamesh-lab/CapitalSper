@@ -2,6 +2,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class Partie {
 		/*System.out.println((this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie())));
 		System.out.println((this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie()) && this.village.getNbLoupGarou() == 1));
 		|| (this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie()) && this.village.getNbLoupGarou() == 1)*/
-		while((this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux()))) {
+		while((this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4))) {
 			if(this.village.getHabitants().stream().filter(x->x.estAmoureux()).count() > 2){
 				System.out.println("Erreur");
 			}
@@ -67,7 +68,7 @@ public class Partie {
 		Logger.log("");
 		
 		
-		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()) && (this.village.getNbPersonnage() != 0)) {
+		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4) && (this.village.getNbPersonnage() != 0)) {
 			/*System.out.println(this.village.getNbPersonnage() + " , " + (this.village.getNbPersonnage() != 0));
 			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
 			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() && (this.village.getNbPersonnage() != 0)));*/
@@ -92,7 +93,7 @@ public class Partie {
 		
 		else {
 			if((this.village.getNbLoupGarou() == 1 && this.village.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 )) {
-				System.out.println("Le Chasseur et le loups-garous survivant s'entretuent");
+				Logger.log("Le Chasseur et le loups-garous survivant s'entretuent");
 			}
 			Logger.log("Égalité en " + this.nbTour + " tours");
 			this.listeTours.add(this.nbTour) ;
@@ -260,13 +261,15 @@ public class Partie {
 	
 	public void simulation(int nb) {
 		this.reset();
+		if(log.isAfficherLogDetailsPartie()) {
+			
+		}
 		if (log.isFichierOutput()) {
 			String mode = "Simultation sur " + nb + " parties";
 			log.écrireFichier(mode, savegardeVillage);
 		}
 		int compteur ;
 
-		
 		for (compteur = 0; compteur < nb ; compteur ++) {
 			this.startSimulation();
 			Logger.log("", "pourcentage");
@@ -274,10 +277,12 @@ public class Partie {
 			Logger.log("Nombre de victoire des loups-garous = " + (int) this.nbVictoireLoupGarou , "pourcentage");
 			Logger.log("", "pourcentage");
 		}
+		
 		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
 		this.pourcentWinVillage = (double) ((this.nbVictoireVillage / compteur) * 100 );
 		this.pourcentWinAmoureux = (double) ((this.nbVictoireAmoureux / compteur) * 100 );
 		this.pourcentÉgalité = (double) ((this.nbÉgalité / compteur) * 100 );
+		Collections.sort(this.listeTours);   
 		
 		
 		log.setOnAfficherLogDetailsPartie();
@@ -294,6 +299,10 @@ public class Partie {
 		Logger.log("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get());
 		Logger.log("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get());
 		Logger.log("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble());
+		Logger.log("");
+		Logger.log("Au moins 25% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 4) + " tours ou moins"); // premier quartile
+		Logger.log("Au moins 50% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 2) + " tours ou moins"); // deuxième quartile ou médiane
+		Logger.log("Au moins 75% des parties se sont terminés en " +  this.listeTours.get((int) (this.listeTours.size() *  3) / 4) + " tours ou moins"); // troisième quartile
 		Logger.log("");
 		log.setOffAfficherLogDetailsPartie();
 		

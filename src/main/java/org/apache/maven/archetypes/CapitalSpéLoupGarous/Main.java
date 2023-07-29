@@ -1,10 +1,17 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.geom.Line2D;
+
 
 public class Main {
 	
@@ -12,8 +19,8 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 10;
-		int nbLoupGarous = 1;
+		int nbVillageois = 8;
+		int nbLoupGarous = 2;
 		int nbPartie = 100;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
