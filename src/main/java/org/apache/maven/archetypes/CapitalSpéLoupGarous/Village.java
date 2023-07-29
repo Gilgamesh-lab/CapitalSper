@@ -73,16 +73,15 @@ public  class Village {
 	
 	
 	public int getNbPersonnage() {
-		return this.village.size();
-		//return (int) this.village.stream().filter(x->x.estEnvie()).count();
+		return (int) this.village.stream().filter(x->x.estEnvie()).count();
 	}
 	
 	public ArrayList<Villageois> getVillageois() {
-		return this.villageois ;
+		return new ArrayList<Villageois>(this.villageois.stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
 	}
 	
 	public ArrayList<Personnage> getHabitants() {
-		return this.village ;
+		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
 	}
 	
 	public Meute getMeute() {
@@ -95,7 +94,7 @@ public  class Village {
 	
 	
 	public int getNbLoupGarou() {
-		return this.meute.getMeute().size() ;
+		return (int) this.getMeute().getMeute().stream().filter(x->x.estEnvie()).count();
 	}
 	
 	
@@ -143,9 +142,9 @@ public  class Village {
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
 		}
-		Personnage personnageCondamner = this.village.stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
+		Personnage personnageCondamner = this.getHabitants().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
 		Logger.log("");
-		Logger.log("Le village est composé de : " + this.village, "vote");
+		Logger.log("Le village est composé de : " + this.getHabitants(), "vote");
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", "vote");
 
 		Logger.log(personnageCondamner + " a été tué lors du vote");
@@ -157,11 +156,11 @@ public  class Village {
 	public void voter(char vote) {
 		Personnage personnageCondamner;
 		if(vote == '0') {
-			personnageCondamner = this.village.stream().filter(x->x.estUnVillageois()).findAny().get();
+			personnageCondamner = this.getHabitants().stream().filter(x->x.estUnVillageois()).findAny().get();
 			Logger.log("Un villageois a été tué lors du vote");
 		}
 		else {
-			personnageCondamner = this.village.stream().filter(x->!x.estUnVillageois()).findAny().get();
+			personnageCondamner = this.getHabitants().stream().filter(x->!x.estUnVillageois()).findAny().get();
 			Logger.log("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();

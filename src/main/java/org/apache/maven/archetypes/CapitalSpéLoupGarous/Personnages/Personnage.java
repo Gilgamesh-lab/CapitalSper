@@ -110,8 +110,8 @@ public abstract class Personnage {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
 		}
-		//this.statut = new Statut(this);
-		this.village.getHabitants().remove(this);
+		this.statut.estMort();
+		//this.village.getHabitants().remove(this);
 	}
 
 	public void setVillage(Village village) {

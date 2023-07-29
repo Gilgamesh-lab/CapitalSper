@@ -66,6 +66,7 @@ public class Partie {
 		}
 		Logger.log("");
 		
+		
 		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()) && (this.village.getNbPersonnage() != 0)) {
 			/*System.out.println(this.village.getNbPersonnage() + " , " + (this.village.getNbPersonnage() != 0));
 			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
@@ -76,7 +77,7 @@ public class Partie {
 			this.nbVictoireAmoureux++;
 		}
 		
-		else if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 ) {
+		else if(this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 )) {
 			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
 			this.listeTours.add(this.nbTour) ;
@@ -90,6 +91,9 @@ public class Partie {
 		}
 		
 		else {
+			if((this.village.getNbLoupGarou() == 1 && this.village.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 )) {
+				System.out.println("Le Chasseur et le loups-garous survivant s'entretuent");
+			}
 			Logger.log("Égalité en " + this.nbTour + " tours");
 			this.listeTours.add(this.nbTour) ;
 			this.nbÉgalité++;
