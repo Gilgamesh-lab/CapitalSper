@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
-public class Chasseur extends PersonnageSpecial {
+public class Chasseur extends VillageoisSpecial {
 	
 
 	public Chasseur() {

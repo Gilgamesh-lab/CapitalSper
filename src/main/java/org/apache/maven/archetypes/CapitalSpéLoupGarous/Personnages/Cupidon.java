@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
-public class Cupidon extends PersonnageSpecial {
+public class Cupidon extends VillageoisSpecial {
 
 	public Cupidon() {
 		super(4, Arrays.asList(TypeDePouvoir.Mort));

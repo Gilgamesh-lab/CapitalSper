@@ -17,12 +17,6 @@ public abstract class Villageois extends Personnage {
 
 	
 	
-	@Override
-	public void meurt() {
-		super.meurt();
-		this.getVillage().getVillageois().remove(this);
-	}
-	
 	
 	
 

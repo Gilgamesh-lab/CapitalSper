@@ -1,6 +1,7 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
@@ -15,7 +16,7 @@ public class Meute {
 	}
 
 	public ArrayList<LoupGarou> getMeute() {
-		return this.meute;
+		return (ArrayList<LoupGarou>) this.meute.stream().filter(x->x.estEnvie()).collect(Collectors.toList());
 	}
 	
 	public void enrolerUnLoupGarou(LoupGarou loupGarou) {

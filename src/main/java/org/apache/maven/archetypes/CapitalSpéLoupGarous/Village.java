@@ -18,12 +18,10 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 public  class Village {
 
 	private ArrayList<Personnage> village;
-	private ArrayList<Villageois> villageois;
 	private  Meute meute ;
 	
 	public Village() {
 		this.village = new ArrayList<Personnage>();
-		this.villageois = new ArrayList<Villageois>();
 		this.meute = new Meute();
 		this.meute.setVillage(this);
 	}
@@ -56,19 +54,12 @@ public  class Village {
 	
 	
 	public void ajouterPersonnage(Personnage personnage) {
-		this.inscrire(personnage);
+		if(!personnage.estUnVillageois()) {
+			this.meute.enrolerUnLoupGarou((LoupGarou) personnage);
+		}
 		this.village.add(personnage);
 		personnage.setVillage(this);
 		personnage.setId(this.village.size());
-	}
-	
-	public void inscrire(Personnage personnage) {
-		if(personnage.estUnVillageois()) {
-			this.villageois.add((Villageois) personnage);
-		}
-		else {
-			this.meute.enrolerUnLoupGarou((LoupGarou) personnage);
-		}
 	}
 	
 	
@@ -76,8 +67,8 @@ public  class Village {
 		return (int) this.village.stream().filter(x->x.estEnvie()).count();
 	}
 	
-	public ArrayList<Villageois> getVillageois() {
-		return new ArrayList<Villageois>(this.villageois.stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
+	public ArrayList<Personnage> getVillageois() {
+		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie() && x.estUnVillageois()).collect(Collectors.toList()));
 	}
 	
 	public ArrayList<Personnage> getHabitants() {

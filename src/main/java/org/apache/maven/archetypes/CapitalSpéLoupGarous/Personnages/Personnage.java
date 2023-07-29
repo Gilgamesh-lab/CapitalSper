@@ -128,22 +128,9 @@ public abstract class Personnage {
 			this.getListeDeVote().remove(this.getAlliés().get(i));
 		}
 		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-		try {
-			Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
-			
-		}
+		Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
 		
-		catch ( IndexOutOfBoundsException e ){
-			System.out.println(this);
-			System.out.println("Personnage = " + this.village.getHabitants());
-			System.out.println("Alliée = " + this.getAlliés());
-			System.out.println("Liste de Vote = " + this.getListeDeVote());
-			throw e;
-		}
-		
-		finally {
-			return this.getListeDeVote().get(nb).getId();	
-		}
+		return this.getListeDeVote().get(nb).getId();	
 	}
 	
 	

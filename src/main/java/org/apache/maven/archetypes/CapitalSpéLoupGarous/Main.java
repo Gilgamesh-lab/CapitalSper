@@ -1,16 +1,11 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.geom.Line2D;
 
 
 public class Main {

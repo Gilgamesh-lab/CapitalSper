@@ -3,10 +3,10 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.List;
 
-public abstract class PersonnageSpecial extends Villageois {
+public abstract class VillageoisSpecial extends Villageois {
 	private List<TypeDePouvoir> typeDePouvoir;
 	
-	public PersonnageSpecial(int idDeRole, List<TypeDePouvoir> typeDePouvoir) {
+	public VillageoisSpecial(int idDeRole, List<TypeDePouvoir> typeDePouvoir) {
 		super(idDeRole, true);
 		this.typeDePouvoir = typeDePouvoir;
 		
