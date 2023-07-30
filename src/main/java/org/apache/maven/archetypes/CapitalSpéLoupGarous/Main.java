@@ -26,7 +26,7 @@ public class Main {
 		//log.setOnFichierOutput();
 		//log.setOffAfficherLogDetailsPartie();
 		//log.setOnAfficherLogDetailsPourcentage();
-		//log.setOnAfficherLogDetailsRoleAction();
+		log.setOnAfficherLogDetailsRoleAction();
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();

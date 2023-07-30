@@ -68,7 +68,7 @@ public class Partie {
 		Logger.log("");
 		
 		
-		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4) && (this.village.getNbPersonnage() != 0)) {
+		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4) && (this.village.getNbPersonnage() >= 2)) {
 			/*System.out.println(this.village.getNbPersonnage() + " , " + (this.village.getNbPersonnage() != 0));
 			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
 			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() && (this.village.getNbPersonnage() != 0)));*/
