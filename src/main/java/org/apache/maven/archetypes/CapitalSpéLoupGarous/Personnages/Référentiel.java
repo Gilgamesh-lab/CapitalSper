@@ -18,6 +18,7 @@ public class Référentiel {
 		this.référentiel.put(1, new LoupGarouSimple());
 		this.référentiel.put(4, new Cupidon());
 		this.référentiel.put(5, new Chasseur());
+		this.référentiel.put(6, new Sorcière());
 	}
 	
 	public Personnage conversionDeIdRoleVersPersonnage(int idRole) {
@@ -46,13 +47,13 @@ public class Référentiel {
 	
 	public String messageDebutPartie(Village village) {
 		int nbSpecial = (int) (village.getNbVillageois() - village.getHabitants().stream().filter(x -> x.aUnPouvoirSpecial()).count());
-		String message = nbSpecial + " villageois";
+		String message = nbSpecial + " simple(s) villageois";
 		for(int i = 0; i < village.getNbPersonnage() ; i++) {
 			if(village.getPersonnage(i).aUnPouvoirSpecial()) {
-				message += " , 1 " +  village.getPersonnage(i).toString() ;
+				message += " , 1 " +  village.getPersonnage(i).getClass().getSimpleName();
 			}
 		}
-		message += " et " + village.getNbLoupGarou() + " loup-garous";
+		message += " et " + village.getNbLoupGarou() + " simple(s) loup-garous";
 		return message;
 	}
 

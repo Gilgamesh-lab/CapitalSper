@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 
 
 
@@ -31,6 +32,8 @@ public class Main {
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
 		village.ajouterPersonnage(chasseur);
+		Sorcière sorcière = new Sorcière();
+		village.ajouterPersonnage(sorcière);
 		Partie partie = new Partie(village, log);
 		
 		

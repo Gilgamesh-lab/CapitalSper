@@ -20,18 +20,23 @@ public class Chasseur extends VillageoisSpecial {
 	
 	@Override
 	public void meurt() {
-		int nb = (int) (Math.random() * ( this.getVillage().getNbPersonnage()   - 0 ));
-		while(this.getAlliés().contains(this.getVillage().getHabitants().get(nb))) {
-			nb = (int) (Math.random() * ( this.getVillage().getNbPersonnage()   - 0 ));
+		this.getListeDeVote().clear();
+		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
+			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
 		}
-		Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + this.getVillage().getHabitants().get(nb));
-		this.tuer(getVillage().getHabitants().get(nb));;
+		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
+			this.getListeDeVote().remove(this.getAlliés().get(i));
+		}
+		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+		Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + this.getListeDeVote().get(nb));
 		super.meurt();
+		this.tuer(getVillage().getHabitants().get(nb));;
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Chasseur";
+		return "le chasseur";
 	}
 
 }

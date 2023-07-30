@@ -13,6 +13,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 public  class Village {
@@ -99,14 +100,17 @@ public  class Village {
 			Cupidon cupidon = (Cupidon) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 4).findFirst().get();
 			cupidon.flecheDeLAmour();
 		}
-		if(this.meute.estEnVie()) {
-			this.meute.attaquerVillage();
-			this.decompteMort();
-		}
+		this.nuit();
 	}
 	
 	public void nuit() {
-		this.meute.attaquerVillage();
+		if(this.meute.estEnVie()) {
+			this.meute.attaquerVillage();
+		}
+		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 6)) {
+			Sorcière sorcière = (Sorcière) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 6).findFirst().get();
+			sorcière.agir();
+		}
 		this.decompteMort();
 		
 	}
@@ -115,7 +119,16 @@ public  class Village {
 		//System.out.println(this.getHabitants());
 		String messageMort;
 		Personnage perso;
-		for(int i = 0; i < this.getNbPersonnage(); i++) {
+		if(Logger.isAfficherLogDetailsRoleActionOn()) {
+			messageMort =  " a été tué la nuit par les loups-garous";
+		}
+		else {
+			messageMort= " a été tué durant la nuit";
+		}
+		
+		this.getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAttaquerParLg(false);});
+		
+		/*for(int i = 0; i < this.getNbPersonnage(); i++) {
 			perso = this.getHabitants().get(i);
 			//System.out.println(perso + " :" + perso.estEnvie());
 			//System.out.println(perso.getStatut().getTueur());
@@ -130,10 +143,10 @@ public  class Village {
 				perso.meurt();
 				perso.getStatut().setAttaquerParLg(false);
 			}
-		}
+		}*/
 		
 		
-		//this.getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).forEach(z->{Logger.log(z + messageMort);z.meurt();});
+		//
 		
 		//Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
 		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))

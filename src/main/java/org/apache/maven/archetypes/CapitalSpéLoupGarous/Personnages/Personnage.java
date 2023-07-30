@@ -111,7 +111,6 @@ public abstract class Personnage {
 	
 	public void meurt() {
 		this.statut.estMort();
-		this.statut.setMortRecemment(true);
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
 			//this.statut.setMortRecemment(false);
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
@@ -123,6 +122,10 @@ public abstract class Personnage {
 
 	public void setVillage(Village village) {
 		this.village = village;
+	}
+	
+	public Personnage clone() {
+		return this.clone();
 	}
 	
 	@SuppressWarnings("finally")
