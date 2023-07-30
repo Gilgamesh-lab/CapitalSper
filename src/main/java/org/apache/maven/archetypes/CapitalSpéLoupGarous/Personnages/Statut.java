@@ -5,13 +5,51 @@ public class Statut {
 	private boolean estAmoureux;
 	private Personnage amoureux;
 	private boolean estEnVie;
+	private boolean attaquerParLg;
+	private Integer tueur;
+	private boolean mortRecemment;
 
 	public Statut(Personnage personnage) {
 		this.estAmoureux = false;
 		this.estEnVie = true;
 		this.personnage = personnage;
+		this.attaquerParLg = false;
+		this.tueur = null;
+		this.mortRecemment = false;
 	}
 	
+	
+	
+	
+	
+	public boolean isMortRecemment() {
+		return mortRecemment;
+	}
+
+
+
+
+
+	public void setMortRecemment(boolean mortRecemment) {
+		this.mortRecemment = mortRecemment;
+	}
+
+
+
+
+
+	public Integer getTueur() {
+		return tueur;
+	}
+
+
+
+	public void setTueur(Integer tueur) {
+		this.tueur = tueur;
+	}
+
+
+
 	public void setAmoureux(Personnage personnage) {
 		this.estAmoureux = true;
 		personnage.getStatut().setOnAmoureux(this.personnage);
@@ -39,6 +77,16 @@ public class Statut {
 	
 	
 	
+	
+	
+	public boolean estAttaquerParLg() {
+		return attaquerParLg;
+	}
+
+	public void setAttaquerParLg(boolean attaquerParLg) {
+		this.attaquerParLg = attaquerParLg;
+	}
+
 	public boolean estEnVie() {
 		return this.estEnVie;
 	}

@@ -30,6 +30,10 @@ public class Logger {
 	public void setOffAfficherLogDetailsRoleAction() {
 		this.afficherLogDetailsRoleAction = false;
 	}
+	
+	public static boolean isAfficherLogDetailsRoleActionOn() {
+		return afficherLogDetailsRoleAction;
+	}
 
 	public boolean isDetailVoteVillageOn() {
 		return detailVoteVillage;

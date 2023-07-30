@@ -27,6 +27,11 @@ public abstract class Personnage {
 		this.alliés.add(this);
 	}
 	
+	public void tuer(Personnage personnage) {
+		personnage.getStatut().setTueur(this.getIdDeRole());
+		personnage.meurt();
+	}
+	
 	
 	
 	public boolean aUnPouvoirSpecial() {
@@ -106,11 +111,13 @@ public abstract class Personnage {
 	
 	public void meurt() {
 		this.statut.estMort();
+		this.statut.setMortRecemment(true);
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
+			//this.statut.setMortRecemment(false);
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
 		}
-		this.statut.estMort();
+		
 		//this.village.getHabitants().remove(this);
 	}
 
@@ -155,17 +162,24 @@ public abstract class Personnage {
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(aUnPouvoirSpecial, alliés, estUnVillageois, id, idDeRole, listeDeVote, statut, village);
-	}
+	
+
+	
 
 	
 
 
+
+	/*@Override
+	public int hashCode() {
+		return Objects.hash(aUnPouvoirSpecial, alliés, estUnVillageois, id, idDeRole, listeDeVote, statut, village);
+	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
-		/*if (this == obj)
+		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
@@ -175,10 +189,8 @@ public abstract class Personnage {
 		return aUnPouvoirSpecial == other.aUnPouvoirSpecial && Objects.equals(alliés, other.alliés)
 				&& estUnVillageois == other.estUnVillageois && id == other.id && idDeRole == other.idDeRole
 				&& Objects.equals(listeDeVote, other.listeDeVote) && Objects.equals(statut, other.statut)
-				&& Objects.equals(village, other.village);*/
-		
-		return this == obj;
-	}
+				&& Objects.equals(village, other.village);
+	}*/
 
 
 

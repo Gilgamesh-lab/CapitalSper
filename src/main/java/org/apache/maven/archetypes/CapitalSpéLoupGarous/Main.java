@@ -14,9 +14,9 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 8;
-		int nbLoupGarous = 2;
-		int nbPartie = 100;//100000
+		int nbVillageois = 4;
+		int nbLoupGarous = 1;
+		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger log = new Logger();

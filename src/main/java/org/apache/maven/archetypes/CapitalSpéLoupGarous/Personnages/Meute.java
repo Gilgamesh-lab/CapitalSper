@@ -39,11 +39,17 @@ public class Meute {
 	}
 	
 	
+	public void devorer(Personnage personnage) {
+		personnage.getStatut().setTueur(1);
+		personnage.meurt();
+	}
+	
 	public void attaquerVillage() {
 		if(this.village.getNbVillageois() !=0) {
-			int nb = (int) (Math.random() * ( (this.village.getNbVillageois() )  - 0 ));
-			Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
-			this.village.getVillageois().get(nb).meurt();
+			int nb = (int) (Math.random() * ( (this.village.getNbVillageois())));
+			Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit");
+			//this.village.getVillageois().get(nb).meurt();
+			this.devorer(this.village.getVillageois().get(nb));
 		}
 		
 	}

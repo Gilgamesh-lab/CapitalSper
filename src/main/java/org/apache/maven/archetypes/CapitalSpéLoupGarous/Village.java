@@ -101,8 +101,43 @@ public  class Village {
 		}
 		if(this.meute.estEnVie()) {
 			this.meute.attaquerVillage();
+			//this.decompteMort();
 		}
 	}
+	
+	public void nuit() {
+		this.meute.attaquerVillage();
+		//this.decompteMort();
+		
+	}
+	
+	/*public void decompteMort() {
+		//System.out.println(this.getHabitants());
+		String messageMort;
+		Personnage perso;
+		for(int i = 0; i < this.village.size(); i++) {
+			perso = this.village.get(i);
+			//System.out.println(perso + " :" + perso.estEnvie());
+			//System.out.println(perso.getStatut().getTueur());
+			if(perso.getStatut().isMortRecemment() && !perso.estAmoureux()) {
+				if(Logger.isAfficherLogDetailsRoleActionOn()) {
+					messageMort =  " a été tué la nuit par les loups-garous";
+				}
+				else {
+					messageMort= " a été tué la nuit";
+				}
+				Logger.log(perso + messageMort);
+				perso.getStatut().setMortRecemment(false);
+			}
+		}
+		
+		
+		//this.getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).forEach(z->{Logger.log(z + messageMort);z.meurt();});
+		
+		//Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
+		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))
+		//forEach(z-> {z.meurt(); z.getStatut().setAttaquerParLg(false);});
+	}*/
 	
 	public void voter() {
 		

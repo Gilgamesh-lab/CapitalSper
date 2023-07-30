@@ -61,7 +61,7 @@ public class Partie {
 			}
 			this.village.voter();
 			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
-				this.village.getMeute().attaquerVillage();
+				this.village.nuit();
 			}
 			this.nbTour++;
 		}

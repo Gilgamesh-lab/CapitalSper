@@ -25,7 +25,7 @@ public class Chasseur extends VillageoisSpecial {
 			nb = (int) (Math.random() * ( this.getVillage().getNbPersonnage()   - 0 ));
 		}
 		Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + this.getVillage().getHabitants().get(nb));
-		this.getVillage().getHabitants().get(nb).meurt();
+		this.tuer(getVillage().getHabitants().get(nb));;
 		super.meurt();
 	}
 
