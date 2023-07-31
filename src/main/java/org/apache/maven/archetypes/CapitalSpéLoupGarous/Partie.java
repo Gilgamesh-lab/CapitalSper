@@ -12,6 +12,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Référentiel;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 
 public class Partie {
 	private static Village savegardeVillage;
@@ -46,32 +47,29 @@ public class Partie {
 		this.référentiel = new Référentiel();
 	}
 	
+	public boolean conditionFinPartie() {
+		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4));
+	}
+	
 	private void startSimulation () {
 		init();
 		Logger.log("");
 		Logger.log("Lancement de la partie avec " +  this.référentiel.messageDebutPartie(this.village));
 		Logger.log("");
-		this.village.premièreNuit();
-		/*System.out.println((this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie())));
-		System.out.println((this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie()) && this.village.getNbLoupGarou() == 1));
-		|| (this.village.getHabitants().stream().anyMatch(x->x.getId() == 5 && x.estEnvie()) && this.village.getNbLoupGarou() == 1)*/
-		while((this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4))) {
-			if(this.village.getHabitants().stream().filter(x->x.estAmoureux()).count() > 2){
-				System.out.println("Erreur");
+		if(this.conditionFinPartie()) {
+			this.village.premièreNuit();
+			while(this.conditionFinPartie()) {
+				this.nbTour++;
+				this.village.voter();
+				if(this.conditionFinPartie()){
+					this.village.nuit();
+				}
 			}
-			this.village.voter();
-			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
-				this.village.nuit();
-			}
-			this.nbTour++;
 		}
 		Logger.log("");
 		
 		
 		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4) && (this.village.getNbPersonnage() >= 2)) {
-			/*System.out.println(this.village.getNbPersonnage() + " , " + (this.village.getNbPersonnage() != 0));
-			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
-			System.out.println(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() && (this.village.getNbPersonnage() != 0)));*/
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
 			this.listeTours.add(this.nbTour);
@@ -114,14 +112,14 @@ public class Partie {
 		while(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 			if(branche.charAt(this.nbTour) == '0') {
 				pourcentageBranche *= (double) this.village.getNbVillageois() / this.village.getNbPersonnage();
-				Logger.log("Pourcentage entrant = " + (double) this.village.getNbVillageois() / this.village.getNbPersonnage(), "pourcentage");
+				Logger.log("Pourcentage entrant = " + (double) this.village.getNbVillageois() / this.village.getNbPersonnage(), TypeDeLog.pourcentage);
 			}
 			else {
 				pourcentageBranche *= (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage();
-				Logger.log("Pourcentage entrant = " + (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage(), "pourcentage");
+				Logger.log("Pourcentage entrant = " + (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage(), TypeDeLog.pourcentage);
 			}
 			
-			Logger.log("Pourcentage actuel = " + pourcentageBranche, "pourcentage");
+			Logger.log("Pourcentage actuel = " + pourcentageBranche, TypeDeLog.pourcentage);
 			this.village.voter(branche.charAt(this.nbTour));
 			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
 				this.village.getMeute().attaquerVillage();
@@ -272,10 +270,10 @@ public class Partie {
 
 		for (compteur = 0; compteur < nb ; compteur ++) {
 			this.startSimulation();
-			Logger.log("", "pourcentage");
-			Logger.log("Nombre de victoire des villageois = " + (int) this.nbVictoireVillage , "pourcentage");
-			Logger.log("Nombre de victoire des loups-garous = " + (int) this.nbVictoireLoupGarou , "pourcentage");
-			Logger.log("", "pourcentage");
+			Logger.log("", TypeDeLog.pourcentage);
+			Logger.log("Nombre de victoire des villageois = " + (int) this.nbVictoireVillage , TypeDeLog.pourcentage);
+			Logger.log("Nombre de victoire des loups-garous = " + (int) this.nbVictoireLoupGarou , TypeDeLog.pourcentage);
+			Logger.log("", TypeDeLog.pourcentage);
 		}
 		
 		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
@@ -305,7 +303,7 @@ public class Partie {
 		Logger.log("Au moins 75% des parties se sont terminés en " +  this.listeTours.get((int) (this.listeTours.size() *  3) / 4) + " tours ou moins"); // troisième quartile
 		Logger.log("");
 		log.setOffAfficherLogDetailsPartie();
-		
+		// taux de survie ?
 		log.finish();
 		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
 		Log.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/

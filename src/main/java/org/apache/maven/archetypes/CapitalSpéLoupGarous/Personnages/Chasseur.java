@@ -20,17 +20,14 @@ public class Chasseur extends VillageoisSpecial {
 	
 	@Override
 	public void meurt() {
-		this.getListeDeVote().clear();
-		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
-		}
-		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
-			this.getListeDeVote().remove(this.getAlliés().get(i));
-		}
-		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-		Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + this.getListeDeVote().get(nb));
-		super.meurt();
-		this.tuer(getVillage().getHabitants().get(nb));;
+			super.meurt();
+			if(this.getVillage().getNbPersonnage() > 0) {
+				Personnage cible = this.voteCibleAction();
+				Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + cible);
+				this.tuer(cible);
+			}
+			
+		
 		
 	}
 

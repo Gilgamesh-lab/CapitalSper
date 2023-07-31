@@ -14,6 +14,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 public  class Village {
@@ -104,14 +105,17 @@ public  class Village {
 	}
 	
 	public void nuit() {
-		if(this.meute.estEnVie()) {
-			this.meute.attaquerVillage();
-		}
+		int nbHabitantAvant = this.getNbPersonnage();
+		this.meute.attaquerVillage();
 		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 6)) {
 			Sorcière sorcière = (Sorcière) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 6).findFirst().get();
 			sorcière.agir();
 		}
 		this.decompteMort();
+		int nbHabitantAprès = this.getNbPersonnage();
+		if(nbHabitantAvant == nbHabitantAprès) {
+			Logger.log("Personne n'a été tué durant la nuit ");
+		}
 		
 	}
 	
@@ -184,10 +188,16 @@ public  class Village {
 		}
 		Personnage personnageCondamner = this.getHabitants().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
 		Logger.log("");
-		Logger.log("Le village est composé de : " + this.getHabitants(), "vote");
-		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", "vote");
-
-		Logger.log(personnageCondamner + " a été tué lors du vote");
+		Logger.log("Le village est composé de : " + this.getHabitants(), TypeDeLog.vote);
+		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
+		
+		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
+			Logger.log(personnageCondamner + " a été tué lors du vote par égalité");
+		}
+		else {
+			Logger.log(personnageCondamner + " a été tué lors du vote");
+		}
+		
 
 
 		personnageCondamner.meurt();

@@ -18,11 +18,6 @@ public class LoupGarou extends Personnage {
 		this.meute.getMeute().remove(this);
 	}
 
-	@Override
-	public void agir() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public Meute getMeute() {
 		return this.meute;

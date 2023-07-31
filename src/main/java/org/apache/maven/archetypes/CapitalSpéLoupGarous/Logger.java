@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+
 public class Logger {
 	private static boolean detailVoteVillage;
 	private static boolean fichierOutput;
@@ -103,8 +105,9 @@ public class Logger {
 		}
 	}
 	
-	public static void  log (String messageDeLog, String typeDeLog) {
-		if(typeDeLog.equals("vote")) {
+	public static void  log (String messageDeLog, TypeDeLog typeDeLog) {
+		
+		if(TypeDeLog.vote.equals(typeDeLog)) {
 			if(detailVoteVillage) {
 				System.out.println(messageDeLog);
 				if(fichierOutput) {
@@ -113,7 +116,7 @@ public class Logger {
 				
 			}
 		}
-		else if (typeDeLog.equals("pourcentage")) {
+		else if (TypeDeLog.pourcentage.equals(typeDeLog)) {
 			if(afficherLogDetailsPourcentage) {
 				System.out.println(messageDeLog);
 				if(fichierOutput) {
@@ -122,7 +125,7 @@ public class Logger {
 			}
 		}
 		
-		else if (typeDeLog.equals("role")) {
+		else if (TypeDeLog.role.equals(typeDeLog)) {
 			if(afficherLogDetailsRoleAction) {
 				System.out.println(messageDeLog);
 				if(fichierOutput) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
@@ -30,7 +31,7 @@ public class Sorcière extends VillageoisSpecial{
 	public void agir() {
 		if((this.getStatut().estAttaquerParLg() && this.aUnePotionDeVie)) {
 			this.potionDeVie(this);
-			Logger.log("La sorcière s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", "role");
+			Logger.log("La sorcière s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
 		
 		if(this.actions.size() == 1) {
@@ -42,18 +43,11 @@ public class Sorcière extends VillageoisSpecial{
 		if((this.aUnePotionDeVie && ((action == 0 || action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().estAttaquerParLg()))) && this.getVillage().getHabitants().stream().anyMatch(x->x.getStatut().estAttaquerParLg()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).findAny().get();
 			this.potionDeVie(personnageASauver);
-			Logger.log("La sorcière a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", "role");
+			Logger.log("La sorcière a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
 		if ((action == 1 || action == 3) && this.aUnePotionDeMort) {
-			this.getListeDeVote().clear();
-			for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-				this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
-			}
-			for(int i = 0 ; i < this.getAlliés().size() ; i++) {
-				this.getListeDeVote().remove(this.getAlliés().get(i));
-			}
-			int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-			this.potionDeMort(this.getListeDeVote().get(nb));
+			this.potionDeMort(this.voteCibleAction());
+			
 		}
 	}
 	
@@ -84,7 +78,7 @@ public class Sorcière extends VillageoisSpecial{
 		else {
 			messageMort= personnageATuer +  " a été tué durant la nuit";
 		}
-		Logger.log(messageMort, "role");
+		Logger.log(messageMort);
 		this.tuer(personnageATuer);
 	}
 	

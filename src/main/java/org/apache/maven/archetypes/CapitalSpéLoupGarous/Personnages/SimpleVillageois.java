@@ -7,11 +7,7 @@ public class SimpleVillageois extends Villageois {
 		super(0, false);
 	}
 
-	@Override
-	public void agir() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	/*@Override
 	public String toString() {

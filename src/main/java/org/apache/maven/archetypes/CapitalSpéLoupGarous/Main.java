@@ -15,7 +15,7 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 4;
+		int nbVillageois = 0;
 		int nbLoupGarous = 1;
 		int nbPartie = 5;//100000
 		

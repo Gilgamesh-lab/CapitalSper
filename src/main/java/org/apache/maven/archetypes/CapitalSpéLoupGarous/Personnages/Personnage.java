@@ -2,6 +2,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
@@ -87,8 +88,6 @@ public abstract class Personnage {
 		return estUnVillageois;
 	}
 	
-	public abstract void agir();
-	
 	public boolean estAmoureux() {
 		return this.statut.isEstAmoureux();
 	}
@@ -128,20 +127,41 @@ public abstract class Personnage {
 		return this.clone();
 	}
 	
-	@SuppressWarnings("finally")
+	@SuppressWarnings("finally") // à améliorer
 	public int voter() {
 		this.getListeDeVote().clear();
 		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+			if(!this.alliés.contains(this.getVillage().getHabitants().get(i))){
+				this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+			}
+			
 		}
-		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
+		/*for(int i = 0 ; i < this.getAlliés().size() ; i++) {
 			this.getListeDeVote().remove(this.getAlliés().get(i));
+		}*/
+		int nb ;
+		if(this.getListeDeVote().size() == 0) {
+			if(this.estAmoureux()) {
+				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitants().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
+				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+				return this.getListeDeVote().get(nb).getId();	
+			}
+			else {
+				nb = (int) (Math.random() * ( this.village.getNbPersonnage()   - 0 ));
+				Logger.log(this + " a voté contre " + this.village.getPersonnage(nb), TypeDeLog.vote);
+				return this.village.getPersonnage(nb).getId();	
+			}
 		}
-		int nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-		Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), "vote");
-		
-		return this.getListeDeVote().get(nb).getId();	
+		else {
+			nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+			Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
+			
+			return this.getListeDeVote().get(nb).getId();
+		}
+			
 	}
+	
+	
 	
 	
 
