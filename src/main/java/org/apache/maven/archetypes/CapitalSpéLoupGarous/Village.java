@@ -106,12 +106,14 @@ public  class Village {
 	
 	public void nuit() {
 		int nbHabitantAvant = this.getNbPersonnage();
+		
 		this.meute.attaquerVillage();
 		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 6)) {
 			Sorcière sorcière = (Sorcière) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 6).findFirst().get();
 			sorcière.agir();
 		}
 		this.decompteMort();
+		
 		int nbHabitantAprès = this.getNbPersonnage();
 		if(nbHabitantAvant == nbHabitantAprès) {
 			Logger.log("Personne n'a été tué durant la nuit ");
@@ -120,9 +122,7 @@ public  class Village {
 	}
 	
 	public void decompteMort() {
-		//System.out.println(this.getHabitants());
 		String messageMort;
-		Personnage perso;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {
 			messageMort =  " a été tué la nuit par les loups-garous";
 		}
@@ -131,34 +131,10 @@ public  class Village {
 		}
 		
 		this.getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAttaquerParLg(false);});
-		
-		/*for(int i = 0; i < this.getNbPersonnage(); i++) {
-			perso = this.getHabitants().get(i);
-			//System.out.println(perso + " :" + perso.estEnvie());
-			//System.out.println(perso.getStatut().getTueur());
-			if(perso.getStatut().estAttaquerParLg()) {
-				if(Logger.isAfficherLogDetailsRoleActionOn()) {
-					messageMort =  " a été tué la nuit par les loups-garous";
-				}
-				else {
-					messageMort= " a été tué la nuit";
-				}
-				Logger.log(perso + messageMort);
-				perso.meurt();
-				perso.getStatut().setAttaquerParLg(false);
-			}
-		}*/
-		
-		
-		//
-		
-		//Logger.log(this.village.getVillageois().get(nb) + " a été tué la nuit par les loups-garous");
 		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))
-		//forEach(z-> {z.meurt(); z.getStatut().setAttaquerParLg(false);});
 	}
 	
 	public void voter() {
-		
 		Personnage votant;
 		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
@@ -181,7 +157,6 @@ public  class Village {
 		int idPersonneAyantPlusDeVotes;
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));// si plusieurs maxVote
-				//.reduce(Integer::max).get();
 		}
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
@@ -192,7 +167,7 @@ public  class Village {
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 		
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
-			Logger.log(personnageCondamner + " a été tué lors du vote par égalité");
+			Logger.log(personnageCondamner + " a été tué lors du vote sur une égalité");
 		}
 		else {
 			Logger.log(personnageCondamner + " a été tué lors du vote");

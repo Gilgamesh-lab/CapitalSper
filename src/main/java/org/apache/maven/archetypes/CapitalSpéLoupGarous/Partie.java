@@ -48,7 +48,7 @@ public class Partie {
 	}
 	
 	public boolean conditionFinPartie() {
-		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4));
+		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
 	}
 	
 	private void startSimulation () {
@@ -69,7 +69,7 @@ public class Partie {
 		Logger.log("");
 		
 		
-		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux() || x.getIdDeRole() == 4) && (this.village.getNbPersonnage() >= 2)) {
+		if(this.village.getHabitants().stream().allMatch(x->x.estAmoureux()) && this.village.getHabitants().stream().anyMatch(x->x.estUnVillageois())  && this.village.getHabitants().stream().anyMatch(y->!y.estUnVillageois())) {
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
 			this.listeTours.add(this.nbTour);
