@@ -12,6 +12,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
@@ -106,7 +107,10 @@ public  class Village {
 	
 	public void nuit() {
 		int nbHabitantAvant = this.getNbPersonnage();
-		
+		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 7)) {
+			Salvateur salvateur = (Salvateur) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 7).findFirst().get();
+			salvateur.salvater();
+		}
 		this.meute.attaquerVillage();
 		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 6)) {
 			Sorcière sorcière = (Sorcière) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 6).findFirst().get();
@@ -114,6 +118,7 @@ public  class Village {
 		}
 		this.decompteMort();
 		
+		this.getHabitants().stream().filter(x->x.getStatut().isProtéger()).forEach(x->x.getStatut().setProtéger(false));
 		int nbHabitantAprès = this.getNbPersonnage();
 		if(nbHabitantAvant == nbHabitantAprès) {
 			Logger.log("Personne n'a été tué durant la nuit ");

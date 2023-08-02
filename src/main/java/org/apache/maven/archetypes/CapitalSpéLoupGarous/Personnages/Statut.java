@@ -8,6 +8,7 @@ public class Statut {
 	private boolean attaquerParLg;
 	private Integer tueur;
 	private boolean mortRecemment;
+	private boolean protéger;
 
 	public Statut(Personnage personnage) {
 		this.estAmoureux = false;
@@ -16,12 +17,29 @@ public class Statut {
 		this.attaquerParLg = false;
 		this.tueur = null;
 		this.mortRecemment = false;
+		this.protéger = false;
 	}
 	
 	
 	
 	
 	
+	
+	
+	public boolean isProtéger() {
+		return protéger;
+	}
+
+	public void setProtéger(boolean protéger) {
+		this.protéger = protéger;
+	}
+
+
+
+
+
+
+
 	public boolean isMortRecemment() {
 		return mortRecemment;
 	}

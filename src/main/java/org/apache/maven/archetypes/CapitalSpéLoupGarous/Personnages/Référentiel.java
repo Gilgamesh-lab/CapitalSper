@@ -19,6 +19,7 @@ public class Référentiel {
 		this.référentiel.put(4, new Cupidon());
 		this.référentiel.put(5, new Chasseur());
 		this.référentiel.put(6, new Sorcière());
+		this.référentiel.put(7, new Salvateur());
 	}
 	
 	public Personnage conversionDeIdRoleVersPersonnage(int idRole) {

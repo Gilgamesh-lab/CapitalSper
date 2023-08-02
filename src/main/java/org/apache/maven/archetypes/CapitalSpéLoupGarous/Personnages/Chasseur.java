@@ -11,24 +11,15 @@ public class Chasseur extends VillageoisSpecial {
 	public Chasseur() {
 		super(5, Arrays.asList(TypeDePouvoir.Mort) );
 	}
-
-	@Override
-	public void agir() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@Override
 	public void meurt() {
 			super.meurt();
-			if(this.getVillage().getNbPersonnage() > 0) {
+			if(this.getVillage().getNbLoupGarou() > 0) {
 				Personnage cible = this.voteCibleAction();
 				Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + cible);
 				this.tuer(cible);
 			}
-			
-		
-		
 	}
 
 	@Override

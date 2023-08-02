@@ -68,7 +68,6 @@ public class Meute {
 		int idPersonneAyantPlusDeVotes;
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));// si plusieurs maxVote
-				//.reduce(Integer::max).get();
 		}
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
@@ -78,8 +77,13 @@ public class Meute {
 		Logger.log("Le village est composé de : " + this.village.getHabitants(), TypeDeLog.vote);
 		Logger.log(personnageDevorer +  " a été choisi par la meute pour leurs servirent de repas avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 
-
-		personnageDevorer.getStatut().setAttaquerParLg(true);
+		if(!personnageDevorer.getStatut().isProtéger()) {
+			personnageDevorer.getStatut().setAttaquerParLg(true);
+		}
+		else {
+			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu attaquer " + personnageDevorer, TypeDeLog.role);
+		}
+		
 	}
 
 }

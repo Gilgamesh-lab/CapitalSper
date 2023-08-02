@@ -10,11 +10,6 @@ public class Cupidon extends VillageoisSpecial {
 		super(4, Arrays.asList(TypeDePouvoir.Mort));
 	}
 
-	@Override
-	public void agir() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void flecheDeLAmour() {
 		int nbPersonnageAmoureux1 = (int) (Math.random() * ( this.getVillage().getHabitants().size()    - 0 ));

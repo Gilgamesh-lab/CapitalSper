@@ -13,8 +13,6 @@ public abstract class VillageoisSpecial extends Villageois {
 		this.typeDePouvoir = typeDePouvoir;
 		
 	}
-	
-	public  abstract void agir();
 
 	public List<TypeDePouvoir> getTypeDePouvoir() {
 		return typeDePouvoir;
