@@ -258,9 +258,10 @@ public class Partie {
 	
 	
 	public void simulation(int nb) {
+		long startTime = System.currentTimeMillis();
 		this.reset();
-		if(log.isAfficherLogDetailsPartie()) {
-			
+		if(!log.isAfficherLogDetailsPartie()) {
+			System.out.println("Chargement en cours");
 		}
 		if (log.isFichierOutput()) {
 			String mode = "Simultation sur " + nb + " parties";
@@ -302,8 +303,15 @@ public class Partie {
 		Logger.log("Au moins 50% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 2) + " tours ou moins"); // deuxième quartile ou médiane
 		Logger.log("Au moins 75% des parties se sont terminés en " +  this.listeTours.get((int) (this.listeTours.size() *  3) / 4) + " tours ou moins"); // troisième quartile
 		Logger.log("");
+		
+		// stat perso "simple" ex : taux de survie ?
+		// stat persoSpé : nb lg kill by chasseur, utilisation potion soso, couple traitre ...
+		long endTime = System.currentTimeMillis();
+		long minute = (endTime-startTime) / 60000;
+		long seconde = (  (endTime-startTime) -(minute*60000)) / 1000;
+		Logger.log("");
+		Logger.log("Le temps d'exécution de la simulation est de : " + minute +  " minutes et " + seconde + " secondes ", TypeDeLog.statistique );
 		log.setOffAfficherLogDetailsPartie();
-		// taux de survie ?
 		log.finish();
 		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
 		Log.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/

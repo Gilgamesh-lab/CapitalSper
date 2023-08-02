@@ -27,7 +27,6 @@ public class Sorcière extends VillageoisSpecial{
 	}
 	
 
-	@Override
 	public void agir() {
 		if((this.getStatut().estAttaquerParLg() && this.aUnePotionDeVie)) {
 			this.potionDeVie(this);
@@ -39,7 +38,6 @@ public class Sorcière extends VillageoisSpecial{
 		}
 		int action = (int) (Math.random() * ( this.actions.size() - 0 ));
 		action = this.actions.get(action);
-		//System.out.println("action = " + action);
 		if((this.aUnePotionDeVie && ((action == 0 || action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().estAttaquerParLg()))) && this.getVillage().getHabitants().stream().anyMatch(x->x.getStatut().estAttaquerParLg()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).findAny().get();
 			this.potionDeVie(personnageASauver);

@@ -13,6 +13,7 @@ public class Logger {
 	private static boolean afficherLogDetailsPartie;
 	private static boolean afficherLogDetailsPourcentage;
 	private static boolean afficherLogDetailsRoleAction;
+	private static boolean afficherLogStats;
 	
 	
 	
@@ -23,8 +24,25 @@ public class Logger {
 		this.afficherLogDetailsPartie = true;
 		this.afficherLogDetailsPourcentage = false;
 		this.afficherLogDetailsRoleAction = false ;
+		this.afficherLogStats = false;
 	}
 	
+	
+	
+	public static boolean isAfficherLogStats() {
+		return afficherLogStats;
+	}
+
+	public  void setOnAfficherLogStats() {
+		this.afficherLogStats = true;
+	}
+	
+	public  void setOffAfficherLogStats() {
+		this.afficherLogStats = false;
+	}
+
+
+
 	public void setOnAfficherLogDetailsRoleAction() {
 		this.afficherLogDetailsRoleAction = true;
 	}
@@ -127,6 +145,15 @@ public class Logger {
 		
 		else if (TypeDeLog.role.equals(typeDeLog)) {
 			if(afficherLogDetailsRoleAction) {
+				System.out.println(messageDeLog);
+				if(fichierOutput) {
+					writer.println(messageDeLog);
+				}
+			}
+		}
+		
+		else if (TypeDeLog.statistique.equals(typeDeLog)) {
+			if(afficherLogStats) {
 				System.out.println(messageDeLog);
 				if(fichierOutput) {
 					writer.println(messageDeLog);
