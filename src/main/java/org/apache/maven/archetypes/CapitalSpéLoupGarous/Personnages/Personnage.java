@@ -17,6 +17,7 @@ public abstract class Personnage {
 	private Statut statut;
 	private ArrayList<Personnage> alliés;
 	private boolean aUnPouvoirSpecial;
+	private ArrayList<Personnage> listeEnnemie;
 	
 	public Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
 		this.estUnVillageois = estUnVillageois;
@@ -26,6 +27,7 @@ public abstract class Personnage {
 		this.alliés = new ArrayList<Personnage>();
 		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
 		this.alliés.add(this);
+		this.listeEnnemie = new ArrayList<Personnage>();
 	}
 	
 	public void tuer(Personnage personnage) {
@@ -43,8 +45,21 @@ public abstract class Personnage {
 		this.alliés.clear();
 		this.alliés.add(this);
 		this.statut = new Statut(this);
+		this.listeEnnemie.clear();
+	}
+	
+	
+	public ArrayList<Personnage> getEnnemies() {
+		return this.listeEnnemie;
 	}
 
+	public void setEnnemies(ArrayList<Personnage> ennemies) {
+		this.listeEnnemie = ennemies;
+	}
+	
+	public void ajouterEnnemies(Personnage ennemies) {
+		this.listeEnnemie.add(ennemies);
+	}
 
 
 	public ArrayList<Personnage> getAlliés() {
@@ -129,35 +144,47 @@ public abstract class Personnage {
 	
 	@SuppressWarnings("finally") // à améliorer
 	public int voter() {
-		this.getListeDeVote().clear();
-		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			if(!this.alliés.contains(this.getVillage().getHabitants().get(i))){
-				this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
-			}
-			
-		}
-		/*for(int i = 0 ; i < this.getAlliés().size() ; i++) {
-			this.getListeDeVote().remove(this.getAlliés().get(i));
-		}*/
 		int nb ;
-		if(this.getListeDeVote().size() == 0) {
-			if(this.estAmoureux()) {
-				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitants().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
-				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-				return this.getListeDeVote().get(nb).getId();	
-			}
-			else {
-				nb = (int) (Math.random() * ( this.village.getNbPersonnage()   - 0 ));
-				Logger.log(this + " a voté contre " + this.village.getPersonnage(nb), TypeDeLog.vote);
-				return this.village.getPersonnage(nb).getId();	
+		this.getListeDeVote().clear();
+		if(this.getEnnemies().size() > 0) {
+			for(int i = 0; i < this.getListeDeVote().size(); i++) {
+				this.getListeDeVote().add(this.getEnnemies().get(i));
 			}
 		}
-		else {
+		this.getEnnemies().stream().filter(x-> x != null && !x.estEnvie()).forEach(x->this.getListeDeVote().remove(x));
+		if(this.getListeDeVote().size() > 0) {
 			nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 			Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
-			
 			return this.getListeDeVote().get(nb).getId();
 		}
+		else {
+			this.getListeDeVote().clear();
+			for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
+				if(!this.alliés.contains(this.getVillage().getHabitants().get(i))){
+					this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+				}
+				
+			}
+			if(this.getListeDeVote().size() == 0) {
+				if(this.estAmoureux()) {
+					this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitants().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
+					nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+					return this.getListeDeVote().get(nb).getId();	
+				}
+				else {
+					nb = (int) (Math.random() * ( this.village.getNbPersonnage()   - 0 ));
+					Logger.log(this + " a voté contre " + this.village.getPersonnage(nb), TypeDeLog.vote);
+					return this.village.getPersonnage(nb).getId();	
+				}
+			}
+			else {
+				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+				Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
+				
+				return this.getListeDeVote().get(nb).getId();
+			}
+		}
+		
 			
 	}
 	

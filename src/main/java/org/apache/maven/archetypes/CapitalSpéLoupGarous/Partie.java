@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Référentiel;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 
 public class Partie {

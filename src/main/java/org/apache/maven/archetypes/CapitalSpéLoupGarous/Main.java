@@ -7,6 +7,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 
 
@@ -16,33 +17,36 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 10;
-		int nbLoupGarous = 1;
-		int nbPartie = 100000;//100000
+		int nbVillageois = 4;
+		int nbLoupGarous = 2;
+		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
 		
 		
-		//log.setDetailVoteVillage(true);
+		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		logger.setOffAfficherLogDetailsPartie();
+		//logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
 		//log.setOnAfficherLogDetailsPourcentage();
-		//log.setOnAfficherLogDetailsRoleAction();
-		/*Cupidon cupidon = new Cupidon();
+		logger.setOnAfficherLogDetailsRoleAction();
+		
+		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
 		village.ajouterPersonnage(chasseur);
 		Sorcière sorcière = new Sorcière();
 		village.ajouterPersonnage(sorcière);
 		Salvateur salvateur = new Salvateur();
-		village.ajouterPersonnage(salvateur);*/
+		village.ajouterPersonnage(salvateur);
+		Voyante voyante = new Voyante();
+		village.ajouterPersonnage(voyante);
 		Partie partie = new Partie(village, logger);
 		
 		
 		partie.simulation(nbPartie);
-		double lg = partie.getPourcentWinLoupGarous();
+		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();
 		
 		

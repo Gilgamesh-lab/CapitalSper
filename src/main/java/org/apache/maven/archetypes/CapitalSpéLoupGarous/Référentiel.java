@@ -1,10 +1,17 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public class Référentiel {
 	private  Map<Integer ,Personnage > référentiel = new HashMap<>();
@@ -20,6 +27,7 @@ public class Référentiel {
 		this.référentiel.put(5, new Chasseur());
 		this.référentiel.put(6, new Sorcière());
 		this.référentiel.put(7, new Salvateur());
+		this.référentiel.put(8, new Voyante());
 	}
 	
 	public Personnage conversionDeIdRoleVersPersonnage(int idRole) {

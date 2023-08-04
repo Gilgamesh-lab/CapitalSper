@@ -9,7 +9,7 @@ public class Salvateur extends VillageoisSpecial {
 	private Personnage dernierPersonnageProtéger;
 
 	public Salvateur() {
-		super(7, Arrays.asList(TypeDePouvoir.Vie) );
+		super(7, Arrays.asList(TypeDePouvoir.Vie));
 		this.dernierPersonnageProtéger = null;
 	}
 	
@@ -23,6 +23,13 @@ public class Salvateur extends VillageoisSpecial {
 		 personnageProtéger.getStatut().setProtéger(true);
 		 Logger.log("Le salvateur a décidé de protéger " + personnageProtéger, TypeDeLog.role);
 		 this.dernierPersonnageProtéger = personnageProtéger;
+		 
+		 /*if(!this.getVillage().getHabitants().stream().filter(x->x.aUnPouvoirSpecial() && !x.equals(this) ).map(c -> (VillageoisSpecial) c).anyMatch(x->x.getTypeDePouvoir().contains(TypeDePouvoir.Vie))) {
+			 if(!this.getAlliés().contains(personnageProtéger)) {
+				 this.ajouterAlliés(personnageProtéger);
+				 Logger.log("Le salvateur a confiance en " + personnageProtéger, TypeDeLog.role);
+			 }
+		 }*/
 		 
 	}
 	

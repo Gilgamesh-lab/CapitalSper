@@ -17,6 +17,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public  class Village {
 
@@ -107,6 +108,10 @@ public  class Village {
 	
 	public void nuit() {
 		int nbHabitantAvant = this.getNbPersonnage();
+		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 8)) {
+			Voyante voyante = (Voyante) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 8).findFirst().get();
+			voyante.sonder();
+		}
 		if(this.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 7)) {
 			Salvateur salvateur = (Salvateur) this.getHabitants().stream().filter(x -> x.getIdDeRole() == 7).findFirst().get();
 			salvateur.salvater();

@@ -21,11 +21,12 @@ public abstract class VillageoisSpecial extends Villageois {
 	public Personnage voteCibleAction() {
 		this.getListeDeVote().clear();
 		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+			if(!this.getAlliés().contains(this.getVillage().getHabitants().get(i)) && !this.getEnnemies().contains(this.getVillage().getHabitants().get(i))){
+				this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+			}
+			
 		}
-		for(int i = 0 ; i < this.getAlliés().size() ; i++) {
-			this.getListeDeVote().remove(this.getAlliés().get(i));
-		}
+		
 		int nb ;
 		if(this.getListeDeVote().size() == 0) {
 			if(this.estAmoureux()) {
