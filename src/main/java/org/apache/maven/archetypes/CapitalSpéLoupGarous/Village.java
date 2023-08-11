@@ -140,7 +140,9 @@ public  class Village {
 			messageMort= " a été tué durant la nuit";
 		}
 		
+		
 		this.getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAttaquerParLg(false);});
+		Logger.log("", TypeDeLog.vote);
 		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))
 	}
 	

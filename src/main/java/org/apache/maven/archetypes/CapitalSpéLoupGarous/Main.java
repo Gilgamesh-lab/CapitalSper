@@ -13,13 +13,13 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public class Main {
 	
-	private static List<String> listeBranches = new ArrayList<String>();
+	
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 4;
+		int nbVillageois = 6;
 		int nbLoupGarous = 2;
-		int nbPartie = 5;//100000
+		int nbPartie = 1000000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -27,12 +27,12 @@ public class Main {
 		
 		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		//logger.setOffAfficherLogDetailsPartie();
+		logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
-		//log.setOnAfficherLogDetailsPourcentage();
-		logger.setOnAfficherLogDetailsRoleAction();
+		//logger.setOnAfficherLogDetailsPourcentage();
+		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		Cupidon cupidon = new Cupidon();
+		/*Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
 		village.ajouterPersonnage(chasseur);
@@ -41,28 +41,19 @@ public class Main {
 		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
 		Voyante voyante = new Voyante();
-		village.ajouterPersonnage(voyante);
+		village.ajouterPersonnage(voyante);*/
 		Partie partie = new Partie(village, logger);
 		
 		
 		partie.simulation(nbPartie);
 		/*double lg = partie.getPourcentWinLoupGarous();
-		double vi = partie.getPourcentWinVillage();
+		double vi = partie.getPourcentWinVillage();*/
 		
 		
 		//partie.exploration();
 		
 		
-		/*String[] tabVote = new String[2];
-		tabVote[0] = "0";
-		tabVote[1] = "1";
 		
-		String[] tabCupidon = new String[2];
-		tabCupidon[0] = "a";
-		tabCupidon[1] = "b";
-		
-		
-		explorationBranche(tabVote, "", tabCupidon) ;*/
 		
 		
 		 // corriger bug lorsque nb loup sup > 1 (cause : dupplication des branches,
@@ -95,86 +86,13 @@ Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
 		// certaine branches continue même après la victoire des loups-garous
 		
 		
-		/*String tab[] = {"0","1" };
-		CombinationPossible(tab,"", 2);*/
+		
 		
 	}	
 	
-	static void explorationBranche(String[] tab, String branche, String[] tabCupidon) {
-		String point = branche;
-		
-		for (int i=0; i < tab.length; i++) {
-			
-			long countLgmort = branche.chars().filter(ch -> ch == '1').count();
-			
-			
-			if(countLgmort < 1 || tab[i] != "1") { // pour pas loup mort soit compter
-				//if(this.savegardeVillage.getNbVillageois() - countVimort - 1 > this.savegardeVillage.getNbLoupGarou() ||  tab[i] == "0") {
-				//if(countVimort < this.savegardeVillage.getNbVillageois() - this.savegardeVillage.getNbLoupGarou() - 1 && tab[i] == "1") {
-				point +=  tab[i];
-				//System.out.println(point);
-				//Log.println("point = " + point );
-				long countVimort = point.chars().filter(ch -> ch == '0').count();
-				countLgmort = branche.chars().filter(ch -> ch == '1').count();
-				try {
-					for (int n = 0; n < 2 ; n++) {
-						if(branche.equals("")) {
-							point +=  tabCupidon[n];
-						}
-						if (!listeBranches.contains(point)){
-							if(point.length() >= 3){ // compteur <= 0 remplacer cette condition par condition de victoire
-								listeBranches.add(point);
-								System.out.println("point = " + point);
-							}
-							else {
-								explorationBranche(tab, point, tabCupidon);
-								
-							}
-						point = branche + tab[i];
-						//System.out.println("point2 = " + point +  " taille = " + point.length());
-						//System.out.println(branche);
-						}
-					}
-					point = branche;
-				}
-				catch(StackOverflowError e){
-					System.out.println("Branche = " + branche);
-					System.out.println("Condition = " + (3 - countVimort - (branche.length() - 3 )  - (1 - countLgmort)  <= 0 || 1 - countLgmort <= 0));
-					System.exit(0);
-				}
-			}
-					
-		}
-	}
 	
-	static void CombinationPossible(String[] tab, String branche, int compteur) {
-		compteur --;
-		String branche2 = branche;
-		/*String branche2 = "";
-		for (int x=1; x<branche.length(); x++) {
-			branche2 = b;
-        }*/
-		
-		for (int i=0; i < tab.length; i++) {
-			branche2 +=  tab[i];
-			
-			/*System.out.println();
-			System.out.println("branche  = " + branche2);
-			System.out.println("boucle = " + compteur);
-			System.out.println("i = " + i);
-			System.out.println("taille = " + tab.length);
-			System.out.println();*/
-			
-			if(compteur !=0) {
-				CombinationPossible(tab, branche2, compteur );
-			}
-			else {
-				System.out.println("branche  = " + branche2);
-			}
-			branche2 = branche;
-		}
-		return ;
-    }
+	
+	
 	
 	/*
 	 * // Current combination is ready to be printed, print it

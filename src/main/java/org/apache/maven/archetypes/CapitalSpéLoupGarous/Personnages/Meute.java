@@ -46,6 +46,7 @@ public class Meute {
 	}
 	
 	public void attaquerVillage() {
+		Logger.log("");
 		LoupGarou votant;
 		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
@@ -73,10 +74,16 @@ public class Meute {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
 		}
 		Personnage personnageDevorer = this.village.getHabitants().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
-		Logger.log("");
+		Logger.log("", TypeDeLog.vote);
 		Logger.log("Le village est composé de : " + this.village.getHabitants(), TypeDeLog.vote);
-		Logger.log(personnageDevorer +  " a été choisi par la meute pour leurs servirent de repas avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
-
+		
+		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
+			Logger.log(personnageDevorer +  " a été choisi par la meute pour leurs servirent de repas sur une égalité avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
+		}
+		else {
+			Logger.log(personnageDevorer +  " a été choisi par la meute pour leurs servirent de repas avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
+		}
+		
 		if(!personnageDevorer.getStatut().isProtéger()) {
 			personnageDevorer.getStatut().setAttaquerParLg(true);
 		}

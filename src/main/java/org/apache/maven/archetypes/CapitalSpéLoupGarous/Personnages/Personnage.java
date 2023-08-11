@@ -126,12 +126,9 @@ public abstract class Personnage {
 	public void meurt() {
 		this.statut.estMort();
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
-			//this.statut.setMortRecemment(false);
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
 		}
-		
-		//this.village.getHabitants().remove(this);
 	}
 
 	public void setVillage(Village village) {
@@ -178,7 +175,7 @@ public abstract class Personnage {
 				}
 			}
 			else {
-				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+				nb = (int) (Math.random() * ( this.getListeDeVote().size()   - 0 ));
 				Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
 				
 				return this.getListeDeVote().get(nb).getId();
@@ -186,14 +183,6 @@ public abstract class Personnage {
 		}
 		
 			
-	}
-	
-	
-	
-	
-
-	public void setEstUnVillageois(boolean estUnVillageois) {
-		this.estUnVillageois = estUnVillageois;
 	}
 
 
