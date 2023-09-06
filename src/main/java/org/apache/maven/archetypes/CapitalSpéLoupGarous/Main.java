@@ -27,7 +27,7 @@ public class Main {
 		
 		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		logger.setOffAfficherLogDetailsPartie();
+		//logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
@@ -45,12 +45,12 @@ public class Main {
 		Partie partie = new Partie(village, logger);
 		
 		
-		partie.simulation(nbPartie);
+		//partie.simulation(nbPartie);
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		
 		
-		//partie.exploration();
+		partie.exploration();
 		
 		
 		

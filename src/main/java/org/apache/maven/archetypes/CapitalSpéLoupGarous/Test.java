@@ -8,13 +8,15 @@ public class Test {
 	private static int max = 4;
 
 	public static void main(String[] args) {
-		String[] tabVote = new String[2];
+		String[] tabVote = new String[3];
 		tabVote[0] = "0";
 		tabVote[1] = "1";
+		tabVote[2] = "2";
 		
-		String[] tabCupidon = new String[2];
+		String[] tabCupidon = new String[3];
 		tabCupidon[0] = "a";
 		tabCupidon[1] = "b";
+		tabCupidon[2] = "c";
 		
 		
 		//explorationBranche(tabVote, "", tabCupidon) ;
@@ -22,7 +24,7 @@ public class Test {
 		
 		String tab[] = {"0","1"};
 		String tab2[] = {"a","b"};
-		CombinationPossible(tab,"", 4, tab2);
+		CombinationPossible(tab,"", 3, tab2);
 
 	}
 	
@@ -35,7 +37,10 @@ public class Test {
         }*/
 		
 		for (int i=0; i < tab2.length; i++) {
-			branche2 +=  tab2[i];
+			if(tab2.length != 1) {
+				branche2 +=  tab2[i];
+			}
+			
 			for (int j=0; j < tab.length; j++) {
 				branche2 +=  tab[j];
 				
@@ -60,8 +65,9 @@ public class Test {
 				}
 				else {
 					System.out.println("branche  = " + branche2);
-					branche2 = branche + tab2[i];
+					
 				}
+				branche2 = branche + tab2[i];
 				
 			}
 			branche2 = branche;

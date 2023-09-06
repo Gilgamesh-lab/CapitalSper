@@ -124,12 +124,13 @@ public class Partie {
 		this.village.premièreNuit();
 		while(this.conditionFinPartie()) {
 			if(branche.charAt(this.nbTour) == '0') {
-				pourcentageBranche *= (double) this.village.getNbVillageois() / this.village.getNbPersonnage();
+				pourcentageBranche *= (double) (this.village.getNbPersonnage() -1) / this.village.getNbPersonnage();
 				Logger.log("Pourcentage entrant = " + (double) this.village.getNbVillageois() / this.village.getNbPersonnage(), TypeDeLog.pourcentage);
 			}
 			else {
-				pourcentageBranche *= (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage();
+				pourcentageBranche *= (double) 1 / this.village.getNbPersonnage();
 				Logger.log("Pourcentage entrant = " + (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage(), TypeDeLog.pourcentage);
+				//this.village.getNbLoupGarou()
 			}
 			
 			Logger.log("Pourcentage actuel = " + pourcentageBranche, TypeDeLog.pourcentage);
