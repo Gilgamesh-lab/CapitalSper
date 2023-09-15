@@ -20,7 +20,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
-public  class Village {
+public  class Village  implements Cloneable {
 
 	private ArrayList<Personnage> village;
 	private  Meute meute ;
@@ -209,14 +209,14 @@ public  class Village {
 		
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			if(maire == null) {
-				Logger.log(personnageCondamner + " a été exécuter suite au vote sur une égalité");
+				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote sur une égalité");
 			}
 			else {
-				Logger.log(personnageCondamner + " a été exécuter suite au vote par décision du maire");
+				Logger.log(personnageCondamner + "  a été éliminer à l'issue du vote sur une égalité par décision du maire");
 			}
 		}
 		else {
-			Logger.log(personnageCondamner + " a été exécuter suite au vote");
+			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
 		}
 		
 
@@ -256,6 +256,14 @@ public  class Village {
 
 	public void setMaire(Personnage maire) {
 		this.maire.setPersonnage(maire); 
+	}
+	
+	public Object clone() {
+		Village v = new Village();
+		this.village.stream().forEach(x->v.ajouterPersonnage((Personnage) x.clone()));
+
+		v.maire = this.maire;
+		return v;
 	}
 
 	

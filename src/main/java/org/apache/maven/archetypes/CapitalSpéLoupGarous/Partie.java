@@ -251,8 +251,7 @@ public class Partie {
 	
 	private void init() {
 		this.nbTour = 0;
-		this.village = this.savegardeVillage;
-		this.village.reset();
+		this.village = (Village) this.savegardeVillage.clone();
 		
 		/*if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);

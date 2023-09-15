@@ -21,6 +21,9 @@ public class Chasseur extends VillageoisSpecial {
 			this.tuer(cible);
 		}
 	}
+	
+	
+	
 
 	@Override
 	public String toString() {

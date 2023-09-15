@@ -15,7 +15,6 @@ public class LoupGarou extends Personnage {
 	@Override
 	public void meurt() {
 		super.meurt();
-		this.meute.getMeute().remove(this);
 	}
 
 	
@@ -29,8 +28,7 @@ public class LoupGarou extends Personnage {
 	
 	public void reset() {
 		this.getAlliés().clear();
-		this.getAlliés().add(this);
-		this.meute.getMeute().stream().filter(x->x!=this).forEach(x->this.ajouterAlliés(x));
+		this.meute.getMeute().stream().forEach(x->this.ajouterAlliés(x));
 		super.reset();
 	}
 

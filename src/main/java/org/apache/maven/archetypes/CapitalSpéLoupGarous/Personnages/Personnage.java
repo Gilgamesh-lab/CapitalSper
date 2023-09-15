@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 
-public abstract class Personnage {
+public abstract class Personnage  implements Cloneable {
 	
 	private boolean estUnVillageois;
 	private int id;
@@ -142,8 +142,14 @@ public abstract class Personnage {
 		this.village = village;
 	}
 	
-	public Personnage clone() {
-		return this.clone();
+	public Object clone() {
+		Object o = null;
+		try {
+			o = super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return o;
 	}
 	
 	@SuppressWarnings("finally") // à améliorer
@@ -215,12 +221,14 @@ public abstract class Personnage {
 
 
 
-	/*@Override
+	
+
+
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(aUnPouvoirSpecial, alliés, estUnVillageois, id, idDeRole, listeDeVote, statut, village);
+		return Objects.hash(fonction, id, idDeRole, nbVote, statut, village);
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -231,13 +239,10 @@ public abstract class Personnage {
 		if (getClass() != obj.getClass())
 			return false;
 		Personnage other = (Personnage) obj;
-		return aUnPouvoirSpecial == other.aUnPouvoirSpecial && Objects.equals(alliés, other.alliés)
-				&& estUnVillageois == other.estUnVillageois && id == other.id && idDeRole == other.idDeRole
-				&& Objects.equals(listeDeVote, other.listeDeVote) && Objects.equals(statut, other.statut)
+		return Objects.equals(fonction, other.fonction) && id == other.id && idDeRole == other.idDeRole
+				&& nbVote == other.nbVote && Objects.equals(statut, other.statut)
 				&& Objects.equals(village, other.village);
-	}*/
-
-
+	}
 
 	public int getNbVote() {
 		return nbVote;
