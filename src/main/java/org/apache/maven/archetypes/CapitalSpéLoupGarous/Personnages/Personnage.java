@@ -18,6 +18,7 @@ public abstract class Personnage {
 	private ArrayList<Personnage> alliés;
 	private boolean aUnPouvoirSpecial;
 	private ArrayList<Personnage> listeEnnemie;
+	private int nbVote = 1;
 	
 	public Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
 		this.estUnVillageois = estUnVillageois;
@@ -46,6 +47,7 @@ public abstract class Personnage {
 		this.alliés.add(this);
 		this.statut = new Statut(this);
 		this.listeEnnemie.clear();
+		this.nbVote = 1;
 	}
 	
 	
@@ -232,6 +234,14 @@ public abstract class Personnage {
 	}*/
 
 
+
+	public int getNbVote() {
+		return nbVote;
+	}
+
+	public void setNbVote(int vote) {
+		this.nbVote = vote;
+	}
 
 	@Override
 	public String toString() {

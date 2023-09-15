@@ -157,7 +157,7 @@ public  class Village {
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitants().get(i);
 			vote  = votant.voter();
-			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + 1);
+			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
