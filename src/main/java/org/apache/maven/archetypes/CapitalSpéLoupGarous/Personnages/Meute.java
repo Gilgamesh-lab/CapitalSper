@@ -88,7 +88,7 @@ public class Meute {
 			personnageDevorer.getStatut().setAttaquerParLg(true);
 		}
 		else {
-			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu attaquer " + personnageDevorer, TypeDeLog.role);
+			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer, TypeDeLog.role);
 		}
 		
 	}

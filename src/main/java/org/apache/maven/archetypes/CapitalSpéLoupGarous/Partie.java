@@ -73,6 +73,7 @@ public class Partie {
 		Logger.log("");
 		if(this.conditionFinPartie()) {
 			this.village.premièreNuit();
+			this.nbTour++;
 			while(this.conditionFinPartie()) {
 				this.village.voter();
 				if(this.conditionFinPartie()){
@@ -121,7 +122,7 @@ public class Partie {
 		Logger.log("Lancement de la partie suivant la branche " + branche + " avec " + this.village.getNbVillageois() + " villageois et " + this.village.getNbLoupGarou() + " loup-garous");
 		Logger.log("");
 		this.compteur++;
-		this.village.premièreNuit();
+		//this.village.premièreNuit();
 		while(this.conditionFinPartie()) {
 			if(branche.charAt(this.nbTour) == '0') {
 				pourcentageBranche *= (double) (this.village.getNbPersonnage() -1) / this.village.getNbPersonnage();
