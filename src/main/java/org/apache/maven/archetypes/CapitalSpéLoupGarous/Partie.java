@@ -47,11 +47,11 @@ public class Partie {
 	}
 	
 	public boolean conditionFinPartie() {
-		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitants().stream().allMatch(x->x.estAmoureux()));
+		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 	}
 	
 	public boolean conditionVictoireAmoureux() {
-		return this.village.getHabitants().stream().allMatch(x->x.estAmoureux()) && this.village.getHabitants().stream().anyMatch(x->x.estUnVillageois())  && this.village.getHabitants().stream().anyMatch(y->!y.estUnVillageois());
+		return this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()) && this.village.getHabitantsEnVie().stream().anyMatch(x->x.estUnVillageois())  && this.village.getHabitantsEnVie().stream().anyMatch(y->!y.estUnVillageois());
 	}
 	
 	public boolean conditionVictoireVillageois() {
@@ -59,11 +59,11 @@ public class Partie {
 	}
 	
 	public boolean conditionVictoireLoupGarous() {
-		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 );
+		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 );
 	}
 	
 	public boolean conditionEgaliterChasseur() {
-		return this.village.getNbLoupGarou() == 1 && this.village.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 ;
+		return this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 ;
 	}
 	
 	private void startSimulation () {
@@ -251,15 +251,16 @@ public class Partie {
 	
 	private void init() {
 		this.nbTour = 0;
-		this.village = null;
+		this.village = this.savegardeVillage;
+		this.village.reset();
 		
-		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
+		/*if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);
 			this.village = new Village(this.savegardeVillage.getNbVillageois() - personnages.size(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}
 		else {
 			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou());
-		}
+		}*/
 		
 	}
 	
@@ -304,7 +305,8 @@ public class Partie {
 		Logger.log("");
 		Logger.log("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%");
 		Logger.log("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%");
-		if(this.savegardeVillage.getHabitants().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
+		savegardeVillage.reset();
+		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
 			Logger.log("Sur " + compteur + " parties, les amoureux ont eu un taux de victoire de " + this.pourcentWinAmoureux  + "%");
 		}
 		if(this.nbÉgalité > 0) {

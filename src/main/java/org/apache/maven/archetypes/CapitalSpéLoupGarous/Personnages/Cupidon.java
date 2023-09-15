@@ -12,13 +12,13 @@ public class Cupidon extends VillageoisSpecial {
 
 	
 	public void flecheDeLAmour() {
-		int nbPersonnageAmoureux1 = (int) (Math.random() * ( this.getVillage().getHabitants().size()    - 0 ));
-		int nbPersonnageAmoureux2 = (int) (Math.random() * ( this.getVillage().getHabitants().size()    - 0 ));
+		int nbPersonnageAmoureux1 = (int) (Math.random() * ( this.getVillage().getHabitantsEnVie().size()    - 0 ));
+		int nbPersonnageAmoureux2 = (int) (Math.random() * ( this.getVillage().getHabitantsEnVie().size()    - 0 ));
 		while(nbPersonnageAmoureux1 == nbPersonnageAmoureux2) {
-			nbPersonnageAmoureux2 = (int) (Math.random() * ( this.getVillage().getHabitants().size()    - 0 ));
+			nbPersonnageAmoureux2 = (int) (Math.random() * ( this.getVillage().getHabitantsEnVie().size()    - 0 ));
 		}
-		Personnage personnageAmoureux = this.getVillage().getHabitants().get(nbPersonnageAmoureux1);
-		Personnage personnageAmoureux2 = this.getVillage().getHabitants().get(nbPersonnageAmoureux2);
+		Personnage personnageAmoureux = this.getVillage().getHabitantsEnVie().get(nbPersonnageAmoureux1);
+		Personnage personnageAmoureux2 = this.getVillage().getHabitantsEnVie().get(nbPersonnageAmoureux2);
 		personnageAmoureux.tomberAmoureux(personnageAmoureux2);
 		personnageAmoureux2.tomberAmoureux(personnageAmoureux);
 		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de Cupidon", TypeDeLog.role);

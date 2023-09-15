@@ -19,6 +19,7 @@ public abstract class Personnage {
 	private boolean aUnPouvoirSpecial;
 	private ArrayList<Personnage> listeEnnemie;
 	private int nbVote = 1;
+	private Fonction fonction = null;
 	
 	public Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
 		this.estUnVillageois = estUnVillageois;
@@ -43,11 +44,10 @@ public abstract class Personnage {
 	}
 	
 	public void reset() {
-		this.alliés.clear();
-		this.alliés.add(this);
 		this.statut = new Statut(this);
 		this.listeEnnemie.clear();
 		this.nbVote = 1;
+		this.fonction = null;
 	}
 	
 	
@@ -65,8 +65,10 @@ public abstract class Personnage {
 
 
 	public ArrayList<Personnage> getAlliés() {
-		return alliés;
+		return alliés ; 
+				
 	}
+	
 
 	public void setAlliés(ArrayList<Personnage> alliés) {
 		this.alliés = alliés;
@@ -131,6 +133,9 @@ public abstract class Personnage {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
 		}
+		if(this.getFonction() != null && this.getVillage().getNbPersonnage() > 2) {
+			this.village.getMaire().election();
+		}
 	}
 
 	public void setVillage(Village village) {
@@ -157,16 +162,15 @@ public abstract class Personnage {
 			return this.getListeDeVote().get(nb).getId();
 		}
 		else {
-			this.getListeDeVote().clear();
 			for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-				if(!this.alliés.contains(this.getVillage().getHabitants().get(i))){
-					this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i))){
+					this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
 				}
 				
 			}
 			if(this.getListeDeVote().size() == 0) {
 				if(this.estAmoureux()) {
-					this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitants().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
+					this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
 					nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 					return this.getListeDeVote().get(nb).getId();	
 				}
@@ -241,6 +245,20 @@ public abstract class Personnage {
 
 	public void setNbVote(int vote) {
 		this.nbVote = vote;
+	}
+	
+	public void incrementerNbVote(int vote) {
+		this.nbVote += vote;
+	}
+	
+	
+
+	public Fonction getFonction() {
+		return fonction;
+	}
+
+	public void setFonction(Fonction fonction) {
+		this.fonction = fonction;
 	}
 
 	@Override

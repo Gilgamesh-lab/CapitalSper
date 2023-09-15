@@ -39,8 +39,8 @@ public class Référentiel {
 	public ArrayList<Personnage> conversionDeVillageVersListePersonnagesSeulementSpecial(Village village) {
 		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
 		for(int i = 0; i < village.getNbPersonnage() ; i++) {
-			if(village.getHabitants().get(i).getIdDeRole() > 1) {
-				personnages.add(conversionDeIdRoleVersPersonnage(village.getHabitants().get(i).getIdDeRole()));
+			if(village.getHabitantsEnVie().get(i).getIdDeRole() > 1) {
+				personnages.add(conversionDeIdRoleVersPersonnage(village.getHabitantsEnVie().get(i).getIdDeRole()));
 			}
 		}
 		return personnages;
@@ -55,7 +55,7 @@ public class Référentiel {
 	}
 	
 	public String messageDebutPartie(Village village) {
-		int nbSpecial = (int) (village.getNbVillageois() - village.getHabitants().stream().filter(x -> x.aUnPouvoirSpecial()).count());
+		int nbSpecial = (int) (village.getNbVillageois() - village.getHabitantsEnVie().stream().filter(x -> x.aUnPouvoirSpecial()).count());
 		String message = nbSpecial + " simple(s) villageois";
 		for(int i = 0; i < village.getNbPersonnage() ; i++) {
 			if(village.getPersonnage(i).aUnPouvoirSpecial()) {

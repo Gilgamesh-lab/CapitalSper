@@ -21,8 +21,8 @@ public abstract class VillageoisSpecial extends Villageois {
 	public Personnage voteCibleAction() {
 		this.getListeDeVote().clear();
 		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			if(!this.getAlliés().contains(this.getVillage().getHabitants().get(i)) && !this.getEnnemies().contains(this.getVillage().getHabitants().get(i))){
-				this.getListeDeVote().add(this.getVillage().getHabitants().get(i));
+			if(!this.getAlliés().contains(this.getVillage().getHabitantsEnVie().get(i)) && !this.getEnnemies().contains(this.getVillage().getHabitantsEnVie().get(i))){
+				this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
 			}
 			
 		}
@@ -30,7 +30,7 @@ public abstract class VillageoisSpecial extends Villageois {
 		int nb ;
 		if(this.getListeDeVote().size() == 0) {
 			if(this.estAmoureux()) {
-				this.setListeDeVote(new ArrayList<Personnage>(this.getVillage().getHabitants().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList())));
+				this.setListeDeVote(new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList())));
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 				return this.getListeDeVote().get(nb);	
 			}

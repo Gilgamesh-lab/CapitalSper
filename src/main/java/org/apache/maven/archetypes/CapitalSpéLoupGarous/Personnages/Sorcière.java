@@ -38,8 +38,8 @@ public class Sorcière extends VillageoisSpecial{
 		}
 		int action = (int) (Math.random() * ( this.actions.size() - 0 ));
 		action = this.actions.get(action);
-		if((this.aUnePotionDeVie && ((action == 0 || action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().estAttaquerParLg()))) && this.getVillage().getHabitants().stream().anyMatch(x->x.getStatut().estAttaquerParLg()) ) {
-			Personnage personnageASauver = this.getVillage().getHabitants().stream().filter(x->x.getStatut().estAttaquerParLg()).findAny().get();
+		if((this.aUnePotionDeVie && ((action == 0 || action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().estAttaquerParLg()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().estAttaquerParLg()) ) {
+			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().estAttaquerParLg()).findAny().get();
 			this.potionDeVie(personnageASauver);
 			Logger.log("La sorcière a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}

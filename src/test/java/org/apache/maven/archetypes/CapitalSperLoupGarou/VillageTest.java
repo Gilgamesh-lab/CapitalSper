@@ -81,7 +81,7 @@ public class VillageTest {
 		this.village.ajouterPersonnage(simpleVillageois);
 		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getMeute().get(0).voter());
 		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getMeute().get(1).voter());
-		this.village.getHabitants().remove(0);
+		this.village.getHabitantsEnVie().remove(0);
 		this.village.voter();
 		
 	}

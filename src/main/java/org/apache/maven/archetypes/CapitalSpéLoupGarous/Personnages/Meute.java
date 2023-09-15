@@ -50,7 +50,7 @@ public class Meute {
 		LoupGarou votant;
 		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
-		for(int i = 0 ; i < this.village.getHabitants().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
+		for(int i = 0 ; i < this.village.getHabitantsEnVie().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
 			tableauDeVotes.put(i, 0);
 		}
 		
@@ -73,9 +73,9 @@ public class Meute {
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
 		}
-		Personnage personnageDevorer = this.village.getHabitants().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
+		Personnage personnageDevorer = this.village.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
 		Logger.log("", TypeDeLog.vote);
-		Logger.log("Le village est composé de : " + this.village.getHabitants(), TypeDeLog.vote);
+		Logger.log("Le village est composé de : " + this.village.getHabitantsEnVie(), TypeDeLog.vote);
 		
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			Logger.log(personnageDevorer +  " a été choisi par la meute pour leurs servirent de repas sur une égalité avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);

@@ -13,6 +13,12 @@ public abstract class Villageois extends Personnage {
 		
 	}
 	
+	public void reset() {
+		this.getAlliés().clear();
+		this.getAlliés().add(this);
+		super.reset();
+	}
+	
 	
 
 	

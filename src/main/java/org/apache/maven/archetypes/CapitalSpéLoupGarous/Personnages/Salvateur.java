@@ -14,7 +14,7 @@ public class Salvateur extends VillageoisSpecial {
 	}
 	
 	public void salvater() {
-		 ArrayList<Personnage> personnages = this.getVillage().getHabitants();
+		 ArrayList<Personnage> personnages = this.getVillage().getHabitantsEnVie();
 		 if(this.dernierPersonnageProtéger != null && personnages.contains(dernierPersonnageProtéger)) {
 			 personnages.remove(dernierPersonnageProtéger);
 		 }

@@ -26,6 +26,13 @@ public class LoupGarou extends Personnage {
 	public void rejoindreUneMeute(Meute meute) {
 		this.meute = meute;
 	}
+	
+	public void reset() {
+		this.getAlliés().clear();
+		this.getAlliés().add(this);
+		this.meute.getMeute().stream().filter(x->x!=this).forEach(x->this.ajouterAlliés(x));
+		super.reset();
+	}
 
 
 
