@@ -100,6 +100,10 @@ public  class Village {
 	}
 	
 	
+	public Personnage getPersonnageParId(int id) {
+		return this.getHabitantsEnVie().stream().filter(x->x.getId() == id).findFirst().get();
+	}
+	
 	
 	public Personnage getPersonnage(int nb) {
 		return this.getHabitantsEnVie().get(nb);
@@ -170,6 +174,7 @@ public  class Village {
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.voter();
+			votant.resetListeDeVote();
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		
@@ -181,7 +186,18 @@ public  class Village {
 		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
 		int idPersonneAyantPlusDeVotes;
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
-			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));// si plusieurs maxVote
+			
+			if(maire != null) {
+				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).collect(Collectors.toList()));
+				ArrayList<Personnage> perso = maire.getPersonnage().getEnnemies();
+				maire.getPersonnage().setEnnemies(coupables);
+				idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
+				maire.getPersonnage().setEnnemies(perso);
+			}
+			else {
+				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));// si plusieurs maxVote
+			}
+			
 		}
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
@@ -192,10 +208,15 @@ public  class Village {
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 		
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
-			Logger.log(personnageCondamner + " a été tué lors du vote sur une égalité");
+			if(maire == null) {
+				Logger.log(personnageCondamner + " a été exécuter suite au vote sur une égalité");
+			}
+			else {
+				Logger.log(personnageCondamner + " a été exécuter suite au vote par décision du maire");
+			}
 		}
 		else {
-			Logger.log(personnageCondamner + " a été tué lors du vote");
+			Logger.log(personnageCondamner + " a été exécuter suite au vote");
 		}
 		
 

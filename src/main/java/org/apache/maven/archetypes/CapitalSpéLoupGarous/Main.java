@@ -18,8 +18,8 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 3;
-		int nbLoupGarous = 2;
+		int nbVillageois = 8;
+		int nbLoupGarous = 3;
 		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);

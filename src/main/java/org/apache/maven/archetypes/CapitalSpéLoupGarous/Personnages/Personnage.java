@@ -97,7 +97,7 @@ public abstract class Personnage {
 	}
 	
 	public void resetListeDeVote() {
-		this.listeDeVote = new ArrayList<Personnage>();
+		this.listeDeVote.clear();
 	}
 	
 
