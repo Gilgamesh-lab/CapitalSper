@@ -186,7 +186,7 @@ public  class Village  implements Cloneable {
 		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
 		int idPersonneAyantPlusDeVotes;
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
-			
+			// si plusieurs personnes à égaliter
 			if(maire != null) {
 				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).collect(Collectors.toList()));
 				ArrayList<Personnage> perso = maire.getPersonnage().getEnnemies();
@@ -195,7 +195,7 @@ public  class Village  implements Cloneable {
 				maire.getPersonnage().setEnnemies(perso);
 			}
 			else {
-				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));// si plusieurs maxVote
+				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));
 			}
 			
 		}
@@ -246,6 +246,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void onMaire() {
+		this.aUnmaire = true;
 		this.maire = new Maire(); 
 	}
 	

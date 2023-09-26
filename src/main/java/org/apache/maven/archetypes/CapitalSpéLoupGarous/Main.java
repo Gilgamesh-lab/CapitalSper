@@ -21,7 +21,7 @@ public class Main {
 	public static void main(String[] args) {
 		int nbVillageois = 2;
 		int nbLoupGarous = 2;
-		int nbPartie = 100000;//100000
+		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -29,10 +29,10 @@ public class Main {
 		
 		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		logger.setOffAfficherLogDetailsPartie();
+		//logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
-		//logger.setOnAfficherLogDetailsRoleAction();
+		logger.setOnAfficherLogDetailsRoleAction();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);

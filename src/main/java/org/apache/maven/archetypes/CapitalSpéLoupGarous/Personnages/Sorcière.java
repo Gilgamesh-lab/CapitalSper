@@ -74,7 +74,7 @@ public class Sorcière extends VillageoisSpecial{
 			messageMort = "La sorcière a tué " + personnageATuer +  " avec sa potion de mort";
 		}
 		else {
-			messageMort= personnageATuer +  " a été tué durant la nuit";
+			messageMort = personnageATuer +  " a été tué durant la nuit";
 		}
 		Logger.log(messageMort);
 		this.tuer(personnageATuer);

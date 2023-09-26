@@ -262,7 +262,6 @@ public class Partie {
 		else {
 			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou());
 		}
-		
 		if(this.savegardeVillage.isaUnmaire()) {
 			this.village.onMaire();
 		}
