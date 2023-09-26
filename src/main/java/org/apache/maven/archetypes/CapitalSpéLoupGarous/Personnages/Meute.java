@@ -95,9 +95,6 @@ public class Meute {
 			personnageDevorer.getStatut().setAttaquerParLg(true);
 		}
 		
-		if(!personnageDevorer.estUnVillageois()) {
-			System.out.println("Erreur");
-		}
 		else {
 			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer, TypeDeLog.role);
 		}
