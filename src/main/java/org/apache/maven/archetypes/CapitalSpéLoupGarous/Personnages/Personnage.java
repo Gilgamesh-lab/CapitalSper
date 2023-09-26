@@ -48,6 +48,8 @@ public abstract class Personnage  implements Cloneable {
 		this.listeEnnemie.clear();
 		this.nbVote = 1;
 		this.fonction = null;
+		this.alliés.clear();
+		this.alliés.add(this);
 	}
 	
 	

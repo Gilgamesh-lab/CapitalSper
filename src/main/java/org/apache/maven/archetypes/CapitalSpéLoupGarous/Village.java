@@ -61,12 +61,12 @@ public  class Village  implements Cloneable {
 	
 	
 	public void ajouterPersonnage(Personnage personnage) {
+		personnage.setId(this.village.size());
+		this.village.add(personnage);
+		personnage.setVillage(this);
 		if(!personnage.estUnVillageois()) {
 			this.meute.enrolerUnLoupGarou((LoupGarou) personnage);
 		}
-		this.village.add(personnage);
-		personnage.setVillage(this);
-		personnage.setId(this.village.size());
 	}
 	
 	public void ajouterMaire() {

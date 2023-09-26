@@ -251,16 +251,21 @@ public class Partie {
 	
 	private void init() {
 		this.nbTour = 0;
-		this.village = (Village) this.savegardeVillage.clone();
+		/*this.village = this.savegardeVillage;
+		this.village.reset();
+		this.village.getMeute().reset();*/
 		
-		/*if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
+		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);
 			this.village = new Village(this.savegardeVillage.getNbVillageois() - personnages.size(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}
 		else {
 			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou());
-		}*/
+		}
 		
+		if(this.savegardeVillage.isaUnmaire()) {
+			this.village.onMaire();
+		}
 	}
 	
 	private void reset() {

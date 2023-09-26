@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.management.InvalidAttributeValueException;
+
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 
@@ -16,6 +18,11 @@ public class Meute {
 	
 	public Meute() {
 		this.meute = new ArrayList<LoupGarou>();
+	}
+	
+	public void reset() {
+		this.meute = new ArrayList<LoupGarou>();
+		
 	}
 
 	public ArrayList<LoupGarou> getMeute() {
@@ -86,6 +93,10 @@ public class Meute {
 		
 		if(!personnageDevorer.getStatut().isProtéger()) {
 			personnageDevorer.getStatut().setAttaquerParLg(true);
+		}
+		
+		if(!personnageDevorer.estUnVillageois()) {
+			System.out.println("Erreur");
 		}
 		else {
 			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer, TypeDeLog.role);

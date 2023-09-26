@@ -27,9 +27,8 @@ public class LoupGarou extends Personnage {
 	}
 	
 	public void reset() {
-		this.getAlliés().clear();
-		this.meute.getMeute().stream().forEach(x->this.ajouterAlliés(x));
 		super.reset();
+		this.meute.enrolerUnLoupGarou(this);
 	}
 
 
