@@ -46,6 +46,7 @@ public abstract class Personnage  implements Cloneable {
 	public void reset() {
 		this.statut = new Statut(this);
 		this.listeEnnemie.clear();
+		this.alliés.clear();
 		this.nbVote = 1;
 		this.fonction = null;
 		this.alliés.clear();
@@ -157,8 +158,8 @@ public abstract class Personnage  implements Cloneable {
 	@SuppressWarnings("finally") // à améliorer
 	public int voter() {
 		int nb ;
-		this.getListeDeVote().clear();
-		if(this.getEnnemies().size() > 0) {
+		//this.getListeDeVote().clear();
+		if(this.getListeDeVote().size() == 0 &&  this.getEnnemies().size() > 0) {
 			for(int i = 0; i < this.getListeDeVote().size(); i++) {
 				this.getListeDeVote().add(this.getEnnemies().get(i));
 			}
@@ -166,7 +167,18 @@ public abstract class Personnage  implements Cloneable {
 		this.getEnnemies().stream().filter(x-> x != null && !x.estEnvie()).forEach(x->this.getListeDeVote().remove(x));
 		if(this.getListeDeVote().size() > 0) {
 			nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-			Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
+			if(this == this.village.getMaire().getPersonnage()) {
+				if(this.getListeDeVote().size() == 1) {
+					Logger.log("Le maire(" + this + ") a voté contre " + this.getListeDeVote().get(nb) + " suite à l'égalité entre " + this.getListeDeVote() + " et lui", TypeDeLog.vote);
+				}
+				else {
+					Logger.log("Le maire(" + this + ") a voté contre " + this.getListeDeVote().get(nb) + " suite à l'égalité entre " + this.getListeDeVote(), TypeDeLog.vote);
+				}
+				
+			}
+			else {
+				Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
+			}
 			return this.getListeDeVote().get(nb).getId();
 		}
 		else {
@@ -178,12 +190,13 @@ public abstract class Personnage  implements Cloneable {
 			}
 			if(this.getListeDeVote().size() == 0) {
 				if(this.estAmoureux()) {
-					this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
+					this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x && x != this).collect(Collectors.toList()));
 					nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 					return this.getListeDeVote().get(nb).getId();	
 				}
 				else {
 					nb = (int) (Math.random() * ( this.village.getNbPersonnage()   - 0 ));
+					System.out.println("1");
 					Logger.log(this + " a voté contre " + this.village.getPersonnage(nb), TypeDeLog.vote);
 					return this.village.getPersonnage(nb).getId();	
 				}
@@ -191,7 +204,6 @@ public abstract class Personnage  implements Cloneable {
 			else {
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()   - 0 ));
 				Logger.log(this + " a voté contre " + this.getListeDeVote().get(nb), TypeDeLog.vote);
-				
 				return this.getListeDeVote().get(nb).getId();
 			}
 		}

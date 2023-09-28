@@ -75,6 +75,9 @@ public class Partie {
 			this.village.premièreNuit();
 			this.nbTour++;
 			while(this.conditionFinPartie()) {
+				if(this.nbTour == 1 && this.village.isaUnmaire() && this.village.getNbPersonnage() > 2) {
+					this.village.getMaire().election();
+				}
 				this.village.voter();
 				if(this.conditionFinPartie()){
 					this.village.nuit();

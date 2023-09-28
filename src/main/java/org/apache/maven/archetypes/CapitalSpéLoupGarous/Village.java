@@ -115,10 +115,6 @@ public  class Village  implements Cloneable {
 			cupidon.flecheDeLAmour();
 		}
 		this.nuit();
-		if(this.maire != null && this.getNbPersonnage() > 2) {
-			maire.setVillage(this);
-			maire.election();
-		}
 	}
 	
 	public void nuit() {
@@ -175,6 +171,9 @@ public  class Village  implements Cloneable {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.voter();
 			votant.resetListeDeVote();
+			if(vote == votant.getId()) {
+				System.out.println("Erreur");
+			}
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		
@@ -188,11 +187,15 @@ public  class Village  implements Cloneable {
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			// si plusieurs personnes à égaliter
 			if(maire != null) {
-				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).collect(Collectors.toList()));
-				ArrayList<Personnage> perso = maire.getPersonnage().getEnnemies();
-				maire.getPersonnage().setEnnemies(coupables);
+				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).filter(x -> x != maire.getPersonnage()).collect(Collectors.toList()));
+				//ArrayList<Personnage> perso = maire.getPersonnage().getEnnemies();*
+				// Le maire ne se vote pas
+				maire.getPersonnage().setListeDeVote(coupables);
+				Logger.log("", TypeDeLog.vote);
 				idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
-				maire.getPersonnage().setEnnemies(perso);
+				Logger.log("", TypeDeLog.vote);
+				maire.getPersonnage().resetListeDeVote();
+				//maire.getPersonnage().setEnnemies(perso);
 			}
 			else {
 				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));
@@ -202,7 +205,7 @@ public  class Village  implements Cloneable {
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
 		}
-		Personnage personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes ).findAny().get();
+		Personnage personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 		Logger.log("");
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
@@ -248,6 +251,7 @@ public  class Village  implements Cloneable {
 	public void onMaire() {
 		this.aUnmaire = true;
 		this.maire = new Maire(); 
+		this.maire.setVillage(this);
 	}
 	
 	

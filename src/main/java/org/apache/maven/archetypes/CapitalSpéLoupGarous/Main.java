@@ -27,10 +27,10 @@ public class Main {
 		Logger logger = new Logger();
 		
 		
-		//logger.setDetailVoteVillage(true);
+		logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
-		logger.setOnAfficherLogStats();
+		//logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		logger.setOnAfficherLogDetailsRoleAction();
 		

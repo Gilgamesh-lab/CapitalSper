@@ -64,6 +64,7 @@ public class Meute {
 		for(int i = 0 ; i < this.getNbLg() ; i++) {
 			votant = this.getMeute().get(i);
 			vote  = votant.voter();
+			votant.resetListeDeVote();
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + 1);
 		}
 		
