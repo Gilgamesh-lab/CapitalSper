@@ -169,7 +169,7 @@ public  class Village  implements Cloneable {
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.voter();
-			if(votant == this.maire.getPersonnage()) {
+			if(this.isaUnmaire() && votant == this.maire.getPersonnage()) {
 				voteMaire  = vote;
 			}
 			votant.resetListeDeVote();

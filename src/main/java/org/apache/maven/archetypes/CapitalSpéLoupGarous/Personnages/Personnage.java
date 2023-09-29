@@ -170,7 +170,7 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();
 			}
 		}
-		if(this.getListeDeVote().size() == 0) {// on remplit la liste des personn
+		if(this.getListeDeVote().size() == 0) {// on remplit la liste des personnes présentes dans le village
 			for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
 				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i))){
 					this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
