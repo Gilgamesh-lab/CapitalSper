@@ -65,6 +65,7 @@ public class Meute {
 			votant = this.getMeute().get(i);
 			vote  = votant.voter();
 			votant.resetListeDeVote();
+			Logger.log(votant + " a voté contre " + this.village.getPersonnageParId(vote), TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + 1);
 		}
 		
