@@ -22,7 +22,6 @@ public class Maire extends Fonction {
 		
 		super.setPersonnage(personnage);
 		super.setVillage(village);
-		village.setMaire(personnage);
 		personnage.setFonction(this);
 		personnage.incrementerNbVote(1);
 		
