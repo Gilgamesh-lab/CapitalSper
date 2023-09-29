@@ -24,7 +24,6 @@ public  class Village  implements Cloneable {
 
 	private ArrayList<Personnage> village;
 	private  Meute meute ;
-	private boolean aUnmaire;
 	private Maire maire = null;
 	
 	public Village() {
@@ -254,7 +253,6 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void onMaire() {
-		this.aUnmaire = true;
 		this.maire = new Maire(); 
 		this.maire.setVillage(this);
 	}
@@ -264,9 +262,7 @@ public  class Village  implements Cloneable {
 		return this.maire;
 	}
 
-	public void setMaire(Personnage maire) {
-		this.maire.setPersonnage(maire); 
-	}
+
 	
 	public Object clone() {
 		Village v = new Village();
@@ -279,12 +275,9 @@ public  class Village  implements Cloneable {
 	
 	
 	public boolean isaUnmaire() {
-		return aUnmaire;
+		return this.maire != null;
 	}
 
-	public void setaUnmaire(boolean aUnmaire) {
-		this.aUnmaire = aUnmaire;
-	}
 
 	@Override
 	public String toString() {

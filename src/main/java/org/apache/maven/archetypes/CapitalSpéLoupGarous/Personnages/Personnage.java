@@ -164,32 +164,32 @@ public abstract class Personnage  implements Cloneable {
 			for(int i = 0; i < this.getEnnemies().size(); i++) {
 				this.getListeDeVote().add(this.getEnnemies().get(i));
 			}
-			this.getEnnemies().stream().filter(x-> x != null && !x.estEnvie()).forEach(x->this.getListeDeVote().remove(x));
+			this.getEnnemies().stream().filter(x-> x != null && !x.estEnvie()).forEach(x->this.getListeDeVote().remove(x));// impossible d'itérer sur soi-même
 			if(this.getListeDeVote().size() != 0) {
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 				return this.getListeDeVote().get(nb).getId();
 			}
 		}
-		
-		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
-			if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i))){
-				this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
+		if(this.getListeDeVote().size() == 0) {// on remplit la liste des personn
+			for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
+				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i))){
+					this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
+				}
+				
 			}
-			
 		}
-		if(this.getListeDeVote().size() == 0) {
-			if(this.estAmoureux()) {
+		if(this.getListeDeVote().size() == 0) {// si pas de vote possible
+			if(this.estAmoureux()) {// si amoureux on vire tout le monde sauf amoureux "alliés" compris
 				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x && x != this).collect(Collectors.toList()));
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 				return this.getListeDeVote().get(nb).getId();	
 			}
-			else {
+			else {// sinon au hasard parmis tout le monde "alliés" compris
 				nb = (int) (Math.random() * ( this.village.getNbPersonnage()   - 0 ));
-				
 				return this.village.getPersonnage(nb).getId();	
 			}
 		}
-		else {
+		else {// vote normale
 			nb = (int) (Math.random() * ( this.getListeDeVote().size()   - 0 ));
 			return this.getListeDeVote().get(nb).getId();
 		}
