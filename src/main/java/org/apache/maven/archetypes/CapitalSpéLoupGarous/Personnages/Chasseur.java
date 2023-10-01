@@ -15,7 +15,8 @@ public class Chasseur extends VillageoisSpecial {
 	@Override
 	public void meurt() {
 		if(this.getVillage().getNbLoupGarou() > 0) {
-			Personnage cible = this.voteCibleAction();
+			Personnage cible = this.getVillage().getPersonnageParId(this.voter());
+			this.resetListeDeVote();
 			Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + cible);
 			this.tuer(cible);
 		}

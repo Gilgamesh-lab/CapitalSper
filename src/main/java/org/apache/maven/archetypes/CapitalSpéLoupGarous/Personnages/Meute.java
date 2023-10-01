@@ -63,7 +63,7 @@ public class Meute {
 		
 		for(int i = 0 ; i < this.getNbLg() ; i++) {
 			votant = this.getMeute().get(i);
-			vote  = votant.voteCoupable();
+			vote  = votant.voter();
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté contre " + this.village.getPersonnageParId(vote), TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + 1);

@@ -44,8 +44,8 @@ public class Sorcière extends VillageoisSpecial{
 			Logger.log("La sorcière a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
 		if ((action == 1 || action == 3) && this.aUnePotionDeMort) {
-			this.potionDeMort(this.voteCibleAction());
-			
+			this.potionDeMort(this.getVillage().getPersonnageParId(this.voter()));
+			this.resetListeDeVote();
 		}
 	}
 	

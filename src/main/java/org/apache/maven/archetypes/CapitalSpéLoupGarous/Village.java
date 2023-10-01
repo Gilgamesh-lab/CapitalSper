@@ -165,7 +165,7 @@ public  class Village  implements Cloneable {
 		int voteMaire = 0;
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
-			vote  = votant.voteCoupable();
+			vote  = votant.voter();
 			if(this.aUnMaire() && votant == this.maire.getPersonnage()) {
 				voteMaire  = vote;
 			}
@@ -191,7 +191,7 @@ public  class Village  implements Cloneable {
 				}
 				else {
 					maire.getPersonnage().setListeDeVote(coupables);
-					idPersonneAyantPlusDeVotes = maire.getPersonnage().voteCoupable();
+					idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
 					maire.getPersonnage().resetListeDeVote();
 				}
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
@@ -235,7 +235,7 @@ public  class Village  implements Cloneable {
 		Logger.log("", TypeDeLog.vote);
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
-			vote  = votant.voteElection();
+			vote  = votant.élire();
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());

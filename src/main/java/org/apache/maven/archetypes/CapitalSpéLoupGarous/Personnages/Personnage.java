@@ -157,7 +157,7 @@ public abstract class Personnage  implements Cloneable {
 	}
 	
 	@SuppressWarnings("finally") // à améliorer
-	public int voteCoupable() {
+	public int voter() {
 		int nb ;
 		//this.getListeDeVote().clear();
 		
@@ -200,7 +200,7 @@ public abstract class Personnage  implements Cloneable {
 	}
 	
 	@SuppressWarnings("finally") // à améliorer
-	public int voteElection() {
+	public int élire() {
 		int nb ;
 		if(this.getListeDeVote().size() == 0 && this.getAlliés().size() > 1 && this.getAlliés().stream().anyMatch(x->  x.estEnvie()) && this.estUnVillageois()) {// contrer lg qui vote tout le temps pour eux
 			this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAlliés().contains(x)).collect(Collectors.toList()));
