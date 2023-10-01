@@ -63,6 +63,9 @@ public class Référentiel {
 			}
 		}
 		message += " et " + village.getNbLoupGarou() + " simple(s) loup-garous";
+		if(village.isaUnmaire()) {
+			message += " présidé par un maire";
+		}
 		return message;
 	}
 

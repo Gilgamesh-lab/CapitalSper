@@ -184,6 +184,7 @@ public  class Village  implements Cloneable {
 		
 		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
 		int idPersonneAyantPlusDeVotes;
+		Personnage personnageCondamner;
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			// si plusieurs personnes à égaliter
 			if(maire != null) {
@@ -194,46 +195,35 @@ public  class Village  implements Cloneable {
 				else {
 					maire.getPersonnage().setListeDeVote(coupables);
 					idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
+					maire.getPersonnage().resetListeDeVote();
 				}
+				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 				Logger.log("", TypeDeLog.vote);
-				if(coupables.size() == 1) {
-					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + this.getPersonnageParId(idPersonneAyantPlusDeVotes) + " suite à l'égalité entre " + coupables + " et lui", TypeDeLog.vote);
+				if(coupables.contains(maire.getPersonnage())) {
+					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables + " et lui");
 				}
 				else {
-					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + this.getPersonnageParId(idPersonneAyantPlusDeVotes) + " suite à l'égalité entre " + coupables, TypeDeLog.vote);
+					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables);
 				}
 					
 				Logger.log("", TypeDeLog.vote);
-				maire.getPersonnage().resetListeDeVote();
-				//maire.getPersonnage().setEnnemies(perso);
+				
 			}
 			else {
 				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));
+				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote sur une égalité");
 			}
 			
 		}
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
+			personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
 		}
-		Personnage personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 		Logger.log("");
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
-		
-		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
-			if(maire == null) {
-				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote sur une égalité");
-			}
-			else {
-				Logger.log(personnageCondamner + "  a été éliminer à l'issue du vote sur une égalité par décision du maire");
-			}
-		}
-		else {
-			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
-		}
-		
-
-
 		personnageCondamner.meurt();
 	}
 	
