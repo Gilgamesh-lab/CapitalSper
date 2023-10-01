@@ -206,23 +206,9 @@ public abstract class Personnage  implements Cloneable {
 		return village;
 	}
 	
-	
-
 	public int getIdDeRole() {
 		return idDeRole;
 	}
-
-
-	
-
-	
-
-	
-
-
-
-	
-
 
 
 	@Override
@@ -264,6 +250,15 @@ public abstract class Personnage  implements Cloneable {
 
 	public void setFonction(Fonction fonction) {
 		this.fonction = fonction;
+	}
+	
+	public boolean estMaire() {
+		if(this.fonction != null && this.fonction.estMaire()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override

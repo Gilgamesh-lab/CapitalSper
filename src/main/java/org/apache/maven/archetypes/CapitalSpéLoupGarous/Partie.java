@@ -75,7 +75,7 @@ public class Partie {
 			this.village.premièreNuit();
 			this.nbTour++;
 			while(this.conditionFinPartie()) {
-				if(this.nbTour == 1 && this.village.isaUnmaire() && this.village.getNbPersonnage() > 2) {
+				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnage() > 2) {
 					this.village.getMaire().election();
 				}
 				this.village.voter();
@@ -265,7 +265,7 @@ public class Partie {
 		else {
 			this.village = new Village(this.savegardeVillage.getNbVillageois(), this.savegardeVillage.getNbLoupGarou());
 		}
-		if(this.savegardeVillage.isaUnmaire()) {
+		if(this.savegardeVillage.aUnMaire()) {
 			this.village.onMaire();
 		}
 	}

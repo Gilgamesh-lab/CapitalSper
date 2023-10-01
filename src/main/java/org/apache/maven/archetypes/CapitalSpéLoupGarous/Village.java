@@ -68,9 +68,6 @@ public  class Village  implements Cloneable {
 		}
 	}
 	
-	public void ajouterMaire() {
-		this.maire = new Maire();
-	}
 	
 	
 	public int getNbPersonnage() {
@@ -169,7 +166,7 @@ public  class Village  implements Cloneable {
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.voter();
-			if(this.isaUnmaire() && votant == this.maire.getPersonnage()) {
+			if(this.aUnMaire() && votant == this.maire.getPersonnage()) {
 				voteMaire  = vote;
 			}
 			votant.resetListeDeVote();
@@ -270,7 +267,7 @@ public  class Village  implements Cloneable {
 
 	
 	
-	public boolean isaUnmaire() {
+	public boolean aUnMaire() {
 		return this.maire != null;
 	}
 
