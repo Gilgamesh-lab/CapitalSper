@@ -153,7 +153,7 @@ public  class Village  implements Cloneable {
 		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))
 	}
 	
-	public void voter() {
+	public void voteEnnemie() {
 		Personnage votant;
 		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
@@ -165,7 +165,7 @@ public  class Village  implements Cloneable {
 		int voteMaire = 0;
 		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
-			vote  = votant.voter();
+			vote  = votant.voteCoupable();
 			if(this.aUnMaire() && votant == this.maire.getPersonnage()) {
 				voteMaire  = vote;
 			}
@@ -191,7 +191,7 @@ public  class Village  implements Cloneable {
 				}
 				else {
 					maire.getPersonnage().setListeDeVote(coupables);
-					idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
+					idPersonneAyantPlusDeVotes = maire.getPersonnage().voteCoupable();
 					maire.getPersonnage().resetListeDeVote();
 				}
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
@@ -222,6 +222,51 @@ public  class Village  implements Cloneable {
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 		personnageCondamner.meurt();
+	}
+	
+	public Personnage election() {
+		Personnage votant;
+		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
+		int vote;
+		for(int i = 0 ; i < this.getHabitantsEnVie().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
+			tableauDeVotes.put(i, 0);
+		}
+		
+		Logger.log("", TypeDeLog.vote);
+		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
+			votant = this.getHabitantsEnVie().get(i);
+			vote  = votant.voteElection();
+			votant.resetListeDeVote();
+			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
+			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
+		}
+		Logger.log("", TypeDeLog.vote);
+		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
+				  .map(Map.Entry::getValue)
+				  .reduce(Integer::max)
+				  .get();
+		
+		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
+		int idPersonneAyantPlusDeVotes;
+		Personnage personnageChoisie;
+		String message = "";
+		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
+			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));
+			personnageChoisie = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			message = personnageChoisie +  " a été élue maire du village sur une égalité";
+		
+		}
+		else {
+			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
+			personnageChoisie = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			message = personnageChoisie +  " a été élue maire du village";
+			
+		}
+		if(Logger.isDetailVoteVillageOn()) {
+			message += " avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote pour lui ";
+		}
+		Logger.log(message);
+		return personnageChoisie;
 	}
 	
 	public void voter(char vote) {

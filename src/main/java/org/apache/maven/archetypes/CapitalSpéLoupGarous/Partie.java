@@ -78,7 +78,7 @@ public class Partie {
 				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnage() > 2) {
 					this.village.getMaire().election();
 				}
-				this.village.voter();
+				this.village.voteEnnemie();
 				if(this.conditionFinPartie()){
 					this.village.nuit();
 				}

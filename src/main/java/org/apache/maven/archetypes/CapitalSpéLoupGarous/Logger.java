@@ -33,6 +33,7 @@ public class Logger {
 		return afficherLogStats;
 	}
 
+
 	public  void setOnAfficherLogStats() {
 		this.afficherLogStats = true;
 	}
@@ -55,7 +56,7 @@ public class Logger {
 		return afficherLogDetailsRoleAction;
 	}
 
-	public boolean isDetailVoteVillageOn() {
+	public static boolean isDetailVoteVillageOn() {
 		return detailVoteVillage;
 	}
 
