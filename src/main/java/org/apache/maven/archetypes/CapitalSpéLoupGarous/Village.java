@@ -146,13 +146,16 @@ public  class Village  implements Cloneable {
 			Logger.log("Personne n'a été tué durant la nuit ");
 		}
 		
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
-			MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
-			montreurDOurs.traquerLoupGarous();
-			if(montreurDOurs.aTrouverUnLoup()) {
-				Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + montreurDOurs.getVoisins() );
+		if(this.getNbPersonnage() >= 3) {
+			if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
+				MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
+				montreurDOurs.traquerLoupGarous();
+				if(montreurDOurs.aTrouverUnLoup()) {
+					Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + montreurDOurs.getVoisins() );
+				}
 			}
 		}
+		
 		
 	}
 	
