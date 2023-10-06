@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
@@ -44,6 +45,8 @@ public class Main {
 		village.ajouterPersonnage(salvateur);
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
+		MontreurDOurs montreurDOurs = new MontreurDOurs();
+		village.ajouterPersonnage(montreurDOurs);
 		village.onMaire();
 		
 		Partie partie = new Partie(village, logger);

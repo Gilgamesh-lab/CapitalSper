@@ -62,7 +62,10 @@ public abstract class Personnage  implements Cloneable {
 	}
 	
 	public void ajouterEnnemies(Personnage ennemies) {
-		this.listeEnnemie.add(ennemies);
+		if(!this.alliés.contains(ennemies)) {
+			this.listeEnnemie.add(ennemies);
+		}
+		
 	}
 
 

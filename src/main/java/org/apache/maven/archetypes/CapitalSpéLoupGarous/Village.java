@@ -12,6 +12,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
@@ -91,6 +92,11 @@ public  class Village  implements Cloneable {
 	}
 	
 	
+	public Personnage getRandomPerso() {
+		int nb = (int) (Math.random() * ( this.getHabitantsEnVie().size()    - 0 ));
+		return this.getHabitantsEnVie().get(nb);
+	}
+	
 	public int getNbLoupGarou() {
 		return (int) this.getMeute().getMeute().stream().filter(x->x.estEnvie()).count();
 	}
@@ -109,6 +115,10 @@ public  class Village  implements Cloneable {
 		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
 			Cupidon cupidon = (Cupidon) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 4).findFirst().get();
 			cupidon.flecheDeLAmour();
+		}
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
+			MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
+			montreurDOurs.setVoisins();
 		}
 		this.nuit();
 	}
@@ -134,6 +144,14 @@ public  class Village  implements Cloneable {
 		int nbHabitantAprès = this.getNbPersonnage();
 		if(nbHabitantAvant == nbHabitantAprès) {
 			Logger.log("Personne n'a été tué durant la nuit ");
+		}
+		
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
+			MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
+			montreurDOurs.traquerLoupGarous();
+			if(montreurDOurs.aTrouverUnLoup()) {
+				Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + montreurDOurs.getVoisins() );
+			}
 		}
 		
 	}
