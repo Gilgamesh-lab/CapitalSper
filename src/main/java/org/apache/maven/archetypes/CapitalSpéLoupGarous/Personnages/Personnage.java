@@ -33,7 +33,7 @@ public abstract class Personnage  implements Cloneable {
 	}
 	
 	public void tuer(Personnage personnage) {
-		personnage.getStatut().setTueur(this.getIdDeRole());
+		personnage.getStatut().setTueur(this.getId());
 		personnage.meurt();
 	}
 	
@@ -140,7 +140,7 @@ public abstract class Personnage  implements Cloneable {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().meurt();
 		}
-		if(this.getFonction() != null && this.getVillage().getNbPersonnage() > 2) {
+		if(this.getFonction() != null && this.getVillage().getNbPersonnageEnVie() > 2) {
 			this.village.getMaire().election();
 		}
 	}
@@ -175,7 +175,7 @@ public abstract class Personnage  implements Cloneable {
 			}
 		}
 		if(this.getListeDeVote().size() == 0) {// on remplit la liste des personnes présentes dans le village
-			for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
+			for(int i = 0; i < this.getVillage().getNbPersonnageEnVie(); i++) {
 				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i))){
 					this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
 				}
@@ -189,7 +189,7 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();	
 			}
 			else {// sinon au hasard parmis tout le monde "alliés" compris
-				nb = (int) (Math.random() * ( this.village.getNbPersonnage()   - 0 ));
+				nb = (int) (Math.random() * ( this.village.getNbPersonnageEnVie()   - 0 ));
 				return this.village.getPersonnage(nb).getId();	
 			}
 		}
@@ -236,9 +236,14 @@ public abstract class Personnage  implements Cloneable {
 	}
 
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fonction, id, idDeRole, nbVote, statut, village);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
 
 	@Override
@@ -250,9 +255,9 @@ public abstract class Personnage  implements Cloneable {
 		if (getClass() != obj.getClass())
 			return false;
 		Personnage other = (Personnage) obj;
-		return Objects.equals(fonction, other.fonction) && id == other.id && idDeRole == other.idDeRole
-				&& nbVote == other.nbVote && Objects.equals(statut, other.statut)
-				&& Objects.equals(village, other.village);
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 	public int getNbVote() {

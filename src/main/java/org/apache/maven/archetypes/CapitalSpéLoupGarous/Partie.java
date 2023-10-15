@@ -47,7 +47,7 @@ public class Partie {
 	}
 	
 	public boolean conditionFinPartie() {
-		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage() && !this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
+		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnageEnVie() && !this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 	}
 	
 	public boolean conditionVictoireAmoureux() {
@@ -59,7 +59,7 @@ public class Partie {
 	}
 	
 	public boolean conditionVictoireLoupGarous() {
-		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnage() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 );
+		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 );
 	}
 	
 	public boolean conditionEgaliterChasseur() {
@@ -75,7 +75,7 @@ public class Partie {
 			this.village.premièreNuit();
 			this.nbTour++;
 			while(this.conditionFinPartie()) {
-				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnage() > 2) {
+				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnageEnVie() > 2) {
 					this.village.getMaire().election();
 				}
 				this.village.voteEnnemie();
@@ -128,18 +128,18 @@ public class Partie {
 		//this.village.premièreNuit();
 		while(this.conditionFinPartie()) {
 			if(branche.charAt(this.nbTour) == '0') {
-				pourcentageBranche *= (double) (this.village.getNbPersonnage() -1) / this.village.getNbPersonnage();
-				Logger.log("Pourcentage entrant = " + (double) this.village.getNbVillageois() / this.village.getNbPersonnage(), TypeDeLog.pourcentage);
+				pourcentageBranche *= (double) (this.village.getNbPersonnageEnVie() -1) / this.village.getNbPersonnageEnVie();
+				Logger.log("Pourcentage entrant = " + (double) this.village.getNbVillageois() / this.village.getNbPersonnageEnVie(), TypeDeLog.pourcentage);
 			}
 			else {
-				pourcentageBranche *= (double) 1 / this.village.getNbPersonnage();
-				Logger.log("Pourcentage entrant = " + (double) this.village.getNbLoupGarou() / this.village.getNbPersonnage(), TypeDeLog.pourcentage);
+				pourcentageBranche *= (double) 1 / this.village.getNbPersonnageEnVie();
+				Logger.log("Pourcentage entrant = " + (double) this.village.getNbLoupGarou() / this.village.getNbPersonnageEnVie(), TypeDeLog.pourcentage);
 				//this.village.getNbLoupGarou()
 			}
 			
 			Logger.log("Pourcentage actuel = " + pourcentageBranche, TypeDeLog.pourcentage);
 			this.village.voter(branche.charAt(this.nbTour));
-			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnage()) {
+			if(this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnageEnVie()) {
 				this.village.nuit();
 			}
 			this.nbTour++;

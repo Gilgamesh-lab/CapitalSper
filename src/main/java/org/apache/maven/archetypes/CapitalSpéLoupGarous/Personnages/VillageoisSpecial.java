@@ -19,7 +19,7 @@ public abstract class VillageoisSpecial extends Villageois {
 	}
 	
 	public Personnage voteCibleAction() {
-		for(int i = 0; i < this.getVillage().getNbPersonnage(); i++) {
+		for(int i = 0; i < this.getVillage().getNbPersonnageEnVie(); i++) {
 			if(!this.getAlliés().contains(this.getVillage().getHabitantsEnVie().get(i)) && !this.getEnnemies().contains(this.getVillage().getHabitantsEnVie().get(i))){
 				this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
 			}
@@ -36,7 +36,7 @@ public abstract class VillageoisSpecial extends Villageois {
 				return cibleAction;	
 			}
 			else {
-				nb = (int) (Math.random() * ( this.getVillage().getNbPersonnage()   - 0 ));
+				nb = (int) (Math.random() * ( this.getVillage().getNbPersonnageEnVie()   - 0 ));
 				return this.getVillage().getPersonnage(nb);	
 			}
 		}

@@ -71,7 +71,7 @@ public  class Village  implements Cloneable {
 	
 	
 	
-	public int getNbPersonnage() {
+	public int getNbPersonnageEnVie() {
 		return (int) this.village.stream().filter(x->x.estEnvie()).count();
 	}
 	
@@ -88,7 +88,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public int getNbVillageois() {
-		return this.getNbPersonnage() - this.getNbLoupGarou() ;
+		return this.getNbPersonnageEnVie() - this.getNbLoupGarou() ;
 	}
 	
 	
@@ -124,7 +124,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void nuit() {
-		int nbHabitantAvant = this.getNbPersonnage();
+		int nbHabitantAvant = this.getNbPersonnageEnVie();
 		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 8)) {
 			Voyante voyante = (Voyante) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 8).findFirst().get();
 			voyante.sonder();
@@ -138,15 +138,15 @@ public  class Village  implements Cloneable {
 			Sorcière sorcière = (Sorcière) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 6).findFirst().get();
 			sorcière.agir();
 		}
-		this.decompteMort();
+		this.bilanTuerLaNuit();
 		
 		this.getHabitantsEnVie().stream().filter(x->x.getStatut().isProtéger()).forEach(x->x.getStatut().setProtéger(false));
-		int nbHabitantAprès = this.getNbPersonnage();
+		int nbHabitantAprès = this.getNbPersonnageEnVie();
 		if(nbHabitantAvant == nbHabitantAprès) {
 			Logger.log("Personne n'a été tué durant la nuit ");
 		}
 		
-		if(this.getNbPersonnage() >= 3) {
+		if(this.getNbPersonnageEnVie() >= 3) {
 			if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
 				MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
 				montreurDOurs.traquerLoupGarous();
@@ -159,7 +159,7 @@ public  class Village  implements Cloneable {
 		
 	}
 	
-	public void decompteMort() {
+	public void bilanTuerLaNuit() {
 		String messageMort;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {
 			messageMort =  " a été tué la nuit par les loups-garous";
@@ -169,7 +169,7 @@ public  class Village  implements Cloneable {
 		}
 		
 		
-		this.getHabitantsEnVie().stream().filter(x->x.getStatut().estAttaquerParLg()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAttaquerParLg(false);});
+		this.getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAEteAttaqueParLaMeute(false);});
 		Logger.log("", TypeDeLog.vote);
 		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))
 	}
@@ -184,7 +184,7 @@ public  class Village  implements Cloneable {
 		
 		Logger.log("", TypeDeLog.vote);
 		int voteMaire = 0;
-		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
+		for(int i = 0 ; i < this.getNbPersonnageEnVie() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.voter();
 			if(this.aUnMaire() && votant == this.maire.getPersonnage()) {
@@ -254,7 +254,7 @@ public  class Village  implements Cloneable {
 		}
 		
 		Logger.log("", TypeDeLog.vote);
-		for(int i = 0 ; i < this.getNbPersonnage() ; i++) {
+		for(int i = 0 ; i < this.getNbPersonnageEnVie() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.élire();
 			votant.resetListeDeVote();

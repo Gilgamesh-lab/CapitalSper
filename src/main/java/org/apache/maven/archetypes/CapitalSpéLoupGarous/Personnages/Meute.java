@@ -29,7 +29,7 @@ public class Meute {
 		return (ArrayList<LoupGarou>) this.meute.stream().filter(x->x.estEnvie()).collect(Collectors.toList());
 	}
 	
-	public int getNbLg() {
+	public int getNbLgEnVie() {
 		return (int) this.meute.stream().filter(x->x.estEnvie()).count();
 	}
 	
@@ -61,7 +61,7 @@ public class Meute {
 			tableauDeVotes.put(i, 0);
 		}
 		
-		for(int i = 0 ; i < this.getNbLg() ; i++) {
+		for(int i = 0 ; i < this.getNbLgEnVie() ; i++) {
 			votant = this.getMeute().get(i);
 			vote  = votant.voter();
 			votant.resetListeDeVote();
@@ -94,7 +94,7 @@ public class Meute {
 		}
 		
 		if(!personnageDevorer.getStatut().isProtéger()) {
-			personnageDevorer.getStatut().setAttaquerParLg(true);
+			personnageDevorer.getStatut().setAEteAttaqueParLaMeute(true);
 		}
 		
 		else {

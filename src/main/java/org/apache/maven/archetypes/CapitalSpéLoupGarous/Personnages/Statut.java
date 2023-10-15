@@ -5,7 +5,7 @@ public class Statut {
 	private boolean estAmoureux;
 	private Personnage amoureux;
 	private boolean estEnVie;
-	private boolean attaquerParLg;
+	private boolean aEteAttaquerParLaMeute;
 	private Integer tueur;
 	private boolean mortRecemment;
 	private boolean protéger;
@@ -14,7 +14,7 @@ public class Statut {
 		this.estAmoureux = false;
 		this.estEnVie = true;
 		this.personnage = personnage;
-		this.attaquerParLg = false;
+		this.aEteAttaquerParLaMeute = false;
 		this.tueur = null;
 		this.mortRecemment = false;
 		this.protéger = false;
@@ -97,12 +97,12 @@ public class Statut {
 	
 	
 	
-	public boolean estAttaquerParLg() {
-		return attaquerParLg;
+	public boolean aEteAttaquerParLaMeute() {
+		return aEteAttaquerParLaMeute;
 	}
 
-	public void setAttaquerParLg(boolean attaquerParLg) {
-		this.attaquerParLg = attaquerParLg;
+	public void setAEteAttaqueParLaMeute(boolean attaquerParLg) {
+		this.aEteAttaquerParLaMeute = attaquerParLg;
 	}
 
 	public boolean estEnVie() {

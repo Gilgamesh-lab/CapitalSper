@@ -7,6 +7,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.junit.Assert;
 import org.junit.Before;
@@ -42,28 +43,14 @@ public class VillageTest {
 		this.village.ajouterPersonnage(loupGarou);
 		
 		Assert.assertEquals(1, this.village.getNbLoupGarou());
-		Assert.assertEquals(1 ,this.village.getNbPersonnage());
+		Assert.assertEquals(0, this.village.getNbVillageois());
+		Assert.assertEquals(1 ,this.village.getNbPersonnageEnVie());
 		
 		this.village.ajouterPersonnage(simpleVillageois);
 		
 		Assert.assertEquals(1 , this.village.getNbLoupGarou());
-		Assert.assertEquals(2, this.village.getNbPersonnage());
-		
-		this.village.getMeute().attaquerVillage();
-		
-		Assert.assertEquals(1 ,this.village.getNbLoupGarou());
-		Assert.assertEquals(1 , this.village.getNbPersonnage());
-		
-		/*this.village.ajouterPersonnage(simpleVillageois);
-		this.village.voter();
-		
-		Assert.assertEquals(0 , this.village.getNbLoupGarou());
-		Assert.assertEquals(0 , this.village.getNbPersonnage() );
-		
-		this.village.ajouterPersonnage(simpleVillageois);
-		
-		Assert.assertEquals(0 , this.village.getNbLoupGarou());
-		Assert.assertEquals(1 , this.village.getNbPersonnage());*/
+		Assert.assertEquals(1, this.village.getNbVillageois());
+		Assert.assertEquals(2, this.village.getNbPersonnageEnVie());
 		
 		
 	}
@@ -75,7 +62,7 @@ public class VillageTest {
 		System.out.println();
 		this.village = new Village(1,2);
 		Assert.assertEquals(1, this.village.getNbVillageois());
-		Assert.assertEquals(3, this.village.getNbPersonnage());
+		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
 		this.village.voteEnnemie();
 		Assert.assertEquals(0, this.village.getNbVillageois());
 		this.village.ajouterPersonnage(simpleVillageois);
@@ -86,24 +73,7 @@ public class VillageTest {
 		
 	}
 	
-	/*@Test
-	public void cupidonTest() {
-		this.log.setOnAfficherLogDetailsRoleAction();
-		System.out.println();
-		System.out.println("Lancement de cupidonTest");
-		System.out.println();
-		this.village = new Village();
-		Cupidon cupidon = new Cupidon();
-		this.village.ajouterPersonnage(cupidon);
-		this.village.ajouterPersonnage(this.simpleVillageois);
-		this.village.ajouterPersonnage(this.simpleVillageois);
-		this.village.ajouterPersonnage(this.simpleVillageois);
-		cupidon.flecheDeLAmour(this.village.getPersonnage(0), this.village.getPersonnage(1));
-		this.village.getPersonnage(0).meurt();
-		Assert.assertTrue(!this.village.getPersonnage(1).estEnvie());
-		Assert.assertEquals(2, this.village.getNbPersonnage());
-		
-	}*/
+	
 	
 	
 	

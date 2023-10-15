@@ -26,7 +26,7 @@ public class PartieTest {
 	public void setUp() throws Exception {
 		Village village = new Village(0,0);
 	}
-	/*
+
 	@Test
 	public void startExplorationTest()  {
 		System.out.println();
@@ -74,16 +74,8 @@ public class PartieTest {
 		this.partie = new Partie(village, log);
 		this.partie.exploration();
 		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
-	}*/
+	}
 	
-	@Test
-	public void chasseurTest() {
-		this.village = new Village(1, 1);
-		Chasseur chasseur = new Chasseur();
-		village.ajouterPersonnage(chasseur);
-		Partie partie = new Partie(village, log);
-		partie.simulation(1);
 		
-	}	
 
 }
