@@ -206,7 +206,7 @@ public  class Village  implements Cloneable {
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			// si plusieurs personnes à égaliter
 			if(maire != null) {
-				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).filter(x -> x != maire.getPersonnage()).collect(Collectors.toList()));
+				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).collect(Collectors.toList()));
 				if(listeIdPersonneAyantPlusDeVotes.contains(voteMaire)) {
 					idPersonneAyantPlusDeVotes = voteMaire;
 				}
