@@ -86,17 +86,18 @@ public class MontreurDOurs extends VillageoisSpecial {
 	}
 	
 	public void meurt() {
+		ArrayList<Personnage> listeVoisinsEnVie = new ArrayList<Personnage>(this.getVoisins().stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
 		if(this.aTrouverUnLoup != null) {
 			if(this.aTrouverUnLoup) { // si un loups parmis ses voisins
 				this.getVillage().getHabitantsEnVie().stream().filter(x-> x.estUnVillageois()).forEach(x->x.ajouterEnnemies(this.voisinDeDroite));
 				this.getVillage().getHabitantsEnVie().stream().filter(x-> x.estUnVillageois()).forEach(x->x.ajouterEnnemies(this.voisinDeGauche));
-				Logger.log("Suite à la mort du montreurs d'ours, " + this.getVoisins() + " sont considérer comme potentiellement coupables" );
+				Logger.log("Suite à la mort du montreurs d'ours, " + listeVoisinsEnVie + " sont considérer comme potentiellement coupables" );
 				
 			}
 			else {// sinon
 				this.getVillage().getHabitantsEnVie().stream().filter(x-> x.estUnVillageois()).forEach(x->x.ajouterAlliés(this.voisinDeDroite));
 				this.getVillage().getHabitantsEnVie().stream().filter(x-> x.estUnVillageois()).forEach(x->x.ajouterAlliés(this.voisinDeGauche));
-				Logger.log("Suite à la mort du montreurs d'ours, " + this.getVoisins() + " sont considérer comme innocent" );
+				Logger.log("Suite à la mort du montreurs d'ours, " + listeVoisinsEnVie + " sont considérer comme innocent" );
 			}
 		}
 		super.meurt();
