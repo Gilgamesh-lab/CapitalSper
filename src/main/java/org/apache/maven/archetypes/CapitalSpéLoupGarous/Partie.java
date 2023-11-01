@@ -69,7 +69,7 @@ public class Partie {
 	private void startSimulation () {
 		init();
 		Logger.log("");
-		Logger.log("Lancement de la partie avec " +  this.référentiel.messageDebutPartie(this.village));
+		Logger.log("Lancement de la partie avec un village de " + this.village.getNbPersonnageEnVie() + " personnages composé de " +  this.référentiel.messageDebutPartie(this.village));
 		Logger.log("");
 		if(this.conditionFinPartie()) {
 			this.village.premièreNuit();

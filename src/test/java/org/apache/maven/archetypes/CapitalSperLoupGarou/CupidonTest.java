@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-class CupidonTest {
+public class CupidonTest {
 	private Village village;
 	private Cupidon cupidon;
 	private Logger log = new Logger();

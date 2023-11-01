@@ -31,9 +31,9 @@ public class Maire extends Fonction {
 				nb = (int) (Math.random() * ( this.getPersonnage().getAlliés().size()    - 0 ));
 				entrerEnFonction(this.getPersonnage().getAlliés().get(nb));
 			}
-			else {// sinon full random
-				nb = (int) (Math.random() * ( this.getVillage().getNbPersonnageEnVie()    - 0 ));
-				entrerEnFonction(this.getVillage().getHabitantsEnVie().get(nb));
+			else {// sinon choisi par l'ancien maire
+				nb = this.getPersonnage().elire();
+				entrerEnFonction(this.getVillage().getPersonnageParId(nb));
 			}
 		}
 		else {// 1er maire

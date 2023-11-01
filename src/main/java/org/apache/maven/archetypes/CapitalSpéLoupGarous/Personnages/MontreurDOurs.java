@@ -40,13 +40,29 @@ public class MontreurDOurs extends VillageoisSpecial {
 	public void traquerLoupGarous() {
 		boolean nouveauVoisinADroite = false;
 		boolean nouveauVoisinAGauche = false;
+		boolean voisinGaucheCoupableSure = false;
+		boolean voisinDroitCoupableSure = false;
+		
+		if(this.aTrouverUnLoup == null) {
+			this.aTrouverUnLoup = false;
+		}
+		
 		if(!this.voisinDeDroite.estEnvie()) {
+			if(this.aTrouverUnLoup && this.voisinDeDroite.estUnVillageois() && this.voisinDeGauche.estEnvie() ) {// Si il avait trouver un loup-garou parmis ses voisins et que son ancien(=mort) voisin de droite était innocent
+				System.out.println("droite");
+				voisinGaucheCoupableSure = true;
+			}
 			ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this &&x != this.voisinDeGauche).collect(Collectors.toList()));
 			int nbVoisinDeDroite = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeDroite = liste.get(nbVoisinDeDroite);
 			nouveauVoisinADroite = true;
+			
 		}
 		if(!this.voisinDeGauche.estEnvie()) {
+			if(this.aTrouverUnLoup && this.voisinDeGauche.estUnVillageois() && this.voisinDeDroite.estEnvie() ) {// Si il avait trouver un loup-garou parmis ses voisins et que son ancien(=mort) voisin de gauche était innocent
+				System.out.println("gauche");
+				voisinDroitCoupableSure = true;
+			}
 			ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this && x != this.voisinDeDroite).collect(Collectors.toList()));
 			int nbVoisinDeGauche = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeGauche = liste.get(nbVoisinDeGauche);
@@ -54,18 +70,24 @@ public class MontreurDOurs extends VillageoisSpecial {
 		}
 		
 		if(!this.voisinDeDroite.estUnVillageois() || !this.voisinDeGauche.estUnVillageois()) {
-			if(this.aTrouverUnLoup = false &&  nouveauVoisinADroite && !nouveauVoisinAGauche ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
-				this.ajouterEnnemies(this.voisinDeDroite);
-			}
-			
-			else if(this.aTrouverUnLoup = false &&  nouveauVoisinAGauche && !nouveauVoisinADroite ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
-				this.ajouterEnnemies(this.voisinDeGauche);
+			if(!voisinDroitCoupableSure && !voisinGaucheCoupableSure) {
+				if(!this.aTrouverUnLoup &&  nouveauVoisinADroite && !nouveauVoisinAGauche ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
+					this.ajouterEnnemies(this.voisinDeDroite);
+				}
+				
+				else if(!this.aTrouverUnLoup  &&  nouveauVoisinAGauche && !nouveauVoisinADroite ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
+					this.ajouterEnnemies(this.voisinDeGauche);
+				}
+				// a adapter ici
+				else {
+					this.ajouterEnnemies(this.voisinDeDroite);
+					this.ajouterEnnemies(this.voisinDeGauche);
+				}
+				this.aTrouverUnLoup = true;
 			}
 			else {
-				this.ajouterEnnemies(this.voisinDeDroite);
-				this.ajouterEnnemies(this.voisinDeGauche);
+				System.out.println("ok");
 			}
-			this.aTrouverUnLoup = true;
 		}
 		else {
 			this.ajouterAlliés(voisinDeDroite);

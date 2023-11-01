@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-class ChasseurTest {
+public class ChasseurTest {
 	
 	private Village village = new Village(0,0);
 	

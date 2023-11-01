@@ -103,7 +103,7 @@ public  class Village  implements Cloneable {
 	
 	
 	public Personnage getPersonnageParId(int id) {
-		return this.getHabitantsEnVie().stream().filter(x->x.getId() == id).findFirst().get();
+		return this.village.stream().filter(x->x.getId() == id).findFirst().get();
 	}
 	
 	
@@ -191,7 +191,7 @@ public  class Village  implements Cloneable {
 				voteMaire  = vote;
 			}
 			votant.resetListeDeVote();
-			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote), TypeDeLog.vote);
+			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote) + " avec " + votant.getNbVote() + " voix ", TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		
@@ -218,6 +218,7 @@ public  class Village  implements Cloneable {
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 				Logger.log("", TypeDeLog.vote);
 				if(coupables.contains(maire.getPersonnage())) {
+					coupables.remove(maire.getPersonnage());
 					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables + " et lui");
 				}
 				else {
@@ -237,6 +238,7 @@ public  class Village  implements Cloneable {
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
 			personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			Logger.log("", TypeDeLog.vote);
 			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
 		}
 		Logger.log("");
@@ -256,7 +258,7 @@ public  class Village  implements Cloneable {
 		Logger.log("", TypeDeLog.vote);
 		for(int i = 0 ; i < this.getNbPersonnageEnVie() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
-			vote  = votant.élire();
+			vote  = votant.elire();
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
