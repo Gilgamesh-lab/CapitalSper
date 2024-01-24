@@ -21,14 +21,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		int nbVillageois = 3;
-		int nbLoupGarous = 4;
-		int nbPartie = 5;//100000
+		int nbLoupGarous = 3;
+		int nbPartie = 5;
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
 		
 		
-		logger.setDetailVoteVillage(true);
+		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();

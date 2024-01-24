@@ -166,9 +166,11 @@ public abstract class Personnage  implements Cloneable {
 		
 		if(this.getListeDeVote().size() == 0 &&  this.getEnnemies().size() > 0) {
 			for(int i = 0; i < this.getEnnemies().size(); i++) {
-				this.getListeDeVote().add(this.getEnnemies().get(i));
+				this.getListeDeVote().add(this.village.getPersonnageParId(this.getEnnemies().get(i).getId()));
 			}
-			this.getEnnemies().stream().filter(x-> x != null && !x.estEnvie()).forEach(x->this.getListeDeVote().remove(x));// impossible d'itérer sur soi-même
+			this.getEnnemies().stream().filter(x-> !this.village.getPersonnageParId(x.getId()).estEnvie() ).forEach(x->this.getListeDeVote().remove(x));// impossible d'itérer sur soi-même
+
+			
 			if(this.getListeDeVote().size() != 0) {
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 				return this.getListeDeVote().get(nb).getId();

@@ -49,7 +49,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 		
 		if(!this.voisinDeDroite.estEnvie()) {
 			if(this.aTrouverUnLoup && this.voisinDeDroite.estUnVillageois() && this.voisinDeGauche.estEnvie() ) {// Si il avait trouver un loup-garou parmis ses voisins et que son ancien(=mort) voisin de droite était innocent
-				System.out.println("droite");
+				//System.out.println("droite");
 				voisinGaucheCoupableSure = true;
 			}
 			ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this &&x != this.voisinDeGauche).collect(Collectors.toList()));
@@ -60,7 +60,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 		}
 		if(!this.voisinDeGauche.estEnvie()) {
 			if(this.aTrouverUnLoup && this.voisinDeGauche.estUnVillageois() && this.voisinDeDroite.estEnvie() ) {// Si il avait trouver un loup-garou parmis ses voisins et que son ancien(=mort) voisin de gauche était innocent
-				System.out.println("gauche");
+				//System.out.println("gauche");
 				voisinDroitCoupableSure = true;
 			}
 			ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this && x != this.voisinDeDroite).collect(Collectors.toList()));
@@ -86,7 +86,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 				this.aTrouverUnLoup = true;
 			}
 			else {
-				System.out.println("ok");
+				//System.out.println("ok");
 			}
 		}
 		else {
