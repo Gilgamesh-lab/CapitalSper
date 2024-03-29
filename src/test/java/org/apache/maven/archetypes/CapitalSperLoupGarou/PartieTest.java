@@ -3,7 +3,6 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.junit.Assert;

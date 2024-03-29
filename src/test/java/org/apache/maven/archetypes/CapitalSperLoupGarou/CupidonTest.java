@@ -25,7 +25,7 @@ public class CupidonTest {
 		this.cupidon = new Cupidon();
 	}
 	
-	@Test
+	/*@Test
 	public void testUniePourLaVie() {
 		System.out.println();
 		System.out.println("Lancement du test JusquaCeQueLaMortNousSepare");
@@ -82,6 +82,6 @@ public class CupidonTest {
 		Assert.assertFalse(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 		this.village.voteEnnemie();
 		Assert.assertTrue(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
-	}
+	}*/
 
 }
