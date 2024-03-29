@@ -207,16 +207,27 @@ public abstract class Personnage  implements Cloneable {
 	@SuppressWarnings("finally") // à améliorer
 	public int elire() {
 		int nb ;
-		if(this.getListeDeVote().size() == 0 && this.getAlliés().size() > 1 && this.getAlliés().stream().anyMatch(x->  x.estEnvie()) && this.estUnVillageois()) {// contrer lg qui vote tout le temps pour eux
-			this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAlliés().contains(x)).collect(Collectors.toList()));
-			nb = (int) (Math.random() * ( this.listeDeVote.size()   - 0 ));
-			return this.listeDeVote.get(nb).getId();
+		if (!this.village.getHabitantsEnVie().isEmpty()){ // a modifier
+			if(this.getListeDeVote().size() == 0 && this.getAlliés().size() > 1 && this.getAlliés().stream().anyMatch(x->  x.estEnvie()) && this.estUnVillageois()) {// contrer lg qui vote tout le temps pour eux
+				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAlliés().contains(x)).collect(Collectors.toList()));
+				nb = (int) (Math.random() * ( this.listeDeVote.size()   - 0 ));
+				return this.listeDeVote.get(nb).getId();
+			}
+			else {
+				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->!this.getEnnemies().contains(x)).collect(Collectors.toList()));
+				if (this.listeDeVote.isEmpty()){
+					nb = (int) (Math.random() * ( this.village.getHabitantsEnVie().size()    - 0 ));
+					return this.village.getHabitantsEnVie().get(nb).getId();
+				}
+				else {
+					nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+					return this.getListeDeVote().get(nb).getId();
+				}
+				
+			}
 		}
-		else {
-			this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->!this.getEnnemies().contains(x)).collect(Collectors.toList()));
-			nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
-			return this.getListeDeVote().get(nb).getId();
-		}
+		
+		return 0;
 		
 		
 		

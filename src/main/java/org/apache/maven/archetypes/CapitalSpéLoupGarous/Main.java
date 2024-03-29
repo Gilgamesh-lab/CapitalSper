@@ -20,9 +20,9 @@ public class Main {
 	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 3;
-		int nbLoupGarous = 3;
-		int nbPartie = 5;
+		int nbVillageois = 0;
+		int nbLoupGarous = 2;
+		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -30,10 +30,10 @@ public class Main {
 		
 		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		//logger.setOffAfficherLogDetailsPartie();
+		logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
-		logger.setOnAfficherLogDetailsRoleAction();
+		//logger.setOnAfficherLogDetailsRoleAction();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
@@ -41,10 +41,11 @@ public class Main {
 		village.ajouterPersonnage( chasseur);
 		Sorcière sorcière = new Sorcière();
 		village.ajouterPersonnage(sorcière);
-		Salvateur salvateur = new Salvateur();
-		village.ajouterPersonnage(salvateur);
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
+		
+		Salvateur salvateur = new Salvateur();
+		village.ajouterPersonnage(salvateur);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);
 		village.onMaire();
