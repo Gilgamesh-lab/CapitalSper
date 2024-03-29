@@ -26,7 +26,7 @@ public class ChasseurTest {
 	}
 	
 
-	/*@Test
+	@Test
 	public void testSiJeMeureTuMeures() {// œil pour œil, dent pour dent
 		System.out.println();
 		System.out.println("Lancement du test SiJeMeureTuMeures");
@@ -80,6 +80,6 @@ public class ChasseurTest {
 		assertEquals(chasseur , this.village.getPersonnageParId(lg.getStatut().getTueur()));
 		assertEquals(1 ,this.village.getNbVillageois());
 		
-	}*/
+	}
 
 }

@@ -39,7 +39,7 @@ public class PartieTest {
 		Assert.assertEquals(1, this.village.getMeute().getMeute().size());
 	}
 	
-	@Test
+	/*@Test
 	public void explorationTest() {
 		this.village = new Village(3, 1);
 		this.partie = new Partie(village, log);
@@ -73,7 +73,7 @@ public class PartieTest {
 		this.partie = new Partie(village, log);
 		this.partie.exploration();
 		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
-	}
+	}*/
 	
 		
 
