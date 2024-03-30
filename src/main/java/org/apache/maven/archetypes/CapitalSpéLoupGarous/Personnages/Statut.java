@@ -7,7 +7,6 @@ public class Statut {
 	private boolean estEnVie;
 	private boolean aEteAttaquerParLaMeute;
 	private Integer tueur;
-	private boolean mortRecemment;
 	private boolean protéger;
 
 	public Statut(Personnage personnage) {
@@ -16,14 +15,8 @@ public class Statut {
 		this.personnage = personnage;
 		this.aEteAttaquerParLaMeute = false;
 		this.tueur = null;
-		this.mortRecemment = false;
 		this.protéger = false;
 	}
-	
-	
-	
-	
-	
 	
 	
 	public boolean isProtéger() {
@@ -33,28 +26,6 @@ public class Statut {
 	public void setProtéger(boolean protéger) {
 		this.protéger = protéger;
 	}
-
-
-
-
-
-
-
-	public boolean isMortRecemment() {
-		return mortRecemment;
-	}
-
-
-
-
-
-	public void setMortRecemment(boolean mortRecemment) {
-		this.mortRecemment = mortRecemment;
-	}
-
-
-
-
 
 	public Integer getTueur() {
 		return tueur;
@@ -80,10 +51,6 @@ public class Statut {
 	
 	public void setOnAmoureux(Personnage personnage) {
 		this.estAmoureux = true;
-		if(this.estEnVie == false) {
-			System.out.println("Erreur, statut vie est faux pour ce personnage : " +  this.personnage);
-			this.estEnVie = true;
-		}
 		this.amoureux = personnage;
 	}
 
@@ -91,11 +58,6 @@ public class Statut {
 	public Personnage getAmoureux() {
 		return amoureux;
 	}
-	
-	
-	
-	
-	
 	
 	public boolean aEteAttaquerParLaMeute() {
 		return aEteAttaquerParLaMeute;
@@ -107,10 +69,6 @@ public class Statut {
 
 	public boolean estEnVie() {
 		return this.estEnVie;
-	}
-	
-	public void EnVie() {
-		this.estEnVie = true;
 	}
 	
 	public void estMort() {

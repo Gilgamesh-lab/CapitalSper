@@ -11,9 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class MontreursDOurs {
+public class MontreursDOursTest {
 
-private Village village = new Village(0,0);
+	private Village village = new Village(0,0);
 	
 	private Logger log = new Logger();
 	

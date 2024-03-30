@@ -23,6 +23,8 @@ public class Voyante extends VillageoisSpecial {
 		 }
 	}
 	
+	
+	
 	@Override
 	public String toString() {
 		return "la voyante";

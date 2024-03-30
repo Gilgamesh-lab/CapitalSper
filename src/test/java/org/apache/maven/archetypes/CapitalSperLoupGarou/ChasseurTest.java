@@ -41,6 +41,20 @@ public class ChasseurTest {
 	}
 	
 	@Test
+	public void testLaBatailleEstFinie() {// Si il n'y a plus de loups-garous à traquer
+		System.out.println();
+		System.out.println("Lancement du test LaBatailleEstFinie");
+		System.out.println();
+		this.village = new Village(1, 0);
+		Chasseur chasseur = new Chasseur();
+		this.village.ajouterPersonnage(chasseur);
+		chasseur.meurt();
+		assertEquals(1 ,this.village.getNbPersonnageEnVie());
+		assertEquals(1, this.village.getNbVillageois());
+		
+	}
+	
+	@Test
 	public void testMeCherchePasDesNoises() {// Vaux mieux ne pas être son ennemie
 		System.out.println();
 		System.out.println("Lancement du test MeCherchePasDesNoises");
