@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Map;
-import java.util.Optional;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
@@ -18,7 +17,6 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public  class Village  implements Cloneable {

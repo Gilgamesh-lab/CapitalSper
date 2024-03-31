@@ -14,12 +14,14 @@ public class Voyante extends VillageoisSpecial {
 	public void sonder() {
 		 Personnage persoASonder = super.voteCibleAction();
 		 if(persoASonder.estUnVillageois()) {
-			 this.ajouterAlliés(persoASonder);
 			 Logger.log("La voyante a décidé de sonder " + persoASonder + " qui s'est révélé être innocent", TypeDeLog.role);
+			 this.ajouterAlliés(persoASonder);
+			 
 		 }
 		 else {
-			 this.ajouterEnnemies(persoASonder);
 			 Logger.log("La voyante a décidé de sonder " + persoASonder + " qui s'est révélé être un ennemie du village", TypeDeLog.role);
+			 this.ajouterEnnemies(persoASonder);
+			 
 		 }
 	}
 	

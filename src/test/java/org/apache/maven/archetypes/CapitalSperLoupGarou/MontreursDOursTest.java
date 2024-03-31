@@ -19,8 +19,9 @@ public class MontreursDOursTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.log.setOffAfficherLogDetailsPartie();
+		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
+		this.log.setDetailVoteVillage(true);
 	}
 	
 	@Test

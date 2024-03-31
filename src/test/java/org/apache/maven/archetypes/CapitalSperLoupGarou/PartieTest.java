@@ -24,6 +24,9 @@ public class PartieTest {
 	@Before
 	public void setUp() throws Exception {
 		Village village = new Village(0,0);
+		this.log.setOnAfficherLogDetailsPartie();
+		this.log.setOnAfficherLogDetailsRoleAction();
+		this.log.setDetailVoteVillage(true);
 	}
 
 	@Test

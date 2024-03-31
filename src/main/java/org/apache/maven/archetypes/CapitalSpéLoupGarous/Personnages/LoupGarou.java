@@ -1,8 +1,5 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
-
 public class LoupGarou extends Personnage {
 	private Meute meute;
 	
@@ -10,11 +7,6 @@ public class LoupGarou extends Personnage {
 
 	public LoupGarou(int idRole, boolean aUnPouvoirSpecial) {
 		super(false, idRole, aUnPouvoirSpecial);
-	}
-	
-	@Override
-	public void meurt() {
-		super.meurt();
 	}
 
 	

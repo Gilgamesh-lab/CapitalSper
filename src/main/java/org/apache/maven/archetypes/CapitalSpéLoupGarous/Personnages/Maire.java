@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 
 public class Maire extends Fonction {
 

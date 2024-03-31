@@ -1,15 +1,8 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 
@@ -17,7 +10,6 @@ public class Partie {
 	private static Village savegardeVillage;
 	private Village village ;
 	private Integer nbTour;
-	private Map<String ,Integer > tabResult = new HashMap<>();
 	private List<Integer> listeTours = new ArrayList<Integer>();
 	public static  Logger log;
 	private float nbVictoireVillage = 0;

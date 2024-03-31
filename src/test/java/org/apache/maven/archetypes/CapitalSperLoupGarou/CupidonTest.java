@@ -21,14 +21,16 @@ public class CupidonTest {
 	
 	@Before
 	public void init() throws Exception {
+		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
+		this.log.setDetailVoteVillage(true);
 		this.cupidon = new Cupidon();
 	}
 	
 	@Test
 	public void testUniePourLaVie() {
 		System.out.println();
-		System.out.println("Lancement du test JusquaCeQueLaMortNousSepare");
+		System.out.println("Lancement du test testUniePourLaVie");
 		System.out.println();
 		this.village = new Village();
 		Personnage perso = new LoupGarouSimple();

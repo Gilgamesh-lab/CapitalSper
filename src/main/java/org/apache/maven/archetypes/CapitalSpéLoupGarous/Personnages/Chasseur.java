@@ -1,6 +1,5 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;

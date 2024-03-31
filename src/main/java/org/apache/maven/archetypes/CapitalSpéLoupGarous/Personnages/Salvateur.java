@@ -33,6 +33,10 @@ public class Salvateur extends VillageoisSpecial {
 		 
 	}
 	
+	public void finSalvation() {
+		this.dernierPersonnageProtéger.getStatut().setProtéger(false);
+	}
+	
 	
 	public void reset() {
 		super.reset();

@@ -1,7 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
@@ -63,6 +62,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void ajouterEnnemies(Personnage ennemies) {
 		if(!this.alliés.contains(ennemies)) {
+			Logger.log( this + " considère maintenant " + ennemies +  " comme un ennemie", TypeDeLog.vote);
 			this.listeEnnemie.add(ennemies);
 		}
 		
@@ -81,6 +81,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void ajouterAlliés(Personnage allié) {
 		if(!this.alliés.contains(allié)) {
+			Logger.log( this + " considère maintenant " + allié +  " comme un allié", TypeDeLog.vote);
 			this.alliés.add(allié);
 		}
 	}
@@ -159,7 +160,7 @@ public abstract class Personnage  implements Cloneable {
 		return o;
 	}
 	
-	@SuppressWarnings("finally") // à améliorer
+ // à améliorer
 	public int voter() {
 		int nb ;
 		//this.getListeDeVote().clear();
@@ -204,7 +205,7 @@ public abstract class Personnage  implements Cloneable {
 			
 	}
 	
-	@SuppressWarnings("finally") // à améliorer
+// à améliorer
 	public int elire() {
 		int nb ;
 		if (!this.village.getHabitantsEnVie().isEmpty()){ // a modifier

@@ -31,6 +31,9 @@ public class VillageTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		this.log.setOnAfficherLogDetailsPartie();
+		this.log.setOnAfficherLogDetailsRoleAction();
+		this.log.setDetailVoteVillage(true);
 		Village village = new Village(0,0);
 	}
 

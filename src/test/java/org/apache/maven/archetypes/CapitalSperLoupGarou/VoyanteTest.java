@@ -19,10 +19,11 @@ public class VoyanteTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.log.setOffAfficherLogDetailsPartie();
+		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
+		this.log.setDetailVoteVillage(true);
 		this.village = new Village(0,0);
-		voyante = new Voyante();
+		this.voyante = new Voyante();
 	}
 	
 	@Test
@@ -30,9 +31,7 @@ public class VoyanteTest {
 		System.out.println();
 		System.out.println("Lancement du test VoyanceLg");
 		System.out.println();
-		this.village = new Village(0,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
-		Voyante voyante = new Voyante();
 		this.village.ajouterPersonnage(voyante);
 		this.village.ajouterPersonnage(lg);
 		voyante.sonder();
@@ -44,10 +43,8 @@ public class VoyanteTest {
 	@Test
 	public void testVoyanceVi() {// Je te protégerais
 		System.out.println();
-		System.out.println("Lancement du test testVoyanceVi");
+		System.out.println("Lancement du test VoyanceVi");
 		System.out.println();
-		this.village = new Village(0,0);
-		Voyante voyante = new Voyante();
 		SimpleVillageois vi = new SimpleVillageois();
 		this.village.ajouterPersonnage(voyante);
 		this.village.ajouterPersonnage(vi);

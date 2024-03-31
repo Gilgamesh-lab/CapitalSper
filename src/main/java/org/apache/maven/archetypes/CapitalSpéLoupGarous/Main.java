@@ -1,13 +1,9 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
@@ -16,13 +12,11 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public class Main {
 	
-	
-	private static int compteur = 0;
 
 	public static void main(String[] args) {
-		int nbVillageois = 0;
+		int nbVillageois = 5;
 		int nbLoupGarous = 2;
-		int nbPartie = 100000;//100000
+		int nbPartie = 20;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -30,10 +24,10 @@ public class Main {
 		
 		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		logger.setOffAfficherLogDetailsPartie();
+		//logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
-		//logger.setOnAfficherLogDetailsRoleAction();
+		logger.setOnAfficherLogDetailsRoleAction();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
