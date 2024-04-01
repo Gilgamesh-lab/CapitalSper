@@ -3,6 +3,7 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.junit.Assert;
@@ -106,6 +107,20 @@ public class SorciereTest {
 		Assert.assertTrue(this.village.getNbVillageois() == 21);
 		Assert.assertFalse(this.sorcière.isaUnePotionDeVie());
 		Assert.assertFalse(this.sorcière.isaUnePotionDeMort());
+	}
+	
+	@Test
+	public void testReset() {// La vie n'est qu'une boucle sans fin
+		System.out.println();
+		System.out.println("Lancement du test reset");
+		System.out.println();
+		this.village = new Village(1,1);
+		this.village.ajouterPersonnage(this.sorcière);
+		this.sorcière.agir();
+		Assert.assertNotEquals(new Sorcière(), this.sorcière);
+		this.sorcière.reset();
+		System.out.println(new Sorcière() + " ," + this.sorcière);
+		Assert.assertEquals(new Sorcière(), this.sorcière);
 	}
 
 }

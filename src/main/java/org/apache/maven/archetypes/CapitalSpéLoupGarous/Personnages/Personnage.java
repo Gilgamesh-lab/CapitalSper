@@ -150,16 +150,6 @@ public abstract class Personnage  implements Cloneable {
 		this.village = village;
 	}
 	
-	public Object clone() {
-		Object o = null;
-		try {
-			o = super.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		return o;
-	}
-	
  // à améliorer
 	public int voter() {
 		int nb ;

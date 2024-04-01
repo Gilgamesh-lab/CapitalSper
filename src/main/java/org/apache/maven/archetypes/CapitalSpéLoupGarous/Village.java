@@ -322,16 +322,6 @@ public  class Village  implements Cloneable {
 		return this.maire;
 	}
 
-
-	
-	public Object clone() {
-		Village v = new Village();
-		this.village.stream().forEach(x->v.ajouterPersonnage((Personnage) x.clone()));
-
-		v.maire = this.maire;
-		return v;
-	}
-
 	
 	
 	public boolean aUnMaire() {

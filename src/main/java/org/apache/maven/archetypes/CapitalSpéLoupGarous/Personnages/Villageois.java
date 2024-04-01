@@ -8,9 +8,7 @@ public abstract class Villageois extends Personnage {
 		
 	}
 	
-	public void reset() {
-		super.reset();
-	}
+
 	
 	
 

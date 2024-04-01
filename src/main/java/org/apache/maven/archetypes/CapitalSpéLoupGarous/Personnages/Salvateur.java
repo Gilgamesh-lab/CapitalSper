@@ -2,6 +2,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
@@ -33,6 +34,12 @@ public class Salvateur extends VillageoisSpecial {
 		 
 	}
 	
+	
+	
+	public Personnage getDernierPersonnageProtéger() {
+		return dernierPersonnageProtéger;
+	}
+
 	public void finSalvation() {
 		this.dernierPersonnageProtéger.getStatut().setProtéger(false);
 	}
@@ -47,5 +54,29 @@ public class Salvateur extends VillageoisSpecial {
 	public String toString() {
 		return "le salvateur";
 	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(dernierPersonnageProtéger);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Salvateur other = (Salvateur) obj;
+		return Objects.equals(dernierPersonnageProtéger, other.dernierPersonnageProtéger);
+	}
+	
+	
 
 }
