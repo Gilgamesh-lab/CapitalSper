@@ -94,6 +94,10 @@ public abstract class Personnage  implements Cloneable {
 	public void setListeDeVote(ArrayList<Personnage> listeDeVote) {
 		this.listeDeVote = listeDeVote;
 	}
+	
+	public void ajouterPersoListeDeVote(Personnage personnage) {
+		this.listeDeVote.add(personnage);
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -203,6 +207,10 @@ public abstract class Personnage  implements Cloneable {
 				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAlliés().contains(x)).collect(Collectors.toList()));
 				nb = (int) (Math.random() * ( this.listeDeVote.size()   - 0 ));
 				return this.listeDeVote.get(nb).getId();
+			}
+			else if(this.getListeDeVote().size() != 0) {
+				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+				return this.getListeDeVote().get(nb).getId();
 			}
 			else {
 				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->!this.getEnnemies().contains(x)).collect(Collectors.toList()));

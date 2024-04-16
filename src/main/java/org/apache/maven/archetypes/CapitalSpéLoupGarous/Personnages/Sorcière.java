@@ -103,7 +103,7 @@ public class Sorcière extends VillageoisSpecial{
 		return aUnePotionDeMort;
 	}
 
-
+	@Override
 	public void reset() {
 		super.reset();
 		this.aUnePotionDeVie = true;
@@ -111,14 +111,16 @@ public class Sorcière extends VillageoisSpecial{
 		this.action = null;
 		this.actions = new ArrayList<Integer>(Arrays.asList(0,1,2,3));
 	}
-	
-	
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(aUnePotionDeMort, aUnePotionDeVie, action, actions);
+		result = prime * result + (aUnePotionDeMort ? 1231 : 1237);
+		result = prime * result + (aUnePotionDeVie ? 1231 : 1237);
+		result = prime * result + ((action == null) ? 0 : action.hashCode());
+		result = prime * result + ((actions == null) ? 0 : actions.hashCode());
 		return result;
 	}
 
@@ -132,10 +134,37 @@ public class Sorcière extends VillageoisSpecial{
 		if (getClass() != obj.getClass())
 			return false;
 		Sorcière other = (Sorcière) obj;
-		return aUnePotionDeMort == other.aUnePotionDeMort && aUnePotionDeVie == other.aUnePotionDeVie
-				&& Objects.equals(action, other.action) && Objects.equals(actions, other.actions);
+		if (aUnePotionDeMort != other.aUnePotionDeMort)
+			return false;
+		if (aUnePotionDeVie != other.aUnePotionDeVie)
+			return false;
+		if (action == null) {
+			if (other.action != null)
+				return false;
+		} else if (!action.equals(other.action))
+			return false;
+		if (actions == null) {
+			if (other.actions != null)
+				return false;
+		} else if (!actions.equals(other.actions))
+			return false;
+		return true;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Sorcière [aUnePotionDeVie=" + aUnePotionDeVie + ", aUnePotionDeMort=" + aUnePotionDeMort + ", actions="
+				+ actions + ", action=" + action + "]" + super.toString();
+	}
+	
+	
+	
+	
+	
+
+	
+	
 
 	/*@Override
 	public String toString() {

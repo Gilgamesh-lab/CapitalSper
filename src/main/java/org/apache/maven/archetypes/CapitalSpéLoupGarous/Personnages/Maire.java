@@ -24,13 +24,13 @@ public class Maire extends Fonction {
 	
 	public void election() {
 		int nb;
-		if(this.getPersonnage() != null) {
-			this.getPersonnage().setAlliés(new ArrayList<Personnage>(this.getPersonnage().getAlliés().stream().filter(x->x.estEnvie()).collect(Collectors.toList())));//maj alliés
-			if(this.getPersonnage().getAlliés().size() > 1 && this.getPersonnage().estUnVillageois()) {// si au moins un alliés et villageois
+		if(this.getPersonnage() != null) { // choisi par l'ancien maire
+			this.getPersonnage().setAlliés(new ArrayList<Personnage>(this.getPersonnage().getAlliés().stream().filter(x->x.estEnvie()).collect(Collectors.toList())));//maj alliés mort et vivant
+			if(this.getPersonnage().getAlliés().size() > 0 && this.getPersonnage().estUnVillageois()) {// choisi de manière aléatoire
 				nb = (int) (Math.random() * ( this.getPersonnage().getAlliés().size()    - 0 ));
 				entrerEnFonction(this.getPersonnage().getAlliés().get(nb));
 			}
-			else {// sinon choisi par l'ancien maire
+			else {//si un ancien maire villageois à au moins un alliés, il est choisi par ses alliées 
 				nb = this.getPersonnage().elire();
 				entrerEnFonction(this.getVillage().getPersonnageParId(nb));
 			}

@@ -8,7 +8,9 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 public class SorciereTest {
 
@@ -18,8 +20,14 @@ public class SorciereTest {
 	
 	private Sorcière sorcière;
 	
+	@Rule
+	public TestName name = new TestName();
+	
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("");
+		System.out.println("Lancement de la méthode " + name.getMethodName());
+		System.out.println("");
 		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
@@ -29,9 +37,6 @@ public class SorciereTest {
 	
 	@Test
 	public void testPotionDeVie() {// La mort n'est qu'un état temporaire
-		System.out.println();
-		System.out.println("Lancement du test PotionDeVie");
-		System.out.println();
 		this.village = new Village(0,0);
 		SimpleVillageois vi = new SimpleVillageois();
 		LoupGarouSimple lg = new LoupGarouSimple();
@@ -52,9 +57,6 @@ public class SorciereTest {
 	
 	@Test
 	public void testMoiDAbord() {// Ad Vitam Aeternam
-		System.out.println();
-		System.out.println("Lancement du test MoiDAbord");
-		System.out.println();
 		this.village = new Village(20,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
 		lg.ajouterEnnemies(sorcière);
@@ -72,11 +74,9 @@ public class SorciereTest {
 	
 	@Test
 	public void testPotionDeMort() {// Il est temps de payer
-		System.out.println();
-		System.out.println("Lancement du test PotionDeMort");
-		System.out.println();
 		this.village = new Village(20,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
+		lg.ajouterAlliés(sorcière);// pour que la sorcière n'utilise pas sa potion de vie
 		sorcière.ajouterEnnemies(lg);
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(sorcière);
@@ -91,9 +91,6 @@ public class SorciereTest {
 	
 	@Test
 	public void testDeuxPotionsEnUneNuit() {// Je suis toute puisante
-		System.out.println();
-		System.out.println("Lancement du test DeuxPotionsEnUneNuit");
-		System.out.println();
 		this.village = new Village(20,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
 		sorcière.ajouterEnnemies(lg);
@@ -109,18 +106,19 @@ public class SorciereTest {
 		Assert.assertFalse(this.sorcière.isaUnePotionDeMort());
 	}
 	
-	@Test
+	@Test //faire attribut par attribut car pas même addresse 
 	public void testReset() {// La vie n'est qu'une boucle sans fin
-		System.out.println();
-		System.out.println("Lancement du test reset");
-		System.out.println();
+		Sorcière soso = new Sorcière();
+		
 		this.village = new Village(1,1);
 		this.village.ajouterPersonnage(this.sorcière);
+		soso.setId(this.sorcière.getId());
+		sorcière.setAction(3);
 		this.sorcière.agir();
-		Assert.assertNotEquals(new Sorcière(), this.sorcière);
+		Assert.assertNotEquals(soso, this.sorcière);
 		this.sorcière.reset();
-		System.out.println(new Sorcière() + " ," + this.sorcière);
-		Assert.assertEquals(new Sorcière(), this.sorcière);
+		System.out.println(soso + " ," + this.sorcière);
+		Assert.assertEquals(soso, this.sorcière);
 	}
 
 }

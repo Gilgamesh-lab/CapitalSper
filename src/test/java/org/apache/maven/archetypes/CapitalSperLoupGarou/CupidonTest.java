@@ -74,7 +74,7 @@ public class CupidonTest {
 		this.village.ajouterPersonnage(this.cupidon);
 		this.cupidon.flecheDeLAmour();
 		this.village.ajouterPersonnage(new LoupGarouSimple());// iront ils jusqu'a trahir leurs camps?
-		this.village.voteEnnemie();
+		this.village.tribunal();
 		Assert.assertEquals(2, this.village.getNbPersonnageEnVie());
 		Assert.assertTrue(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 		
@@ -82,7 +82,7 @@ public class CupidonTest {
 		this.village.getHabitantsEnVie().stream().filter(x->x.estAmoureux()).forEach(x->x.ajouterAlliés(perso));// et tuer leurs amis?
 		this.village.ajouterPersonnage(perso);
 		Assert.assertFalse(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
-		this.village.voteEnnemie();
+		this.village.tribunal();
 		Assert.assertTrue(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 	}
 
