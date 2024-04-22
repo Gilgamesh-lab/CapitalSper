@@ -18,10 +18,7 @@ public class Meute {
 		this.meute = new ArrayList<LoupGarou>();
 	}
 	
-	public void reset() {
-		this.meute = new ArrayList<LoupGarou>();
-		
-	}
+
 
 	public ArrayList<LoupGarou> getMeute() {
 		return (ArrayList<LoupGarou>) this.meute.stream().filter(x->x.estEnvie()).collect(Collectors.toList());
@@ -48,6 +45,11 @@ public class Meute {
 	
 	public boolean estEnVie() {
 		return this.meute.size() != 0;
+	}
+	
+	public void devorer(Personnage personnage) {
+		personnage.getStatut().setTueur(15);
+		personnage.meurt();
 	}
 	
 	public void attaquerVillage() {

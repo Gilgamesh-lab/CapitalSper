@@ -7,7 +7,9 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 
 public class PartieTest {
@@ -17,23 +19,24 @@ public class PartieTest {
 	private double delta;
 	
 	private Logger log = new Logger();
-	//log.setDetailVoteVillage(true);
 	private Partie partie ;
+	
+	@Rule
+	public TestName name = new TestName();
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		Village village = new Village(0,0);
+		System.out.println("");
+		System.out.println("Lancement de la méthode " + name.getMethodName());
+		System.out.println("");
 		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 	}
 
 	@Test
-	public void startExplorationTest()  {
-		System.out.println();
-		System.out.println("Lancement d'explorationTest");
-		System.out.println();
+	public void injectionTest()  {
 		this.village = new Village(1,2);
 		this.village.voter('0');
 		Assert.assertEquals(0, this.village.getNbVillageois());
@@ -42,7 +45,14 @@ public class PartieTest {
 		Assert.assertEquals(1, this.village.getMeute().getMeute().size());
 	}
 	
-	/*@Test
+	@Test
+	public void simulationTest()  {
+		this.village = new Village(5,1);
+		this.partie = new Partie(village, log);
+		this.partie.simulation(1);
+	}
+	
+	@Test
 	public void explorationTest() {
 		this.village = new Village(3, 1);
 		this.partie = new Partie(village, log);
@@ -76,7 +86,7 @@ public class PartieTest {
 		this.partie = new Partie(village, log);
 		this.partie.exploration();
 		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
-	}*/
+	}
 	
 		
 

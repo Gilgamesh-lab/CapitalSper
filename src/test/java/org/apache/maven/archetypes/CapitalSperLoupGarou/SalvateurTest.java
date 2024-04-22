@@ -6,7 +6,9 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 public class SalvateurTest {
 
@@ -16,8 +18,14 @@ private Village village;
 	
 	private Salvateur salvateur;
 	
+	@Rule
+	public TestName name = new TestName();
+	
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("");
+		System.out.println("Lancement de la méthode " + name.getMethodName());
+		System.out.println("");
 		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
@@ -27,9 +35,6 @@ private Village village;
 	
 	@Test
 	public void testSalvation() {// La mort n'est qu'un état temporaire
-		System.out.println();
-		System.out.println("Lancement du test testSalvation");
-		System.out.println();
 		this.village = new Village(0,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
 		this.village.ajouterPersonnage(this.salvateur);
@@ -68,9 +73,6 @@ private Village village;
 	
 	@Test
 	public void testReset() {// La vie n'est qu'une boucle sans fin
-		System.out.println();
-		System.out.println("Lancement du test reset");
-		System.out.println();
 		this.village = new Village(0,0);
 		this.village.ajouterPersonnage(this.salvateur);
 		this.salvateur.salvater();

@@ -172,7 +172,7 @@ public  class Village  implements Cloneable {
 		//.peek(e -> System.out.println(e + " a été tué la nuit par les loups-garous"))
 	}
 	
-	public void voteEnnemie() {
+	public void tribunal() {
 		Personnage votant;
 		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
@@ -243,7 +243,7 @@ public  class Village  implements Cloneable {
 		Logger.log("");
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
-		personnageCondamner.meurt();
+		this.executer(personnageCondamner);
 	}
 	
 	public Personnage election() {
@@ -260,7 +260,20 @@ public  class Village  implements Cloneable {
 			vote  = votant.elire();
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
-			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
+			try {
+				tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(votant);
+				System.out.println(vote);
+				System.out.println(tableauDeVotes);
+				System.out.println(this.getPersonnageParId(vote));
+				System.out.println(this.getHabitantsEnVie());
+				System.out.println(tableauDeVotes.get(vote));
+				throw e;
+			}
+			
 		}
 		Logger.log("", TypeDeLog.vote);
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
@@ -302,6 +315,11 @@ public  class Village  implements Cloneable {
 			Logger.log("Un loup-garou a été tué lors du vote");
 		}
 		personnageCondamner.meurt();
+	}
+	
+	public void executer(Personnage personnage) {
+		personnage.getStatut().setTueur(22);
+		personnage.meurt();
 	}
 	
 	public void reset() {
