@@ -1,6 +1,7 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
@@ -36,6 +37,9 @@ public abstract class Personnage  implements Cloneable {
 		personnage.meurt();
 	}
 	
+	public abstract void agirPremiereNuit();
+	
+	public abstract void agir();
 	
 	
 	public boolean aUnPouvoirSpecial() {
@@ -135,6 +139,7 @@ public abstract class Personnage  implements Cloneable {
 	public Statut getStatut() {
 		return this.statut;
 	}
+	
 	
 	public void setStatut(Statut statut) {
 		this.statut = statut;

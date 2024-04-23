@@ -31,6 +31,18 @@ public class Voyante extends VillageoisSpecial {
 	public String toString() {
 		return "la voyante";
 	}
+
+	@Override
+	public void agirPremiereNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void agir() {
+		this.sonder();
+		
+	}
 	
 	
 

@@ -68,6 +68,10 @@ public  class Village  implements Cloneable {
 	}
 	
 	
+	public ArrayList<Personnage> getVillage() {
+		return this.village;
+	}
+	
 	
 	public int getNbPersonnageEnVie() {
 		return (int) this.village.stream().filter(x->x.estEnvie()).count();

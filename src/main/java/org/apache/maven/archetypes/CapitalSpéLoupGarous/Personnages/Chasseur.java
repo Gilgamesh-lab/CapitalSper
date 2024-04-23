@@ -31,4 +31,16 @@ public class Chasseur extends VillageoisSpecial {
 		return "le chasseur";
 	}
 
+	@Override
+	public void agirPremiereNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void agir() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

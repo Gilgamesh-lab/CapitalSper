@@ -1,9 +1,14 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 
+
+
+import java.util.Comparator;
+
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
@@ -44,6 +49,9 @@ public class Main {
 		village.ajouterPersonnage(montreurDOurs);*/
 		village.onMaire();
 		
+		Comparator<Personnage> comparator = Comparator.comparing(obj -> obj.getId());
+		
+		village.getVillage().stream().map(x->x.getIdDeRole()).distinct().sorted().forEach(System.out::println);
 		Partie partie = new Partie(village, logger);
 		
 		/*

@@ -29,6 +29,20 @@ public class Cupidon extends VillageoisSpecial {
 	public String toString() {
 		return "Cupidon";
 	}
+
+
+	@Override
+	public void agirPremiereNuit() {
+		this.flecheDeLAmour();
+		
+	}
+
+
+	@Override
+	public void agir() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

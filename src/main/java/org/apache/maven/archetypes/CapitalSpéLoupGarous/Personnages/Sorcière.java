@@ -158,4 +158,11 @@ public class Sorcière extends VillageoisSpecial{
 		return "la sorcière";
 	}
 
+
+	@Override
+	public void agirPremiereNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

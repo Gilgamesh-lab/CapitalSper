@@ -7,6 +7,18 @@ public class SimpleVillageois extends Villageois {
 		super(IDROLE, false);
 	}
 
+	@Override
+	public void agirPremiereNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void agir() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 	/*@Override

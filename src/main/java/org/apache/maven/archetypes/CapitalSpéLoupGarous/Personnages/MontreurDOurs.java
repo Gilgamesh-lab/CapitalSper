@@ -138,4 +138,16 @@ public class MontreurDOurs extends VillageoisSpecial {
 		return "le montreur d'ours";
 	}
 
+	@Override
+	public void agirPremiereNuit() {
+		this.setVoisins();
+		
+	}
+
+	@Override
+	public void agir() {
+		this.traquerLoupGarous();
+		
+	}
+
 }

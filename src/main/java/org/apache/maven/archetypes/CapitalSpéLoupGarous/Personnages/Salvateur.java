@@ -77,6 +77,18 @@ public class Salvateur extends VillageoisSpecial {
 		Salvateur other = (Salvateur) obj;
 		return Objects.equals(dernierPersonnageProtéger, other.dernierPersonnageProtéger);
 	}
+
+	@Override
+	public void agirPremiereNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void agir() {
+		this.salvater();
+		
+	}
 	
 	
 

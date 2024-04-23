@@ -34,7 +34,6 @@ public class Référentiel {
 	
 	public Personnage conversionDeIdRoleVersPersonnage(int idRole) {
 		Personnage personnage = référentiel.get(idRole);
-		System.out.println(idRole + " , "+ personnage);
 		personnage.reset();
 		return personnage;
 	}

@@ -24,6 +24,20 @@ public class LoupGarou extends Personnage {
 	}
 
 
+	@Override
+	public void agirPremiereNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void agir() {
+		this.meute.attaquerVillage();
+		
+	}
+
+
 
 
 }
