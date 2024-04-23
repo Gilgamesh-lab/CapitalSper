@@ -20,7 +20,6 @@ public class LoupGarou extends Personnage {
 	
 	public void reset() {
 		super.reset();
-		this.meute.enrolerUnLoupGarou(this);
 	}
 
 

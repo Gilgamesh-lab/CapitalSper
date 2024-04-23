@@ -33,6 +33,7 @@ public class PartieTest {
 		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
+		this.log.setOnAfficherLogDetailsPourcentage();
 	}
 
 	@Test

@@ -22,13 +22,10 @@ public class Cupidon extends VillageoisSpecial {
 		Personnage personnageAmoureux2 = this.getVillage().getHabitantsEnVie().get(nbPersonnageAmoureux2);
 		personnageAmoureux.tomberAmoureux(personnageAmoureux2);
 		personnageAmoureux2.tomberAmoureux(personnageAmoureux);
-		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de Cupidon", TypeDeLog.role);
+		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de " + this, TypeDeLog.role);
 	}
 
-	@Override
-	public String toString() {
-		return "Cupidon";
-	}
+	
 
 
 	@Override
@@ -48,6 +45,17 @@ public class Cupidon extends VillageoisSpecial {
 	@Override
 	public void agirAprèsNuit() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public String toString() {
+		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
+			return "Cupidon" + this.getId();
+		}
+		else {
+			return "Cupidon";
+		}
 		
 	}
 	

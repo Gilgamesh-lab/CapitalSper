@@ -53,6 +53,9 @@ public class Meute {
 	}
 	
 	public void attaquerVillage() {
+		if (this.village.getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute())) {// pour mettre plusieur spé identique
+			return;
+		}
 		Logger.log("");
 		LoupGarou votant;
 		Map<Integer, Integer> tableauDeVotes = new HashMap<>();

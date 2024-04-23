@@ -48,7 +48,7 @@ public class Main {
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);
 		village.onMaire();
-		
+		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
 		Partie partie = new Partie(village, logger);
 		
 		/*

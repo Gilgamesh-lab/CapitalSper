@@ -14,23 +14,17 @@ public class Voyante extends VillageoisSpecial {
 	public void sonder() {
 		 Personnage persoASonder = super.voteCibleAction();
 		 if(persoASonder.estUnVillageois()) {
-			 Logger.log("La voyante a décidé de sonder " + persoASonder + " qui s'est révélé être innocent", TypeDeLog.role);
+			 Logger.log(this + " a décidé de sonder " + persoASonder + " qui s'est révélé être innocent", TypeDeLog.role);
 			 this.ajouterAlliés(persoASonder);
 			 
 		 }
 		 else {
-			 Logger.log("La voyante a décidé de sonder " + persoASonder + " qui s'est révélé être un ennemie du village", TypeDeLog.role);
+			 Logger.log(this + " a décidé de sonder " + persoASonder + " qui s'est révélé être un ennemie du village", TypeDeLog.role);
 			 this.ajouterEnnemies(persoASonder);
 			 
 		 }
 	}
 	
-	
-	
-	@Override
-	public String toString() {
-		return "la voyante";
-	}
 
 	@Override
 	public void agirPremiereNuit() {
@@ -50,6 +44,17 @@ public class Voyante extends VillageoisSpecial {
 		
 	}
 	
+	
+	@Override
+	public String toString() {
+		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+			return "la voyante" + this.getId();
+		}
+		else {
+			return "la voyante";
+		}
+		
+	}
 	
 
 }

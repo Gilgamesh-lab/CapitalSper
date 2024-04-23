@@ -31,7 +31,7 @@ public class Sorcière extends VillageoisSpecial{
 	public void agir() {
 		if((this.getStatut().aEteAttaquerParLaMeute() && this.aUnePotionDeVie)) {
 			this.potionDeVie(this);
-			Logger.log("La sorcière s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
+			Logger.log(" s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
 		
 		if(this.actions.size() == 1) {
@@ -46,7 +46,7 @@ public class Sorcière extends VillageoisSpecial{
 		if((this.aUnePotionDeVie && ((this.action == 0 || this.action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().aEteAttaquerParLaMeute()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findAny().get();
 			this.potionDeVie(personnageASauver);
-			Logger.log("La sorcière a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
+			Logger.log(this + " a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
 		if ((this.action == 1 || this.action == 3) && this.aUnePotionDeMort) {
 			this.potionDeMort(this.getVillage().getPersonnageParId(this.voter()));
@@ -77,7 +77,7 @@ public class Sorcière extends VillageoisSpecial{
 		this.aUnePotionDeMort = false;
 		String messageMort;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {
-			messageMort = "La sorcière a tué " + personnageATuer +  " avec sa potion de mort";
+			messageMort = this + " a tué " + personnageATuer +  " avec sa potion de mort";
 		}
 		else {
 			messageMort = personnageATuer +  " a été tué durant la nuit";
@@ -154,12 +154,6 @@ public class Sorcière extends VillageoisSpecial{
 
 
 	@Override
-	public String toString() {
-		return "la sorcière";
-	}
-
-
-	@Override
 	public void agirPremiereNuit() {
 		// TODO Auto-generated method stub
 		
@@ -169,6 +163,17 @@ public class Sorcière extends VillageoisSpecial{
 	@Override
 	public void agirAprèsNuit() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public String toString() {
+		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+			return "la sorcière" + this.getId();
+		}
+		else {
+			return "la sorcière";
+		}
 		
 	}
 

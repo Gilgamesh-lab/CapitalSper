@@ -16,7 +16,7 @@ public class Chasseur extends VillageoisSpecial {
 		if(this.getVillage().getNbLoupGarou() > 0) {
 			Personnage cible = this.getVillage().getPersonnageParId(this.voter());
 			this.resetListeDeVote();
-			Logger.log("Dans son dernier souffle le chasseur a décidé d'emporter avec lui " + cible);
+			Logger.log("Dans son dernier souffle " + this + " a décidé d'emporter avec lui " + cible);
 			this.tuer(cible);
 		}
 		super.meurt();
@@ -24,12 +24,6 @@ public class Chasseur extends VillageoisSpecial {
 	}
 	
 	
-	
-
-	@Override
-	public String toString() {
-		return "le chasseur";
-	}
 
 	@Override
 	public void agirPremiereNuit() {
@@ -46,6 +40,17 @@ public class Chasseur extends VillageoisSpecial {
 	@Override
 	public void agirAprèsNuit() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public String toString() {
+		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+			return "le chasseur" + this.getId();
+		}
+		else {
+			return "le chasseur";
+		}
 		
 	}
 

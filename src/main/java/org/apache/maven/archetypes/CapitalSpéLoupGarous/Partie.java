@@ -29,6 +29,7 @@ public class Partie {
 	
 	public Partie(Village village) {
 		this.savegardeVillage = village;
+		this.village = village;
 		this.log = new Logger();
 		this.nbTour = 0;
 		this.référentiel = new Référentiel();
@@ -36,6 +37,7 @@ public class Partie {
 	
 	public Partie(Village village, Logger log) {
 		this.savegardeVillage = village;
+		this.village = village;
 		this.log = log;
 		this.nbTour = 0;
 		this.référentiel = new Référentiel();
@@ -249,9 +251,6 @@ public class Partie {
 	
 	private void init() {
 		this.nbTour = 0;
-		/*this.village = this.savegardeVillage;
-		this.village.reset();
-		this.village.getMeute().reset();*/
 		
 		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() != LoupGarouSimple.IDROLE)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);

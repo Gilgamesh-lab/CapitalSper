@@ -67,6 +67,8 @@ public class MontreurDOurs extends VillageoisSpecial {
 			ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this && x != this.voisinDeDroite).collect(Collectors.toList()));
 			int nbVoisinDeGauche = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeGauche = liste.get(nbVoisinDeGauche);
+			
+			
 			nouveauVoisinAGauche = true;
 		}
 		
@@ -132,11 +134,6 @@ public class MontreurDOurs extends VillageoisSpecial {
 		this.voisinDeGauche = null;
 		this.aTrouverUnLoup = null;
 	}
-	
-	@Override
-	public String toString() {
-		return "le montreur d'ours";
-	}
 
 	@Override
 	public void agirPremiereNuit() {
@@ -154,6 +151,17 @@ public class MontreurDOurs extends VillageoisSpecial {
 		this.traquerLoupGarous();
 		if(this.aTrouverUnLoup()) {
 			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins() );
+		}
+		
+	}
+	
+	@Override
+	public String toString() {
+		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+			return "le montreur d'ours" + this.getId();
+		}
+		else {
+			return "le montreur d'ours";
 		}
 		
 	}

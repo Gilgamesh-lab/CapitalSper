@@ -51,11 +51,6 @@ public class Salvateur extends VillageoisSpecial {
 		this.dernierPersonnageProtéger = null;
 	}
 	
-	@Override
-	public String toString() {
-		return "le salvateur";
-	}
-	
 	
 	
 	@Override
@@ -93,6 +88,17 @@ public class Salvateur extends VillageoisSpecial {
 	@Override
 	public void agirAprèsNuit() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public String toString() {
+		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+			return "le salvateur" + this.getId();
+		}
+		else {
+			return "le salvateur";
+		}
 		
 	}
 	
