@@ -41,6 +41,8 @@ public abstract class Personnage  implements Cloneable {
 	
 	public abstract void agir();
 	
+	public abstract void agirAprèsNuit();
+	
 	
 	public boolean aUnPouvoirSpecial() {
 		return aUnPouvoirSpecial;

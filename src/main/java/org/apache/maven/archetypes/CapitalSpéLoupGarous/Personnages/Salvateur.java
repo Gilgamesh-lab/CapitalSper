@@ -89,6 +89,12 @@ public class Salvateur extends VillageoisSpecial {
 		this.salvater();
 		
 	}
+
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

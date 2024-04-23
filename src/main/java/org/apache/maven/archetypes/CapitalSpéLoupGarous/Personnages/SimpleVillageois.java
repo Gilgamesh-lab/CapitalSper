@@ -19,6 +19,12 @@ public class SimpleVillageois extends Villageois {
 		
 	}
 
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 	/*@Override

@@ -43,6 +43,12 @@ public class Voyante extends VillageoisSpecial {
 		this.sonder();
 		
 	}
+
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

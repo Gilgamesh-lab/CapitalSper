@@ -146,7 +146,15 @@ public class MontreurDOurs extends VillageoisSpecial {
 
 	@Override
 	public void agir() {
+		
+	}
+
+	@Override
+	public void agirAprèsNuit() {
 		this.traquerLoupGarous();
+		if(this.aTrouverUnLoup()) {
+			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins() );
+		}
 		
 	}
 

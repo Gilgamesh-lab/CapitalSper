@@ -165,4 +165,11 @@ public class Sorcière extends VillageoisSpecial{
 		
 	}
 
+
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

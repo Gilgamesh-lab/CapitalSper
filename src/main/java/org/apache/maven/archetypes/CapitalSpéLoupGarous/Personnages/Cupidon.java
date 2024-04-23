@@ -43,6 +43,13 @@ public class Cupidon extends VillageoisSpecial {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

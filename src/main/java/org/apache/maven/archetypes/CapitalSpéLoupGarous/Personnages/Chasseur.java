@@ -43,4 +43,10 @@ public class Chasseur extends VillageoisSpecial {
 		
 	}
 
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

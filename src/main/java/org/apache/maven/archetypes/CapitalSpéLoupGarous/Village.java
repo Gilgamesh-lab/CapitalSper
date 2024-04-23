@@ -118,20 +118,22 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void premièreNuit() {
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Cupidon.IDROLE)) {
+		this.getHabitantsEnVie().stream().map(x->x.getIdDeRole()).distinct().sorted().map(x->this.getPersonnageParIdRole(x)).forEach(x->x.agirPremiereNuit());
+		/*if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Cupidon.IDROLE)) {
 			Cupidon cupidon = (Cupidon) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Cupidon.IDROLE).findFirst().get();
 			cupidon.flecheDeLAmour();
 		}
 		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == MontreurDOurs.IDROLE)) {
 			MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == MontreurDOurs.IDROLE).findFirst().get();
 			montreurDOurs.setVoisins();
-		}
+		}*/
 		this.nuit();
 	}
 	
 	public void nuit() {
 		int nbHabitantAvant = this.getNbPersonnageEnVie();
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Voyante.IDROLE)) {
+		this.getHabitantsEnVie().stream().map(x->x.getIdDeRole()).distinct().sorted().map(x->this.getPersonnageParIdRole(x)).forEach(x->x.agir());
+		/*if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Voyante.IDROLE)) {
 			Voyante voyante = (Voyante) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Voyante.IDROLE).findFirst().get();
 			voyante.sonder();
 		}
@@ -143,7 +145,7 @@ public  class Village  implements Cloneable {
 		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Sorcière.IDROLE)) {
 			Sorcière sorcière = (Sorcière) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Sorcière.IDROLE).findFirst().get();
 			sorcière.agir();
-		}
+		}*/
 		this.bilanTuerLaNuit();
 		
 		this.getHabitantsEnVie().stream().filter(x->x.getStatut().isProtéger()).forEach(x->x.getStatut().setProtéger(false));
@@ -152,7 +154,9 @@ public  class Village  implements Cloneable {
 			Logger.log("Personne n'a été tué durant la nuit ");
 		}
 		
-		if(this.getNbPersonnageEnVie() >= 3) {
+		this.getHabitantsEnVie().stream().map(x->x.getIdDeRole()).distinct().sorted().map(x->this.getPersonnageParIdRole(x)).forEach(x->x.agirAprèsNuit());
+		
+		/*if(this.getNbPersonnageEnVie() >= 3) {
 			if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == MontreurDOurs.IDROLE)) {
 				MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == MontreurDOurs.IDROLE).findFirst().get();
 				montreurDOurs.traquerLoupGarous();
@@ -160,7 +164,7 @@ public  class Village  implements Cloneable {
 					Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + montreurDOurs.getVoisins() );
 				}
 			}
-		}
+		}*/
 		
 		
 	}

@@ -38,6 +38,13 @@ public class LoupGarou extends Personnage {
 	}
 
 
+	@Override
+	public void agirAprèsNuit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 }

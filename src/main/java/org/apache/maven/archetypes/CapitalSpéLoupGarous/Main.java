@@ -43,15 +43,12 @@ public class Main {
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
 		
-		/*Salvateur salvateur = new Salvateur();
+		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);*/
+		village.ajouterPersonnage(montreurDOurs);
 		village.onMaire();
 		
-		Comparator<Personnage> comparator = Comparator.comparing(obj -> obj.getId());
-		
-		village.getVillage().stream().map(x->x.getIdDeRole()).distinct().sorted().forEach(System.out::println);
 		Partie partie = new Partie(village, logger);
 		
 		/*
