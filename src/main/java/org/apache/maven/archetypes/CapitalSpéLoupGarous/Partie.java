@@ -3,6 +3,9 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 
@@ -51,11 +54,11 @@ public class Partie {
 	}
 	
 	public boolean conditionVictoireLoupGarous() {
-		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 );
+		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Chasseur.IDROLE) && this.village.getNbVillageois() == 1 );
 	}
 	
 	public boolean conditionEgaliterChasseur() {
-		return this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 5) && this.village.getNbVillageois() == 1 ;
+		return this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Chasseur.IDROLE) && this.village.getNbVillageois() == 1 ;
 	}
 	
 	private void startSimulation () {
@@ -250,7 +253,7 @@ public class Partie {
 		this.village.reset();
 		this.village.getMeute().reset();*/
 		
-		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() > 1)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
+		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() != LoupGarouSimple.IDROLE)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(this.savegardeVillage);
 			this.village = new Village(this.savegardeVillage.getNbVillageois() - personnages.size(), this.savegardeVillage.getNbLoupGarou(), personnages);
 		}

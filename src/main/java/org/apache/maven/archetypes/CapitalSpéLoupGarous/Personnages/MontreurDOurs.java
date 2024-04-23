@@ -10,9 +10,10 @@ public class MontreurDOurs extends VillageoisSpecial {
 	private Personnage voisinDeDroite;
 	private Personnage voisinDeGauche;
 	private Boolean aTrouverUnLoup;
+	public final static int IDROLE = 11;
 
 	public MontreurDOurs() {
-		super(9, Arrays.asList(TypeDePouvoir.Voyance));
+		super(IDROLE, Arrays.asList(TypeDePouvoir.Voyance));
 		this.voisinDeDroite = null;
 		this.voisinDeGauche = null;
 		this.aTrouverUnLoup = null;

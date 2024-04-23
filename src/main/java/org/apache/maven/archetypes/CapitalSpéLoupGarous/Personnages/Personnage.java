@@ -32,7 +32,7 @@ public abstract class Personnage  implements Cloneable {
 	}
 	
 	public void tuer(Personnage personnage) {
-		personnage.getStatut().setTueur(this.getId());
+		personnage.getStatut().setTueur(this.getIdDeRole());
 		personnage.meurt();
 	}
 	
@@ -44,6 +44,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void reset() {
 		this.statut = new Statut(this);
+		this.listeDeVote.clear();
 		this.listeEnnemie.clear();
 		this.alliés.clear();
 		this.nbVote = 1;
@@ -143,6 +144,7 @@ public abstract class Personnage  implements Cloneable {
 		this.statut.estMort();
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
+			this.statut.getAmoureux().getStatut().setTueur(Cupidon.IDROLE);
 			this.statut.getAmoureux().meurt();
 		}
 		if(this.getFonction() != null && this.getVillage().getNbPersonnageEnVie() > 2) {

@@ -26,7 +26,7 @@ public class Main {
 		//log.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		logger.setOnAfficherLogStats();
-		logger.setOnAfficherLogDetailsPourcentage();
+		//logger.setOnAfficherLogDetailsPourcentage();
 		logger.setOnAfficherLogDetailsRoleAction();
 		
 		Cupidon cupidon = new Cupidon();

@@ -5,9 +5,10 @@ import java.util.Arrays;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
 public class Cupidon extends VillageoisSpecial {
-
+	public final static int IDROLE = 3;
+	
 	public Cupidon() {
-		super(4, Arrays.asList(TypeDePouvoir.Mort));
+		super(IDROLE, Arrays.asList(TypeDePouvoir.Mort));
 	}
 
 	

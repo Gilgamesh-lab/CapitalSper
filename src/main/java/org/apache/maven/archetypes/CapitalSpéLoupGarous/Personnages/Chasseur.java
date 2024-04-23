@@ -5,10 +5,10 @@ import java.util.Arrays;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
 public class Chasseur extends VillageoisSpecial {
-	
+	public final static int IDROLE = 22 ;
 
 	public Chasseur() {
-		super(5, Arrays.asList(TypeDePouvoir.Mort) );
+		super(IDROLE, Arrays.asList(TypeDePouvoir.Mort) );
 	}
 	
 	@Override

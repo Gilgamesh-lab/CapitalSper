@@ -5,10 +5,10 @@ import java.util.Arrays;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
 public class Voyante extends VillageoisSpecial {
-	
+	public final static int IDROLE = 4;
 
 	public Voyante() {
-		super(8, Arrays.asList(TypeDePouvoir.Voyance));
+		super(IDROLE, Arrays.asList(TypeDePouvoir.Voyance));
 	}
 	
 	public void sonder() {

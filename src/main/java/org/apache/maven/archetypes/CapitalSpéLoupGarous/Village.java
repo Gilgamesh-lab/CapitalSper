@@ -104,18 +104,22 @@ public  class Village  implements Cloneable {
 		return this.village.stream().filter(x->x.getId() == id).findFirst().get();
 	}
 	
+	public Personnage getPersonnageParIdRole(int idRole) {
+		return this.village.stream().filter(x->x.getIdDeRole() == idRole).findFirst().get();
+	}
+	
 	
 	public Personnage getPersonnage(int nb) {
 		return this.getHabitantsEnVie().get(nb);
 	}
 	
 	public void premièreNuit() {
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
-			Cupidon cupidon = (Cupidon) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 4).findFirst().get();
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Cupidon.IDROLE)) {
+			Cupidon cupidon = (Cupidon) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Cupidon.IDROLE).findFirst().get();
 			cupidon.flecheDeLAmour();
 		}
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
-			MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == MontreurDOurs.IDROLE)) {
+			MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == MontreurDOurs.IDROLE).findFirst().get();
 			montreurDOurs.setVoisins();
 		}
 		this.nuit();
@@ -123,17 +127,17 @@ public  class Village  implements Cloneable {
 	
 	public void nuit() {
 		int nbHabitantAvant = this.getNbPersonnageEnVie();
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 8)) {
-			Voyante voyante = (Voyante) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 8).findFirst().get();
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Voyante.IDROLE)) {
+			Voyante voyante = (Voyante) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Voyante.IDROLE).findFirst().get();
 			voyante.sonder();
 		}
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 7)) {
-			Salvateur salvateur = (Salvateur) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 7).findFirst().get();
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Salvateur.IDROLE)) {
+			Salvateur salvateur = (Salvateur) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Salvateur.IDROLE).findFirst().get();
 			salvateur.salvater();
 		}
 		this.meute.attaquerVillage();
-		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 6)) {
-			Sorcière sorcière = (Sorcière) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 6).findFirst().get();
+		if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Sorcière.IDROLE)) {
+			Sorcière sorcière = (Sorcière) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == Sorcière.IDROLE).findFirst().get();
 			sorcière.agir();
 		}
 		this.bilanTuerLaNuit();
@@ -145,8 +149,8 @@ public  class Village  implements Cloneable {
 		}
 		
 		if(this.getNbPersonnageEnVie() >= 3) {
-			if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 9)) {
-				MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == 9).findFirst().get();
+			if(this.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == MontreurDOurs.IDROLE)) {
+				MontreurDOurs montreurDOurs = (MontreurDOurs) this.getHabitantsEnVie().stream().filter(x -> x.getIdDeRole() == MontreurDOurs.IDROLE).findFirst().get();
 				montreurDOurs.traquerLoupGarous();
 				if(montreurDOurs.aTrouverUnLoup()) {
 					Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + montreurDOurs.getVoisins() );
@@ -318,7 +322,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void executer(Personnage personnage) {
-		personnage.getStatut().setTueur(22);
+		personnage.getStatut().setTueur(SimpleVillageois.IDROLE);
 		personnage.meurt();
 	}
 	

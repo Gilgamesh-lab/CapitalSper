@@ -48,7 +48,7 @@ public class Meute {
 	}
 	
 	public void devorer(Personnage personnage) {
-		personnage.getStatut().setTueur(15);
+		personnage.getStatut().setTueur(LoupGarouSimple.IDROLE);
 		personnage.meurt();
 	}
 	

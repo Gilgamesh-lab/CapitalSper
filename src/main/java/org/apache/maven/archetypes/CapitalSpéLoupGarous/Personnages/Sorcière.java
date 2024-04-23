@@ -11,9 +11,10 @@ public class Sorcière extends VillageoisSpecial{
 	private boolean aUnePotionDeMort;
 	private ArrayList<Integer> actions;
 	private Integer action;
+	public final static int IDROLE = 19;
 
 	public Sorcière() {
-		super(6, Arrays.asList(TypeDePouvoir.Mort,TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
+		super(IDROLE, Arrays.asList(TypeDePouvoir.Mort,TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
 		this.aUnePotionDeVie = true;
 		this.aUnePotionDeMort = true;
 		this.action = null;
@@ -154,21 +155,7 @@ public class Sorcière extends VillageoisSpecial{
 
 	@Override
 	public String toString() {
-		return "Sorcière [aUnePotionDeVie=" + aUnePotionDeVie + ", aUnePotionDeMort=" + aUnePotionDeMort + ", actions="
-				+ actions + ", action=" + action + "]" + super.toString();
-	}
-	
-	
-	
-	
-	
-
-	
-	
-
-	/*@Override
-	public String toString() {
 		return "la sorcière";
-	}*/
+	}
 
 }

@@ -8,9 +8,10 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
 public class Salvateur extends VillageoisSpecial {
 	private Personnage dernierPersonnageProtéger;
+	public final static int IDROLE = 14;
 
 	public Salvateur() {
-		super(7, Arrays.asList(TypeDePouvoir.Vie));
+		super(IDROLE, Arrays.asList(TypeDePouvoir.Vie));
 		this.dernierPersonnageProtéger = null;
 	}
 	

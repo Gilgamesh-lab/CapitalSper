@@ -22,18 +22,19 @@ public class Référentiel {
 	}
 	
 	private void build() {
-		this.référentiel.put(0, new SimpleVillageois());
-		this.référentiel.put(1, new LoupGarouSimple());
-		this.référentiel.put(4, new Cupidon());
-		this.référentiel.put(5, new Chasseur());
-		this.référentiel.put(6, new Sorcière());
-		this.référentiel.put(7, new Salvateur());
-		this.référentiel.put(8, new Voyante());
-		this.référentiel.put(9, new MontreurDOurs());
+		this.référentiel.put(SimpleVillageois.IDROLE, new SimpleVillageois());// 21
+		this.référentiel.put(LoupGarouSimple.IDROLE, new LoupGarouSimple());// 15
+		this.référentiel.put(Cupidon.IDROLE, new Cupidon());// 3
+		this.référentiel.put(Chasseur.IDROLE, new Chasseur());// 22
+		this.référentiel.put(Sorcière.IDROLE, new Sorcière());// 19
+		this.référentiel.put(Salvateur.IDROLE, new Salvateur());// 14
+		this.référentiel.put(Voyante.IDROLE, new Voyante());// 4
+		this.référentiel.put(MontreurDOurs.IDROLE, new MontreurDOurs());// 11
 	}
 	
 	public Personnage conversionDeIdRoleVersPersonnage(int idRole) {
 		Personnage personnage = référentiel.get(idRole);
+		System.out.println(idRole + " , "+ personnage);
 		personnage.reset();
 		return personnage;
 	}
@@ -41,7 +42,7 @@ public class Référentiel {
 	public ArrayList<Personnage> conversionDeVillageVersListePersonnagesSeulementSpecial(Village village) {
 		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
 		for(int i = 0; i < village.getNbPersonnageEnVie() ; i++) {
-			if(village.getHabitantsEnVie().get(i).getIdDeRole() > 1) {
+			if(village.getHabitantsEnVie().get(i).getIdDeRole() != LoupGarouSimple.IDROLE && village.getHabitantsEnVie().get(i).getIdDeRole() != SimpleVillageois.IDROLE ) {
 				personnages.add(conversionDeIdRoleVersPersonnage(village.getHabitantsEnVie().get(i).getIdDeRole()));
 			}
 		}
