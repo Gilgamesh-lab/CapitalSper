@@ -2,7 +2,6 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
@@ -168,7 +167,7 @@ public class Sorcière extends VillageoisSpecial{
 	
 	@Override
 	public String toString() {
-		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
 			return "la sorcière" + this.getId();
 		}
 		else {

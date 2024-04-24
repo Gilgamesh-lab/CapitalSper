@@ -47,7 +47,7 @@ public class Voyante extends VillageoisSpecial {
 	
 	@Override
 	public String toString() {
-		if(this.getVillage() != null && this.getVillage().estPresent(this.IDROLE)) {
+		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
 			return "la voyante" + this.getId();
 		}
 		else {

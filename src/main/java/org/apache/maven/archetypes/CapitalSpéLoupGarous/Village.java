@@ -7,18 +7,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public  class Village  implements Cloneable {
 
@@ -162,6 +158,7 @@ public  class Village  implements Cloneable {
 		
 		this.getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAEteAttaqueParLaMeute(false);});
 		Logger.log("", TypeDeLog.vote);
+		this.getMeute().setEstRassasier(false);
 	}
 	
 	public void tribunal() {

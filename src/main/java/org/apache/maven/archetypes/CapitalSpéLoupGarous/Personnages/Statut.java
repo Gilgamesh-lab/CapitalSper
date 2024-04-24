@@ -1,6 +1,5 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
-import java.util.ArrayList;
 
 public class Statut {
 	private Personnage personnage;

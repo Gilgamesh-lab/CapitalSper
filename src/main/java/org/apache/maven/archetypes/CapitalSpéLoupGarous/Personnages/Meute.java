@@ -13,9 +13,11 @@ public class Meute {
 	
 	private ArrayList<LoupGarou> meute;
 	private Village village;
+	private Boolean estRassasier;
 	
 	public Meute() {
 		this.meute = new ArrayList<LoupGarou>();
+		this.estRassasier = false;
 	}
 	
 
@@ -53,7 +55,7 @@ public class Meute {
 	}
 	
 	public void attaquerVillage() {
-		if (this.village.getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute())) {// pour mettre plusieur spé identique
+		if (this.estRassasier) {// pour mettre plusieur spé identique
 			return;
 		}
 		Logger.log("");
@@ -103,7 +105,13 @@ public class Meute {
 		else {
 			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer, TypeDeLog.role);
 		}
-		
+		this.estRassasier = true;
 	}
+
+	public void setEstRassasier(Boolean estRassasier) {
+		this.estRassasier = estRassasier;
+	}
+	
+	
 
 }
