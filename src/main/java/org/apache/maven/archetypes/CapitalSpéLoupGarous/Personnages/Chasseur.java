@@ -18,6 +18,7 @@ public class Chasseur extends VillageoisSpecial {
 	
 	@Override
 	public void meurt() {
+		super.meurt();
 		if(this.getVillage().getNbLoupGarou() > 0) {
 			Personnage cible = this.getVillage().getPersonnageParId(this.voter());
 			this.resetListeDeVote();
@@ -25,7 +26,7 @@ public class Chasseur extends VillageoisSpecial {
 			this.tuer(cible);
 			this.perdrePouvoir(TypeDePouvoir.Mort);
 		}
-		super.meurt();
+		
 		
 		
 	}

@@ -23,11 +23,15 @@ public  class Village  implements Cloneable {
 	private ArrayList<Personnage> village;
 	private  Meute meute ;
 	private Maire maire = null;
+	private ArrayList<Personnage> persoDevoilerCommeEnnemieParMontreursDOurs;
+	private ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs;
 	
 	public Village() {
 		this.village = new ArrayList<Personnage>();
 		this.meute = new Meute();
 		this.meute.setVillage(this);
+		this.persoDevoilerCommeAlliéeParMontreursDOurs = new ArrayList<Personnage>();
+		this.persoDevoilerCommeEnnemieParMontreursDOurs = new ArrayList<Personnage>();
 	}
 	
 	public Village(int nbVillageois, int nbLoupGarous) {
@@ -241,6 +245,12 @@ public  class Village  implements Cloneable {
 		}
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
+			try {
+				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			}
+			catch (Exception e) {
+				System.out.println(idPersonneAyantPlusDeVotes);
+			}
 			personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 			Logger.log("", TypeDeLog.vote);
 			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
@@ -322,6 +332,26 @@ public  class Village  implements Cloneable {
 		personnageCondamner.meurt();
 	}
 	
+	
+	
+	public ArrayList<Personnage> getPersoDevoilerCommeEnnemieParMontreursDOurs() {
+		return persoDevoilerCommeEnnemieParMontreursDOurs;
+	}
+
+	public void setPersoDevoilerCommeEnnemieParMontreursDOurs(
+			ArrayList<Personnage> persoDevoilerCommeEnnemieParMontreursDOurs) {
+		this.persoDevoilerCommeEnnemieParMontreursDOurs = persoDevoilerCommeEnnemieParMontreursDOurs;
+	}
+
+	public ArrayList<Personnage> getPersoDevoilerCommeAlliéeParMontreursDOurs() {
+		return persoDevoilerCommeAlliéeParMontreursDOurs;
+	}
+
+	public void setPersoDevoilerCommeAlliéeParMontreursDOurs(
+			ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs) {
+		this.persoDevoilerCommeAlliéeParMontreursDOurs = persoDevoilerCommeAlliéeParMontreursDOurs;
+	}
+
 	public void executer(Personnage personnage) {
 		personnage.getStatut().setTueur(SimpleVillageois.IDROLE);
 		personnage.meurt();

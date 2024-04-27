@@ -148,6 +148,17 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void meurt() {
 		this.statut.estMort();
+		if(this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().contains(this)) {
+			this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().remove(this);
+			if(!this.estUnVillageois()) {
+				if(this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().size() != 0) {
+					Logger.log("Vue que "+ this + " était un loup-garous, les soupçons sur " + this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().get(0) +  " suite aux révélations du Montreurs d' Ours sont lévées");
+				}
+				this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().clear();
+			}
+			
+		}
+		
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().getStatut().setTueur(Cupidon.IDROLE);
@@ -179,9 +190,14 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();
 			}
 		}
+		if(!this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty() &&  this.estUnVillageois) {
+			nb = (int) (Math.random() * ( this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().size()    - 0 ));
+			return this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().get(nb).getId();
+		}
+			
 		if(this.getListeDeVote().size() == 0) {// on remplit la liste des personnes présentes dans le village
 			for(int i = 0; i < this.getVillage().getNbPersonnageEnVie(); i++) {
-				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i))){
+				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i)) && (!this.getVillage().getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.getVillage().getHabitantsEnVie().get(i)) && this.estUnVillageois)){
 					this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
 				}
 				

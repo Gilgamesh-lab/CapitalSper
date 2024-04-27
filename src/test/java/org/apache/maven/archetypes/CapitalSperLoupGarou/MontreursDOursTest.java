@@ -5,6 +5,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.junit.Assert;
 import org.junit.Before;
@@ -39,7 +40,8 @@ public class MontreursDOursTest {
 	public void testTraque() {// Je t'ai trouvé
 		this.village = new Village(1, 1);
 		this.village.ajouterPersonnage(this.montreurDOurs);
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		Assert.assertTrue(this.montreurDOurs.aTrouverUnLoup());
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().size() == 2);
@@ -53,7 +55,8 @@ public class MontreursDOursTest {
 		SimpleVillageois sv = new SimpleVillageois();
 		this.village.ajouterPersonnage(this.montreurDOurs);
 		this.village.ajouterPersonnage(sv);
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(2) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		Assert.assertFalse(this.montreurDOurs.aTrouverUnLoup());
 		LoupGarouSimple lg = new LoupGarouSimple();
@@ -74,7 +77,8 @@ public class MontreursDOursTest {
 		SimpleVillageois sv = new SimpleVillageois();
 		this.village.ajouterPersonnage(this.montreurDOurs);
 		this.village.ajouterPersonnage(sv);
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		
 		
@@ -95,22 +99,26 @@ public class MontreursDOursTest {
 	public void testInnocent() {// Si le Montreurs est mort alors qu'il n'a pas grogné juste avant
 		this.village = new Village(2, 0);
 		this.village.ajouterPersonnage(montreurDOurs);
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		this.montreurDOurs.meurt();
-		Assert.assertTrue(this.village.getPersonnageParId(0).getAlliés().contains(this.village.getPersonnageParId(1)));
-		Assert.assertTrue(this.village.getPersonnageParId(1).getAlliés().contains(this.village.getPersonnageParId(0)));
+		Assert.assertTrue(this.village.getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.village.getPersonnageParId(1)));
+		Assert.assertTrue(this.village.getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.village.getPersonnageParId(0)));
 	}
 	
 	@Test
 	public void testPotentielCoupable() {// Si le Montreurs est mort alors qu'il a grogné juste avant
 		this.village = new Village(1, 1);
 		this.village.ajouterPersonnage(montreurDOurs);
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		this.montreurDOurs.meurt();
-		Assert.assertTrue(this.village.getPersonnageParId(0).getEnnemies().contains(this.village.getPersonnageParId(1)));
-		Assert.assertFalse(this.village.getPersonnageParId(1).getEnnemies().contains(this.village.getPersonnageParId(0)));
+		Assert.assertTrue(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().contains(this.village.getPersonnageParId(1)));
+		Assert.assertTrue(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().contains(this.village.getPersonnageParId(0)));
+		this.village.getPersonnage(1).meurt();
+		Assert.assertFalse(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().contains(this.village.getPersonnageParId(0)));
 	}
 	
 	
@@ -118,11 +126,13 @@ public class MontreursDOursTest {
 	public void testGracier() {// Si un innocent a été considéré comme un ennemies car l'autre voisin l'était
 		this.village = new Village(1, 1);
 		this.village.ajouterPersonnage(montreurDOurs);
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		this.village.getPersonnageParId(1).meurt();
 		this.village.ajouterPersonnage(new SimpleVillageois());
-		this.montreurDOurs.setVoisins();
+		Personnage[] voisins2 = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
+		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
 		
 		Assert.assertEquals(1, this.montreurDOurs.getEnnemies().size());
