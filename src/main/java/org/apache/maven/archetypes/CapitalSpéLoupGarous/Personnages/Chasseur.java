@@ -26,22 +26,13 @@ public class Chasseur extends VillageoisSpecial {
 	
 
 	@Override
-	public void agirPremiereNuit() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void agirPremiereNuit() {}
 
 	@Override
-	public void agir() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void agir() {}
 
 	@Override
-	public void agirAprèsNuit() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void agirAprèsNuit() {}
 	
 	@Override
 	public String toString() {

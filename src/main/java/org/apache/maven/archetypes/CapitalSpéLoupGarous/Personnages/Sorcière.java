@@ -41,16 +41,20 @@ public class Sorcière extends VillageoisSpecial{
 			//this.action = this.actions.get(action);
 		}
 		
+		if ((this.action == 1 || this.action == 3) && this.aUnePotionDeMort) {
+			if(this.aUnePotionDeVie) {
+				this.ajouterAlliés(this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findFirst().get());// ne pas tuer la victime des loups-garous (innocent sure)
+			}
+			this.potionDeMort(this.getVillage().getPersonnageParId(this.voter()));
+			this.resetListeDeVote();
+		}
 		
 		if((this.aUnePotionDeVie && ((this.action == 0 || this.action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().aEteAttaquerParLaMeute()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findAny().get();
 			this.potionDeVie(personnageASauver);
 			Logger.log(this + " a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
-		if ((this.action == 1 || this.action == 3) && this.aUnePotionDeMort) {
-			this.potionDeMort(this.getVillage().getPersonnageParId(this.voter()));
-			this.resetListeDeVote();
-		}
+		
 		this.action = null;
 	}
 	
@@ -73,6 +77,7 @@ public class Sorcière extends VillageoisSpecial{
 		if(this.actions.contains(3)) {
 			this.actions.remove((Object)3);
 		}
+		
 		this.aUnePotionDeMort = false;
 		String messageMort;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {

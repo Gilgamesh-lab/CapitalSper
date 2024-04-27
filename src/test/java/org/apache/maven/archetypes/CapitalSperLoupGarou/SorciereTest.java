@@ -106,19 +106,19 @@ public class SorciereTest {
 		Assert.assertFalse(this.sorcière.isaUnePotionDeMort());
 	}
 	
-	@Test //faire attribut par attribut car pas même addresse 
-	public void testReset() {// La vie n'est qu'une boucle sans fin
-		Sorcière soso = new Sorcière();
-		
-		this.village = new Village(1,1);
+	@Test 
+	public void testVoyance() {// 
+		this.village = new Village(1,0);
+		LoupGarouSimple lg = new LoupGarouSimple();
+		lg.ajouterEnnemies(this.village.getPersonnage(0));
+		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(this.sorcière);
-		soso.setId(this.sorcière.getId());
 		sorcière.setAction(3);
-		this.sorcière.agir();
-		Assert.assertNotEquals(soso, this.sorcière);
-		this.sorcière.reset();
-		System.out.println(soso + " ," + this.sorcière);
-		Assert.assertEquals(soso, this.sorcière);
+		this.village.nuit();
+		Assert.assertFalse(lg.estEnvie());
+		Assert.assertTrue(this.village.getPersonnageParId(0).estEnvie());
+		
+		
 	}
 
 }
