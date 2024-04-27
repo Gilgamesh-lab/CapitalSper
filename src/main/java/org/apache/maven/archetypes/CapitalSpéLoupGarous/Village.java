@@ -75,6 +75,12 @@ public  class Village  implements Cloneable {
 		}
 	}
 	
+	public void ajouterSpé(int idDeRole) {
+		Personnage perso = Référentiel.conversionDeIdRoleVersPersonnage(idDeRole);
+		this.ajouterPersonnage(perso);
+
+	}
+	
 	
 	public ArrayList<Personnage> getVillage() {
 		return this.village;

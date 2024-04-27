@@ -31,10 +31,10 @@ public class Main {
 		//logger.setModeSpectateurOn();
 		logger.setModeStatistiqueOn();
 		
-		/*Cupidon cupidon = new Cupidon();
+		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
-		village.ajouterPersonnage( chasseur);*/
+		village.ajouterPersonnage( chasseur);
 		Sorcière sorcière = new Sorcière();
 		village.ajouterPersonnage(sorcière);
 		Voyante voyante = new Voyante();

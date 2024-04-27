@@ -8,6 +8,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 
 public class Partie {
 	private static Village savegardeVillage;
@@ -35,6 +36,20 @@ public class Partie {
 		this.référentiel = new Référentiel();
 	}
 	
+	
+	
+	public Village getVillage() {
+		return village;
+	}
+
+
+
+	public void setVillage(Village village) {
+		this.village = village;
+	}
+
+
+
 	public Partie(Village village, Logger log) {
 		this.savegardeVillage = village;
 		this.village = village;
@@ -44,7 +59,7 @@ public class Partie {
 	}
 	
 	public boolean conditionFinPartie() {
-		return (this.village.getNbLoupGarou() != 0 && this.village.getNbLoupGarou() * 2 < this.village.getNbPersonnageEnVie() && !this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
+		return (this.conditionVictoireLoupGarous() || this.conditionVictoireVillageois() || this.conditionVictoireAmoureux() || this.conditionEgaliter() );
 	}
 	
 	public boolean conditionVictoireAmoureux() {
@@ -55,12 +70,13 @@ public class Partie {
 		return this.village.getNbLoupGarou() == 0 && this.village.getNbVillageois() != 0;
 	}
 	
-	public boolean conditionVictoireLoupGarous() {
-		return this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && this.village.getNbLoupGarou() != 0 && !(this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Chasseur.IDROLE) && this.village.getNbVillageois() == 1 );
+	
+	public boolean conditionVictoireLoupGarous() {// Que les loups-garous soient surnombre et que aucun spé de vie et de mort soit encore en vie ou que le camps du village soit décimé
+		return (this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && (this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) + this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie)) == 0  ) || (this.village.getNbLoupGarou() > 0 && this.village.getNbVillageois() < 2 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 0 );
 	}
 	
-	public boolean conditionEgaliterChasseur() {
-		return this.village.getNbLoupGarou() == 1 && this.village.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Chasseur.IDROLE) && this.village.getNbVillageois() == 1 ;
+	public boolean conditionEgaliter() {
+		return (this.village.getNbLoupGarou() == 1 && this.village.getNbVillageois() == 1 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 1) || this.getVillage().getNbPersonnageEnVie() == 0 ;
 	}
 	
 	private void startSimulation () {
@@ -68,23 +84,22 @@ public class Partie {
 		Logger.log("");
 		Logger.log("Lancement de la partie avec un village de " + this.village.getNbPersonnageEnVie() + " personnages composé de " +  this.référentiel.messageDebutPartie(this.village));
 		Logger.log("");
-		if(this.conditionFinPartie()) {
+		if(!this.conditionFinPartie()) {
 			this.village.premièreNuit();
 			this.nbTour++;
-			while(this.conditionFinPartie()) {
+			while(!this.conditionFinPartie()) {
 				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnageEnVie() > 2) {
 					this.village.getMaire().election();
 				}
 				this.village.tribunal();
-				if(this.conditionFinPartie()){
+				if(!this.conditionFinPartie()){
 					this.village.nuit();
 				}
 				this.nbTour++;
 			}
 		}
 		Logger.log("");
-		
-		
+		Logger.log("Le village est constitué de " + this.village.getHabitantsEnVie());
 		if(this.conditionVictoireAmoureux()) {
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
@@ -106,8 +121,8 @@ public class Partie {
 		}
 		
 		else {
-			if(this.conditionEgaliterChasseur()) {
-				Logger.log("Le Chasseur et le loups-garous survivant s'entretuent");
+			if(this.conditionEgaliter()) {
+				Logger.log(this.getVillage().getVillageois().get(0) + " et le loups-garous survivant s'entretuent");
 			}
 			Logger.log("Égalité en " + this.nbTour + " tours");
 			this.listeTours.add(this.nbTour) ;
@@ -123,7 +138,7 @@ public class Partie {
 		Logger.log("");
 		this.compteur++;
 		this.village.premièreNuit();
-		while(this.conditionFinPartie()) {
+		while(!this.conditionFinPartie()) {
 			if(branche.charAt(this.nbTour) == '0') {
 				pourcentageBranche *= (double) (this.village.getNbPersonnageEnVie() -1) / this.village.getNbPersonnageEnVie();
 				Logger.log("Pourcentage entrant = " + (double) this.village.getNbVillageois() / this.village.getNbPersonnageEnVie(), TypeDeLog.pourcentage);

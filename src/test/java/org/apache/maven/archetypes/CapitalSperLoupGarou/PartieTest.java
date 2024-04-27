@@ -3,8 +3,12 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,6 +38,51 @@ public class PartieTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.log.setOnAfficherLogDetailsPourcentage();
+		
+	}
+	
+	@Test
+	public void testConditionDeFinPartie()  {
+		this.village = new Village(1,1);// un vi pour un loups-garous
+		this.partie = new Partie(this.village,log);
+		Assert.assertTrue(this.partie.conditionFinPartie());
+		Assert.assertTrue(this.partie.conditionVictoireLoupGarous());
+		
+		this.village = new Village(1,0);
+		this.partie.setVillage(this.village);
+		Assert.assertTrue(this.partie.conditionFinPartie());
+		Assert.assertTrue(this.partie.conditionVictoireVillageois());
+		
+		this.partie.setVillage( new Village(2,1));// deux viellageois pour un loups-garous
+		Assert.assertFalse(this.partie.conditionFinPartie());
+		
+		this.village = new Village(0,1);// un vi pour deux loups-garous
+		this.village.ajouterSpé(Chasseur.IDROLE);
+		this.partie.setVillage(this.village);
+		Assert.assertTrue(this.partie.conditionFinPartie());
+		Assert.assertTrue(this.partie.conditionEgaliter());
+		
+		this.village = new Village(1,1);// 
+		this.village.ajouterSpé(Cupidon.IDROLE);
+		this.village.getPersonnageParIdRole(Cupidon.IDROLE).tomberAmoureux((this.village.getPersonnageParIdRole(LoupGarouSimple.IDROLE)));
+		this.village.getPersonnageParIdRole(LoupGarouSimple.IDROLE).tomberAmoureux((this.village.getPersonnageParIdRole(Cupidon.IDROLE)));
+		this.partie.setVillage(this.village);
+		this.village.getMeute().attaquerVillage();
+		this.village.bilanTuerLaNuit();
+		Assert.assertTrue(this.partie.conditionFinPartie());
+		Assert.assertTrue(this.partie.conditionVictoireAmoureux());
+		
+		this.village = new Village(0,1);
+		this.village.ajouterSpé(Sorcière.IDROLE);
+		this.partie.setVillage(this.village);
+		Assert.assertTrue(this.partie.conditionFinPartie());
+		Assert.assertTrue(this.partie.conditionEgaliter());
+		
+		this.village = new Village(0,1);
+		this.village.ajouterSpé(Salvateur.IDROLE);
+		this.partie.setVillage(this.village);
+		Assert.assertTrue(this.partie.conditionFinPartie());
+		Assert.assertTrue(this.partie.conditionVictoireLoupGarous());
 	}
 
 	@Test
