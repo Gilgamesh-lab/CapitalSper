@@ -6,13 +6,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class VillageoisSpecial extends Villageois {
-	private List<TypeDePouvoir> typeDePouvoir;
+	private ArrayList<TypeDePouvoir> typeDePouvoir;
 	
-	public VillageoisSpecial(int idDeRole, List<TypeDePouvoir> typeDePouvoir) {
+	public VillageoisSpecial(int idDeRole) {
 		super(idDeRole, true);
-		this.typeDePouvoir = typeDePouvoir;
+		this.typeDePouvoir = this.init();
 		
 	}
+	
+	public void perdrePouvoir(TypeDePouvoir typeDePouvoir) {
+		this.typeDePouvoir.remove(typeDePouvoir);
+	}
+	
+	public abstract ArrayList<TypeDePouvoir> init() ;
 
 	public List<TypeDePouvoir> getTypeDePouvoir() {
 		return typeDePouvoir;

@@ -11,8 +11,12 @@ public class Salvateur extends VillageoisSpecial {
 	public final static int IDROLE = 14;
 
 	public Salvateur() {
-		super(IDROLE, Arrays.asList(TypeDePouvoir.Vie));
+		super(IDROLE);
 		this.dernierPersonnageProtéger = null;
+	}
+	
+	public ArrayList<TypeDePouvoir> init() {
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
 	}
 	
 	public void salvater() {

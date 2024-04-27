@@ -32,7 +32,7 @@ public class SorciereTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(1,1);
-		sorcière = new Sorcière();
+		this.sorcière = new Sorcière();
 	}
 	
 	@Test
@@ -63,6 +63,7 @@ public class SorciereTest {
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.getMeute().attaquerVillage();
+		System.out.println(this.sorcière.getTypeDePouvoir());
 		sorcière.setAction(2);
 		sorcière.agir();
 		this.village.bilanTuerLaNuit();
@@ -107,7 +108,7 @@ public class SorciereTest {
 	}
 	
 	@Test 
-	public void testVoyance() {// 
+	public void testVoyance() {// Je sais où tu te cache
 		this.village = new Village(1,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
 		lg.ajouterEnnemies(this.village.getPersonnage(0));

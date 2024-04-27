@@ -13,10 +13,14 @@ public class MontreurDOurs extends VillageoisSpecial {
 	public final static int IDROLE = 11;
 
 	public MontreurDOurs() {
-		super(IDROLE, Arrays.asList(TypeDePouvoir.Voyance));
+		super(IDROLE);
 		this.voisinDeDroite = null;
 		this.voisinDeGauche = null;
 		this.aTrouverUnLoup = null;
+	}
+	
+	public ArrayList<TypeDePouvoir> init() {
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Voyance));
 	}
 	
 	public void setVoisins() {

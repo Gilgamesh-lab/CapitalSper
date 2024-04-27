@@ -1,5 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
@@ -8,7 +9,11 @@ public class Cupidon extends VillageoisSpecial {
 	public final static int IDROLE = 3;
 	
 	public Cupidon() {
-		super(IDROLE, Arrays.asList(TypeDePouvoir.Mort));
+		super(IDROLE);
+	}
+	
+	public ArrayList<TypeDePouvoir> init() {
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort));
 	}
 
 	
@@ -23,6 +28,7 @@ public class Cupidon extends VillageoisSpecial {
 		personnageAmoureux.tomberAmoureux(personnageAmoureux2);
 		personnageAmoureux2.tomberAmoureux(personnageAmoureux);
 		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de " + this, TypeDeLog.role);
+		this.perdrePouvoir(TypeDePouvoir.Mort);
 	}
 
 	
@@ -58,6 +64,8 @@ public class Cupidon extends VillageoisSpecial {
 		}
 		
 	}
+
+
 	
 	
 

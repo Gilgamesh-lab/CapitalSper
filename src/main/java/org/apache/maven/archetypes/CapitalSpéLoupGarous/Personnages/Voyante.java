@@ -1,5 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
@@ -8,7 +9,11 @@ public class Voyante extends VillageoisSpecial {
 	public final static int IDROLE = 4;
 
 	public Voyante() {
-		super(IDROLE, Arrays.asList(TypeDePouvoir.Voyance));
+		super(IDROLE);
+	}
+	
+	public ArrayList<TypeDePouvoir> init() {
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Voyance));
 	}
 	
 	public void sonder() {

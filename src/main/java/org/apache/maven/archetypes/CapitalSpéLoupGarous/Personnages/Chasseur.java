@@ -1,5 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
@@ -8,7 +9,11 @@ public class Chasseur extends VillageoisSpecial {
 	public final static int IDROLE = 22 ;
 
 	public Chasseur() {
-		super(IDROLE, Arrays.asList(TypeDePouvoir.Mort) );
+		super(IDROLE);
+	}
+	
+	public ArrayList<TypeDePouvoir> init() {
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort));
 	}
 	
 	@Override
@@ -18,8 +23,10 @@ public class Chasseur extends VillageoisSpecial {
 			this.resetListeDeVote();
 			Logger.log("Dans son dernier souffle " + this + " a décidé d'emporter avec lui " + cible);
 			this.tuer(cible);
+			this.perdrePouvoir(TypeDePouvoir.Mort);
 		}
 		super.meurt();
+		
 		
 	}
 	

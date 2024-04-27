@@ -2,20 +2,17 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
 public class Sorcière extends VillageoisSpecial{
-	private boolean aUnePotionDeVie;
-	private boolean aUnePotionDeMort;
 	private ArrayList<Integer> actions;
 	private Integer action;
 	public final static int IDROLE = 19;
 
 	public Sorcière() {
-		super(IDROLE, Arrays.asList(TypeDePouvoir.Mort,TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
-		this.aUnePotionDeVie = true;
-		this.aUnePotionDeMort = true;
+		super(IDROLE);
 		this.action = null;
 		this.actions = new ArrayList<Integer>(Arrays.asList(0,1,2,3)) ;
 		/* 0= potion de vie
@@ -26,9 +23,13 @@ public class Sorcière extends VillageoisSpecial{
 		 * */
 	}
 	
+	public ArrayList<TypeDePouvoir> init() {
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort,TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
+	}
+	
 
 	public void agir() {
-		if((this.getStatut().aEteAttaquerParLaMeute() && this.aUnePotionDeVie)) {
+		if((this.getStatut().aEteAttaquerParLaMeute() && this.isaUnePotionDeVie())) {
 			this.potionDeVie(this);
 			Logger.log(" s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
@@ -41,15 +42,15 @@ public class Sorcière extends VillageoisSpecial{
 			//this.action = this.actions.get(action);
 		}
 		
-		if ((this.action == 1 || this.action == 3) && this.aUnePotionDeMort) {
-			if(this.aUnePotionDeVie) {
+		if ((this.action == 1 || this.action == 3) && this.isaUnePotionDeMort()) {
+			if(this.isaUnePotionDeVie() && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute())) {
 				this.ajouterAlliés(this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findFirst().get());// ne pas tuer la victime des loups-garous (innocent sure)
 			}
 			this.potionDeMort(this.getVillage().getPersonnageParId(this.voter()));
 			this.resetListeDeVote();
 		}
 		
-		if((this.aUnePotionDeVie && ((this.action == 0 || this.action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().aEteAttaquerParLaMeute()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) ) {
+		if((this.isaUnePotionDeVie() && ((this.action == 0 || this.action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().aEteAttaquerParLaMeute()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findAny().get();
 			this.potionDeVie(personnageASauver);
 			Logger.log(this + " a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
@@ -68,7 +69,8 @@ public class Sorcière extends VillageoisSpecial{
 		if(this.actions.contains(3)) {
 			this.actions.remove((Object)3);
 		}
-		this.aUnePotionDeVie = false;
+		this.perdrePouvoir(TypeDePouvoir.Vie);
+		this.perdrePouvoir(TypeDePouvoir.Voyance);
 		
 	}
 	
@@ -78,7 +80,7 @@ public class Sorcière extends VillageoisSpecial{
 			this.actions.remove((Object)3);
 		}
 		
-		this.aUnePotionDeMort = false;
+		
 		String messageMort;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {
 			messageMort = this + " a tué " + personnageATuer +  " avec sa potion de mort";
@@ -88,6 +90,7 @@ public class Sorcière extends VillageoisSpecial{
 		}
 		Logger.log(messageMort, TypeDeLog.role);
 		this.tuer(personnageATuer);
+		this.perdrePouvoir(TypeDePouvoir.Mort);
 	}
 	
 
@@ -100,32 +103,30 @@ public class Sorcière extends VillageoisSpecial{
 
 
 	public boolean isaUnePotionDeVie() {
-		return aUnePotionDeVie;
+		return this.getTypeDePouvoir().contains(TypeDePouvoir.Vie);
 	}
 
 
 	public boolean isaUnePotionDeMort() {
-		return aUnePotionDeMort;
+		return this.getTypeDePouvoir().contains(TypeDePouvoir.Mort);
 	}
 
 	@Override
 	public void reset() {
 		super.reset();
-		this.aUnePotionDeVie = true;
-		this.aUnePotionDeMort = true;
 		this.action = null;
 		this.actions = new ArrayList<Integer>(Arrays.asList(0,1,2,3));
 	}
+
+
+	
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + (aUnePotionDeMort ? 1231 : 1237);
-		result = prime * result + (aUnePotionDeVie ? 1231 : 1237);
-		result = prime * result + ((action == null) ? 0 : action.hashCode());
-		result = prime * result + ((actions == null) ? 0 : actions.hashCode());
+		result = prime * result + Objects.hash(action, actions);
 		return result;
 	}
 
@@ -139,21 +140,7 @@ public class Sorcière extends VillageoisSpecial{
 		if (getClass() != obj.getClass())
 			return false;
 		Sorcière other = (Sorcière) obj;
-		if (aUnePotionDeMort != other.aUnePotionDeMort)
-			return false;
-		if (aUnePotionDeVie != other.aUnePotionDeVie)
-			return false;
-		if (action == null) {
-			if (other.action != null)
-				return false;
-		} else if (!action.equals(other.action))
-			return false;
-		if (actions == null) {
-			if (other.actions != null)
-				return false;
-		} else if (!actions.equals(other.actions))
-			return false;
-		return true;
+		return Objects.equals(action, other.action) && Objects.equals(actions, other.actions);
 	}
 
 
