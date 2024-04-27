@@ -14,6 +14,12 @@ public abstract class VillageoisSpecial extends Villageois {
 		
 	}
 	
+	public boolean aCePouvoir(TypeDePouvoir typeDePouvoir) {
+		return this.getTypeDePouvoir().contains(typeDePouvoir);
+	}
+	
+	
+	
 	public void perdrePouvoir(TypeDePouvoir typeDePouvoir) {
 		this.typeDePouvoir.remove(typeDePouvoir);
 	}

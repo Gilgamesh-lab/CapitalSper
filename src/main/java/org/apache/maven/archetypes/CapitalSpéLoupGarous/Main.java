@@ -23,24 +23,27 @@ public class Main {
 		
 		//logger.setDetailVoteVillage(true);
 		//log.setOnFichierOutput();
-		logger.setOffAfficherLogDetailsPartie();
-		logger.setOnAfficherLogStats();
+		//logger.setOffAfficherLogDetailsPartie();
+		//logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		Cupidon cupidon = new Cupidon();
+		//logger.setModeSpectateurOn();
+		logger.setModeStatistiqueOn();
+		
+		/*Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
-		village.ajouterPersonnage( chasseur);
+		village.ajouterPersonnage( chasseur);*/
 		Sorcière sorcière = new Sorcière();
 		village.ajouterPersonnage(sorcière);
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
 		
-		/*Salvateur salvateur = new Salvateur();
+		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);*/
+		village.ajouterPersonnage(montreurDOurs);
 		village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
 		Partie partie = new Partie(village, logger);

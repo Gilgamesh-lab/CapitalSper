@@ -31,7 +31,7 @@ public class Sorcière extends VillageoisSpecial{
 	public void agir() {
 		if((this.getStatut().aEteAttaquerParLaMeute() && this.isaUnePotionDeVie())) {
 			this.potionDeVie(this);
-			Logger.log(" s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
+			Logger.log(this + " s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
 		}
 		
 		if(this.actions.size() == 1) {
@@ -69,7 +69,9 @@ public class Sorcière extends VillageoisSpecial{
 		if(this.actions.contains(3)) {
 			this.actions.remove((Object)3);
 		}
-		this.perdrePouvoir(TypeDePouvoir.Vie);
+		if(!this.getVillage().estEnVie(Salvateur.IDROLE)) {
+			this.perdrePouvoir(TypeDePouvoir.Vie);
+		}
 		this.perdrePouvoir(TypeDePouvoir.Voyance);
 		
 	}
@@ -153,7 +155,9 @@ public class Sorcière extends VillageoisSpecial{
 
 	@Override
 	public void agirAprèsNuit() {
-		// TODO Auto-generated method stub
+		if(!this.actions.contains(0) && this.aCePouvoir(TypeDePouvoir.Vie)) {// pour le salvateur
+			this.perdrePouvoir(TypeDePouvoir.Vie);
+		}
 		
 	}
 	

@@ -19,13 +19,8 @@ public class Salvateur extends VillageoisSpecial {
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
 	}
 	
-	public void salvater() {
-		 ArrayList<Personnage> personnages = this.getVillage().getHabitantsEnVie();
-		 if(this.dernierPersonnageProtéger != null && personnages.contains(dernierPersonnageProtéger)) {
-			 personnages.remove(dernierPersonnageProtéger);
-		 }
-		 int nb = (int) (Math.random() * ( personnages.size()   - 0 ));
-		 Personnage personnageProtéger = personnages.get(nb);
+	public void salvater(Personnage personnageProtéger) {
+		 
 		 personnageProtéger.getStatut().setProtéger(true);
 		 Logger.log("Le salvateur a décidé de protéger " + personnageProtéger, TypeDeLog.role);
 		 this.dernierPersonnageProtéger = personnageProtéger;
@@ -85,13 +80,22 @@ public class Salvateur extends VillageoisSpecial {
 
 	@Override
 	public void agir() {
-		this.salvater();
+		ArrayList<Personnage> personnages = this.getVillage().getHabitantsEnVie();
+		 if(this.dernierPersonnageProtéger != null && personnages.contains(dernierPersonnageProtéger)) {
+			 personnages.remove(dernierPersonnageProtéger);
+		 }
+		 int nb = (int) (Math.random() * ( personnages.size()   - 0 ));
+		 Personnage personnageProtéger = personnages.get(nb);
+		 this.salvater(personnageProtéger);
 		
 	}
 
 	@Override
 	public void agirAprèsNuit() {
-		// TODO Auto-generated method stub
+		if(this.getDernierPersonnageProtéger().estEnvie() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) < 2) { // en se comptant lui même
+			Logger.log("Puisque qu'il n'y a pas eu de mort et que " + this + " est le seule protecteur du village, " + this + " a confiance en " + this.getDernierPersonnageProtéger(), TypeDeLog.role);
+			this.ajouterAlliés(dernierPersonnageProtéger);
+		}
 		
 	}
 	

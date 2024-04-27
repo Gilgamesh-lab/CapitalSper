@@ -15,6 +15,8 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
 
 public  class Village  implements Cloneable {
 
@@ -76,6 +78,14 @@ public  class Village  implements Cloneable {
 	
 	public ArrayList<Personnage> getVillage() {
 		return this.village;
+	}
+	
+	public long getNbSpéEnVieACePouvoir(TypeDePouvoir typeDePouvoir) {
+		return this.getHabitantsEnVie().stream().filter(c -> c instanceof VillageoisSpecial).map(c -> (VillageoisSpecial) c).filter(x->x.aCePouvoir(typeDePouvoir)).count();
+	}
+	
+	public boolean estEnVie(int idRole) {
+		return this.getHabitantsEnVie().stream().anyMatch(x->x.getIdDeRole() == idRole);
 	}
 	
 	

@@ -27,6 +27,15 @@ public class Logger {
 		this.afficherLogStats = false;
 	}
 	
+	public void setModeSpectateurOn() {
+		this.setOnAfficherLogDetailsRoleAction();
+	}
+	
+	public void setModeStatistiqueOn() {
+		this.setOffAfficherLogDetailsPartie();
+		this.setOnAfficherLogStats();
+	}
+	
 	
 	
 	public static boolean isAfficherLogStats() {

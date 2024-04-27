@@ -4,6 +4,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,14 +40,14 @@ private Village village;
 		LoupGarouSimple lg = new LoupGarouSimple();
 		this.village.ajouterPersonnage(this.salvateur);
 		this.village.ajouterPersonnage(lg);
-		this.salvateur.salvater();
+		this.salvateur.agir();
 		
 		if(this.salvateur.getStatut().isProtéger()) {// si le salvateur s'est protégé
 			this.village.getMeute().attaquerVillage();
 			this.village.bilanTuerLaNuit();
 			this.salvateur.finSalvation();
 			Assert.assertEquals(2, this.village.getHabitantsEnVie().size());
-			this.salvateur.salvater();
+			this.salvateur.agir();
 			this.village.getMeute().attaquerVillage();
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(1, this.village.getHabitantsEnVie().size());
@@ -54,12 +55,12 @@ private Village village;
 		}
 		else {
 			this.salvateur.finSalvation();
-			this.salvateur.salvater();
+			this.salvateur.agir();
 			this.village.getMeute().attaquerVillage();
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(2, this.village.getHabitantsEnVie().size());
 			this.salvateur.finSalvation();
-			this.salvateur.salvater();
+			this.salvateur.agir();
 			this.village.getMeute().attaquerVillage();
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(1, this.village.getHabitantsEnVie().size());
@@ -72,10 +73,35 @@ private Village village;
 	}
 	
 	@Test
+	public void testConfiance() {// Si je t'ai sauvé la vie alors cela vas devenir que tu n'est pas un loup-garous
+		this.village = new Village(0,0);
+		LoupGarouSimple lg = new LoupGarouSimple();
+		Sorcière sorcière = new Sorcière();
+		this.village.ajouterPersonnage(this.salvateur);
+		this.village.ajouterPersonnage(sorcière);
+		this.village.ajouterPersonnage(lg);
+		lg.ajouterEnnemies(sorcière);
+		
+		this.village.getMeute().attaquerVillage();
+		sorcière.setAction(0);
+		sorcière.agir();
+		this.village.bilanTuerLaNuit();
+		sorcière.agirAprèsNuit();
+		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
+		
+		this.salvateur.salvater(sorcière);
+		this.village.getMeute().attaquerVillage();
+		this.salvateur.agirAprèsNuit();
+		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
+		Assert.assertTrue(this.salvateur.getAlliés().contains(sorcière));
+		
+	}
+	
+	@Test
 	public void testReset() {// La vie n'est qu'une boucle sans fin
 		this.village = new Village(0,0);
 		this.village.ajouterPersonnage(this.salvateur);
-		this.salvateur.salvater();
+		this.salvateur.agir();
 		Assert.assertNotEquals(new Salvateur(), this.salvateur);
 		Assert.assertEquals(this.salvateur, this.salvateur.getDernierPersonnageProtéger());
 		this.salvateur.reset();

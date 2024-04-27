@@ -45,7 +45,6 @@ public class SorciereTest {
 		this.village.ajouterPersonnage(vi);
 		this.village.ajouterPersonnage(lg);
 		this.village.getMeute().attaquerVillage();
-		System.out.println(this.village.getHabitantsEnVie());
 		sorcière.setAction(0);
 		sorcière.agir();
 		this.village.bilanTuerLaNuit();
