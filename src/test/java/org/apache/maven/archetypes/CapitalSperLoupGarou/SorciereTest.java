@@ -48,7 +48,7 @@ public class SorciereTest {
 		sorcière.setAction(0);
 		sorcière.agir();
 		this.village.bilanTuerLaNuit();
-		Assert.assertTrue(sorcière.getAlliés().size() == 2);
+		Assert.assertTrue(sorcière.getAlliés().size() == 1);
 		Assert.assertEquals(3, this.village.getHabitantsEnVie().size());
 		Assert.assertFalse(this.sorcière.isaUnePotionDeVie());
 		Assert.assertTrue(this.sorcière.isaUnePotionDeMort());
@@ -62,7 +62,6 @@ public class SorciereTest {
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.getMeute().attaquerVillage();
-		System.out.println(this.sorcière.getTypeDePouvoir());
 		sorcière.setAction(2);
 		sorcière.agir();
 		this.village.bilanTuerLaNuit();

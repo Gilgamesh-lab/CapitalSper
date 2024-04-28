@@ -111,6 +111,10 @@ public  class Village  implements Cloneable {
 		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
 	}
 	
+	public ArrayList<Personnage> getAutreHabitantsEnVie(Personnage personnage) {
+		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie() && x!= personnage).collect(Collectors.toList()));
+	}
+	
 	public Meute getMeute() {
 		return this.meute ;
 	}
@@ -197,6 +201,9 @@ public  class Village  implements Cloneable {
 			if(this.aUnMaire() && votant == this.maire.getPersonnage()) {
 				voteMaire  = vote;
 			}
+			if(votant.getId() == vote) {
+				System.out.println("erreur détecté : " + votant + " a voté contre lui-même");
+			}
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote) + " avec " + votant.getNbVote() + " voix ", TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
@@ -225,6 +232,9 @@ public  class Village  implements Cloneable {
 				
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 				Logger.log("", TypeDeLog.vote);
+				if(coupables.isEmpty()) {
+					System.out.println("Erreur maire égalité"+listeIdPersonneAyantPlusDeVotes );
+				}
 				if(coupables.contains(maire.getPersonnage())) {
 					coupables.remove(maire.getPersonnage());
 					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables + " et lui");

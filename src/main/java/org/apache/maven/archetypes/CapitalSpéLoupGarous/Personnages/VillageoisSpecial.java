@@ -30,10 +30,10 @@ public abstract class VillageoisSpecial extends Villageois {
 		return typeDePouvoir;
 	}
 	
-	public Personnage voteCibleAction() {
-		for(int i = 0; i < this.getVillage().getNbPersonnageEnVie(); i++) {
-			if(!this.getAlliés().contains(this.getVillage().getHabitantsEnVie().get(i)) && !this.getEnnemies().contains(this.getVillage().getHabitantsEnVie().get(i))){
-				this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
+	public Personnage voteCibleAction() {// voyante
+		for(int i = 0; i < this.getVillage().getAutreHabitantsEnVie(this).size(); i++) {
+			if(!this.getAlliés().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i)) && !this.getEnnemies().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i))){
+				this.getListeDeVote().add(this.getVillage().getAutreHabitantsEnVie(this).get(i));
 			}
 			
 		}
@@ -41,15 +41,15 @@ public abstract class VillageoisSpecial extends Villageois {
 		int nb ;
 		if(this.getListeDeVote().size() == 0) {
 			if(this.estAmoureux()) {
-				this.setListeDeVote(new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList())));
+				this.setListeDeVote(new ArrayList<Personnage>(this.getVillage().getAutreHabitantsEnVie(this).stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList())));
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 				Personnage cibleAction = this.getListeDeVote().get(nb);
 				this.getListeDeVote().clear();
 				return cibleAction;	
 			}
 			else {
-				nb = (int) (Math.random() * ( this.getVillage().getNbPersonnageEnVie()   - 0 ));
-				return this.getVillage().getPersonnage(nb);	
+				nb = (int) (Math.random() * ( this.getVillage().getAutreHabitantsEnVie(this).size()   - 0 ));
+				return this.getVillage().getAutreHabitantsEnVie(this).get(nb);	
 			}
 		}
 		else {

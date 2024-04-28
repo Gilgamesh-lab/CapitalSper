@@ -27,7 +27,6 @@ public abstract class Personnage  implements Cloneable {
 		this.statut = new Statut(this);
 		this.alliés = new ArrayList<Personnage>();
 		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
-		this.alliés.add(this);
 		this.listeEnnemie = new ArrayList<Personnage>();
 	}
 	
@@ -176,13 +175,11 @@ public abstract class Personnage  implements Cloneable {
  // à améliorer
 	public int voter() {
 		int nb ;
-		//this.getListeDeVote().clear();
-		
 		if(this.getListeDeVote().size() == 0 &&  this.getEnnemies().size() > 0) {
 			for(int i = 0; i < this.getEnnemies().size(); i++) {
 				this.getListeDeVote().add(this.village.getPersonnageParId(this.getEnnemies().get(i).getId()));
 			}
-			this.getEnnemies().stream().filter(x-> !this.village.getPersonnageParId(x.getId()).estEnvie() ).forEach(x->this.getListeDeVote().remove(x));// impossible d'itérer sur soi-même
+			this.getEnnemies().stream().filter(x-> !this.village.getPersonnageParId(x.getId()).estEnvie() ||  x == this ).forEach(x->this.getListeDeVote().remove(x));// impossible d'itérer sur soi-même
 
 			
 			if(this.getListeDeVote().size() != 0) {
@@ -190,32 +187,38 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();
 			}
 		}
-		if(!this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty() &&  this.estUnVillageois) {
-			nb = (int) (Math.random() * ( this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().size()    - 0 ));
-			return this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().get(nb).getId();
+		if(!this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty()) {
+			this.listeDeVote = new ArrayList<Personnage>(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().stream().filter(x-> x!= this).collect(Collectors.toList()));
+			if(!this.listeDeVote.isEmpty()) {
+				nb = (int) (Math.random() * ( this.listeDeVote.size()    - 0 ));
+				return this.listeDeVote.get(nb).getId();
+			}
+			
 		}
 			
 		if(this.getListeDeVote().size() == 0) {// on remplit la liste des personnes présentes dans le village
-			System.out.println((1));
-			for(int i = 0; i < this.getVillage().getNbPersonnageEnVie(); i++) {
-				if(!this.alliés.contains(this.getVillage().getHabitantsEnVie().get(i)) && (!this.getVillage().getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.getVillage().getHabitantsEnVie().get(i)))){
-					this.getListeDeVote().add(this.getVillage().getHabitantsEnVie().get(i));
+			for(int i = 0; i < this.getVillage().getAutreHabitantsEnVie(this).size() ; i++) {
+				if(!this.alliés.contains(this.getVillage().getAutreHabitantsEnVie(this).get(i)) && (!this.getVillage().getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i)))){
+					this.getListeDeVote().add(this.getVillage().getAutreHabitantsEnVie(this).get(i));
 				}
 				
 			}
 		}
 		if(this.getListeDeVote().size() == 0) {// si pas de vote possible
 			if(this.estAmoureux()) {// si amoureux on vire tout le monde sauf amoureux "alliés" compris
-				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAmoureux() != x && x != this).collect(Collectors.toList()));
+				this.listeDeVote = new ArrayList<Personnage>(this.village.getAutreHabitantsEnVie(this).stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
 				return this.getListeDeVote().get(nb).getId();	
 			}
 			else {// sinon au hasard parmis tout le monde "alliés" compris
-				nb = (int) (Math.random() * ( this.village.getNbPersonnageEnVie()   - 0 ));
-				return this.village.getPersonnage(nb).getId();	
+				nb = (int) (Math.random() * ( this.village.getAutreHabitantsEnVie(this).size()   - 0 ));
+				return this.village.getAutreHabitantsEnVie(this).get(nb).getId();	
 			}
 		}
 		else {// vote normale
+			if(this.getListeDeVote().contains(this)) {// Cas égaliter quand le maire est présent dans les coupables
+				this.getListeDeVote().remove(this);
+			}
 			nb = (int) (Math.random() * ( this.getListeDeVote().size()   - 0 ));
 			return this.getListeDeVote().get(nb).getId();
 		}
@@ -228,8 +231,9 @@ public abstract class Personnage  implements Cloneable {
 	public int elire() {
 		int nb ;
 		if (!this.village.getHabitantsEnVie().isEmpty()){ // a modifier
-			if(this.getListeDeVote().size() == 0 && this.getAlliés().size() > 1 && this.getAlliés().stream().anyMatch(x->  x.estEnvie()) && this.estUnVillageois()) {// contrer lg qui vote tout le temps pour eux
+			if(this.getListeDeVote().size() == 0 && this.getAlliés().size() > 0 && this.getAlliés().stream().anyMatch(x->  x.estEnvie()) && this.estUnVillageois()) {// contrer lg qui vote tout le temps pour eux
 				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->this.getAlliés().contains(x)).collect(Collectors.toList()));
+				this.listeDeVote.add(this);
 				nb = (int) (Math.random() * ( this.listeDeVote.size()   - 0 ));
 				return this.listeDeVote.get(nb).getId();
 			}
@@ -238,7 +242,7 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();
 			}
 			else {
-				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->!this.getEnnemies().contains(x)).collect(Collectors.toList()));
+				this.listeDeVote = new ArrayList<Personnage>(this.village.getHabitantsEnVie().stream().filter(x->!this.getEnnemies().contains(x)).collect(Collectors.toList()));// retirer ennemie
 				if (this.listeDeVote.isEmpty()){
 					nb = (int) (Math.random() * ( this.village.getHabitantsEnVie().size()    - 0 ));
 					return this.village.getHabitantsEnVie().get(nb).getId();

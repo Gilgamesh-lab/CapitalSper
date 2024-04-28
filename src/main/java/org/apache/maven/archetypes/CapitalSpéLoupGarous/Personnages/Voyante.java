@@ -18,6 +18,9 @@ public class Voyante extends VillageoisSpecial {
 	
 	public void sonder() {
 		 Personnage persoASonder = super.voteCibleAction();
+		 if(persoASonder.equals(this)) {
+				System.out.println("erreur vovo détecté : " + this + "s'est choisi elle-même");
+			}
 		 if(persoASonder.estUnVillageois()) {
 			 Logger.log(this + " a décidé de sonder " + persoASonder + " qui s'est révélé être innocent", TypeDeLog.role);
 			 this.ajouterAlliés(persoASonder);

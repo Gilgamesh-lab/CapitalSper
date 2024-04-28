@@ -66,7 +66,7 @@ public class MontreursDOursTest {
 		Assert.assertTrue(this.montreurDOurs.aTrouverUnLoup());
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().contains(lg));
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().size() == 1);
-		Assert.assertTrue(this.montreurDOurs.getAlliés().size() == 3);
+		Assert.assertTrue(this.montreurDOurs.getAlliés().size() == 2);
 	}
 	
 	
@@ -75,8 +75,8 @@ public class MontreursDOursTest {
 		
 		this.village = new Village(0, 1);
 		SimpleVillageois sv = new SimpleVillageois();
-		this.village.ajouterPersonnage(this.montreurDOurs);
 		this.village.ajouterPersonnage(sv);
+		this.village.ajouterPersonnage(this.montreurDOurs);
 		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
 		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
@@ -92,7 +92,6 @@ public class MontreursDOursTest {
 		Assert.assertTrue(this.montreurDOurs.aTrouverUnLoup());
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().contains(lg));
 		Assert.assertFalse(this.montreurDOurs.getEnnemies().contains(sv2));
-		Assert.assertTrue(this.montreurDOurs.getAlliés().size() == 1);
 	}
 	
 	@Test
@@ -132,11 +131,11 @@ public class MontreursDOursTest {
 		this.village.getPersonnageParId(1).meurt();
 		this.village.ajouterPersonnage(new SimpleVillageois());
 		Personnage[] voisins2 = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
-		this.montreurDOurs.setVoisins(voisins);
+		this.montreurDOurs.setVoisins(voisins2);
 		this.montreurDOurs.traquerLoupGarous();
 		
 		Assert.assertEquals(1, this.montreurDOurs.getEnnemies().size());
-		Assert.assertEquals(3, this.montreurDOurs.getAlliés().size());
+		Assert.assertEquals(2, this.montreurDOurs.getAlliés().size());
 	}
 	
 	

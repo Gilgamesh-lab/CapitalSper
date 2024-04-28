@@ -9,13 +9,18 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 
 public class CupidonTest {
 	private Village village;
 	private Cupidon cupidon;
 	private Logger log = new Logger();
+	
+	@Rule
+	public TestName name = new TestName();
 
 	
 	
@@ -25,13 +30,13 @@ public class CupidonTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.cupidon = new Cupidon();
+		System.out.println("");
+		System.out.println("Lancement de la méthode " + name.getMethodName());
+		System.out.println("");
 	}
 	
 	@Test
 	public void testUniePourLaVie() {
-		System.out.println();
-		System.out.println("Lancement du test testUniePourLaVie");
-		System.out.println();
 		this.village = new Village();
 		Personnage perso = new LoupGarouSimple();
 		this.village.ajouterPersonnage(perso);
@@ -52,9 +57,6 @@ public class CupidonTest {
 	
 	@Test
 	public void testJusquaCeQueLaMortNousSepare() {// Mais que se passerait-il si un très malheureux accident les frappaient ?
-		System.out.println();
-		System.out.println("Lancement du test JusquaCeQueLaMortNousSepare");
-		System.out.println();
 		this.village = new Village(1,0);
 		this.village.ajouterPersonnage(this.cupidon);
 		this.cupidon.flecheDeLAmour();
@@ -66,9 +68,6 @@ public class CupidonTest {
 	
 	@Test
 	public void testEnsembleEnversEtContreTous() {// sont ils prêt à tout pour que leur amour triomphe ?
-		System.out.println();
-		System.out.println("Lancement du test EnsembleContreTous");
-		System.out.println();
 		
 		this.village = new Village(0,1);
 		this.village.ajouterPersonnage(this.cupidon);

@@ -11,7 +11,9 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 
 
@@ -28,21 +30,23 @@ public class VillageTest {
 	//log.setDetailVoteVillage(true);
 	private Partie partie = new Partie(village, log);
 	
+	@Rule
+	public TestName name = new TestName();
+	
 	
 	@Before
 	public void setUp() throws Exception {
 		this.log.setOnAfficherLogDetailsPartie();
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
+		System.out.println("");
+		System.out.println("Lancement de la méthode " + name.getMethodName());
+		System.out.println("");
 		Village village = new Village(0,0);
 	}
 
 	@Test
 	public void ajouterPersonnageTest()  {
-		System.out.println();
-		System.out.println("Lancement de ajouterPersonnageTest");
-		System.out.println();
-		
 		this.village.ajouterPersonnage(loupGarou);
 		
 		Assert.assertEquals(1, this.village.getNbLoupGarou());
@@ -60,9 +64,6 @@ public class VillageTest {
 	
 	@Test
 	public void voterTest()  {
-		System.out.println();
-		System.out.println("Lancement de voterTest");
-		System.out.println();
 		this.village = new Village(1,2);
 		Assert.assertEquals(1, this.village.getNbVillageois());
 		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());

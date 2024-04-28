@@ -69,6 +69,9 @@ public class Meute {
 		for(int i = 0 ; i < this.getNbLgEnVie() ; i++) {
 			votant = this.getMeute().get(i);
 			vote  = votant.voter();
+			if(votant.getId() == vote) {
+				System.out.println("erreur détecté : " + votant + " a voté contre lui-même");
+			}
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté contre " + this.village.getPersonnageParId(vote), TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + 1);
