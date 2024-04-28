@@ -227,13 +227,13 @@ public  class Village  implements Cloneable {
 				else {
 					maire.getPersonnage().setListeDeVote(coupables);
 					idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
-					maire.getPersonnage().resetListeDeVote();
+					
 				}
 				
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 				Logger.log("", TypeDeLog.vote);
 				if(coupables.isEmpty()) {
-					System.out.println("Erreur maire égalité"+listeIdPersonneAyantPlusDeVotes );
+					System.out.println("Erreur maire égalité"+listeIdPersonneAyantPlusDeVotes + this.getPersonnageParId(listeIdPersonneAyantPlusDeVotes.get(0)));
 				}
 				if(coupables.contains(maire.getPersonnage())) {
 					coupables.remove(maire.getPersonnage());
@@ -242,6 +242,7 @@ public  class Village  implements Cloneable {
 				else {
 					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables);
 				}
+				maire.getPersonnage().resetListeDeVote();
 				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
 				Logger.log("", TypeDeLog.vote);
 				
