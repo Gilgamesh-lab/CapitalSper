@@ -2,7 +2,6 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
@@ -43,34 +42,6 @@ public class Salvateur extends VillageoisSpecial {
 		super.reset();
 		this.dernierPersonnageProtéger = null;
 	}
-	
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(dernierPersonnageProtéger);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Salvateur other = (Salvateur) obj;
-		return Objects.equals(dernierPersonnageProtéger, other.dernierPersonnageProtéger);
-	}
-
-	@Override
-	public void agirPremiereNuit() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void agir() {
@@ -80,7 +51,7 @@ public class Salvateur extends VillageoisSpecial {
 			 personnages.remove(dernierPersonnageProtéger);
 		 }
 		 int nb = (int) (Math.random() * ( personnages.size()   - 0 ));
-		 if(personnages.size() != 0) {
+		 if(!personnages.isEmpty()) {
 			 Personnage personnageProtéger = personnages.get(nb);
 			 this.salvater(personnageProtéger);
 		 }

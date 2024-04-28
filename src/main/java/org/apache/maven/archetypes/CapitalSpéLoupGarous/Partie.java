@@ -35,14 +35,9 @@ public class Partie {
 		this.nbTour = 0;
 		this.référentiel = new Référentiel();
 	}
-	
-	
-	
 	public Village getVillage() {
 		return village;
 	}
-
-
 
 	public void setVillage(Village village) {
 		this.village = village;

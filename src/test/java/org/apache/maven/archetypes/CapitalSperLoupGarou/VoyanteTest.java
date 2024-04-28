@@ -50,8 +50,8 @@ public class VoyanteTest {
 		this.village.ajouterPersonnage(voyante);
 		this.village.ajouterPersonnage(vi);
 		voyante.sonder();
-		Assert.assertTrue(voyante.getEnnemies().size() == 0);
-		Assert.assertTrue(voyante.getAlliés().size() == 1);
+		Assert.assertTrue(voyante.getEnnemies().isEmpty());
+		Assert.assertEquals(1, voyante.getAlliés().size());
 		Assert.assertTrue(voyante.getAlliés().contains(vi));
 	}
 }

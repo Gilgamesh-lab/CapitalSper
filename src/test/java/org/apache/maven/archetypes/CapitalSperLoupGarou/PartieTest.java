@@ -100,6 +100,15 @@ public class PartieTest {
 		this.village = new Village(5,1);
 		this.partie = new Partie(village, log);
 		this.partie.simulation(1);
+		
+		this.village = new Village(5,4);
+		this.partie.setVillage(village);
+		this.partie.simulation(1);
+		
+		this.village = new Village(0,1);
+		this.village.ajouterSpé(Cupidon.IDROLE);
+		this.partie.setVillage(village);
+		this.partie.simulation(1);
 	}
 	
 	@Test

@@ -11,8 +11,10 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public class Main {
 	
+	
 
 	public static void main(String[] args) {
+		
 		int nbVillageois = 5;
 		int nbLoupGarous = 3;
 		int nbPartie = 100000;//100000
@@ -97,7 +99,9 @@ Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
 		
 		
 		
-	}	
+	}
+
+	
 	
 	
 	
@@ -124,25 +128,8 @@ Sur 5 parties, les loups-garous ont eu un taux de victoire de 49.218742%*/
         CombinationPossible(Input_Arrary, Empty_Array, 0, n-1, 0, r);
 	}*/
 
-
 	
-	public void test(String mot,String mot2, String[] tab, int compteur, int instance) {
-		for(int i =0 ; i < tab.length ; i++) {
-			//System.out.println(" instance " +  instance);
-			mot += tab[i];
-			//System.out.println("etape : " + mot + " compteur "+  compteur);
-			while(mot.length() <  tab.length ) {
-				mot2 += tab[i];
-				test(mot,mot2, tab,compteur, instance +1);
-			}
-			//System.out.println("mot = " + mot);
-			compteur--;
-			// mot = mot2;
-			if(compteur ==0 ) {
-				return ;
-			}
-		}
-		
-	}
+	
+
 
 }

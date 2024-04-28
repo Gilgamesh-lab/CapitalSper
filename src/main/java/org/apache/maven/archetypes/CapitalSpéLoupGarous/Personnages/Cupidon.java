@@ -37,22 +37,9 @@ public class Cupidon extends VillageoisSpecial {
 	@Override
 	public void agirPremiereNuit() {
 		this.flecheDeLAmour();
-		
 	}
 
 
-	@Override
-	public void agir() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void agirAprèsNuit() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@Override
 	public String toString() {

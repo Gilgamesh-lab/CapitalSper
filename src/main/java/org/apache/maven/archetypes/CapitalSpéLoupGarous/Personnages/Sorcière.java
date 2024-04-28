@@ -2,7 +2,6 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
@@ -27,7 +26,7 @@ public class Sorcière extends VillageoisSpecial{
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort,TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
 	}
 	
-
+	@Override
 	public void agir() {
 		if((this.getStatut().aEteAttaquerParLaMeute() && this.isaUnePotionDeVie())) {
 			this.potionDeVie(this);
@@ -120,30 +119,6 @@ public class Sorcière extends VillageoisSpecial{
 		this.actions = new ArrayList<Integer>(Arrays.asList(0,1,2,3));
 	}
 
-
-	
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(action, actions);
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Sorcière other = (Sorcière) obj;
-		return Objects.equals(action, other.action) && Objects.equals(actions, other.actions);
-	}
 
 
 	@Override

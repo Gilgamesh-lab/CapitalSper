@@ -34,11 +34,7 @@ public class Voyante extends VillageoisSpecial {
 	}
 	
 
-	@Override
-	public void agirPremiereNuit() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void agir() {
@@ -46,11 +42,7 @@ public class Voyante extends VillageoisSpecial {
 		
 	}
 
-	@Override
-	public void agirAprèsNuit() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 	@Override

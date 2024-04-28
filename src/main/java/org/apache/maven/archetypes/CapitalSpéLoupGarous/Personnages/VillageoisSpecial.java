@@ -30,6 +30,7 @@ public abstract class VillageoisSpecial extends Villageois {
 		return typeDePouvoir;
 	}
 	
+	
 	public Personnage voteCibleAction() {// voyante
 		for(int i = 0; i < this.getVillage().getAutreHabitantsEnVie(this).size(); i++) {
 			if(!this.getAlliés().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i)) && !this.getEnnemies().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i))){

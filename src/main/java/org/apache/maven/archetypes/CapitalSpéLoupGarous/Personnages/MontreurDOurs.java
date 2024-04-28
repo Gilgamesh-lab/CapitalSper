@@ -34,6 +34,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 		return nums ;
 		
 		
+		
 	}
 	
 	public void setVoisins(Personnage[] liste ) {
@@ -149,10 +150,6 @@ public class MontreurDOurs extends VillageoisSpecial {
 		
 	}
 
-	@Override
-	public void agir() {
-		
-	}
 
 	@Override
 	public void agirAprèsNuit() {

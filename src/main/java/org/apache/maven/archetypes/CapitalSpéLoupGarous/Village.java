@@ -30,8 +30,8 @@ public  class Village  implements Cloneable {
 		this.village = new ArrayList<Personnage>();
 		this.meute = new Meute();
 		this.meute.setVillage(this);
-		this.persoDevoilerCommeAlliéeParMontreursDOurs = new ArrayList<Personnage>();
-		this.persoDevoilerCommeEnnemieParMontreursDOurs = new ArrayList<Personnage>();
+		this.persoDevoilerCommeAlliéeParMontreursDOurs = new ArrayList<>();
+		this.persoDevoilerCommeEnnemieParMontreursDOurs = new ArrayList<>();
 	}
 	
 	public Village(int nbVillageois, int nbLoupGarous) {
@@ -91,7 +91,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public long getNbSpéEnVieACePouvoir(TypeDePouvoir typeDePouvoir) {
-		return this.getHabitantsEnVie().stream().filter(c -> c instanceof VillageoisSpecial).map(c -> (VillageoisSpecial) c).filter(x->x.aCePouvoir(typeDePouvoir)).count();
+		return this.getHabitantsEnVie().stream().filter(VillageoisSpecial.class::isInstance).map(c -> (VillageoisSpecial) c).filter(x->x.aCePouvoir(typeDePouvoir)).count();
 	}
 	
 	public boolean estEnVie(int idRole) {
@@ -108,11 +108,11 @@ public  class Village  implements Cloneable {
 	}
 	
 	public ArrayList<Personnage> getHabitantsEnVie() {
-		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
+		return new ArrayList<>(this.village.stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
 	}
 	
 	public ArrayList<Personnage> getAutreHabitantsEnVie(Personnage personnage) {
-		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie() && x!= personnage).collect(Collectors.toList()));
+		return new ArrayList<>(this.village.stream().filter(x->x.estEnvie() && x!= personnage).collect(Collectors.toList()));
 	}
 	
 	public Meute getMeute() {
@@ -256,12 +256,6 @@ public  class Village  implements Cloneable {
 		}
 		else {
 			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
-			try {
-				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
-			}
-			catch (Exception e) {
-				System.out.println(idPersonneAyantPlusDeVotes);
-			}
 			personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 			Logger.log("", TypeDeLog.vote);
 			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
@@ -286,19 +280,7 @@ public  class Village  implements Cloneable {
 			vote  = votant.elire();
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
-			try {
-				tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(votant);
-				System.out.println(vote);
-				System.out.println(tableauDeVotes);
-				System.out.println(this.getPersonnageParId(vote));
-				System.out.println(this.getHabitantsEnVie());
-				System.out.println(tableauDeVotes.get(vote));
-				throw e;
-			}
+			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 			
 		}
 		Logger.log("", TypeDeLog.vote);

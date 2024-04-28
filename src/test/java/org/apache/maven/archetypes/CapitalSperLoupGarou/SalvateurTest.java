@@ -97,15 +97,6 @@ private Village village;
 		
 	}
 	
-	@Test
-	public void testReset() {// La vie n'est qu'une boucle sans fin
-		this.village = new Village(0,0);
-		this.village.ajouterPersonnage(this.salvateur);
-		this.salvateur.agir();
-		Assert.assertNotEquals(new Salvateur(), this.salvateur);
-		Assert.assertEquals(this.salvateur, this.salvateur.getDernierPersonnageProtéger());
-		this.salvateur.reset();
-		Assert.assertEquals(new Salvateur(), this.salvateur);
-	}
+
 
 }

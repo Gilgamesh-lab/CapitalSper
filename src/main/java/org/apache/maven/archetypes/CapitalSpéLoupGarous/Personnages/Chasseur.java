@@ -30,17 +30,7 @@ public class Chasseur extends VillageoisSpecial {
 		
 		
 	}
-	
-	
 
-	@Override
-	public void agirPremiereNuit() {}
-
-	@Override
-	public void agir() {}
-
-	@Override
-	public void agirAprèsNuit() {}
 	
 	@Override
 	public String toString() {
