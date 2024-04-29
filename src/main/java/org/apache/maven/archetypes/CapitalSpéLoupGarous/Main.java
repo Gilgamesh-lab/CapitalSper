@@ -50,6 +50,8 @@ public class Main {
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
 		Partie partie = new Partie(village, logger);
 		
+		
+		
 		/*
 		 * Sur 100000 parties, les villageois ont eu un taux de victoire de 31.477001190185547%
 Sur 100000 parties, les loups-garous ont eu un taux de victoire de 43.145999908447266%
@@ -57,6 +59,7 @@ Sur 100000 parties, les amoureux ont eu un taux de victoire de 25.37699890136718
 		 */
 		
 		partie.simulation(nbPartie);
+		System.out.println(chasseur.getStats());
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		

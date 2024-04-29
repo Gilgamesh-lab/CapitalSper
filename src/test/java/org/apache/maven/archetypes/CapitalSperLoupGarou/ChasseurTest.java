@@ -3,12 +3,14 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,6 +26,8 @@ public class ChasseurTest {
 	@Rule
 	public TestName name = new TestName();
 	
+	private Chasseur chasseur;
+	
 	@Before
 	public void setUp() throws Exception {
 		this.log.setOnAfficherLogDetailsPartie();
@@ -32,17 +36,21 @@ public class ChasseurTest {
 		System.out.println("");
 		System.out.println("Lancement de la méthode " + name.getMethodName());
 		System.out.println("");
+		this.chasseur = new Chasseur();
+		this.chasseur.setStatsChasseur(new StatsChasseur());
 	}
 	
 
 	@Test
 	public void testSiJeMeureTuMeures() {// œil pour œil, dent pour dent
 		this.village = new Village(0, 1);
-		Chasseur chasseur = new Chasseur();
 		this.village.ajouterPersonnage(chasseur);
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
 		assertEquals(0 ,this.village.getNbPersonnageEnVie());
+		assertTrue(this.chasseur.getStatsChasseur().getNbTire() == 1);
+		assertTrue(this.chasseur.getStatsChasseur().getNbLgTuer() == 1);
+		
 		
 	}
 	

@@ -5,12 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatPersonnage;
+
 public abstract class VillageoisSpecial extends Villageois {
 	private ArrayList<TypeDePouvoir> typeDePouvoir;
 	
-	public VillageoisSpecial(int idDeRole) {
+	protected VillageoisSpecial(int idDeRole) {
 		super(idDeRole, true);
 		this.typeDePouvoir = this.init();
+		
+	}
+	
+	protected VillageoisSpecial(int idDeRole, StatPersonnage statPersonnage) {
+		super(idDeRole, true, statPersonnage);
+		this.typeDePouvoir = this.init();
+		
 		
 	}
 	

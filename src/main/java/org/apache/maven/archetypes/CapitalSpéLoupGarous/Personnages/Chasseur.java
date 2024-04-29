@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
 
 public class Chasseur extends VillageoisSpecial {
 	public final static int IDROLE = 22 ;
+	private static StatsChasseur statsChasseur = new StatsChasseur();
 
 	public Chasseur() {
-		super(IDROLE);
+		super(IDROLE, statsChasseur);
+		this.getStatsChasseur().incrementerNbPartie();
 	}
 	
 	public ArrayList<TypeDePouvoir> init() {
@@ -21,6 +24,7 @@ public class Chasseur extends VillageoisSpecial {
 		super.meurt();
 		if(this.getVillage().getNbLoupGarou() > 0) {
 			Personnage cible = this.getVillage().getPersonnageParId(this.voter());
+			statsChasseur.tirer(cible);
 			this.resetListeDeVote();
 			Logger.log("Dans son dernier souffle " + this + " a décidé d'emporter avec lui " + cible);
 			this.tuer(cible);
@@ -29,6 +33,15 @@ public class Chasseur extends VillageoisSpecial {
 		
 		
 		
+	}
+	
+	
+	public static void setStatsChasseur(StatsChasseur statsChasseur) {
+		Chasseur.statsChasseur = statsChasseur;
+	}
+
+	public StatsChasseur getStatsChasseur() {
+		return Chasseur.statsChasseur;
 	}
 
 	

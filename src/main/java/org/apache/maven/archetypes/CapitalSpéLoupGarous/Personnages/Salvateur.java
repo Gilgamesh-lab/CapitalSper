@@ -64,7 +64,7 @@ public class Salvateur extends VillageoisSpecial {
 
 	@Override
 	public void agirAprèsNuit() {
-		if(this.getDernierPersonnageProtéger().estEnvie() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) < 2) { // en se comptant lui même
+		if(this.getDernierPersonnageProtéger().estEnvie() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) == 1) { // en se comptant lui même
 			Logger.log("Puisque qu'il n'y a pas eu de mort et que " + this + " est le seule protecteur du village, " + this + " a confiance en " + this.getDernierPersonnageProtéger(), TypeDeLog.role);
 			this.ajouterAlliés(dernierPersonnageProtéger);
 		}

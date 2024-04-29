@@ -3,10 +3,9 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import javax.annotation.processing.Generated;
-
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatPersonnage;
 
 public abstract class Personnage  implements Cloneable {
 	
@@ -21,20 +20,52 @@ public abstract class Personnage  implements Cloneable {
 	private ArrayList<Personnage> listeEnnemie;
 	private int nbVote = 1;
 	private Fonction fonction = null;
+	private StatPersonnage statPersonnage;
 	
-	public Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
+	
+	protected Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial, StatPersonnage statPersonnage) {
 		this.estUnVillageois = estUnVillageois;
 		this.idDeRole = idDeRole;
-		this.listeDeVote = new ArrayList<Personnage>();
+		this.listeDeVote = new ArrayList<>();
 		this.statut = new Statut(this);
-		this.alliés = new ArrayList<Personnage>();
+		this.alliés = new ArrayList<>();
 		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
-		this.listeEnnemie = new ArrayList<Personnage>();
+		this.listeEnnemie = new ArrayList<>();
+		this.statPersonnage  = statPersonnage;
+	}
+	
+	protected Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
+		this.estUnVillageois = estUnVillageois;
+		this.idDeRole = idDeRole;
+		this.listeDeVote = new ArrayList<>();
+		this.statut = new Statut(this);
+		this.alliés = new ArrayList<>();
+		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
+		this.listeEnnemie = new ArrayList<>();
+		this.statPersonnage  = null;
 	}
 	
 	public void tuer(Personnage personnage) {
 		personnage.getStatut().setTueur(this.getIdDeRole());
 		personnage.meurt();
+	}
+	
+	
+	
+
+
+	public void setStatPersonnage(StatPersonnage statPersonnage) {
+		this.statPersonnage = statPersonnage;
+	}
+
+	public String getStats() {
+		if(this.statPersonnage != null) {
+			return this.statPersonnage.getStats();
+		}
+		else {
+			return "";
+		}
+		
 	}
 	
 	public void agirPremiereNuit() {}
