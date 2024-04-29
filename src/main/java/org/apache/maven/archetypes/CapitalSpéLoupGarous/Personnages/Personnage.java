@@ -280,7 +280,6 @@ public abstract class Personnage  implements Cloneable {
 
 
 	
-	@Generated(value = { "jacoco" })
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -289,7 +288,6 @@ public abstract class Personnage  implements Cloneable {
 		return result;
 	}
 
-	@Generated(value = { "jacoco" })
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
