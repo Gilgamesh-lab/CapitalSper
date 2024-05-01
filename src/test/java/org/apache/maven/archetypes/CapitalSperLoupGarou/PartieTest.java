@@ -8,7 +8,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -73,7 +73,7 @@ public class PartieTest {
 		Assert.assertTrue(this.partie.conditionVictoireAmoureux());
 		
 		this.village = new Village(0,1);
-		this.village.ajouterSpé(Sorcière.IDROLE);
+		this.village.ajouterSpé(Sorciere.IDROLE);
 		this.partie.setVillage(this.village);
 		Assert.assertTrue(this.partie.conditionFinPartie());
 		Assert.assertTrue(this.partie.conditionEgaliter());

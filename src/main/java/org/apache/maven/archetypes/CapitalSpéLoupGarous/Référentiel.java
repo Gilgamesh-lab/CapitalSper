@@ -11,7 +11,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOu
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public class Référentiel {
@@ -26,7 +26,7 @@ public class Référentiel {
 		classesParRole.put(LoupGarouSimple.IDROLE, LoupGarouSimple.class);// 15
 		classesParRole.put(Cupidon.IDROLE, Cupidon.class);// 3
 		classesParRole.put(Chasseur.IDROLE, Chasseur.class);// 22
-		classesParRole.put(Sorcière.IDROLE, Sorcière.class);// 19
+		classesParRole.put(Sorciere.IDROLE, Sorciere.class);// 19
 		classesParRole.put(Salvateur.IDROLE, Salvateur.class);// 14
 		classesParRole.put(Voyante.IDROLE, Voyante.class);// 4
 		classesParRole.put(MontreurDOurs.IDROLE, MontreurDOurs.class);// 11

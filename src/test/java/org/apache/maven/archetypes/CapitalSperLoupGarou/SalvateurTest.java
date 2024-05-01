@@ -4,7 +4,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -76,7 +76,7 @@ private Village village;
 	public void testConfiance() {// Si je t'ai sauvé la vie alors cela vas devenir que tu n'est pas un loup-garous
 		this.village = new Village(0,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
-		Sorcière sorcière = new Sorcière();
+		Sorciere sorcière = new Sorciere();
 		this.village.ajouterPersonnage(this.salvateur);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.ajouterPersonnage(lg);

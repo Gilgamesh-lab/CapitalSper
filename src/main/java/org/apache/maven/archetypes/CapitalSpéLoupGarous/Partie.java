@@ -27,6 +27,7 @@ public class Partie {
 	private int compteur;
 	private List<String> listeBranches = new ArrayList<String>();
 	private Référentiel référentiel;
+	public static Integer nbPartie = null;
 	
 	public Partie(Village village) {
 		this.savegardeVillage = village;
@@ -67,7 +68,7 @@ public class Partie {
 	
 	
 	public boolean conditionVictoireLoupGarous() {// Que les loups-garous soient surnombre et que aucun spé de vie et de mort soit encore en vie ou que le camps du village soit décimé
-		return (this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && (this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) + this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie)) == 0  ) || (this.village.getNbLoupGarou() > 0 && this.village.getNbVillageois() < 2 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 0 );
+		return (this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && (this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) + this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie)) == 0  ) || (this.village.getNbLoupGarou() == 1 && this.village.getNbVillageois() == 1 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 0 );
 	}
 	
 	public boolean conditionEgaliter() {
@@ -285,6 +286,7 @@ public class Partie {
 	
 	
 	public void simulation(int nb) {
+		this.nbPartie = nb;
 		long startTime = System.currentTimeMillis();
 		this.reset();
 		if(!log.isAfficherLogDetailsPartie()) {
@@ -341,6 +343,7 @@ public class Partie {
 		Logger.log("Le temps d'exécution de la simulation est de : " + minute +  " minutes et " + seconde + " secondes ", TypeDeLog.statistique );
 		log.setOffAfficherLogDetailsPartie();
 		log.finish();
+		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> System.out.println(x.getStats() + "\n"));
 		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
 		Log.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/
 	}

@@ -12,7 +12,6 @@ public class Chasseur extends VillageoisSpecial {
 
 	public Chasseur() {
 		super(IDROLE, statsChasseur);
-		this.getStatsChasseur().incrementerNbPartie();
 	}
 	
 	public ArrayList<TypeDePouvoir> init() {

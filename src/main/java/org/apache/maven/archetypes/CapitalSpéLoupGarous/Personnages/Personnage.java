@@ -68,6 +68,12 @@ public abstract class Personnage  implements Cloneable {
 		
 	}
 	
+	
+	
+	public StatPersonnage getStatPersonnage() {
+		return statPersonnage;
+	}
+
 	public void agirPremiereNuit() {}
 
 	public void agir() {}

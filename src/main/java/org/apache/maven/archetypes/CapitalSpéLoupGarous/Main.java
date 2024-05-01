@@ -4,7 +4,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 
@@ -17,7 +17,7 @@ public class Main {
 		
 		int nbVillageois = 5;
 		int nbLoupGarous = 3;
-		int nbPartie = 100000;//100000
+		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -37,7 +37,7 @@ public class Main {
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
 		village.ajouterPersonnage( chasseur);
-		Sorcière sorcière = new Sorcière();
+		Sorciere sorcière = new Sorciere();
 		village.ajouterPersonnage(sorcière);
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
@@ -59,7 +59,6 @@ Sur 100000 parties, les amoureux ont eu un taux de victoire de 25.37699890136718
 		 */
 		
 		partie.simulation(nbPartie);
-		System.out.println(chasseur.getStats());
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		

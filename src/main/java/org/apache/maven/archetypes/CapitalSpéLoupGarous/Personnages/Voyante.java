@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsVoyante;
 
 public class Voyante extends VillageoisSpecial {
 	public final static int IDROLE = 4;
+	private static StatsVoyante statsVoyante = new StatsVoyante();
 
 	public Voyante() {
-		super(IDROLE);
+		super(IDROLE, statsVoyante);
 	}
 	
 	public ArrayList<TypeDePouvoir> init() {
@@ -18,6 +21,7 @@ public class Voyante extends VillageoisSpecial {
 	
 	public void sonder() {
 		 Personnage persoASonder = super.voteCibleAction();
+		 statsVoyante.voyance(persoASonder);
 		 if(persoASonder.equals(this)) {
 				System.out.println("erreur vovo détecté : " + this + "s'est choisi elle-même");
 			}
@@ -33,18 +37,22 @@ public class Voyante extends VillageoisSpecial {
 		 }
 	}
 	
-
-	
-
 	@Override
 	public void agir() {
 		this.sonder();
 		
 	}
+	
+	
+	
+	public static void setStatsVoyante(StatsVoyante statsVoyante) {
+		Voyante.statsVoyante = statsVoyante;
+	}
 
-	
-	
-	
+	public StatsVoyante getStatsVoyante() {
+		return Voyante.statsVoyante;
+	}
+
 	@Override
 	public String toString() {
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {

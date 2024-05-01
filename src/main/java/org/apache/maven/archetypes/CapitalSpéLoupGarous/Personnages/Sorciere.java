@@ -5,12 +5,12 @@ import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 
-public class Sorcière extends VillageoisSpecial{
+public class Sorciere extends VillageoisSpecial{
 	private ArrayList<Integer> actions;
 	private Integer action;
 	public final static int IDROLE = 19;
 
-	public Sorcière() {
+	public Sorciere() {
 		super(IDROLE);
 		this.action = null;
 		this.actions = new ArrayList<Integer>(Arrays.asList(0,1,2,3)) ;

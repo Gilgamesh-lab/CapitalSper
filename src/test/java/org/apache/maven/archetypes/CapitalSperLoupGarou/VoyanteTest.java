@@ -5,6 +5,8 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsVoyante;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,6 +34,7 @@ public class VoyanteTest {
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(0,0);
 		this.voyante = new Voyante();
+		this.voyante.setStatsVoyante(new StatsVoyante());
 	}
 	
 	@Test
@@ -42,6 +45,8 @@ public class VoyanteTest {
 		voyante.sonder();
 		Assert.assertTrue(voyante.getEnnemies().size() == 1);
 		Assert.assertTrue(voyante.getEnnemies().contains(lg));
+		Assert.assertTrue(voyante.getStatsVoyante().getNbDevination() == 1);// Car Equals déprécié pour float, trouver une autre alternative
+		Assert.assertTrue(voyante.getStatsVoyante().getNbLoupGarouTrouver() == 1);
 	}
 	
 	@Test
@@ -53,5 +58,7 @@ public class VoyanteTest {
 		Assert.assertTrue(voyante.getEnnemies().isEmpty());
 		Assert.assertEquals(1, voyante.getAlliés().size());
 		Assert.assertTrue(voyante.getAlliés().contains(vi));
+		Assert.assertTrue(voyante.getStatsVoyante().getNbDevination() == 1);
+		Assert.assertTrue(voyante.getStatsVoyante().getNbLoupGarouTrouver() == 0);
 	}
 }

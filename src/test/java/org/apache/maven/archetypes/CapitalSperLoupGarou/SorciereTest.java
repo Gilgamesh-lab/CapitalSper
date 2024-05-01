@@ -5,7 +5,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorcière;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,7 +18,7 @@ public class SorciereTest {
 	
 	private Logger log = new Logger();
 	
-	private Sorcière sorcière;
+	private Sorciere sorcière;
 	
 	@Rule
 	public TestName name = new TestName();
@@ -32,7 +32,7 @@ public class SorciereTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(1,1);
-		this.sorcière = new Sorcière();
+		this.sorcière = new Sorciere();
 	}
 	
 	@Test
