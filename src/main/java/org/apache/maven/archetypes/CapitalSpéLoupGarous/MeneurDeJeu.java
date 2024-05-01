@@ -5,12 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 
-public class Partie {
+public class MeneurDeJeu {
 	private static Village savegardeVillage;
 	private Village village ;
 	private Integer nbTour;
@@ -29,7 +30,7 @@ public class Partie {
 	private Référentiel référentiel;
 	public static Integer nbPartie = null;
 	
-	public Partie(Village village) {
+	public MeneurDeJeu(Village village) {
 		this.savegardeVillage = village;
 		this.village = village;
 		this.log = new Logger();
@@ -46,7 +47,7 @@ public class Partie {
 
 
 
-	public Partie(Village village, Logger log) {
+	public MeneurDeJeu(Village village, Logger log) {
 		this.savegardeVillage = village;
 		this.village = village;
 		this.log = log;
@@ -75,7 +76,7 @@ public class Partie {
 		return (this.village.getNbLoupGarou() == 1 && this.village.getNbVillageois() == 1 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 1) || this.getVillage().getNbPersonnageEnVie() == 0 ;
 	}
 	
-	private void startSimulation () {
+	private void lancerUnePartie() {
 		init();
 		Logger.log("");
 		Logger.log("Lancement de la partie avec un village de " + this.village.getNbPersonnageEnVie() + " personnages composé de " +  this.référentiel.messageDebutPartie(this.village));
@@ -285,12 +286,14 @@ public class Partie {
 	
 	
 	
-	public void simulation(int nb) {
+	public void lancerDesParties(int nb) {
 		this.nbPartie = nb;
 		long startTime = System.currentTimeMillis();
 		this.reset();
 		if(!log.isAfficherLogDetailsPartie()) {
-			System.out.println("Chargement en cours");
+			System.out.println("Chargement en cours");// pour que n'apparaisse pas dans le fichier de log et soit afficher dans le terminal
+			System.out.println();
+			System.out.println("Le village est composé de " +  this.référentiel.messageDebutPartie(this.village));
 		}
 		if (log.isFichierOutput()) {
 			String mode = "Simultation sur " + nb + " parties";
@@ -299,7 +302,7 @@ public class Partie {
 		int compteur ;
 
 		for (compteur = 0; compteur < nb ; compteur ++) {
-			this.startSimulation();
+			this.lancerUnePartie();
 			Logger.log("", TypeDeLog.pourcentage);
 			Logger.log("Nombre de victoire des villageois = " + (int) this.nbVictoireVillage , TypeDeLog.pourcentage);
 			Logger.log("Nombre de victoire des loups-garous = " + (int) this.nbVictoireLoupGarou , TypeDeLog.pourcentage);
@@ -336,14 +339,16 @@ public class Partie {
 		
 		// stat perso "simple" ex : taux de survie ?
 		// stat persoSpé : nb lg kill by chasseur, utilisation potion soso, couple traitre ...
+		
+		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> Logger.log(x.getStats() + "\n", TypeDeLog.statistique));
+		
 		long endTime = System.currentTimeMillis();
 		long minute = (endTime-startTime) / 60000;
 		long seconde = (  (endTime-startTime) -(minute*60000)) / 1000;
 		Logger.log("");
-		Logger.log("Le temps d'exécution de la simulation est de : " + minute +  " minutes et " + seconde + " secondes ", TypeDeLog.statistique );
+		Logger.log("Le temps d'exécution de la simulation est de : " + minute +  " minutes et " + seconde + " secondes ", TypeDeLog.statistique);
 		log.setOffAfficherLogDetailsPartie();
 		log.finish();
-		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> System.out.println(x.getStats() + "\n"));
 		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );
 		Log.println("Les loup-garous ont gagnés " + nbVictoireLoupGarou + " sur " + compteur + " parties" );*/
 	}

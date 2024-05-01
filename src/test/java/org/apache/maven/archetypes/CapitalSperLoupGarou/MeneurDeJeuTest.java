@@ -1,7 +1,7 @@
 package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
@@ -16,14 +16,14 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 
 
-public class PartieTest {
+public class MeneurDeJeuTest {
 	private SimpleVillageois simpleVillageois = new SimpleVillageois();
 	private LoupGarouSimple loupGarou = new LoupGarouSimple();
 	private Village village = new Village(0,0);
 	private double delta;
 	
 	private Logger log = new Logger();
-	private Partie partie ;
+	private MeneurDeJeu meneurDeJeu ;
 	
 	@Rule
 	public TestName name = new TestName();
@@ -44,45 +44,45 @@ public class PartieTest {
 	@Test
 	public void testConditionDeFinPartie()  {
 		this.village = new Village(1,1);// un vi pour un loups-garous
-		this.partie = new Partie(this.village,log);
-		Assert.assertTrue(this.partie.conditionFinPartie());
-		Assert.assertTrue(this.partie.conditionVictoireLoupGarous());
+		this.meneurDeJeu = new MeneurDeJeu(this.village,log);
+		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
+		Assert.assertTrue(this.meneurDeJeu.conditionVictoireLoupGarous());
 		
 		this.village = new Village(1,0);
-		this.partie.setVillage(this.village);
-		Assert.assertTrue(this.partie.conditionFinPartie());
-		Assert.assertTrue(this.partie.conditionVictoireVillageois());
+		this.meneurDeJeu.setVillage(this.village);
+		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
+		Assert.assertTrue(this.meneurDeJeu.conditionVictoireVillageois());
 		
-		this.partie.setVillage( new Village(2,1));// deux viellageois pour un loups-garous
-		Assert.assertFalse(this.partie.conditionFinPartie());
+		this.meneurDeJeu.setVillage( new Village(2,1));// deux viellageois pour un loups-garous
+		Assert.assertFalse(this.meneurDeJeu.conditionFinPartie());
 		
 		this.village = new Village(0,1);// un vi pour deux loups-garous
 		this.village.ajouterSpé(Chasseur.IDROLE);
-		this.partie.setVillage(this.village);
-		Assert.assertTrue(this.partie.conditionFinPartie());
-		Assert.assertTrue(this.partie.conditionEgaliter());
+		this.meneurDeJeu.setVillage(this.village);
+		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
+		Assert.assertTrue(this.meneurDeJeu.conditionEgaliter());
 		
 		this.village = new Village(1,1);// 
 		this.village.ajouterSpé(Cupidon.IDROLE);
 		this.village.getPersonnageParIdRole(Cupidon.IDROLE).tomberAmoureux((this.village.getPersonnageParIdRole(LoupGarouSimple.IDROLE)));
 		this.village.getPersonnageParIdRole(LoupGarouSimple.IDROLE).tomberAmoureux((this.village.getPersonnageParIdRole(Cupidon.IDROLE)));
-		this.partie.setVillage(this.village);
+		this.meneurDeJeu.setVillage(this.village);
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
-		Assert.assertTrue(this.partie.conditionFinPartie());
-		Assert.assertTrue(this.partie.conditionVictoireAmoureux());
+		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
+		Assert.assertTrue(this.meneurDeJeu.conditionVictoireAmoureux());
 		
 		this.village = new Village(0,1);
 		this.village.ajouterSpé(Sorciere.IDROLE);
-		this.partie.setVillage(this.village);
-		Assert.assertTrue(this.partie.conditionFinPartie());
-		Assert.assertTrue(this.partie.conditionEgaliter());
+		this.meneurDeJeu.setVillage(this.village);
+		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
+		Assert.assertTrue(this.meneurDeJeu.conditionEgaliter());
 		
 		this.village = new Village(0,1);
 		this.village.ajouterSpé(Salvateur.IDROLE);
-		this.partie.setVillage(this.village);
-		Assert.assertTrue(this.partie.conditionFinPartie());
-		Assert.assertTrue(this.partie.conditionVictoireLoupGarous());
+		this.meneurDeJeu.setVillage(this.village);
+		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
+		Assert.assertTrue(this.meneurDeJeu.conditionVictoireLoupGarous());
 	}
 
 	@Test
@@ -98,53 +98,53 @@ public class PartieTest {
 	@Test
 	public void simulationTest()  {
 		this.village = new Village(5,1);
-		this.partie = new Partie(village, log);
-		this.partie.simulation(1);
+		this.meneurDeJeu = new MeneurDeJeu(village, log);
+		this.meneurDeJeu.lancerDesParties(1);
 		
 		this.village = new Village(5,4);
-		this.partie.setVillage(village);
-		this.partie.simulation(1);
+		this.meneurDeJeu.setVillage(village);
+		this.meneurDeJeu.lancerDesParties(1);
 		
 		this.village = new Village(0,1);
 		this.village.ajouterSpé(Cupidon.IDROLE);
-		this.partie.setVillage(village);
-		this.partie.simulation(1);
+		this.meneurDeJeu.setVillage(village);
+		this.meneurDeJeu.lancerDesParties(1);
 	}
 	
 	@Test
 	public void explorationTest() {
 		this.village = new Village(3, 1);
-		this.partie = new Partie(village, log);
-		this.partie.exploration();
+		this.meneurDeJeu = new MeneurDeJeu(village, log);
+		this.meneurDeJeu.exploration();
 		delta = 1.0;
-		Assert.assertEquals(66 , this.partie.getPourcentWinLoupGarous() , delta);
-		Assert.assertEquals(33 , this.partie.getPourcentWinVillage() , delta);
+		Assert.assertEquals(66 , this.meneurDeJeu.getPourcentWinLoupGarous() , delta);
+		Assert.assertEquals(33 , this.meneurDeJeu.getPourcentWinVillage() , delta);
 		
 		delta = 0.1;
 		
-		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
+		Assert.assertEquals(100 , (this.meneurDeJeu.getPourcentWinLoupGarous() + this.meneurDeJeu.getPourcentWinVillage() + this.meneurDeJeu.getPourcentÉgalité() ), delta);
 		this.village = new Village(5, 1);
-		this.partie = new Partie(village, log);
-		this.partie.exploration();
+		this.meneurDeJeu = new MeneurDeJeu(village, log);
+		this.meneurDeJeu.exploration();
 		
-		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
+		Assert.assertEquals(100 , (this.meneurDeJeu.getPourcentWinLoupGarous() + this.meneurDeJeu.getPourcentWinVillage() + this.meneurDeJeu.getPourcentÉgalité() ), delta);
 		
 		this.village = new Village(7, 1);
-		this.partie = new Partie(village, log);
-		this.partie.exploration();
+		this.meneurDeJeu = new MeneurDeJeu(village, log);
+		this.meneurDeJeu.exploration();
 		
-		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
+		Assert.assertEquals(100 , (this.meneurDeJeu.getPourcentWinLoupGarous() + this.meneurDeJeu.getPourcentWinVillage() + this.meneurDeJeu.getPourcentÉgalité() ), delta);
 
 
 		this.village = new Village(10, 1);
-		this.partie = new Partie(village, log);
-		this.partie.exploration();
-		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
+		this.meneurDeJeu = new MeneurDeJeu(village, log);
+		this.meneurDeJeu.exploration();
+		Assert.assertEquals(100 , (this.meneurDeJeu.getPourcentWinLoupGarous() + this.meneurDeJeu.getPourcentWinVillage() + this.meneurDeJeu.getPourcentÉgalité() ), delta);
 		
 		this.village = new Village(10, 2);
-		this.partie = new Partie(village, log);
-		this.partie.exploration();
-		Assert.assertEquals(100 , (this.partie.getPourcentWinLoupGarous() + this.partie.getPourcentWinVillage() + this.partie.getPourcentÉgalité() ), delta);
+		this.meneurDeJeu = new MeneurDeJeu(village, log);
+		this.meneurDeJeu.exploration();
+		Assert.assertEquals(100 , (this.meneurDeJeu.getPourcentWinLoupGarous() + this.meneurDeJeu.getPourcentWinVillage() + this.meneurDeJeu.getPourcentÉgalité() ), delta);
 	}
 	
 		

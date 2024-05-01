@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsCupidon;
 
 public class Cupidon extends VillageoisSpecial {
 	public final static int IDROLE = 3;
+	private static StatsCupidon statCupidon = new StatsCupidon();
 	
 	public Cupidon() {
-		super(IDROLE);
+		super(IDROLE, statCupidon);
 	}
 	
 	public ArrayList<TypeDePouvoir> init() {
@@ -25,14 +27,21 @@ public class Cupidon extends VillageoisSpecial {
 		}
 		Personnage personnageAmoureux = this.getVillage().getHabitantsEnVie().get(nbPersonnageAmoureux1);
 		Personnage personnageAmoureux2 = this.getVillage().getHabitantsEnVie().get(nbPersonnageAmoureux2);
+		statCupidon.amoureux(personnageAmoureux, personnageAmoureux2);
 		personnageAmoureux.tomberAmoureux(personnageAmoureux2);
 		personnageAmoureux2.tomberAmoureux(personnageAmoureux);
 		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de " + this, TypeDeLog.role);
 		this.perdrePouvoir(TypeDePouvoir.Mort);
 	}
-
 	
+	
+	public static StatsCupidon getStatCupidon() {
+		return statCupidon;
+	}
 
+	public static void setStatCupidon(StatsCupidon statCupidon) {
+		Cupidon.statCupidon = statCupidon;
+	}
 
 	@Override
 	public void agirPremiereNuit() {

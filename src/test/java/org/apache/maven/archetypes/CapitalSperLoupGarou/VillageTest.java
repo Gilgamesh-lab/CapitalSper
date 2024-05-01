@@ -3,7 +3,7 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 import java.io.IOException;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
@@ -28,7 +28,7 @@ public class VillageTest {
 	
 	private Logger log = new Logger();
 	//log.setDetailVoteVillage(true);
-	private Partie partie = new Partie(village, log);
+	private MeneurDeJeu partie = new MeneurDeJeu(village, log);
 	
 	@Rule
 	public TestName name = new TestName();

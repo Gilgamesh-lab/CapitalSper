@@ -15,8 +15,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 5;
-		int nbLoupGarous = 3;
+		int nbVillageois = 3;
+		int nbLoupGarous = 2;
 		int nbPartie = 5;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
@@ -30,8 +30,8 @@ public class Main {
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		//logger.setModeSpectateurOn();
-		logger.setModeStatistiqueOn();
+		logger.setModeSpectateurOn();
+		//logger.setModeStatistiqueOn();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
@@ -42,13 +42,13 @@ public class Main {
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
 		
-		Salvateur salvateur = new Salvateur();
+		/*Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);
+		village.ajouterPersonnage(montreurDOurs);*/
 		village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
-		Partie partie = new Partie(village, logger);
+		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
 		
 		
 		
@@ -58,7 +58,7 @@ Sur 100000 parties, les loups-garous ont eu un taux de victoire de 43.1459999084
 Sur 100000 parties, les amoureux ont eu un taux de victoire de 25.376998901367188%
 		 */
 		
-		partie.simulation(nbPartie);
+		meneurDeJeu.lancerDesParties(nbPartie);
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		

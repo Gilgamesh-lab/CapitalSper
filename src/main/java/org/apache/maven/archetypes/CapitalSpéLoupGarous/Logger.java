@@ -24,7 +24,7 @@ public class Logger {
 		this.afficherLogDetailsPartie = true;
 		this.afficherLogDetailsPourcentage = false;
 		this.afficherLogDetailsRoleAction = false ;
-		this.afficherLogStats = false;
+		this.afficherLogStats = true;
 	}
 	
 	public void setModeSpectateurOn() {

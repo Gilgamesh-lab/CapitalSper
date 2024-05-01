@@ -1,6 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Partie;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
 
 public abstract class StatPersonnage {
 	
@@ -10,8 +10,8 @@ public abstract class StatPersonnage {
 	}
 	
 	public int getNbPartie() {
-		if(Partie.nbPartie != null) {
-			return Partie.nbPartie;
+		if(MeneurDeJeu.nbPartie != null) {
+			return MeneurDeJeu.nbPartie;
 		}
 		else {
 			return 1;

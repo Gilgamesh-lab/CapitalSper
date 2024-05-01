@@ -201,6 +201,7 @@ public abstract class Personnage  implements Cloneable {
 			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
 			this.statut.getAmoureux().getStatut().setTueur(Cupidon.IDROLE);
 			this.statut.getAmoureux().meurt();
+			Cupidon.getStatCupidon().ASurvecuCoupleNonTraitre();
 		}
 		if(this.getFonction() != null && this.getVillage().getNbPersonnageEnVie() > 2) {
 			this.village.getMaire().election();

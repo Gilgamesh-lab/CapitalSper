@@ -1,12 +1,15 @@
 package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
 
+import static org.junit.Assert.assertTrue;
+
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsCupidon;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -30,6 +33,7 @@ public class CupidonTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.cupidon = new Cupidon();
+		this.cupidon.setStatCupidon(new StatsCupidon());
 		System.out.println("");
 		System.out.println("Lancement de la méthode " + name.getMethodName());
 		System.out.println("");
@@ -52,6 +56,10 @@ public class CupidonTest {
 		Assert.assertTrue(this.cupidon.getAlliés().contains(perso));// ce considèrent t'ils comme des allies indéfectible ?
 		Assert.assertTrue(perso.getAlliés().contains(this.cupidon));
 		
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleTraitre() == 1);
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleVillageois() == 0);
+		
 		
 	}
 	
@@ -63,6 +71,10 @@ public class CupidonTest {
 		Assert.assertEquals(2, this.village.getNbPersonnageEnVie());
 		this.cupidon.meurt();
 		Assert.assertEquals(0, this.village.getNbPersonnageEnVie());
+		
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleTraitre() == 0);
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleVillageois() == 1);
 		
 	}
 	
@@ -83,6 +95,10 @@ public class CupidonTest {
 		Assert.assertFalse(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 		this.village.tribunal();
 		Assert.assertTrue(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
+		
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleTraitre() == 1);
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
+		assertTrue(this.cupidon.getStatCupidon().getNbCoupleVillageois() == 0);
 	}
 
 }
