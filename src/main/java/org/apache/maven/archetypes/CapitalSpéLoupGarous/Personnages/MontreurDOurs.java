@@ -5,15 +5,17 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsMontreursDOurs;
 
 public class MontreurDOurs extends VillageoisSpecial {
 	private Personnage voisinDeDroite;
 	private Personnage voisinDeGauche;
 	private Boolean aTrouverUnLoup;
 	public final static int IDROLE = 11;
+	private static StatsMontreursDOurs statsMontreursDOurs = new StatsMontreursDOurs();
 
 	public MontreurDOurs() {
-		super(IDROLE);
+		super(IDROLE, statsMontreursDOurs);
 		this.voisinDeDroite = null;
 		this.voisinDeGauche = null;
 		this.aTrouverUnLoup = null;
@@ -37,6 +39,16 @@ public class MontreurDOurs extends VillageoisSpecial {
 		
 	}
 	
+	
+	
+	public static StatsMontreursDOurs getStatsMontreursDOurs() {
+		return statsMontreursDOurs;
+	}
+
+	public static void setStatsMontreursDOurs(StatsMontreursDOurs statsMontreursDOurs) {
+		MontreurDOurs.statsMontreursDOurs = statsMontreursDOurs;
+	}
+
 	public void setVoisins(Personnage[] liste ) {
 		this.voisinDeDroite = liste[0];
 		this.voisinDeGauche = liste[1];
@@ -68,6 +80,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 			int nbVoisinDeDroite = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeDroite = liste.get(nbVoisinDeDroite);
 			nouveauVoisinADroite = true;
+			this.getStatsMontreursDOurs().incrementerNbVoisinDifférent();
 			
 		}
 		if(!this.voisinDeGauche.estEnvie()) {
@@ -78,12 +91,14 @@ public class MontreurDOurs extends VillageoisSpecial {
 			ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this && x != this.voisinDeDroite).collect(Collectors.toList()));
 			int nbVoisinDeGauche = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeGauche = liste.get(nbVoisinDeGauche);
-			
-			
 			nouveauVoisinAGauche = true;
+			this.getStatsMontreursDOurs().incrementerNbVoisinDifférent();
 		}
 		
+		this.getStatsMontreursDOurs().incrementerNbLoupGarouVoisin(voisinDeGauche, voisinDeDroite);
+		
 		if(!this.voisinDeDroite.estUnVillageois() || !this.voisinDeGauche.estUnVillageois()) {
+			this.getStatsMontreursDOurs().incrementerNbGrognement();
 			if(!voisinDroitCoupableSure && !voisinGaucheCoupableSure) {
 				if(!this.aTrouverUnLoup &&  nouveauVoisinADroite && !nouveauVoisinAGauche ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
 					this.ajouterEnnemies(this.voisinDeDroite);
@@ -92,12 +107,13 @@ public class MontreurDOurs extends VillageoisSpecial {
 				else if(!this.aTrouverUnLoup  &&  nouveauVoisinAGauche && !nouveauVoisinADroite ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
 					this.ajouterEnnemies(this.voisinDeGauche);
 				}
-				// a adapter ici
 				else {
 					this.ajouterEnnemies(this.voisinDeDroite);
 					this.ajouterEnnemies(this.voisinDeGauche);
 				}
 				this.aTrouverUnLoup = true;
+				
+				
 			}
 			else {
 				//System.out.println("ok");
@@ -135,6 +151,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 			}
 		}
 		super.meurt();
+		this.getStatsMontreursDOurs().incrementerNbMort();
 	}
 	
 	public void reset() {
@@ -156,6 +173,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 		this.traquerLoupGarous();
 		if(this.aTrouverUnLoup()) {
 			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins() );
+			
 		}
 		
 	}

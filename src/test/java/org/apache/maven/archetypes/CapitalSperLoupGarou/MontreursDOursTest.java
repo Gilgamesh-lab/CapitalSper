@@ -7,6 +7,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsMontreursDOurs;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,6 +35,7 @@ public class MontreursDOursTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.montreurDOurs = new MontreurDOurs();
+		this.montreurDOurs.setStatsMontreursDOurs(new StatsMontreursDOurs());
 	}
 	
 	@Test
@@ -45,6 +47,10 @@ public class MontreursDOursTest {
 		this.montreurDOurs.traquerLoupGarous();
 		Assert.assertTrue(this.montreurDOurs.aTrouverUnLoup());
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().size() == 2);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
 		
 	}
 	
@@ -58,6 +64,13 @@ public class MontreursDOursTest {
 		Personnage[] voisins = {this.village.getPersonnage(0),this.village.getPersonnage(2) };
 		this.montreurDOurs.setVoisins(voisins);
 		this.montreurDOurs.traquerLoupGarous();
+		
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbVoisinDifférent() == 0);
+		
 		Assert.assertFalse(this.montreurDOurs.aTrouverUnLoup());
 		LoupGarouSimple lg = new LoupGarouSimple();
 		sv.meurt();
@@ -67,6 +80,12 @@ public class MontreursDOursTest {
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().contains(lg));
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().size() == 1);
 		Assert.assertTrue(this.montreurDOurs.getAlliés().size() == 2);
+		
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbVoisinDifférent() == 1);
 	}
 	
 	
@@ -83,15 +102,28 @@ public class MontreursDOursTest {
 		
 		
 		Assert.assertTrue(this.montreurDOurs.aTrouverUnLoup());
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbVoisinDifférent() == 0);
+		
 		LoupGarouSimple lg = new LoupGarouSimple();
 		sv.meurt();
 		
 		SimpleVillageois sv2 = new SimpleVillageois();
 		this.village.ajouterPersonnage(sv2);
 		this.montreurDOurs.traquerLoupGarous();
+		
 		Assert.assertTrue(this.montreurDOurs.aTrouverUnLoup());
 		Assert.assertTrue(this.montreurDOurs.getEnnemies().contains(lg));
 		Assert.assertFalse(this.montreurDOurs.getEnnemies().contains(sv2));
+		
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 2);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 2);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbVoisinDifférent() == 1);
 	}
 	
 	@Test
@@ -104,6 +136,12 @@ public class MontreursDOursTest {
 		this.montreurDOurs.meurt();
 		Assert.assertTrue(this.village.getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.village.getPersonnageParId(1)));
 		Assert.assertTrue(this.village.getPersoDevoilerCommeAlliéeParMontreursDOurs().contains(this.village.getPersonnageParId(0)));
+		
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbMort() == 1);
 	}
 	
 	@Test
@@ -118,6 +156,12 @@ public class MontreursDOursTest {
 		Assert.assertTrue(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().contains(this.village.getPersonnageParId(0)));
 		this.village.getPersonnage(1).meurt();
 		Assert.assertFalse(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().contains(this.village.getPersonnageParId(0)));
+		
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbMort() == 1);
 	}
 	
 	
@@ -130,12 +174,17 @@ public class MontreursDOursTest {
 		this.montreurDOurs.traquerLoupGarous();
 		this.village.getPersonnageParId(1).meurt();
 		this.village.ajouterPersonnage(new SimpleVillageois());
-		Personnage[] voisins2 = {this.village.getPersonnage(0),this.village.getPersonnage(1) };
-		this.montreurDOurs.setVoisins(voisins2);
 		this.montreurDOurs.traquerLoupGarous();
 		
 		Assert.assertEquals(1, this.montreurDOurs.getEnnemies().size());
 		Assert.assertEquals(2, this.montreurDOurs.getAlliés().size());
+		
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbGrognement() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbUnLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbZeroLoupGarouVoisin() == 1);
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbDeuxLoupGarouVoisin() == 0);
+		System.out.println(this.montreurDOurs.getStatsMontreursDOurs().getNbVoisinDifférent());
+		Assert.assertTrue(this.montreurDOurs.getStatsMontreursDOurs().getNbVoisinDifférent() == 1);
 	}
 	
 	

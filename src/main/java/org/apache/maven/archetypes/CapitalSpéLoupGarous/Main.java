@@ -44,8 +44,8 @@ public class Main {
 		
 		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
-		/*MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);*/
+		MontreurDOurs montreurDOurs = new MontreurDOurs();
+		village.ajouterPersonnage(montreurDOurs);
 		village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);

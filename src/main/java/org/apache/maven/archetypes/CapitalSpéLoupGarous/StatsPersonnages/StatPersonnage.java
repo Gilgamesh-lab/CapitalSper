@@ -18,6 +18,15 @@ public abstract class StatPersonnage {
 		}
 	}
 	
+	public int getNbTours() {
+		if(MeneurDeJeu.listeTours != null) {
+			return MeneurDeJeu.listeTours.stream().reduce(0, (x, y) -> x + y );
+		}
+		else {
+			return 1;
+		}
+	}
+	
 	public abstract String getStats();
 
 }

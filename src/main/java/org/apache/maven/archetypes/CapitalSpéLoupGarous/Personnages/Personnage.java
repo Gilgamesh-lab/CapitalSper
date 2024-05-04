@@ -191,6 +191,7 @@ public abstract class Personnage  implements Cloneable {
 			if(!this.estUnVillageois()) {
 				if(!this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty()) {
 					Logger.log("Vue que "+ this + " était un loup-garous, les soupçons sur " + this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().get(0) +  " suite aux révélations du Montreurs d' Ours sont lévées");
+					MontreurDOurs.getStatsMontreursDOurs().incrementerNbVoisinLoupGarouTrouverDuPremierCoups();
 				}
 				this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().clear();
 			}

@@ -15,7 +15,7 @@ public class MeneurDeJeu {
 	private static Village savegardeVillage;
 	private Village village ;
 	private Integer nbTour;
-	private List<Integer> listeTours = new ArrayList<Integer>();
+	public static List<Integer> listeTours = new ArrayList<Integer>();
 	public static  Logger log;
 	private float nbVictoireVillage = 0;
 	private float nbVictoireLoupGarou = 0 ;
@@ -321,7 +321,7 @@ public class MeneurDeJeu {
 		Logger.log("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%");
 		Logger.log("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%");
 		savegardeVillage.reset();
-		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == 4)) {
+		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Cupidon.IDROLE)) {
 			Logger.log("Sur " + compteur + " parties, les amoureux ont eu un taux de victoire de " + this.pourcentWinAmoureux  + "%");
 		}
 		if(this.nbÉgalité > 0) {
@@ -365,6 +365,9 @@ public class MeneurDeJeu {
 
 	public double getPourcentWinLoupGarous() {
 		return pourcentWinLoupGarous;
+	}
+	public List<Integer> getListeTours() {
+		return listeTours;
 	}
 	
 	

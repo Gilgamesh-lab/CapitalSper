@@ -72,6 +72,7 @@ public class Salvateur extends VillageoisSpecial {
 		 }
 		 else {
 			 Logger.log(this + " a préférée protéger personne");// si aucun perso non ennemie disponible
+			 System.out.println("le salvateur a pas d'amis");
 		 }
 		 
 		
