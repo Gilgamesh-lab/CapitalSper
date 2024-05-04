@@ -17,7 +17,7 @@ public class Main {
 		
 		int nbVillageois = 3;
 		int nbLoupGarous = 2;
-		int nbPartie = 5;//100000
+		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -30,8 +30,8 @@ public class Main {
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		logger.setModeSpectateurOn();
-		//logger.setModeStatistiqueOn();
+		//logger.setModeSpectateurOn();
+		logger.setModeStatistiqueOn();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);

@@ -82,8 +82,8 @@ public class MeneurDeJeu {
 		Logger.log("Lancement de la partie avec un village de " + this.village.getNbPersonnageEnVie() + " personnages composé de " +  this.référentiel.messageDebutPartie(this.village));
 		Logger.log("");
 		if(!this.conditionFinPartie()) {
-			this.village.premièreNuit();
 			this.nbTour++;
+			this.village.premièreNuit();
 			while(!this.conditionFinPartie()) {
 				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnageEnVie() > 2) {
 					this.village.getMaire().election();

@@ -35,7 +35,7 @@ public class StatsVoyante extends StatPersonnage {
 	@Override
 	public String getStats() {
 		String stats1 = "La voyante a effectué en moyenne " + ((double) ((this.nbDevination / super.getNbPartie()))) + " divinations par partie" ;
-		String stats2 = "Sur " + (int) this.getNbDevination() + " dévinations,  la voyante a trouvé un loup-garou dans " + ((double) ((this.getNbLoupGarouTrouver()  / this.getNbDevination()) * 100 )) + "% d'entre elles";
+		String stats2 = "Sur " + (int) this.getNbDevination() + " divinations,  la voyante a trouvé un loup-garou dans " + ((double) ((this.getNbLoupGarouTrouver()  / this.getNbDevination()) * 100 )) + "% d'entre elles";
 		return stats1 + "\n" + stats2;
 	}
 

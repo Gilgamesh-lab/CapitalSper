@@ -6,6 +6,8 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsVoyante;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -33,6 +35,7 @@ public class SorciereTest {
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(1,1);
 		this.sorcière = new Sorciere();
+		this.sorcière.setStatsSorciere(new StatsSorciere());
 	}
 	
 	@Test
@@ -52,6 +55,8 @@ public class SorciereTest {
 		Assert.assertEquals(3, this.village.getHabitantsEnVie().size());
 		Assert.assertFalse(this.sorcière.isaUnePotionDeVie());
 		Assert.assertTrue(this.sorcière.isaUnePotionDeMort());
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeVie() == 1);// Car Equals déprécié pour float, trouver une autre alternative
+		
 	}
 	
 	@Test
@@ -69,6 +74,8 @@ public class SorciereTest {
 		Assert.assertTrue(this.village.getNbPersonnageEnVie() == 22);
 		Assert.assertFalse(this.sorcière.isaUnePotionDeVie());
 		Assert.assertTrue(this.sorcière.isaUnePotionDeMort());
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeVie() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbAutoProtection() == 1);
 	}
 	
 	@Test
@@ -86,6 +93,8 @@ public class SorciereTest {
 		Assert.assertFalse(lg.estEnvie());
 		Assert.assertFalse(this.sorcière.isaUnePotionDeMort());
 		Assert.assertTrue(this.sorcière.isaUnePotionDeVie());
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeMort() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbLoupGarouTuer() == 1);
 	}
 	
 	@Test
@@ -103,6 +112,10 @@ public class SorciereTest {
 		Assert.assertTrue(this.village.getNbVillageois() == 21);
 		Assert.assertFalse(this.sorcière.isaUnePotionDeVie());
 		Assert.assertFalse(this.sorcière.isaUnePotionDeMort());
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeMort() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeVie() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbDeuxPotion() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbLoupGarouTuer() == 1);
 	}
 	
 	@Test 
@@ -116,6 +129,10 @@ public class SorciereTest {
 		this.village.nuit();
 		Assert.assertFalse(lg.estEnvie());
 		Assert.assertTrue(this.village.getPersonnageParId(0).estEnvie());
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeMort() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeVie() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbDeuxPotion() == 1);
+		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbLoupGarouTuer() == 1);
 		
 		
 	}
