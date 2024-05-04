@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSalvateur;
 
 public class Meute {
 	
@@ -107,6 +108,7 @@ public class Meute {
 		
 		else {
 			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer, TypeDeLog.role);
+			Salvateur.getStatsSalvateur().incrementerNbProtectionReussie();
 		}
 		this.estRassasier = true;
 	}

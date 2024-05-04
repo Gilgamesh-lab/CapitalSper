@@ -5,6 +5,8 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSalvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSorciere;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,6 +34,7 @@ private Village village;
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(1,1);
 		this.salvateur = new Salvateur();
+		this.salvateur.setStatsSalvateur(new StatsSalvateur());
 	}
 	
 	@Test
@@ -52,6 +55,9 @@ private Village village;
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(1, this.village.getHabitantsEnVie().size());
 			Assert.assertEquals(1, this.village.getNbLoupGarou());
+			Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbSalvation() == 2);// Car Equals déprécié pour float, trouver une autre alternative
+			Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbVillageoisSalvater() == 1);
+			Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbProtectionReussie() == 1);
 		}
 		else {
 			this.salvateur.finSalvation();
@@ -65,6 +71,9 @@ private Village village;
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(1, this.village.getHabitantsEnVie().size());
 			Assert.assertEquals(1, this.village.getNbLoupGarou());
+			Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbSalvation() == 3);
+			Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbVillageoisSalvater() == 1);
+			Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbProtectionReussie() == 1);
 		}
 		
 		
@@ -91,9 +100,14 @@ private Village village;
 		
 		this.salvateur.salvater(sorcière);
 		this.village.getMeute().attaquerVillage();
+		this.village.setNuitSansMort(true);// pour contrer le fait que je fais pas appel à la méthode nuit
 		this.salvateur.agirAprèsNuit();
 		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
 		Assert.assertTrue(this.salvateur.getAlliés().contains(sorcière));
+		Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbSalvation() == 1);
+		Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbVillageoisSalvater() == 1);
+		Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbProtectionReussie() == 1);
+		Assert.assertTrue(this.salvateur.getStatsSalvateur().getNbInnocentIdentiferGraceSalvation() == 1);
 		
 	}
 	

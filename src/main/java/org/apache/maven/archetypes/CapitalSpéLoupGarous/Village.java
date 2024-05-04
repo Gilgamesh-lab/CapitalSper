@@ -25,6 +25,7 @@ public  class Village  implements Cloneable {
 	private Maire maire = null;
 	private ArrayList<Personnage> persoDevoilerCommeEnnemieParMontreursDOurs;
 	private ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs;
+	private Boolean nuitSansMort;
 	
 	public Village() {
 		this.village = new ArrayList<Personnage>();
@@ -32,6 +33,7 @@ public  class Village  implements Cloneable {
 		this.meute.setVillage(this);
 		this.persoDevoilerCommeAlliéeParMontreursDOurs = new ArrayList<>();
 		this.persoDevoilerCommeEnnemieParMontreursDOurs = new ArrayList<>();
+		this.nuitSansMort = false;
 	}
 	
 	public Village(int nbVillageois, int nbLoupGarous) {
@@ -63,6 +65,18 @@ public  class Village  implements Cloneable {
 	}
 	
 	
+	
+	
+	public Boolean getNuitSansMort() {
+		return nuitSansMort;
+	}
+	
+	
+
+	public void setNuitSansMort(Boolean nuitSansMort) {
+		this.nuitSansMort = nuitSansMort;
+	}
+
 	public void ajouterPersonnage(Personnage personnage) {
 		personnage.setId(this.village.size());
 		this.village.add(personnage);
@@ -155,6 +169,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void nuit() {
+		this.nuitSansMort = false;
 		int nbHabitantAvant = this.getNbPersonnageEnVie();
 		this.getHabitantsEnVie().stream().sorted(comparator).forEach(x->x.agir());
 		
@@ -164,6 +179,7 @@ public  class Village  implements Cloneable {
 		int nbHabitantAprès = this.getNbPersonnageEnVie();
 		if(nbHabitantAvant == nbHabitantAprès) {
 			Logger.log("Personne n'a été tué durant la nuit ");
+			this.nuitSansMort = true;
 		}
 		if((this.getNbPersonnageEnVie() > 2) ) {// si la partie est pas terminé
 			this.getHabitantsEnVie().stream().sorted(comparator).forEach(x->x.agirAprèsNuit());

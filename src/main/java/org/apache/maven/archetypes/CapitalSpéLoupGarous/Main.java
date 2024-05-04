@@ -42,9 +42,9 @@ public class Main {
 		Voyante voyante = new Voyante();
 		village.ajouterPersonnage(voyante);
 		
-		/*Salvateur salvateur = new Salvateur();
+		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
-		MontreurDOurs montreurDOurs = new MontreurDOurs();
+		/*MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);*/
 		village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);

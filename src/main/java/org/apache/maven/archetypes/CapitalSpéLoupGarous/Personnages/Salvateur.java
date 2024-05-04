@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSalvateur;
 
 public class Salvateur extends VillageoisSpecial {
 	private Personnage dernierPersonnageProtéger;
 	public final static int IDROLE = 14;
+	private static StatsSalvateur statsSalvateur = new StatsSalvateur();
 
 	public Salvateur() {
-		super(IDROLE);
+		super(IDROLE, statsSalvateur);
 		this.dernierPersonnageProtéger = null;
 	}
 	
@@ -23,12 +25,24 @@ public class Salvateur extends VillageoisSpecial {
 		 personnageProtéger.getStatut().setProtéger(true);
 		 Logger.log("Le salvateur a décidé de protéger " + personnageProtéger, TypeDeLog.role);
 		 this.dernierPersonnageProtéger = personnageProtéger;
+		 this.getStatsSalvateur().incrementerNbSalvation();
+		 this.getStatsSalvateur().incrementerNbVillageoisSalvater(personnageProtéger);
 		 
 		 
 	}
 	
 	
 	
+	
+	
+	public static StatsSalvateur getStatsSalvateur() {
+		return statsSalvateur;
+	}
+
+	public static void setStatsSalvateur(StatsSalvateur statsSalvateur) {
+		Salvateur.statsSalvateur = statsSalvateur;
+	}
+
 	public Personnage getDernierPersonnageProtéger() {
 		return dernierPersonnageProtéger;
 	}
@@ -54,6 +68,7 @@ public class Salvateur extends VillageoisSpecial {
 		 if(!personnages.isEmpty()) {
 			 Personnage personnageProtéger = personnages.get(nb);
 			 this.salvater(personnageProtéger);
+			 
 		 }
 		 else {
 			 Logger.log(this + " a préférée protéger personne");// si aucun perso non ennemie disponible
@@ -64,9 +79,10 @@ public class Salvateur extends VillageoisSpecial {
 
 	@Override
 	public void agirAprèsNuit() {
-		if(this.getDernierPersonnageProtéger().estEnvie() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) == 1) { // en se comptant lui même
+		if(this.getVillage().getNuitSansMort() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) == 1) { // en se comptant lui même
 			Logger.log("Puisque qu'il n'y a pas eu de mort et que " + this + " est le seule protecteur du village, " + this + " a confiance en " + this.getDernierPersonnageProtéger(), TypeDeLog.role);
 			this.ajouterAlliés(dernierPersonnageProtéger);
+			this.getStatsSalvateur().incrementerNbInnocentIdentiferGraceSalvation();;
 		}
 		
 	}
