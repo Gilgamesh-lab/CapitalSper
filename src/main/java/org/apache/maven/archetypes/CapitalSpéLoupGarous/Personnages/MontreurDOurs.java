@@ -99,15 +99,15 @@ public class MontreurDOurs extends VillageoisSpecial {
 			this.getStatsMontreursDOurs().incrementerNbGrognement();
 			if(!voisinDroitCoupableSure && !voisinGaucheCoupableSure) {
 				if(!this.aTrouverUnLoup &&  nouveauVoisinADroite && !nouveauVoisinAGauche ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
-					this.ajouterEnnemies(this.voisinDeDroite);
+					this.ajouterEnnemie(this.voisinDeDroite);
 				}
 				
 				else if(!this.aTrouverUnLoup  &&  nouveauVoisinAGauche && !nouveauVoisinADroite ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
-					this.ajouterEnnemies(this.voisinDeGauche);
+					this.ajouterEnnemie(this.voisinDeGauche);
 				}
 				else {
-					this.ajouterEnnemies(this.voisinDeDroite);
-					this.ajouterEnnemies(this.voisinDeGauche);
+					this.ajouterEnnemie(this.voisinDeDroite);
+					this.ajouterEnnemie(this.voisinDeGauche);
 				}
 				this.aTrouverUnLoup = true;
 				
@@ -118,8 +118,8 @@ public class MontreurDOurs extends VillageoisSpecial {
 			}
 		}
 		else {
-			this.ajouterAlliés(voisinDeDroite);
-			this.ajouterAlliés(voisinDeGauche);
+			this.ajouterAllié(voisinDeDroite);
+			this.ajouterAllié(voisinDeGauche);
 			if(this.getEnnemies().contains(voisinDeDroite)) {// Si un innocent a été considéré comme un ennemies car l'autre voisin l'était
 				this.getEnnemies().remove(voisinDeDroite);
 			}

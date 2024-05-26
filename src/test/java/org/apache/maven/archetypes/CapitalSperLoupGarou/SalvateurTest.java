@@ -89,7 +89,7 @@ private Village village;
 		this.village.ajouterPersonnage(this.salvateur);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.ajouterPersonnage(lg);
-		lg.ajouterEnnemies(sorcière);
+		lg.ajouterEnnemie(sorcière);
 		
 		this.village.getMeute().attaquerVillage();
 		sorcière.setAction(0);

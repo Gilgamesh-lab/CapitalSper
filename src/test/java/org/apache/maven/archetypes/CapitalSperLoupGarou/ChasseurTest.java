@@ -71,7 +71,7 @@ public class ChasseurTest {
 		Chasseur chasseur = new Chasseur();
 		this.village = new Village(99, 0);
 		
-		chasseur.ajouterEnnemies(lg);
+		chasseur.ajouterEnnemie(lg);
 		village.ajouterPersonnage(chasseur);
 		village.ajouterPersonnage(lg);
 		
@@ -93,7 +93,7 @@ public class ChasseurTest {
 		village.ajouterPersonnage(chasseur);
 		village.ajouterPersonnage(sv);
 		village.ajouterPersonnage(lg);
-		chasseur.ajouterAlliés(sv);
+		chasseur.ajouterAllié(sv);
 		
 		chasseur.meurt();
 		System.out.println(this.village.getPersonnageParId(1));

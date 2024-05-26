@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Référentiel;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 
 public class Voyante extends VillageoisSpecial {
 	public final static int IDROLE = 4;
 	private static StatsVoyante statsVoyante = new StatsVoyante();
+	private Personnage dernierPersonnageSonder;
 
 	public Voyante() {
 		super(IDROLE, statsVoyante);
@@ -20,19 +22,20 @@ public class Voyante extends VillageoisSpecial {
 	}
 	
 	public void sonder() {
-		 Personnage persoASonder = super.voteCibleAction();
-		 statsVoyante.voyance(persoASonder);
-		 if(persoASonder.equals(this)) {
+		dernierPersonnageSonder = super.voteCibleAction();
+		 statsVoyante.voyance(dernierPersonnageSonder);
+		 if(dernierPersonnageSonder.equals(this)) {
 				System.out.println("erreur vovo détecté : " + this + "s'est choisi elle-même");
 			}
-		 if(persoASonder.estUnVillageois()) {
-			 Logger.log(this + " a décidé de sonder " + persoASonder + " qui s'est révélé être innocent", TypeDeLog.role);
-			 this.ajouterAlliés(persoASonder);
+		 if(dernierPersonnageSonder.estUnVillageois()) {
+			 Logger.log(this + " a décidé de sonder " + dernierPersonnageSonder + " qui s'est révélé être innocent", TypeDeLog.role);
+			 //this.ajouterAlliés(dernierPersonnageSonder.getAlliés());
+			 this.ajouterAllié(dernierPersonnageSonder);
 			 
 		 }
 		 else {
-			 Logger.log(this + " a décidé de sonder " + persoASonder + " qui s'est révélé être un ennemie du village", TypeDeLog.role);
-			 this.ajouterEnnemies(persoASonder);
+			 Logger.log(this + " a décidé de sonder " + dernierPersonnageSonder + " qui s'est révélé être un ennemie du village", TypeDeLog.role);
+			 this.ajouterEnnemie(dernierPersonnageSonder);
 			 
 		 }
 	}
@@ -50,6 +53,22 @@ public class Voyante extends VillageoisSpecial {
 	public StatsVoyante getStatsVoyante() {
 		return Voyante.statsVoyante;
 	}
+	
+	/*@Override
+	public void meurt() {// Lors de sa mort les villageois se rendent compte qu'il peuvent avoir confiance aux dire de la voyante
+		super.meurt();// dans cet ordre pour ne pas prendre en compte l'amoureux
+		if(this.getStatut().getTueur() == LoupGarouSimple.IDROLE) {// la voyante n'a pas u le temps de parler au village de sa dernière divination car elle est morte la nuit
+			//System.out.println(dernierPersonnageSonder + " ," + this.getAlliés().size() + " , " + this.getEnnemies().size()+ " , " + Référentiel.conversionDeIdRoleVersPersonnage(this.getStatut().getTueur()));
+			if(dernierPersonnageSonder.estUnVillageois()) {
+				this.getAlliés().remove(dernierPersonnageSonder);
+			 }
+			 else {
+				 this.getEnnemies().remove(dernierPersonnageSonder);
+			 }
+			
+		}
+		this.getVillage().getVillageois().stream().forEach(x-> {x.ajouterAlliés(this.getAlliés()); x.ajouterEnnemies(this.getEnnemies());});	
+	}*/
 
 	@Override
 	public String toString() {

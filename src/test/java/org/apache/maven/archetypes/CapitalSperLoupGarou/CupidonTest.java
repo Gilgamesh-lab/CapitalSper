@@ -90,7 +90,7 @@ public class CupidonTest {
 		Assert.assertTrue(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 		
 		Personnage perso = new SimpleVillageois();
-		this.village.getHabitantsEnVie().stream().filter(x->x.estAmoureux()).forEach(x->x.ajouterAlliés(perso));// et tuer leurs amis?
+		this.village.getHabitantsEnVie().stream().filter(x->x.estAmoureux()).forEach(x->x.ajouterAllié(perso));// et tuer leurs amis?
 		this.village.ajouterPersonnage(perso);
 		Assert.assertFalse(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 		this.village.tribunal();

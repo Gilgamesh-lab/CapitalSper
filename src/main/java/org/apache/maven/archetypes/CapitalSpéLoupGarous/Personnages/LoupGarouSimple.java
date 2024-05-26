@@ -6,11 +6,6 @@ public class LoupGarouSimple extends LoupGarou {
 	public LoupGarouSimple() {
 		super(IDROLE, false);
 	}
-	
-	/*@Override
-	public String toString() {
-		return "LoupGarouSimple" + this.getId();
-	}*/
 
 
 }

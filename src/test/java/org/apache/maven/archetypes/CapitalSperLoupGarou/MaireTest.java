@@ -52,7 +52,7 @@ public class MaireTest {
 		this.village.ajouterPersonnage(vi);
 
 		this.village.getMaire().entrerEnFonction(vi);
-		vi.ajouterAlliés(this.village.getPersonnageParId(0));
+		vi.ajouterAllié(this.village.getPersonnageParId(0));
 		vi.meurt();
 		Assert.assertTrue(this.village.getPersonnageParId(0).estMaire());
 	}
@@ -76,10 +76,10 @@ public class MaireTest {
 		this.village.onMaire();
 		this.village.getMaire().entrerEnFonction(vi);
 		this.village.ajouterPersonnage(vi);
-		this.village.getPersonnageParId(0).ajouterEnnemies(this.village.getPersonnageParId(1));
-		this.village.getPersonnageParId(1).ajouterEnnemies(this.village.getPersonnageParId(0));
-		this.village.getPersonnageParId(2).ajouterEnnemies(this.village.getPersonnageParId(1));
-		vi.ajouterEnnemies(this.village.getPersonnageParId(0));
+		this.village.getPersonnageParId(0).ajouterEnnemie(this.village.getPersonnageParId(1));
+		this.village.getPersonnageParId(1).ajouterEnnemie(this.village.getPersonnageParId(0));
+		this.village.getPersonnageParId(2).ajouterEnnemie(this.village.getPersonnageParId(1));
+		vi.ajouterEnnemie(this.village.getPersonnageParId(0));
 		this.village.tribunal();
 		Assert.assertEquals(3,this.village.getNbPersonnageEnVie());
 		Assert.assertFalse(this.village.getPersonnageParId(0).estEnvie());
@@ -92,11 +92,11 @@ public class MaireTest {
 		this.village.onMaire();
 		this.village.getMaire().entrerEnFonction(vi);
 		this.village.ajouterPersonnage(vi);
-		this.village.getPersonnageParId(0).ajouterEnnemies(this.village.getPersonnageParId(1));
-		this.village.getPersonnageParId(1).ajouterEnnemies(this.village.getPersonnageParId(0));
-		this.village.getPersonnageParId(2).ajouterEnnemies(this.village.getPersonnageParId(0));
-		this.village.getPersonnageParId(3).ajouterEnnemies(this.village.getPersonnageParId(0));
-		vi.ajouterEnnemies(this.village.getPersonnageParId(1));
+		this.village.getPersonnageParId(0).ajouterEnnemie(this.village.getPersonnageParId(1));
+		this.village.getPersonnageParId(1).ajouterEnnemie(this.village.getPersonnageParId(0));
+		this.village.getPersonnageParId(2).ajouterEnnemie(this.village.getPersonnageParId(0));
+		this.village.getPersonnageParId(3).ajouterEnnemie(this.village.getPersonnageParId(0));
+		vi.ajouterEnnemie(this.village.getPersonnageParId(1));
 		this.village.tribunal();
 		Assert.assertEquals(4,this.village.getNbPersonnageEnVie());
 		Assert.assertTrue(this.village.getPersonnageParId(0).estEnvie());

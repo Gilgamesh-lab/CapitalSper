@@ -104,7 +104,7 @@ public abstract class Personnage  implements Cloneable {
 		this.listeEnnemie = ennemies;
 	}
 	
-	public void ajouterEnnemies(Personnage ennemies) {
+	public void ajouterEnnemie(Personnage ennemies) {
 		if(!this.alliés.contains(ennemies)) {
 			Logger.log( this + " considère maintenant " + ennemies +  " comme un ennemie", TypeDeLog.vote);
 			this.listeEnnemie.add(ennemies);
@@ -123,11 +123,31 @@ public abstract class Personnage  implements Cloneable {
 		this.alliés = alliés;
 	}
 	
-	public void ajouterAlliés(Personnage allié) {
+	public void ajouterAllié(Personnage allié) {
 		if(!this.alliés.contains(allié)) {
 			Logger.log( this + " considère maintenant " + allié +  " comme un allié", TypeDeLog.vote);
 			this.alliés.add(allié);
 		}
+	}
+	
+	public void ajouterEnnemies(ArrayList<Personnage> ennemies) {
+		for( Personnage ennemie : ennemies ) {
+			if(!this.alliés.contains(ennemie)) {
+				Logger.log( this + " considère maintenant " + ennemie +  " comme un ennemie", TypeDeLog.vote);
+				this.listeEnnemie.add(ennemie);
+			}
+		}
+		
+	}
+	
+	public void ajouterAlliés(ArrayList<Personnage> allier) {
+		for( Personnage allié : allier ) {
+			if(!this.alliés.contains(allié)) {
+				Logger.log( this + " considère maintenant " + allié +  " comme un allié", TypeDeLog.vote);
+				this.alliés.add(allié);
+			}
+		}
+		
 	}
 
 
@@ -149,7 +169,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void tomberAmoureux(Personnage amoureux) {
 		this.statut.setAmoureux(amoureux);
-		this.ajouterAlliés(amoureux);
+		this.ajouterAllié(amoureux);
 	}
 	
 	public void resetListeDeVote() {
@@ -207,6 +227,7 @@ public abstract class Personnage  implements Cloneable {
 		if(this.getFonction() != null && this.getVillage().getNbPersonnageEnVie() > 2) {
 			this.village.getMaire().election();
 		}
+		
 	}
 
 	public void setVillage(Village village) {

@@ -66,7 +66,7 @@ public class Salvateur extends VillageoisSpecial {
 		 }
 		 else {
 			 Logger.log(this + " a préférée protéger personne");// si aucun perso non ennemie disponible
-			 System.out.println("le salvateur a pas d'amis");
+			 //System.out.println("le salvateur a pas d'amis");
 		 }
 		 
 		
@@ -76,7 +76,7 @@ public class Salvateur extends VillageoisSpecial {
 	public void agirAprèsNuit() {
 		if(this.getVillage().getNuitSansMort() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) == 1) { // en se comptant lui même
 			Logger.log("Puisque qu'il n'y a pas eu de mort et que " + this + " est le seule protecteur du village, " + this + " a confiance en " + this.getDernierPersonnageProtéger(), TypeDeLog.role);
-			this.ajouterAlliés(dernierPersonnageProtéger);
+			this.ajouterAllié(dernierPersonnageProtéger);
 			this.getStatsSalvateur().incrementerNbInnocentIdentiferGraceSalvation();;
 		}
 		

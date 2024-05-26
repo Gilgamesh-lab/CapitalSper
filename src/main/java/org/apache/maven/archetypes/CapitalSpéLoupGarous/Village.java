@@ -67,9 +67,6 @@ public  class Village  implements Cloneable {
 		return this.getVillage().stream().anyMatch(x->x.getIdDeRole() == idRole);
 	}
 	
-	
-	
-	
 	public Boolean getNuitSansMort() {
 		return nuitSansMort;
 	}
@@ -185,7 +182,7 @@ public  class Village  implements Cloneable {
 			this.nuitSansMort = true;
 		}
 		if((this.getNbPersonnageEnVie() > 2) ) {// si la partie est pas terminé
-			this.getHabitantsEnVie().stream().sorted(comparator).forEach(x->x.agirAprèsNuit());
+			this.getHabitantsEnVie().stream().sorted(comparator).distinct().forEach(x->x.agirAprèsNuit());
 		}
 	}
 	
@@ -199,7 +196,7 @@ public  class Village  implements Cloneable {
 		}
 		
 		
-		this.getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).forEach(z->{Logger.log(z + messageMort);z.meurt();z.getStatut().setAEteAttaqueParLaMeute(false);});
+		this.getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).forEach(z->{Logger.log(z + messageMort);this.getMeute().devorer(z);z.getStatut().setAEteAttaqueParLaMeute(false);});
 		Logger.log("", TypeDeLog.vote);
 		this.getMeute().setEstRassasier(false);
 	}

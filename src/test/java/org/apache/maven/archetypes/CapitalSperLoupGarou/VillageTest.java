@@ -92,7 +92,7 @@ public class VillageTest {
 	@Test
 	public void voterTest2()  {
 		this.village = new Village(2,1);
-		this.village.getVillageois().stream().forEach(x->x.ajouterEnnemies(this.village.getMeute().getMeute().get(0)));
+		this.village.getVillageois().stream().forEach(x->x.ajouterEnnemie(this.village.getMeute().getMeute().get(0)));
 		
 		Assert.assertEquals(2, this.village.getNbVillageois());
 		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());

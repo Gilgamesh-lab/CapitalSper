@@ -8,13 +8,17 @@ import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSalvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
 public class Meute {
 	
 	private ArrayList<LoupGarou> meute;
 	private Village village;
 	private Boolean estRassasier;
+	private static StatsMeute statsMeute = new StatsMeute();
+	
 	
 	public Meute() {
 		this.meute = new ArrayList<LoupGarou>();
@@ -27,6 +31,16 @@ public class Meute {
 		return (ArrayList<LoupGarou>) this.meute.stream().filter(x->x.estEnvie()).collect(Collectors.toList());
 	}
 	
+	
+	
+	public static StatsMeute getStatsMeute() {
+		return statsMeute;
+	}
+
+	public static void setStatsMeute(StatsMeute statsMeute) {
+		Meute.statsMeute = statsMeute;
+	}
+
 	public int getNbLgEnVie() {
 		return (int) this.meute.stream().filter(x->x.estEnvie()).count();
 	}
@@ -34,10 +48,10 @@ public class Meute {
 	public void enrolerUnLoupGarou(LoupGarou loupGarou) {
 		loupGarou.rejoindreUneMeute(this);
 		for(int i = 0; i < this.meute.size(); i++) {
-			loupGarou.ajouterAlliés(this.meute.get(i));
+			loupGarou.ajouterAllié(this.meute.get(i));
 		}
 		for(int i = 0; i < this.meute.size(); i++) {
-			this.meute.get(i).ajouterAlliés(loupGarou);;
+			this.meute.get(i).ajouterAllié(loupGarou);;
 		}
 		this.meute.add(loupGarou);
 	}
@@ -104,6 +118,7 @@ public class Meute {
 		
 		if(!personnageDevorer.getStatut().isProtéger()) {
 			personnageDevorer.getStatut().setAEteAttaqueParLaMeute(true);
+			this.getStatsMeute().vote(personnageDevorer);
 		}
 		
 		else {
@@ -116,6 +131,7 @@ public class Meute {
 	public void setEstRassasier(Boolean estRassasier) {
 		this.estRassasier = estRassasier;
 	}
+	
 	
 	
 

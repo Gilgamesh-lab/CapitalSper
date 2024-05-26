@@ -90,8 +90,8 @@ public class MeneurDeJeu {
 					this.village.getMaire().election();
 				}
 				this.village.tribunal();
-				this.nbTour++;
 				if(!this.conditionFinPartie()){
+					this.nbTour++;
 					this.village.nuit();
 				}
 				
@@ -343,6 +343,8 @@ public class MeneurDeJeu {
 		
 		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> Logger.log(x.getStats() + "\n", TypeDeLog.statistique));
 		System.out.println(this.village.getStatsVillage().getStats());
+		System.out.println();
+		System.out.println(this.village.getMeute().getStatsMeute().getStats());
 		
 		long endTime = System.currentTimeMillis();
 		long minute = (endTime-startTime) / 60000;

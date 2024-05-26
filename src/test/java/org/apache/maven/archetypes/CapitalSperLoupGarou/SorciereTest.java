@@ -43,7 +43,7 @@ public class SorciereTest {
 		this.village = new Village(0,0);
 		SimpleVillageois vi = new SimpleVillageois();
 		LoupGarouSimple lg = new LoupGarouSimple();
-		lg.ajouterEnnemies(vi);
+		lg.ajouterEnnemie(vi);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.ajouterPersonnage(vi);
 		this.village.ajouterPersonnage(lg);
@@ -63,7 +63,7 @@ public class SorciereTest {
 	public void testMoiDAbord() {// Ad Vitam Aeternam
 		this.village = new Village(20,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
-		lg.ajouterEnnemies(sorcière);
+		lg.ajouterEnnemie(sorcière);
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.getMeute().attaquerVillage();
@@ -82,8 +82,8 @@ public class SorciereTest {
 	public void testPotionDeMort() {// Il est temps de payer
 		this.village = new Village(20,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
-		lg.ajouterAlliés(sorcière);// pour que la sorcière n'utilise pas sa potion de vie
-		sorcière.ajouterEnnemies(lg);
+		lg.ajouterAllié(sorcière);// pour que la sorcière n'utilise pas sa potion de vie
+		sorcière.ajouterEnnemie(lg);
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.getMeute().attaquerVillage();
@@ -101,7 +101,7 @@ public class SorciereTest {
 	public void testDeuxPotionsEnUneNuit() {// Je suis toute puisante
 		this.village = new Village(20,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
-		sorcière.ajouterEnnemies(lg);
+		sorcière.ajouterEnnemie(lg);
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(sorcière);
 		this.village.getMeute().attaquerVillage();
@@ -122,7 +122,7 @@ public class SorciereTest {
 	public void testVoyance() {// Je sais où tu te cache
 		this.village = new Village(1,0);
 		LoupGarouSimple lg = new LoupGarouSimple();
-		lg.ajouterEnnemies(this.village.getPersonnage(0));
+		lg.ajouterEnnemie(this.village.getPersonnage(0));
 		this.village.ajouterPersonnage(lg);
 		this.village.ajouterPersonnage(this.sorcière);
 		sorcière.setAction(3);

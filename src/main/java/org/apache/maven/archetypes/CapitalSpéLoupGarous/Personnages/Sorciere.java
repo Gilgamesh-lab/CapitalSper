@@ -57,7 +57,7 @@ public class Sorciere extends VillageoisSpecial{
 		
 		if ((this.action == 1 || this.action == 3) && this.isaUnePotionDeMort()) {
 			if(this.isaUnePotionDeVie() && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute())) {
-				this.ajouterAlliés(this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findFirst().get());// ne pas tuer la victime des loups-garous (innocent sure)
+				this.ajouterAllié(this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findFirst().get());// ne pas tuer la victime des loups-garous (innocent sure)
 			}
 			this.potionDeMort(this.getVillage().getPersonnageParId(this.voter()));
 			this.resetListeDeVote();
@@ -68,7 +68,7 @@ public class Sorciere extends VillageoisSpecial{
 	
 	public void potionDeVie(Personnage personnageASauver) {
 		if(!this.getAlliés().contains(personnageASauver)) {
-			this.ajouterAlliés(personnageASauver);
+			this.ajouterAllié(personnageASauver);
 		}
 		
 		personnageASauver.getStatut().setAEteAttaqueParLaMeute(false);
