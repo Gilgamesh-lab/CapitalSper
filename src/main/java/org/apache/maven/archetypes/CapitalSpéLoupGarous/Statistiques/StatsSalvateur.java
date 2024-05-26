@@ -1,8 +1,8 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
-public class StatsSalvateur extends StatPersonnage {
+public class StatsSalvateur extends Statistiques {
 	private float nbSalvation;
 	private float nbProtectionReussie;
 	private float nbVillageoisSalvater;
@@ -60,7 +60,7 @@ public class StatsSalvateur extends StatPersonnage {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur les " + (int) super.getNbTours() +  " tours de jeu, le salvateur a été en vie durant " + ((double) ((this.getNbSalvation() / super.getNbTours()) * 100)) + "% d'entre eux" ;
+		String stats1 = "Sur les " + (int) super.getNbToursTotale() +  " tours de jeu, le salvateur a été en vie durant " + ((double) ((this.getNbSalvation() / super.getNbToursTotale()) * 100)) + "% d'entre eux" ;
 		String stats2 = "Le salvateur a effectué en moyenne " + ((double) ((this.nbSalvation / super.getNbPartie()))) + " salvations par partie" ;
 		String stats3 = "Sur les " + (int) this.nbSalvation + " salvations, le salavateur a salvater un villageois dans " + ((double) ((this.nbVillageoisSalvater / this.nbSalvation) * 100 )) + "% des cas";
 		String stats4 = "Sur les " + (int) this.nbSalvation + " salvations, dans " + ((double) ((this.nbProtectionReussie / this.nbSalvation) * 100 )) + "% des cas cela a sauvé une vie";

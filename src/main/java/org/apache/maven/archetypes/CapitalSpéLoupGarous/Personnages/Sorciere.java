@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsVoyante;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 
 public class Sorciere extends VillageoisSpecial{
 	private ArrayList<Integer> actions;
@@ -63,9 +63,6 @@ public class Sorciere extends VillageoisSpecial{
 			this.resetListeDeVote();
 			
 		}
-		
-		
-		
 		this.action = null;
 	}
 	
@@ -83,7 +80,6 @@ public class Sorciere extends VillageoisSpecial{
 		if(!this.getVillage().estEnVie(Salvateur.IDROLE)) {// pour la voyance du salvateur
 			this.perdrePouvoir(TypeDePouvoir.Vie);
 		}
-		this.perdrePouvoir(TypeDePouvoir.Voyance);
 		this.statsSorciere.incrementerNbUtilisationPotionDeVie();
 		
 	}
@@ -141,15 +137,6 @@ public class Sorciere extends VillageoisSpecial{
 	public StatsSorciere getStatsSorciere() {
 		return Sorciere.statsSorciere;
 	}
-
-
-
-	@Override
-	public void agirPremiereNuit() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	public void agirAprèsNuit() {

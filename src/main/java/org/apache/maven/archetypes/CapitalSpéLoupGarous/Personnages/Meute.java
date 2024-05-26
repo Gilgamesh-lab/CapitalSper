@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSalvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSalvateur;
 
 public class Meute {
 	

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatPersonnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
 
 public abstract class Personnage  implements Cloneable {
 	
@@ -20,10 +20,10 @@ public abstract class Personnage  implements Cloneable {
 	private ArrayList<Personnage> listeEnnemie;
 	private int nbVote = 1;
 	private Fonction fonction = null;
-	private StatPersonnage statPersonnage;
+	private Statistiques statPersonnage;
 	
 	
-	protected Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial, StatPersonnage statPersonnage) {
+	protected Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial, Statistiques statPersonnage) {
 		this.estUnVillageois = estUnVillageois;
 		this.idDeRole = idDeRole;
 		this.listeDeVote = new ArrayList<>();
@@ -54,7 +54,7 @@ public abstract class Personnage  implements Cloneable {
 	
 
 
-	public void setStatPersonnage(StatPersonnage statPersonnage) {
+	public void setStatPersonnage(Statistiques statPersonnage) {
 		this.statPersonnage = statPersonnage;
 	}
 
@@ -70,7 +70,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	
 	
-	public StatPersonnage getStatPersonnage() {
+	public Statistiques getStatPersonnage() {
 		return statPersonnage;
 	}
 

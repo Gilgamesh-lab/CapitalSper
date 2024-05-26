@@ -10,7 +10,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

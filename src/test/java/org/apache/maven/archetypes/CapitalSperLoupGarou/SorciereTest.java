@@ -6,8 +6,8 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsVoyante;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

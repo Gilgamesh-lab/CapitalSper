@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsSalvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSalvateur;
 
 public class Salvateur extends VillageoisSpecial {
 	private Personnage dernierPersonnageProtéger;
@@ -27,13 +27,7 @@ public class Salvateur extends VillageoisSpecial {
 		 this.dernierPersonnageProtéger = personnageProtéger;
 		 this.getStatsSalvateur().incrementerNbSalvation();
 		 this.getStatsSalvateur().incrementerNbVillageoisSalvater(personnageProtéger);
-		 
-		 
 	}
-	
-	
-	
-	
 	
 	public static StatsSalvateur getStatsSalvateur() {
 		return statsSalvateur;

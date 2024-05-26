@@ -29,6 +29,7 @@ public class MeneurDeJeu {
 	private List<String> listeBranches = new ArrayList<String>();
 	private Référentiel référentiel;
 	public static Integer nbPartie = null;
+	public static Integer nbTourTotale = null;
 	
 	public MeneurDeJeu(Village village) {
 		this.savegardeVillage = village;
@@ -69,7 +70,7 @@ public class MeneurDeJeu {
 	
 	
 	public boolean conditionVictoireLoupGarous() {// Que les loups-garous soient surnombre et que aucun spé de vie et de mort soit encore en vie ou que le camps du village soit décimé
-		return (this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie() && (this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) + this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie)) == 0  ) || (this.village.getNbLoupGarou() == 1 && this.village.getNbVillageois() == 1 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 0 );
+		return (this.village.getNbLoupGarou() >= 1 && (this.village.getNbLoupGarou() * 2 >= this.village.getNbPersonnageEnVie()) && (this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) + this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie)) == 0  ) || (this.village.getNbLoupGarou() == 1 && this.village.getNbVillageois() == 1 && this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort) == 0 );
 	}
 	
 	public boolean conditionEgaliter() {
@@ -89,40 +90,39 @@ public class MeneurDeJeu {
 					this.village.getMaire().election();
 				}
 				this.village.tribunal();
+				this.nbTour++;
 				if(!this.conditionFinPartie()){
 					this.village.nuit();
 				}
-				this.nbTour++;
+				
 			}
 		}
+		this.village.finVillage();
+		this.listeTours.add(this.nbTour);
 		Logger.log("");
 		Logger.log("Le village est constitué de " + this.village.getHabitantsEnVie());
 		if(this.conditionVictoireAmoureux()) {
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
-			this.listeTours.add(this.nbTour);
 			this.nbVictoireAmoureux++;
 		}
 		
 		else if(this.conditionVictoireLoupGarous()) {
 			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
-			this.listeTours.add(this.nbTour) ;
 			this.nbVictoireLoupGarou++;
 		}
 		else if (this.conditionVictoireVillageois()) { 
 			Logger.log("Victoire des villageois en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois survivant(s)");
-			this.listeTours.add(this.nbTour);
 			this.nbVictoireVillage++;
 		}
 		
 		else {
-			if(this.conditionEgaliter()) {
+			if(this.conditionEgaliter() && this.getVillage().getNbPersonnageEnVie() > 0) {
 				Logger.log(this.getVillage().getVillageois().get(0) + " et le loups-garous survivant s'entretuent");
 			}
 			Logger.log("Égalité en " + this.nbTour + " tours");
-			this.listeTours.add(this.nbTour) ;
 			this.nbÉgalité++;
 		}
 	}
@@ -309,6 +309,7 @@ public class MeneurDeJeu {
 			Logger.log("", TypeDeLog.pourcentage);
 		}
 		
+		this.nbTourTotale = MeneurDeJeu.listeTours.stream().reduce(0, (x, y) -> x + y );
 		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
 		this.pourcentWinVillage = (double) ((this.nbVictoireVillage / compteur) * 100 );
 		this.pourcentWinAmoureux = (double) ((this.nbVictoireAmoureux / compteur) * 100 );
@@ -341,6 +342,7 @@ public class MeneurDeJeu {
 		// stat persoSpé : nb lg kill by chasseur, utilisation potion soso, couple traitre ...
 		
 		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> Logger.log(x.getStats() + "\n", TypeDeLog.statistique));
+		System.out.println(this.village.getStatsVillage().getStats());
 		
 		long endTime = System.currentTimeMillis();
 		long minute = (endTime-startTime) / 60000;

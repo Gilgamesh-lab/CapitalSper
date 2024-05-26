@@ -1,8 +1,8 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
-public class StatsCupidon extends StatPersonnage{
+public class StatsCupidon extends Statistiques{
 	
 	private float nbCoupleVillageois;
 	private float nbCoupleLoupGarou;

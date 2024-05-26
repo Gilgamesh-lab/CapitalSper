@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsVoyante;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 
 public class Voyante extends VillageoisSpecial {
 	public final static int IDROLE = 4;
@@ -42,8 +42,6 @@ public class Voyante extends VillageoisSpecial {
 		this.sonder();
 		
 	}
-	
-	
 	
 	public static void setStatsVoyante(StatsVoyante statsVoyante) {
 		Voyante.statsVoyante = statsVoyante;

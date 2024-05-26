@@ -1,11 +1,11 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
 
-public abstract class StatPersonnage {
+public abstract class Statistiques {
 	
 	
-	public StatPersonnage() {
+	public Statistiques() {
 		
 	}
 	
@@ -18,9 +18,9 @@ public abstract class StatPersonnage {
 		}
 	}
 	
-	public int getNbTours() {
-		if(MeneurDeJeu.listeTours != null) {
-			return MeneurDeJeu.listeTours.stream().reduce(0, (x, y) -> x + y );
+	public int getNbToursTotale() {
+		if(MeneurDeJeu.nbTourTotale != null) {
+			return MeneurDeJeu.nbTourTotale;
 		}
 		else {
 			return 1;

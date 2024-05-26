@@ -1,8 +1,8 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
-public class StatsSorciere extends StatPersonnage  {
+public class StatsSorciere extends Statistiques  {
 	private float nbPotionDeMort;
 	private float nbPotionDeVie;
 	private float nbDeuxPotion;

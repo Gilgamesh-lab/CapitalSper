@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsCupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCupidon;
 
 public class Cupidon extends VillageoisSpecial {
 	public final static int IDROLE = 3;
@@ -18,7 +18,6 @@ public class Cupidon extends VillageoisSpecial {
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort));
 	}
 
-	
 	public void flecheDeLAmour() {
 		int nbPersonnageAmoureux1 = (int) (Math.random() * ( this.getVillage().getHabitantsEnVie().size()    - 0 ));
 		int nbPersonnageAmoureux2 = (int) (Math.random() * ( this.getVillage().getHabitantsEnVie().size()    - 0 ));
@@ -48,8 +47,6 @@ public class Cupidon extends VillageoisSpecial {
 		this.flecheDeLAmour();
 	}
 
-
-	
 	@Override
 	public String toString() {
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {

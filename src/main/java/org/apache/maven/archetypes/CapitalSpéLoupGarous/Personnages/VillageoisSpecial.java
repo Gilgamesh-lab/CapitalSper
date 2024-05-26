@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatPersonnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
 
 public abstract class VillageoisSpecial extends Villageois {
 	private ArrayList<TypeDePouvoir> typeDePouvoir;
@@ -16,7 +16,7 @@ public abstract class VillageoisSpecial extends Villageois {
 		
 	}
 	
-	protected VillageoisSpecial(int idDeRole, StatPersonnage statPersonnage) {
+	protected VillageoisSpecial(int idDeRole, Statistiques statPersonnage) {
 		super(idDeRole, true, statPersonnage);
 		this.typeDePouvoir = this.init();
 		
@@ -26,8 +26,6 @@ public abstract class VillageoisSpecial extends Villageois {
 	public boolean aCePouvoir(TypeDePouvoir typeDePouvoir) {
 		return this.getTypeDePouvoir().contains(typeDePouvoir);
 	}
-	
-	
 	
 	public void perdrePouvoir(TypeDePouvoir typeDePouvoir) {
 		this.typeDePouvoir.remove(typeDePouvoir);

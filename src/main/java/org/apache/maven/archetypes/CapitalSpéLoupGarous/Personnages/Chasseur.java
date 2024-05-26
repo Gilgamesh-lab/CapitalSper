@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
 
 public class Chasseur extends VillageoisSpecial {
 	public final static int IDROLE = 22 ;
@@ -29,11 +29,7 @@ public class Chasseur extends VillageoisSpecial {
 			this.tuer(cible);
 			this.perdrePouvoir(TypeDePouvoir.Mort);
 		}
-		
-		
-		
 	}
-	
 	
 	public static void setStatsChasseur(StatsChasseur statsChasseur) {
 		Chasseur.statsChasseur = statsChasseur;
@@ -43,7 +39,6 @@ public class Chasseur extends VillageoisSpecial {
 		return Chasseur.statsChasseur;
 	}
 
-	
 	@Override
 	public String toString() {
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {

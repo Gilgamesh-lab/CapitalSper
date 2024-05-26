@@ -17,6 +17,8 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
 public  class Village  implements Cloneable {
 
@@ -26,6 +28,7 @@ public  class Village  implements Cloneable {
 	private ArrayList<Personnage> persoDevoilerCommeEnnemieParMontreursDOurs;
 	private ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs;
 	private Boolean nuitSansMort;
+	private static StatsVillage statsVillage = new StatsVillage();
 	
 	public Village() {
 		this.village = new ArrayList<Personnage>();
@@ -280,6 +283,7 @@ public  class Village  implements Cloneable {
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 		this.executer(personnageCondamner);
+		this.getStatsVillage().vote(personnageCondamner);
 	}
 	
 	public Personnage election() {
@@ -360,6 +364,16 @@ public  class Village  implements Cloneable {
 			ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs) {
 		this.persoDevoilerCommeAlliéeParMontreursDOurs = persoDevoilerCommeAlliéeParMontreursDOurs;
 	}
+	
+	
+
+	public static StatsVillage getStatsVillage() {
+		return statsVillage;
+	}
+
+	public static void setStatsVillage(StatsVillage statsVillage) {
+		Village.statsVillage = statsVillage;
+	}
 
 	public void executer(Personnage personnage) {
 		personnage.getStatut().setTueur(SimpleVillageois.IDROLE);
@@ -388,6 +402,10 @@ public  class Village  implements Cloneable {
 	
 	public boolean aUnMaire() {
 		return this.maire != null;
+	}
+	
+	public void finVillage() {
+		this.statsVillage.decompteNbSurvivants(village);
 	}
 
 

@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		int nbVillageois = 3;
-		int nbLoupGarous = 2;
+		int nbLoupGarous = 3;
 		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
@@ -46,6 +46,7 @@ public class Main {
 		village.ajouterPersonnage(salvateur);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);
+		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
 		village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);

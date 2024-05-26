@@ -9,7 +9,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsCupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCupidon;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

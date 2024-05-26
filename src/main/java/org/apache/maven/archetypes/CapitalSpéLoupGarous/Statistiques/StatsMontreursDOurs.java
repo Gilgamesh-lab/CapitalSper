@@ -1,8 +1,8 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
-public class StatsMontreursDOurs extends StatPersonnage {
+public class StatsMontreursDOurs extends Statistiques {
 	private float nbGrognement;
 	private float nbVoisinDifférent;
 	private float nbZeroLoupGarouVoisin;
@@ -89,7 +89,7 @@ public class StatsMontreursDOurs extends StatPersonnage {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur les " + (int) super.getNbTours() +  " tours de jeu, le montreurs d'ours a été en vie durant " + ((double) (((this.nbGrognement + this.nbZeroLoupGarouVoisin) / super.getNbTours()) * 100)) + "% d'entre eux" ;// impact de la sorcière à prendre en compte
+		String stats1 = "Sur les " + (int) super.getNbToursTotale() +  " tours de jeu, le montreurs d'ours a été en vie durant " + ((double) (((this.nbGrognement + this.nbZeroLoupGarouVoisin) / super.getNbToursTotale()) * 100)) + "% d'entre eux" ;// impact de la sorcière à prendre en compte
 		String stats2 = "Sur les " + (int) (this.nbGrognement + this.nbZeroLoupGarouVoisin) +  " tours où il a été en vie, le montreurs d'ours a grogné dans " + ((double) ((this.nbGrognement / (this.nbGrognement + this.nbZeroLoupGarouVoisin)) * 100)) + "% des cas" ;
 		String stats3 = "Sur les " + (int) (this.nbGrognement + this.nbZeroLoupGarouVoisin) +  " tours où il a été en vie, dans " + ((double) (((this.nbZeroLoupGarouVoisin / (this.nbGrognement + this.nbZeroLoupGarouVoisin))) * 100))+ "% des cas le montreurs d'ours n'a pas trouvé de loup-garou parmis ses voisins" ;
 		String stats4 = "Sur les " + (int) this.nbGrognement + " grognements, le montreurs d'ours a trouvé un loup garous parmis ses voisins dans " + ((double) ((this.nbUnLoupGarouVoisin / this.nbGrognement) * 100 )) + "% des cas";

@@ -7,7 +7,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSi
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsMontreursDOurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMontreursDOurs;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

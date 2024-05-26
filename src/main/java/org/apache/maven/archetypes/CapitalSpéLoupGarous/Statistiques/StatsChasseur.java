@@ -1,9 +1,9 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
 
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
-public class StatsChasseur extends StatPersonnage {
+public class StatsChasseur extends Statistiques {
 	private float nbTire;
 	private float nbLgTuer;
 	

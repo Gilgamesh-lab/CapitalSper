@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.StatsPersonnages.StatsMontreursDOurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMontreursDOurs;
 
 public class MontreurDOurs extends VillageoisSpecial {
 	private Personnage voisinDeDroite;
@@ -38,8 +38,6 @@ public class MontreurDOurs extends VillageoisSpecial {
 		
 		
 	}
-	
-	
 	
 	public static StatsMontreursDOurs getStatsMontreursDOurs() {
 		return statsMontreursDOurs;
@@ -164,16 +162,13 @@ public class MontreurDOurs extends VillageoisSpecial {
 	@Override
 	public void agirPremiereNuit() {
 		this.setVoisins(initVoisins());
-		
 	}
-
 
 	@Override
 	public void agirAprèsNuit() {
 		this.traquerLoupGarous();
 		if(this.aTrouverUnLoup()) {
-			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins() );
-			
+			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins());
 		}
 		
 	}
