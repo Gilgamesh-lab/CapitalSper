@@ -93,7 +93,7 @@ public  class Village  implements Cloneable {
 		}
 	}
 	
-	public void ajouterSpé(int idDeRole) {
+	public void ajouterPersonnage(int idDeRole) {
 		Personnage perso = Référentiel.conversionDeIdRoleVersPersonnage(idDeRole);
 		this.ajouterPersonnage(perso);
 

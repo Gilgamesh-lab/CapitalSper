@@ -57,13 +57,13 @@ public class MeneurDeJeuTest {
 		Assert.assertFalse(this.meneurDeJeu.conditionFinPartie());
 		
 		this.village = new Village(0,1);// un vi pour deux loups-garous
-		this.village.ajouterSpé(Chasseur.IDROLE);
+		this.village.ajouterPersonnage(Chasseur.IDROLE);
 		this.meneurDeJeu.setVillage(this.village);
 		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
 		Assert.assertTrue(this.meneurDeJeu.conditionEgaliter());
 		
 		this.village = new Village(1,1);// 
-		this.village.ajouterSpé(Cupidon.IDROLE);
+		this.village.ajouterPersonnage(Cupidon.IDROLE);
 		this.village.getPersonnageParIdRole(Cupidon.IDROLE).tomberAmoureux((this.village.getPersonnageParIdRole(LoupGarouSimple.IDROLE)));
 		this.village.getPersonnageParIdRole(LoupGarouSimple.IDROLE).tomberAmoureux((this.village.getPersonnageParIdRole(Cupidon.IDROLE)));
 		this.meneurDeJeu.setVillage(this.village);
@@ -73,13 +73,13 @@ public class MeneurDeJeuTest {
 		Assert.assertTrue(this.meneurDeJeu.conditionVictoireAmoureux());
 		
 		this.village = new Village(0,1);
-		this.village.ajouterSpé(Sorciere.IDROLE);
+		this.village.ajouterPersonnage(Sorciere.IDROLE);
 		this.meneurDeJeu.setVillage(this.village);
 		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
 		Assert.assertTrue(this.meneurDeJeu.conditionEgaliter());
 		
 		this.village = new Village(0,1);
-		this.village.ajouterSpé(Salvateur.IDROLE);
+		this.village.ajouterPersonnage(Salvateur.IDROLE);
 		this.meneurDeJeu.setVillage(this.village);
 		Assert.assertTrue(this.meneurDeJeu.conditionFinPartie());
 		Assert.assertTrue(this.meneurDeJeu.conditionVictoireLoupGarous());
@@ -106,7 +106,7 @@ public class MeneurDeJeuTest {
 		this.meneurDeJeu.lancerDesParties(1);
 		
 		this.village = new Village(0,1);
-		this.village.ajouterSpé(Cupidon.IDROLE);
+		this.village.ajouterPersonnage(Cupidon.IDROLE);
 		this.meneurDeJeu.setVillage(village);
 		this.meneurDeJeu.lancerDesParties(1);
 	}

@@ -34,8 +34,13 @@ public class StatsMeute extends Statistiques {
 	}
 	
 	public void ASurvecu(ArrayList<Personnage> village) {
+		System.out.println(dernierePersonneDevorer);
 		if(dernierePersonneDevorer != null && village.stream().filter(x->x.getId() == dernierePersonneDevorer).anyMatch(x->x.estEnvie())) {
+			System.out.println(dernierePersonneDevorer);
 			this.nbSurvivants++;
+			if(village.stream().filter(x->x.getId() == dernierePersonneDevorer).anyMatch(x->x.getIdDeRole() != SimpleVillageois.IDROLE) ) {
+				this.nbSperTuer--;
+			}
 		}
 		this.dernierePersonneDevorer = null;
 		
@@ -51,6 +56,16 @@ public class StatsMeute extends Statistiques {
 
 	public float getNbSurvivants() {
 		return nbSurvivants;
+	}
+	
+
+	public Integer getDernierePersonneDevorer() {
+		return dernierePersonneDevorer;
+	}
+	
+	public void incrementerNbSurvivants() {
+		 this.nbVote++;
+		 this.nbSurvivants++;
 	}
 
 	@Override
