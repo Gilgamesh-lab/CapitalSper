@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
@@ -30,6 +31,7 @@ public class Référentiel {
 		classesParRole.put(Salvateur.IDROLE, Salvateur.class);// 14
 		classesParRole.put(Voyante.IDROLE, Voyante.class);// 4
 		classesParRole.put(MontreurDOurs.IDROLE, MontreurDOurs.class);// 11
+		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
 	}
 	
 	public static Personnage conversionDeIdRoleVersPersonnage(int idRole) {

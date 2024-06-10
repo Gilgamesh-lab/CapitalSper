@@ -1,6 +1,7 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
@@ -23,15 +24,15 @@ public class Main {
 		Logger logger = new Logger();
 		
 		
-		//logger.setDetailVoteVillage(true);
+		logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		//logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		//logger.setModeSpectateurOn();
-		logger.setModeStatistiqueOn();
+		logger.setModeSpectateurOn();
+		//logger.setModeStatistiqueOn();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
@@ -44,6 +45,7 @@ public class Main {
 		
 		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
+		village.ajouterPersonnage(Corbeau.IDROLE);
 		/*MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);*/
 		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);

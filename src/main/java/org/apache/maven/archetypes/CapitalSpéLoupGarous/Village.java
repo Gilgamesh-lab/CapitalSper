@@ -29,6 +29,7 @@ public  class Village  implements Cloneable {
 	private ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs;
 	private Boolean nuitSansMort;
 	private static StatsVillage statsVillage = new StatsVillage();
+	private Map<Integer, Integer> tableauDeVotes;
 	
 	public Village() {
 		this.village = new ArrayList<Personnage>();
@@ -37,6 +38,7 @@ public  class Village  implements Cloneable {
 		this.persoDevoilerCommeAlliéeParMontreursDOurs = new ArrayList<>();
 		this.persoDevoilerCommeEnnemieParMontreursDOurs = new ArrayList<>();
 		this.nuitSansMort = false;
+		this.tableauDeVotes = new HashMap<>();
 	}
 	
 	public Village(int nbVillageois, int nbLoupGarous) {
@@ -100,6 +102,12 @@ public  class Village  implements Cloneable {
 	}
 	
 	
+	
+	
+	public Map<Integer, Integer> getTableauDeVotes() {
+		return tableauDeVotes;
+	}
+
 	public ArrayList<Personnage> getVillage() {
 		return this.village;
 	}
@@ -203,14 +211,19 @@ public  class Village  implements Cloneable {
 	
 	public void tribunal() {
 		Personnage votant;
-		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
+		
 		int vote;
 		for(int i = 0 ; i < this.getHabitantsEnVie().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
-			tableauDeVotes.put(i, 0);
+			tableauDeVotes.putIfAbsent(i, 0);
 		}
 		
 		Logger.log("", TypeDeLog.vote);
 		int voteMaire = 0;
+		for(int k : tableauDeVotes.keySet()) {
+			if(tableauDeVotes.get(k) > 0) {
+				Logger.log("Le corbeau a corbeauter " + this.getPersonnageParId(k) + " ce qui lui ajoute 2 vote en plus", TypeDeLog.vote);
+			}
+		}
 		for(int i = 0 ; i < this.getNbPersonnageEnVie() ; i++) {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.voter();
@@ -224,7 +237,7 @@ public  class Village  implements Cloneable {
 		if(this.aUnMaire()) {
 			this.maire.getStatsMaire().vote(tableauDeVotes, voteMaire);
 		}
-		
+		System.out.println(tableauDeVotes);
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
 				  .map(Map.Entry::getValue)
 				  .reduce(Integer::max)
@@ -281,15 +294,18 @@ public  class Village  implements Cloneable {
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 		this.executer(personnageCondamner);
+		
 		this.getStatsVillage().vote(personnageCondamner);
+		tableauDeVotes.clear();
 	}
 	
 	public Personnage election() {
+		
+		Map<Integer, Integer> tableauDeVotesElecttion = new HashMap<>();
 		Personnage votant;
-		Map<Integer, Integer> tableauDeVotes = new HashMap<>();
 		int vote;
 		for(int i = 0 ; i < this.getHabitantsEnVie().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
-			tableauDeVotes.put(i, 0);
+			tableauDeVotesElecttion.put(i, 0);
 		}
 		
 		Logger.log("", TypeDeLog.vote);
@@ -298,16 +314,16 @@ public  class Village  implements Cloneable {
 			vote  = votant.elire();
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
-			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
+			tableauDeVotesElecttion.put(vote, tableauDeVotesElecttion.get(vote) + votant.getNbVote());
 			
 		}
 		Logger.log("", TypeDeLog.vote);
-		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
+		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotesElecttion.entrySet().stream()
 				  .map(Map.Entry::getValue)
 				  .reduce(Integer::max)
 				  .get();
 		
-		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
+		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauDeVotesElecttion.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
 		int idPersonneAyantPlusDeVotes;
 		Personnage personnageChoisie;
 		String message = "";
@@ -327,6 +343,7 @@ public  class Village  implements Cloneable {
 			message += " avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote pour lui ";
 		}
 		Logger.log(message);
+		tableauDeVotesElecttion.clear();
 		return personnageChoisie;
 	}
 	
