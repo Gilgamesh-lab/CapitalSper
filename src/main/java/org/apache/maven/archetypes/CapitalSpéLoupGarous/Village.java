@@ -23,7 +23,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVilla
 public  class Village  implements Cloneable {
 
 	private ArrayList<Personnage> village;
-	private  Meute meute ;
+	private Meute meute ;
 	private Maire maire = null;
 	private ArrayList<Personnage> persoDevoilerCommeEnnemieParMontreursDOurs;
 	private ArrayList<Personnage> persoDevoilerCommeAlliéeParMontreursDOurs;
@@ -217,12 +217,12 @@ public  class Village  implements Cloneable {
 			if(this.aUnMaire() && votant == this.maire.getPersonnage()) {
 				voteMaire  = vote;
 			}
-			if(votant.getId() == vote) {
-				System.out.println("erreur détecté : " + votant + " a voté contre lui-même");
-			}
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote) + " avec " + votant.getNbVote() + " voix ", TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
+		}
+		if(this.aUnMaire()) {
+			this.maire.getStatsMaire().vote(tableauDeVotes, voteMaire);
 		}
 		
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
@@ -236,6 +236,7 @@ public  class Village  implements Cloneable {
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			// si plusieurs personnes à égaliter
 			if(maire != null) {
+				this.maire.getStatsMaire().incrementerNbEgaliter();
 				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).collect(Collectors.toList()));
 				if(listeIdPersonneAyantPlusDeVotes.contains(voteMaire)) {
 					idPersonneAyantPlusDeVotes = voteMaire;

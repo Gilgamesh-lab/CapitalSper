@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMaire;
 
 public class Maire extends Fonction {
+	private static StatsMaire statsMaire = new StatsMaire(); 
 
 	public Maire() {
 		super(true);
@@ -19,6 +21,7 @@ public class Maire extends Fonction {
 		super.setPersonnage(personnage);
 		personnage.setFonction(this);
 		personnage.incrementerNbVote(1);
+		this.getStatsMaire().nouveauMaire(personnage);
 		
 	}
 	
@@ -39,5 +42,15 @@ public class Maire extends Fonction {
 			entrerEnFonction(this.getVillage().election());
 		}
 	}
+
+	public static StatsMaire getStatsMaire() {
+		return statsMaire;
+	}
+
+	public static void setStatsMaire(StatsMaire statsMaire) {
+		Maire.statsMaire = statsMaire;
+	}
+	
+	
 
 }

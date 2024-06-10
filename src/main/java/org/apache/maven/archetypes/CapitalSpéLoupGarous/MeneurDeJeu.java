@@ -342,9 +342,14 @@ public class MeneurDeJeu {
 		// stat persoSpé : nb lg kill by chasseur, utilisation potion soso, couple traitre ...
 		
 		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> Logger.log(x.getStats() + "\n", TypeDeLog.statistique));
-		System.out.println(this.village.getStatsVillage().getStats());
-		System.out.println();
-		System.out.println(this.village.getMeute().getStatsMeute().getStats());
+		Logger.log(this.village.getStatsVillage().getStats(), TypeDeLog.statistique);
+		Logger.log("", TypeDeLog.statistique);
+		Logger.log(this.village.getMeute().getStatsMeute().getStats(), TypeDeLog.statistique);
+		Logger.log("", TypeDeLog.statistique);
+		if(this.village.aUnMaire()) {
+			Logger.log(this.village.getMaire().getStatsMaire().getStats(), TypeDeLog.statistique);
+		}
+		
 		
 		long endTime = System.currentTimeMillis();
 		long minute = (endTime-startTime) / 60000;

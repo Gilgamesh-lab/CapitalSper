@@ -25,7 +25,6 @@ public class VillageTest {
 	private Village village = new Village(0,0);
 	
 	private Logger log = new Logger();
-	//log.setDetailVoteVillage(true);
 	private MeneurDeJeu partie = new MeneurDeJeu(village, log);
 	
 	@Rule
