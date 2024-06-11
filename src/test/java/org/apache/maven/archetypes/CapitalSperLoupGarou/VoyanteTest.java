@@ -5,7 +5,6 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 import org.junit.Assert;
 import org.junit.Before;
@@ -34,7 +33,7 @@ public class VoyanteTest {
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(0,0);
 		this.voyante = new Voyante();
-		this.voyante.setStatsVoyante(new StatsVoyante());
+		Voyante.setStatsVoyante(new StatsVoyante());
 	}
 	
 	@Test

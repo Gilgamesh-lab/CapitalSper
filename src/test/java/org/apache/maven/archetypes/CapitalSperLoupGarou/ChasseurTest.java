@@ -37,7 +37,7 @@ public class ChasseurTest {
 		System.out.println("Lancement de la méthode " + name.getMethodName());
 		System.out.println("");
 		this.chasseur = new Chasseur();
-		this.chasseur.setStatsChasseur(new StatsChasseur());
+		Chasseur.setStatsChasseur(new StatsChasseur());
 	}
 	
 

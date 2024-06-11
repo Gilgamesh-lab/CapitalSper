@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Map;
 
-
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
@@ -17,7 +17,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
 public  class Village  implements Cloneable {
@@ -211,6 +211,7 @@ public  class Village  implements Cloneable {
 	
 	public void tribunal() {
 		Personnage votant;
+		Personnage persoMaudit;
 		
 		int vote;
 		for(int i = 0 ; i < this.getHabitantsEnVie().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
@@ -221,7 +222,8 @@ public  class Village  implements Cloneable {
 		int voteMaire = 0;
 		for(int k : tableauDeVotes.keySet()) {
 			if(tableauDeVotes.get(k) > 0) {
-				Logger.log("Le corbeau a corbeauter " + this.getPersonnageParId(k) + " ce qui lui ajoute 2 vote en plus", TypeDeLog.vote);
+				persoMaudit = this.getPersonnageParId(k);
+				Logger.log("Le corbeau a corbeauter " + persoMaudit + " ce qui lui ajoute 2 vote en plus", TypeDeLog.vote);
 			}
 		}
 		for(int i = 0 ; i < this.getNbPersonnageEnVie() ; i++) {
@@ -235,7 +237,10 @@ public  class Village  implements Cloneable {
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		if(this.aUnMaire()) {
-			this.maire.getStatsMaire().vote(tableauDeVotes, voteMaire);
+			Maire.getStatsMaire().vote(tableauDeVotes, voteMaire);
+		}
+		if(this.estPresent(Corbeau.IDROLE)) {
+			StatsCorbeau.c(Corbeau.personnageCorbeauter.getId(), tableauDeVotes);
 		}
 		System.out.println(tableauDeVotes);
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
@@ -249,7 +254,7 @@ public  class Village  implements Cloneable {
 		if(listeIdPersonneAyantPlusDeVotes.size() > 1) {
 			// si plusieurs personnes à égaliter
 			if(maire != null) {
-				this.maire.getStatsMaire().incrementerNbEgaliter();
+				Maire.getStatsMaire().incrementerNbEgaliter();
 				ArrayList<Personnage> coupables = new ArrayList<Personnage>(listeIdPersonneAyantPlusDeVotes.stream().map(id-> this.getPersonnageParId(id)).collect(Collectors.toList()));
 				if(listeIdPersonneAyantPlusDeVotes.contains(voteMaire)) {
 					idPersonneAyantPlusDeVotes = voteMaire;
@@ -295,7 +300,7 @@ public  class Village  implements Cloneable {
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
 		this.executer(personnageCondamner);
 		
-		this.getStatsVillage().vote(personnageCondamner);
+		this.statsVillage.vote(personnageCondamner);
 		tableauDeVotes.clear();
 	}
 	

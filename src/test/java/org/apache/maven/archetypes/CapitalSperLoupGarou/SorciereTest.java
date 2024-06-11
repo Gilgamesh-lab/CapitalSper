@@ -3,11 +3,9 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -35,7 +33,7 @@ public class SorciereTest {
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(1,1);
 		this.sorcière = new Sorciere();
-		this.sorcière.setStatsSorciere(new StatsSorciere());
+		Sorciere.setStatsSorciere(new StatsSorciere());
 	}
 	
 	@Test

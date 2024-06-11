@@ -18,7 +18,6 @@ import org.junit.rules.TestName;
 
 public class MeneurDeJeuTest {
 	private SimpleVillageois simpleVillageois = new SimpleVillageois();
-	private LoupGarouSimple loupGarou = new LoupGarouSimple();
 	private Village village = new Village(0,0);
 	private double delta;
 	

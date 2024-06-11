@@ -3,13 +3,19 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
+
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
 
 public class Corbeau extends VillageoisSpecial{
 	public final static int IDROLE = 12 ;
+	private static StatsCorbeau statsCorbeau = new StatsCorbeau();
+	public static Personnage personnageCorbeauter;
 	
 	public Corbeau() {
-		super(IDROLE);
+		super(IDROLE, statsCorbeau);
+		this.personnageCorbeauter = null;
 	}
 	
 	@Override
@@ -20,8 +26,12 @@ public class Corbeau extends VillageoisSpecial{
 	
 	public void corbeauter(int idPersonnage) {
 		this.getVillage().getTableauDeVotes().put(idPersonnage, 2);
-		Logger.log("Le corbeau a corbeauter " + this.getVillage().getPersonnageParId(idPersonnage), TypeDeLog.role);
+		personnageCorbeauter = this.getVillage().getPersonnageParId(idPersonnage);
+		Logger.log("Le corbeau a corbeauter " + personnageCorbeauter, TypeDeLog.role);
+		
+		this.getStatsCorbeau().corbeauter(personnageCorbeauter);
 	}
+	
 
 	@Override
 	public ArrayList<TypeDePouvoir> init() {
@@ -38,6 +48,16 @@ public class Corbeau extends VillageoisSpecial{
 		}
 		
 	}
+
+	public static StatsCorbeau getStatsCorbeau() {
+		return statsCorbeau;
+	}
+
+	public static void setStatsCorbeau(StatsCorbeau statsCorbeau) {
+		Corbeau.statsCorbeau = statsCorbeau;
+	}
+	
+	
 	
 	
 

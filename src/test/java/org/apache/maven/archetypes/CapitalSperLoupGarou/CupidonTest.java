@@ -33,7 +33,7 @@ public class CupidonTest {
 		this.log.setOnAfficherLogDetailsRoleAction();
 		this.log.setDetailVoteVillage(true);
 		this.cupidon = new Cupidon();
-		this.cupidon.setStatCupidon(new StatsCupidon());
+		Cupidon.setStatCupidon(new StatsCupidon());
 		System.out.println("");
 		System.out.println("Lancement de la méthode " + name.getMethodName());
 		System.out.println("");
@@ -56,9 +56,9 @@ public class CupidonTest {
 		Assert.assertTrue(this.cupidon.getAlliés().contains(perso));// ce considèrent t'ils comme des allies indéfectible ?
 		Assert.assertTrue(perso.getAlliés().contains(this.cupidon));
 		
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleTraitre() == 1);
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleVillageois() == 0);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleTraitre() == 1);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleVillageois() == 0);
 		
 		
 	}
@@ -72,9 +72,9 @@ public class CupidonTest {
 		this.cupidon.meurt();
 		Assert.assertEquals(0, this.village.getNbPersonnageEnVie());
 		
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleTraitre() == 0);
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleVillageois() == 1);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleTraitre() == 0);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleVillageois() == 1);
 		
 	}
 	
@@ -96,9 +96,9 @@ public class CupidonTest {
 		this.village.tribunal();
 		Assert.assertTrue(this.village.getHabitantsEnVie().stream().allMatch(x->x.estAmoureux()));
 		
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleTraitre() == 1);
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
-		assertTrue(this.cupidon.getStatCupidon().getNbCoupleVillageois() == 0);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleTraitre() == 1);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleLoupGarou() == 0);
+		assertTrue(Cupidon.getStatCupidon().getNbCoupleVillageois() == 0);
 	}
 
 }

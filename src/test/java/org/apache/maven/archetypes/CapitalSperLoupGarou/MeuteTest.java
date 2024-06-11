@@ -11,7 +11,6 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -23,7 +22,7 @@ public class MeuteTest {
 	public TestName name = new TestName();
 	
 	private Logger log = new Logger();
-	private Village village = new Village(0,0);
+	private Village village;
 	
 	private double delta = 0.0;
 	
@@ -35,8 +34,8 @@ public class MeuteTest {
 		System.out.println("");
 		System.out.println("Lancement de la méthode " + name.getMethodName());
 		System.out.println("");
-		Village village = new Village(0,0);
-		this.village.getMeute().setStatsMeute(new StatsMeute());
+		village = new Village(0,0);
+		Meute.setStatsMeute(new StatsMeute());
 	}
 	
 	@Test
@@ -59,19 +58,19 @@ public class MeuteTest {
 		Assert.assertEquals(0, this.village.getNbVillageois());
 		Assert.assertEquals(1, this.village.getNbLoupGarou());
 		
-		assertEquals(0, this.village.getMeute().getStatsMeute().getNbSperTuer(), delta);
-		assertEquals(0, this.village.getMeute().getStatsMeute().getNbSurvivants(), delta);
-		assertEquals(1, this.village.getMeute().getStatsMeute().getNbVote(), delta);
-		assertEquals(this.village.getPersonnageParId(0).getId(), this.village.getMeute().getStatsMeute().getDernierePersonneDevorer(), delta);
+		assertEquals(0, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(0, Meute.getStatsMeute().getNbSurvivants(), delta);
+		assertEquals(1, Meute.getStatsMeute().getNbVote(), delta);
+		assertEquals(this.village.getPersonnageParId(0).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
 		
 		this.village.ajouterPersonnage(new Voyante());
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
 		
-		assertEquals(1, this.village.getMeute().getStatsMeute().getNbSperTuer(), delta);
-		assertEquals(0, this.village.getMeute().getStatsMeute().getNbSurvivants(), delta);
-		assertEquals(2, this.village.getMeute().getStatsMeute().getNbVote(), delta);
-		assertEquals(this.village.getPersonnageParId(2).getId(), this.village.getMeute().getStatsMeute().getDernierePersonneDevorer(), delta);
+		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(0, Meute.getStatsMeute().getNbSurvivants(), delta);
+		assertEquals(2, Meute.getStatsMeute().getNbVote(), delta);
+		assertEquals(this.village.getPersonnageParId(2).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
 		
 		Salvateur salvateur = new Salvateur();
 		this.village.ajouterPersonnage(salvateur);
@@ -79,9 +78,9 @@ public class MeuteTest {
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
 		
-		assertEquals(1, this.village.getMeute().getStatsMeute().getNbSperTuer(), delta);
-		assertEquals(1, this.village.getMeute().getStatsMeute().getNbSurvivants(), delta);
-		assertEquals(3, this.village.getMeute().getStatsMeute().getNbVote(), delta);
+		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(1, Meute.getStatsMeute().getNbSurvivants(), delta);
+		assertEquals(3, Meute.getStatsMeute().getNbVote(), delta);
 		
 		
 		salvateur.meurt();
@@ -91,11 +90,11 @@ public class MeuteTest {
 		this.village.getMeute().attaquerVillage();
 		sorciere.agir();
 		this.village.bilanTuerLaNuit();
-		assertEquals(this.village.getPersonnageParId(4).getId(), this.village.getMeute().getStatsMeute().getDernierePersonneDevorer(), delta);
-		this.village.getMeute().getStatsMeute().ASurvecu(this.village.getVillage());
-		assertEquals(1, this.village.getMeute().getStatsMeute().getNbSperTuer(), delta);
-		assertEquals(2, this.village.getMeute().getStatsMeute().getNbSurvivants(), delta);
-		assertEquals(4, this.village.getMeute().getStatsMeute().getNbVote(), delta);
+		assertEquals(this.village.getPersonnageParId(4).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
+		Meute.getStatsMeute().ASurvecu(this.village.getVillage());
+		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(2, Meute.getStatsMeute().getNbSurvivants(), delta);
+		assertEquals(4, Meute.getStatsMeute().getNbVote(), delta);
 		
 		
 	}

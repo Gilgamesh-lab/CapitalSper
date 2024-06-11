@@ -6,7 +6,6 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMaire;
@@ -37,7 +36,7 @@ public class MaireTest {
 		this.log.setDetailVoteVillage(true);
 		this.village = new Village(2,1);
 		this.village.onMaire();
-		this.village.getMaire().setStatsMaire(new StatsMaire());
+		Maire.setStatsMaire(new StatsMaire());
 	}
 	
 	@Test
@@ -49,9 +48,9 @@ public class MaireTest {
 		this.village.getPersonnageParId(2).ajouterPersoListeDeVote(voyante);
 		this.village.getMaire().election();
 		Assert.assertTrue(voyante.estMaire());
-		assertEquals(0, this.village.getMaire().getStatsMaire().getNbVote(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbMaire(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbSperMaire(), delta);
+		assertEquals(0, Maire.getStatsMaire().getNbVote(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbMaire(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbSperMaire(), delta);
 		
 	}
 	
@@ -64,8 +63,8 @@ public class MaireTest {
 		vi.ajouterAllié(this.village.getPersonnageParId(0));
 		vi.meurt();
 		Assert.assertTrue(this.village.getPersonnageParId(0).estMaire());
-		assertEquals(2, this.village.getMaire().getStatsMaire().getNbMaire(), delta);
-		assertEquals(0, this.village.getMaire().getStatsMaire().getNbSperMaire(), delta);
+		assertEquals(2, Maire.getStatsMaire().getNbMaire(), delta);
+		assertEquals(0, Maire.getStatsMaire().getNbSperMaire(), delta);
 	}
 	
 	@Test
@@ -79,8 +78,8 @@ public class MaireTest {
 		this.village.getPersonnageParId(1).meurt();
 		
 		//System.out.println(this.village.get);
-		assertEquals(3, this.village.getMaire().getStatsMaire().getNbMaire(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbLoupGarouMaire(), delta);
+		assertEquals(3, Maire.getStatsMaire().getNbMaire(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbLoupGarouMaire(), delta);
 	}
 	
 	@Test
@@ -97,9 +96,9 @@ public class MaireTest {
 		this.village.tribunal();
 		Assert.assertEquals(2,this.village.getNbPersonnageEnVie());
 		Assert.assertTrue(vi.estEnvie());
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbMaire(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbVote(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbVoteDecisifDuMaire(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbMaire(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbVote(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbVoteDecisifDuMaire(), delta);
 	}
 	
 	@Test
@@ -118,9 +117,9 @@ public class MaireTest {
 		Assert.assertEquals(4,this.village.getNbPersonnageEnVie());
 		Assert.assertTrue(this.village.getPersonnageParId(0).estEnvie());
 		Assert.assertFalse(this.village.getPersonnageParId(1).estEnvie());
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbMaire(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbVote(), delta);
-		assertEquals(1, this.village.getMaire().getStatsMaire().getNbEgaliter(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbMaire(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbVote(), delta);
+		assertEquals(1, Maire.getStatsMaire().getNbEgaliter(), delta);
 	}
 	
 	
