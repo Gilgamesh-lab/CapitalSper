@@ -3,6 +3,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
@@ -46,6 +47,7 @@ public class Main {
 		Salvateur salvateur = new Salvateur();
 		village.ajouterPersonnage(salvateur);
 		village.ajouterPersonnage(Corbeau.IDROLE);
+		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
 		/*MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);*/
 		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);

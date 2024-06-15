@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
@@ -32,6 +33,7 @@ public class Référentiel {
 		classesParRole.put(Voyante.IDROLE, Voyante.class);// 4
 		classesParRole.put(MontreurDOurs.IDROLE, MontreurDOurs.class);// 11
 		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
+		classesParRole.put(DeuxSoeurs.IDROLE, DeuxSoeurs.class);// 8
 	}
 	
 	public static Personnage conversionDeIdRoleVersPersonnage(int idRole) {
@@ -77,7 +79,13 @@ public class Référentiel {
 		String message = nbSpecial + " simple(s) villageois";
 		for(int i = 0; i < village.getNbPersonnageEnVie() ; i++) {
 			if(village.getPersonnage(i).aUnPouvoirSpecial()) {
-				message += " , 1 " +  village.getPersonnage(i).getClass().getSimpleName();
+				if(village.getPersonnage(i).getClass() == DeuxSoeurs.class) {
+					message += " , 2 soeurs";
+				}
+				else {
+					message += " , 1 " +  village.getPersonnage(i).getClass().getSimpleName();
+				}
+				
 			}
 		}
 		message += " et " + village.getNbLoupGarou() + " simple(s) loup-garous";

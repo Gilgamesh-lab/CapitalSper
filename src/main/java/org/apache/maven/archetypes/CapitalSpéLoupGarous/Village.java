@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
@@ -86,6 +87,16 @@ public  class Village  implements Cloneable {
 		if(!personnage.estUnVillageois()) {
 			this.meute.enrolerUnLoupGarou((LoupGarou) personnage);
 		}
+	}
+	
+	public DeuxSoeurs initDeuxSoeurs() {
+		DeuxSoeurs jumelle = new DeuxSoeurs();
+		jumelle.setId(this.village.size());
+		this.village.add(jumelle);
+		jumelle.setVillage(this);
+		jumelle.setOrdreDeNaissance(2);
+		 
+		return jumelle;
 	}
 	
 	public void ajouterPlusieursPersoIdentique(int idDeRole, int nb) {
@@ -240,9 +251,8 @@ public  class Village  implements Cloneable {
 			Maire.getStatsMaire().vote(tableauDeVotes, voteMaire);
 		}
 		if(this.estPresent(Corbeau.IDROLE)) {
-			StatsCorbeau.c(Corbeau.personnageCorbeauter.getId(), tableauDeVotes);
+			StatsCorbeau.corbeautage(Corbeau.personnageCorbeauter.getId(), tableauDeVotes);
 		}
-		System.out.println(tableauDeVotes);
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauDeVotes.entrySet().stream()
 				  .map(Map.Entry::getValue)
 				  .reduce(Integer::max)
@@ -402,6 +412,10 @@ public  class Village  implements Cloneable {
 	
 	public void reset() {
 		this.village.stream().forEach(x->x.reset());
+		if(this.estPresent(DeuxSoeurs.IDROLE)) {
+			this.village.remove(this.getPersonnageParIdRole(DeuxSoeurs.IDROLE));
+			
+		}
 		if(maire != null) {
 			this.maire.reset();
 		}

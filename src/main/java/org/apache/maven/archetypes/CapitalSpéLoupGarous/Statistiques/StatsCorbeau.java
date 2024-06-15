@@ -25,14 +25,13 @@ public class StatsCorbeau extends Statistiques {
 		}
 	}
 	
-	public static void c  (int id, Map<Integer, Integer> tableauVotes) {
+	public static void corbeautage  (int id, Map<Integer, Integer> tableauVotes) {
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauVotes.entrySet().stream()
 				  .map(Map.Entry::getValue)
 				  .reduce(Integer::max)
 				  .get();
 		
 		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
-		System.out.println(tableauVotes);
 		if(listeIdPersonneAyantPlusDeVotes.contains(id)) {
 			if(tableauVotes.entrySet().stream().map(Map.Entry::getKey).filter(x-> x != id ).anyMatch(x-> tableauVotes.get(x) >= ((tableauVotes.get(id)) -2))){
 				nbCorbeautageDecisif++;

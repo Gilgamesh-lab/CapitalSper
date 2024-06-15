@@ -278,6 +278,10 @@ public abstract class Personnage  implements Cloneable {
 			}
 		}
 		else {// vote normale
+			
+			/*for (Personnage perso : this.getListeDeVote()) {
+				
+			}*/
 			if(this.getListeDeVote().contains(this)) {// Cas égaliter quand le maire est présent dans les coupables
 				this.getListeDeVote().remove(this);
 			}

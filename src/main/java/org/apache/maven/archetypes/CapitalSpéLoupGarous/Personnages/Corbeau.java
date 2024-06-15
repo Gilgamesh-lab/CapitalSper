@@ -21,6 +21,7 @@ public class Corbeau extends VillageoisSpecial{
 	@Override
 	public void agir() {
 		this.corbeauter(this.voter());
+		this.resetListeDeVote();
 		
 	}
 	
