@@ -21,6 +21,13 @@ public class Voyante extends VillageoisSpecial {
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Voyance));
 	}
 	
+	@Override
+	public int voter() {
+		int persoVoter = super.voter();
+		statsVoyante.voter(this.getVillage().getPersonnageParId(persoVoter));
+		return persoVoter;
+	}
+	
 	public void sonder() {
 		dernierPersonnageSonder = super.voteCibleAction();
 		 statsVoyante.voyance(dernierPersonnageSonder);

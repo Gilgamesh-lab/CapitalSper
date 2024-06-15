@@ -341,7 +341,7 @@ public class MeneurDeJeu {
 		// stat perso "simple" ex : taux de survie ?
 		// stat persoSpé : nb lg kill by chasseur, utilisation potion soso, couple traitre ...
 		
-		this.village.getVillage().stream().filter(x->x.getStatPersonnage() != null).distinct().forEach(x-> Logger.log(x.getStats() + "\n", TypeDeLog.statistique));
+		this.village.getVillage().stream().map(x->x.getIdDeRole()).distinct().map(x->this.village.getPersonnageParIdRole(x)).filter(x->x.getStatPersonnage() != null).forEach(x-> Logger.log(x.getStats() + "\n", TypeDeLog.statistique));
 		Logger.log(this.village.getStatsVillage().getStats(), TypeDeLog.statistique);
 		Logger.log("", TypeDeLog.statistique);
 		Logger.log(this.village.getMeute().getStatsMeute().getStats(), TypeDeLog.statistique);

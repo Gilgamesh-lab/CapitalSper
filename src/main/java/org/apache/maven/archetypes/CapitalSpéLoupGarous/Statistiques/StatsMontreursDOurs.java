@@ -10,11 +10,9 @@ public class StatsMontreursDOurs extends Statistiques {
 	private float nbDeuxLoupGarouVoisin;
 	private float nbMort;
 	private float nbVoisinLoupGarouTrouverDuPremierCoups;
+	private float nbVote;
+	private float nbLgVoter;
 	
-	
-	
-	
-
 	public StatsMontreursDOurs() {
 		this.nbGrognement = 0;
 		this.nbVoisinDifférent = 0;
@@ -23,6 +21,8 @@ public class StatsMontreursDOurs extends Statistiques {
 		this.nbDeuxLoupGarouVoisin = 0;
 		this.nbMort = 0;
 		this.nbVoisinLoupGarouTrouverDuPremierCoups = 0;
+		this.nbVote = 0;
+		this.nbLgVoter = 0;
 	}
 	
 	public void incrementerNbGrognement() {
@@ -31,6 +31,13 @@ public class StatsMontreursDOurs extends Statistiques {
 
 	public void incrementerNbVoisinDifférent() {
 		this.nbVoisinDifférent++;
+	}
+	
+	public void voter(Personnage personnage) {
+		this.nbVote++;
+		if(!personnage.estUnVillageois()) {
+			this.nbLgVoter++;
+		}
 	}
 
 	public void incrementerNbLoupGarouVoisin(Personnage voisins1 , Personnage voisins2) {
@@ -97,8 +104,8 @@ public class StatsMontreursDOurs extends Statistiques {
 		String stats6 = "Sur " + (int) super.getNbPartie() +  " parties, le montreurs d'ours a eu en moyenne " + ((double) ((this.nbGrognement / super.getNbPartie()))) + " nouveaux voisins par partie" ;
 		String stats7 = "Sur " + (int) super.getNbPartie() +  " parties, le montreurs d'ours est mort dans " + ((double) ((this.nbMort / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
 		String stats8 = "Sur les " + (int) this.nbMort +  " morts du montreurs d'ours, le village a trouvé le coupable parmis les voisins du montreurs d'ours du premier coups dans " + ((double) ((this.nbVoisinLoupGarouTrouverDuPremierCoups / this.nbMort) * 100 )) + "% des cas" ;
-		
-		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4 + "\n" + stats5 + "\n" + stats6 + "\n" + stats7 + "\n" + stats8;
+		String stats9 = "Sur " + (int) this.nbVote + " votes, le montreurs d'ours a voter contre un loups-garous dans " + ((double) ((this.nbLgVoter / this.nbVote) * 100 )) + "% des cas" ;
+		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4 + "\n" + stats5 + "\n" + stats6 + "\n" + stats7 + "\n" + stats8 + "\n" + stats9;
 	}
 
 }

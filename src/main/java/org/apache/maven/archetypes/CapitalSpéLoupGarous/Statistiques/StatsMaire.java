@@ -39,8 +39,17 @@ public class StatsMaire extends Statistiques {
 		List<Integer> listeIdPersonneAyantPlusDeVotes = tableauVotes.entrySet().stream().filter(x->x.getValue() == plusGrandNombreDeVotesPourUnePersonne).map(Map.Entry::getKey).collect(Collectors.toList());
 		
 		if(listeIdPersonneAyantPlusDeVotes.contains(voteMaire)) {
-			if(tableauVotes.entrySet().stream().map(Map.Entry::getValue).filter(x-> x != voteMaire ).anyMatch(x-> tableauVotes.get(x) >= ((tableauVotes.get(voteMaire)) -1))){
-				this.nbVoteDecisifDuMaire++;
+			try {
+				if(tableauVotes.entrySet().stream().map(Map.Entry::getKey).anyMatch(x-> (tableauVotes.get(x) >= ((tableauVotes.get(voteMaire)) -1) && x != voteMaire))){
+					this.nbVoteDecisifDuMaire++;
+				}
+			}
+			catch (Exception e) {
+				tableauVotes.entrySet().stream().map(Map.Entry::getKey).forEach(x->System.out.println(x));
+				System.out.println(tableauVotes);
+				System.out.println(voteMaire);
+				e.printStackTrace();
+				throw e;
 			}
 				
 

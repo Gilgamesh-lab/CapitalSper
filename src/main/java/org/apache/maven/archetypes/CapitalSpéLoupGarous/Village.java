@@ -234,7 +234,13 @@ public  class Village  implements Cloneable {
 		for(int k : tableauDeVotes.keySet()) {
 			if(tableauDeVotes.get(k) > 0) {
 				persoMaudit = this.getPersonnageParId(k);
-				Logger.log("Le corbeau a corbeauter " + persoMaudit + " ce qui lui ajoute 2 vote en plus", TypeDeLog.vote);
+				if(persoMaudit.estEnvie()) {
+					Logger.log("Le corbeau a corbeauter " + persoMaudit + " ce qui lui ajoute 2 vote en plus", TypeDeLog.vote);
+				}
+				else {
+					tableauDeVotes.put(k, 0);// Si la personne médis par le corbeau est morte
+				}
+				
 			}
 		}
 		for(int i = 0 ; i < this.getNbPersonnageEnVie() ; i++) {
@@ -274,7 +280,18 @@ public  class Village  implements Cloneable {
 					idPersonneAyantPlusDeVotes = maire.getPersonnage().voter();
 					
 				}
-				
+				try {
+					personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+				}
+				catch (Exception e) {
+					this.getHabitantsEnVie().stream().forEach(x->System.out.println("id = " + x.getId()));
+					System.out.println(idPersonneAyantPlusDeVotes);
+					System.out.println(listeIdPersonneAyantPlusDeVotes);
+					System.out.println(voteMaire);
+					System.out.println(Corbeau.personnageCorbeauter.getId());
+					
+					throw e;
+				}
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
 				Logger.log("", TypeDeLog.vote);
 				if(coupables.isEmpty()) {
@@ -300,14 +317,21 @@ public  class Village  implements Cloneable {
 			
 		}
 		else {
-			idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
-			personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			try {
+				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get(0);
+				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
+			}
+			catch (Exception e) {
+				System.out.println(listeIdPersonneAyantPlusDeVotes);
+				throw e;
+			}
 			Logger.log("", TypeDeLog.vote);
 			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
 		}
 		Logger.log("");
 		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
 		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
+		
 		this.executer(personnageCondamner);
 		
 		this.statsVillage.vote(personnageCondamner);

@@ -17,23 +17,23 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 4;
+		int nbVillageois = 0;
 		int nbLoupGarous = 3;
-		int nbPartie = 5;//100000
+		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
 		
 		
-		logger.setDetailVoteVillage(true);
+		//logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		//logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		logger.setModeSpectateurOn();
-		//logger.setModeStatistiqueOn();
+		//logger.setModeSpectateurOn();
+		logger.setModeStatistiqueOn();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
@@ -48,8 +48,8 @@ public class Main {
 		village.ajouterPersonnage(salvateur);
 		village.ajouterPersonnage(Corbeau.IDROLE);
 		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
-		/*MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);*/
+		MontreurDOurs montreurDOurs = new MontreurDOurs();
+		village.ajouterPersonnage(montreurDOurs);
 		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
 		village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);

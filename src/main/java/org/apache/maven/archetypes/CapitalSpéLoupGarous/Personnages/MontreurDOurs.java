@@ -25,6 +25,13 @@ public class MontreurDOurs extends VillageoisSpecial {
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Voyance));
 	}
 	
+	@Override
+	public int voter() {
+		int persoVoter = super.voter();
+		statsMontreursDOurs.voter(this.getVillage().getPersonnageParId(persoVoter));
+		return persoVoter;
+	}
+	
 	public Personnage[] initVoisins() {
 		ArrayList<Personnage> liste = new ArrayList<Personnage>(this.getVillage().getHabitantsEnVie().stream().filter(x-> x != this).collect(Collectors.toList()));
 		int nbVoisinDeDroite = (int) (Math.random() * ( liste.size()    - 0 ));
