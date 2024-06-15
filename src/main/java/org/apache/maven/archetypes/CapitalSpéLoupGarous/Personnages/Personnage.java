@@ -249,7 +249,7 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();
 			}
 		}
-		if(!this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty()) {
+		if(!this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty() && this.estUnVillageois) {
 			this.listeDeVote = new ArrayList<Personnage>(this.village.getPersoDevoilerCommeEnnemieParMontreursDOurs().stream().filter(x-> x!= this).collect(Collectors.toList()));
 			if(!this.listeDeVote.isEmpty()) {
 				nb = (int) (Math.random() * ( this.listeDeVote.size()    - 0 ));
@@ -273,6 +273,10 @@ public abstract class Personnage  implements Cloneable {
 				return this.getListeDeVote().get(nb).getId();	
 			}
 			else {// sinon au hasard parmis tout le monde "alliés" compris
+				if(!this.estUnVillageois) {
+					nb = (int) (Math.random() * ( this.village.getVillageois().size()   - 0 ));
+					return this.village.getVillageois().get(nb).getId();	
+				}
 				nb = (int) (Math.random() * ( this.village.getAutreHabitantsEnVie(this).size()   - 0 ));
 				return this.village.getAutreHabitantsEnVie(this).get(nb).getId();	
 			}

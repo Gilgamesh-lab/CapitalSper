@@ -117,6 +117,17 @@ public class Meute {
 		}
 		
 		if(!personnageDevorer.getStatut().isProtéger()) {
+			if(personnageDevorer.getIdDeRole() == LoupGarouSimple.IDROLE) {
+				if(this.getMeute().stream().anyMatch(x->x.estAmoureux())){
+					Logger.log("L'amour ayant semé la discorde dans la meute et les loups ne pouvant pas s'entretuer, il n'y a pas de mort", TypeDeLog.role);
+					return;
+				}
+				else {
+					System.out.println("erreur");
+					personnageDevorer.getFonction().getPersonnage();
+				}
+				
+			}
 			personnageDevorer.getStatut().setAEteAttaqueParLaMeute(true);
 			this.getStatsMeute().vote(personnageDevorer);
 		}
