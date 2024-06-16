@@ -7,17 +7,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarou;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.Meute;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.DeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.VillageoisSpecial;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
@@ -334,7 +334,7 @@ public  class Village  implements Cloneable {
 		
 		this.executer(personnageCondamner);
 		
-		this.statsVillage.vote(personnageCondamner);
+		statsVillage.vote(personnageCondamner);
 		tableauDeVotes.clear();
 	}
 	
@@ -463,7 +463,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public void finVillage() {
-		this.statsVillage.decompteNbSurvivants(village);
+		statsVillage.decompteNbSurvivants(village);
 	}
 
 

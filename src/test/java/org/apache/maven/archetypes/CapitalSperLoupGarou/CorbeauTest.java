@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
 import org.junit.Before;
 import org.junit.Rule;

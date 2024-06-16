@@ -19,21 +19,21 @@ public class Logger {
 	
 
 	public Logger() {
-		this.detailVoteVillage = false;
-		this.fichierOutput = false;
-		this.afficherLogDetailsPartie = true;
-		this.afficherLogDetailsPourcentage = false;
-		this.afficherLogDetailsRoleAction = false ;
-		this.afficherLogStats = true;
+		detailVoteVillage = false;
+		fichierOutput = false;
+		afficherLogDetailsPartie = true;
+		afficherLogDetailsPourcentage = false;
+		afficherLogDetailsRoleAction = false ;
+		afficherLogStats = true;
 	}
 	
 	public void setModeSpectateurOn() {
-		this.setOnAfficherLogDetailsRoleAction();
+		setOnAfficherLogDetailsRoleAction();
 	}
 	
 	public void setModeStatistiqueOn() {
-		this.setOffAfficherLogDetailsPartie();
-		this.setOnAfficherLogStats();
+		setOffAfficherLogDetailsPartie();
+		setOnAfficherLogStats();
 	}
 	
 	
@@ -44,21 +44,21 @@ public class Logger {
 
 
 	public  void setOnAfficherLogStats() {
-		this.afficherLogStats = true;
+		afficherLogStats = true;
 	}
 	
 	public  void setOffAfficherLogStats() {
-		this.afficherLogStats = false;
+		afficherLogStats = false;
 	}
 
 
 
 	public void setOnAfficherLogDetailsRoleAction() {
-		this.afficherLogDetailsRoleAction = true;
+		afficherLogDetailsRoleAction = true;
 	}
 	
 	public void setOffAfficherLogDetailsRoleAction() {
-		this.afficherLogDetailsRoleAction = false;
+		afficherLogDetailsRoleAction = false;
 	}
 	
 	public static boolean isAfficherLogDetailsRoleActionOn() {
@@ -70,41 +70,41 @@ public class Logger {
 	}
 
 	public void setDetailVoteVillage(boolean voteVillage) {
-		this.detailVoteVillage = voteVillage;
+		detailVoteVillage = voteVillage;
 	}
 	
 	public void setOnFichierOutput() {
-		this.fichierOutput = true;
+		fichierOutput = true;
 	}
 	
 	public boolean isFichierOutput() {
-		return this.fichierOutput;
+		return fichierOutput;
 	}
 	
 	public void setOnAfficherLogDetailsPartie() {
-		this.afficherLogDetailsPartie = true;
+		afficherLogDetailsPartie = true;
 	}
 	
 	public void setOffAfficherLogDetailsPartie() {
-		this.afficherLogDetailsPartie = false;
+		afficherLogDetailsPartie = false;
 	}
 	
 	public boolean isAfficherLogDetailsPartie() {
-		return this.afficherLogDetailsPartie ;
+		return afficherLogDetailsPartie ;
 	}
 	
 	public void setOnAfficherLogDetailsPourcentage() {
-		this.afficherLogDetailsPourcentage = true;
+		afficherLogDetailsPourcentage = true;
 	}
 	
 	public void setOffAfficherLogDetailsPourcentage() {
-		this.afficherLogDetailsPourcentage = false;
+		afficherLogDetailsPourcentage = false;
 	}
 	
 	public void écrireFichier (String mode, Village village) {
 		int tab[] = referentiel(village);
 		try {
-			this.writer = new PrintWriter("log/" + mode + " avec " + tab[0] + " simpleVillageois et " + tab[1] + " loups-garous.txt" , "UTF-8");
+			writer = new PrintWriter("log/" + mode + " avec " + tab[0] + " simpleVillageois et " + tab[1] + " loups-garous.txt" , "UTF-8");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.DeuxSoeurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsDeuxSoeurs;
 import org.junit.Before;
 import org.junit.Rule;

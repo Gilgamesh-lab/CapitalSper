@@ -1,11 +1,13 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Référentiel;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 
 public class Voyante extends VillageoisSpecial {
@@ -28,8 +30,43 @@ public class Voyante extends VillageoisSpecial {
 		return persoVoter;
 	}
 	
+	/**
+	 * Cette fonction est une fonction de vote qui cible ne cible pas soi même, les alliés et les ennemis.
+	 * @return Le personnage a voté
+	 */
+	public Personnage voteCibleAction() {// voyante( 
+		for(int i = 0; i < this.getVillage().getAutreHabitantsEnVie(this).size(); i++) {
+			if(!this.getAlliés().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i)) && !this.getEnnemies().contains(this.getVillage().getAutreHabitantsEnVie(this).get(i))){
+				this.getListeDeVote().add(this.getVillage().getAutreHabitantsEnVie(this).get(i));
+			}
+			
+		}
+		
+		int nb ;
+		if(this.getListeDeVote().size() == 0) {
+			if(this.estAmoureux()) {
+				this.setListeDeVote(new ArrayList<Personnage>(this.getVillage().getAutreHabitantsEnVie(this).stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList())));
+				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+				Personnage cibleAction = this.getListeDeVote().get(nb);
+				this.getListeDeVote().clear();
+				return cibleAction;	
+			}
+			else {
+				nb = (int) (Math.random() * ( this.getVillage().getAutreHabitantsEnVie(this).size()   - 0 ));
+				return this.getVillage().getAutreHabitantsEnVie(this).get(nb);	
+			}
+		}
+		else {
+			nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));
+			Personnage cibleAction = this.getListeDeVote().get(nb);
+			this.getListeDeVote().clear();
+			return cibleAction;	
+		}
+			
+	}
+	
 	public void sonder() {
-		dernierPersonnageSonder = super.voteCibleAction();
+		dernierPersonnageSonder = this.voteCibleAction();
 		 statsVoyante.voyance(dernierPersonnageSonder);
 		 if(dernierPersonnageSonder.equals(this)) {
 				System.out.println("erreur vovo détecté : " + this + "s'est choisi elle-même");

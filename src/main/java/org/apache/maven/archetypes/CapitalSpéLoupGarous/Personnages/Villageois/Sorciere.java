@@ -1,11 +1,13 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 
 public class Sorciere extends VillageoisSpecial{
 	private ArrayList<Integer> actions;
@@ -34,7 +36,7 @@ public class Sorciere extends VillageoisSpecial{
 		if((this.getStatut().aEteAttaquerParLaMeute() && this.isaUnePotionDeVie())) {
 			this.potionDeVie(this);
 			Logger.log(this + " s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
-			this.statsSorciere.incrementerNbAutoProtection();
+			statsSorciere.incrementerNbAutoProtection();
 		}
 		
 		if(this.actions.size() == 1) {
@@ -45,7 +47,7 @@ public class Sorciere extends VillageoisSpecial{
 			//this.action = this.actions.get(action);
 		}
 		
-		this.statsSorciere.incrementerNbDeuxPotionsUtiliser(this.action);
+		statsSorciere.incrementerNbDeuxPotionsUtiliser(this.action);
 		
 		if((this.isaUnePotionDeVie() && ((this.action == 0 || this.action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().aEteAttaquerParLaMeute()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findAny().get();
@@ -80,7 +82,7 @@ public class Sorciere extends VillageoisSpecial{
 		if(!this.getVillage().estEnVie(Salvateur.IDROLE)) {// pour la voyance du salvateur
 			this.perdrePouvoir(TypeDePouvoir.Vie);
 		}
-		this.statsSorciere.incrementerNbUtilisationPotionDeVie();
+		statsSorciere.incrementerNbUtilisationPotionDeVie();
 		
 	}
 	
@@ -101,8 +103,8 @@ public class Sorciere extends VillageoisSpecial{
 		Logger.log(messageMort, TypeDeLog.role);
 		this.tuer(personnageATuer);
 		this.perdrePouvoir(TypeDePouvoir.Mort);
-		this.statsSorciere.incrementerNbLoupGarouTuer(personnageATuer);
-		this.statsSorciere.incrementerNbUtilisationPotionDeMort();
+		statsSorciere.incrementerNbLoupGarouTuer(personnageATuer);
+		statsSorciere.incrementerNbUtilisationPotionDeMort();
 	}
 	
 

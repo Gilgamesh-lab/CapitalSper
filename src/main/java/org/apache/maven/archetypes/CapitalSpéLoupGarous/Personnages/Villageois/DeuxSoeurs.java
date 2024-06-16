@@ -1,14 +1,17 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsDeuxSoeurs;
 
 public class DeuxSoeurs extends VillageoisSpecial {
 	public final static int IDROLE = 8;
 	public int ordreDeNaissance;
 	private static StatsDeuxSoeurs statsDeuxSoeurs = new StatsDeuxSoeurs();
+	
+	// Todo gérer suppression deux soeurs si elles sont plus que deux
 
 	public DeuxSoeurs() {
 		super(IDROLE, statsDeuxSoeurs);

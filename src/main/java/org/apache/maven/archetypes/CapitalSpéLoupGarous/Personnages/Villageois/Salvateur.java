@@ -1,9 +1,12 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSalvateur;
 
 public class Salvateur extends VillageoisSpecial {
@@ -25,8 +28,8 @@ public class Salvateur extends VillageoisSpecial {
 		 personnageProtéger.getStatut().setProtéger(true);
 		 Logger.log("Le salvateur a décidé de protéger " + personnageProtéger, TypeDeLog.role);
 		 this.dernierPersonnageProtéger = personnageProtéger;
-		 this.getStatsSalvateur().incrementerNbSalvation();
-		 this.getStatsSalvateur().incrementerNbVillageoisSalvater(personnageProtéger);
+		 getStatsSalvateur().incrementerNbSalvation();
+		 getStatsSalvateur().incrementerNbVillageoisSalvater(personnageProtéger);
 	}
 	
 	public static StatsSalvateur getStatsSalvateur() {
@@ -77,7 +80,7 @@ public class Salvateur extends VillageoisSpecial {
 		if(this.getVillage().getNuitSansMort() && this.getVillage().getNbSpéEnVieACePouvoir(TypeDePouvoir.Vie) == 1 && dernierPersonnageProtéger != this) { // en se comptant lui même
 			Logger.log("Puisque qu'il n'y a pas eu de mort et que " + this + " est le seule protecteur du village, " + this + " a confiance en " + this.getDernierPersonnageProtéger(), TypeDeLog.role);
 			this.ajouterAllié(dernierPersonnageProtéger);
-			this.getStatsSalvateur().incrementerNbInnocentIdentiferGraceSalvation();;
+			getStatsSalvateur().incrementerNbInnocentIdentiferGraceSalvation();;
 		}
 		
 	}

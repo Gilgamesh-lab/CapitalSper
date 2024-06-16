@@ -1,10 +1,13 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMontreursDOurs;
 
 public class MontreurDOurs extends VillageoisSpecial {
@@ -85,7 +88,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 			int nbVoisinDeDroite = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeDroite = liste.get(nbVoisinDeDroite);
 			nouveauVoisinADroite = true;
-			this.getStatsMontreursDOurs().incrementerNbVoisinDifférent();
+			getStatsMontreursDOurs().incrementerNbVoisinDifférent();
 			
 		}
 		if(!this.voisinDeGauche.estEnvie()) {
@@ -97,13 +100,13 @@ public class MontreurDOurs extends VillageoisSpecial {
 			int nbVoisinDeGauche = (int) (Math.random() * ( liste.size()    - 0 ));
 			this.voisinDeGauche = liste.get(nbVoisinDeGauche);
 			nouveauVoisinAGauche = true;
-			this.getStatsMontreursDOurs().incrementerNbVoisinDifférent();
+			getStatsMontreursDOurs().incrementerNbVoisinDifférent();
 		}
 		
-		this.getStatsMontreursDOurs().incrementerNbLoupGarouVoisin(voisinDeGauche, voisinDeDroite);
+		getStatsMontreursDOurs().incrementerNbLoupGarouVoisin(voisinDeGauche, voisinDeDroite);
 		
 		if(!this.voisinDeDroite.estUnVillageois() || !this.voisinDeGauche.estUnVillageois()) {
-			this.getStatsMontreursDOurs().incrementerNbGrognement();
+			getStatsMontreursDOurs().incrementerNbGrognement();
 			if(!voisinDroitCoupableSure && !voisinGaucheCoupableSure) {
 				if(!this.aTrouverUnLoup &&  nouveauVoisinADroite && !nouveauVoisinAGauche ) {// Si il a détecter un loups parmis ses voisins depuis l'arrivé d'un nouveau voisin à sa droite
 					this.ajouterEnnemie(this.voisinDeDroite);
@@ -156,7 +159,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 			}
 		}
 		super.meurt();
-		this.getStatsMontreursDOurs().incrementerNbMort();
+		getStatsMontreursDOurs().incrementerNbMort();
 	}
 	
 	public void reset() {

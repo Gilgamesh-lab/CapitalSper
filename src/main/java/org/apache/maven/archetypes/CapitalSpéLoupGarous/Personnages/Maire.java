@@ -21,7 +21,7 @@ public class Maire extends Fonction {
 		super.setPersonnage(personnage);
 		personnage.setFonction(this);
 		personnage.incrementerNbVote(1);
-		this.getStatsMaire().nouveauMaire(personnage);
+		getStatsMaire().nouveauMaire(personnage);
 		
 	}
 	

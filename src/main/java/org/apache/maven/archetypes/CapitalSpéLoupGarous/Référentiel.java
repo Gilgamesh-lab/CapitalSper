@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Chasseur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.DeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Salvateur;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Sorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Voyante;
 
 public class Référentiel {
 	static Map<Integer, Class<? extends Personnage>> classesParRole = new HashMap<>();
 
 	public Référentiel() {
-		this.build();
+		build();
 	}
 	
 	private static void build() {

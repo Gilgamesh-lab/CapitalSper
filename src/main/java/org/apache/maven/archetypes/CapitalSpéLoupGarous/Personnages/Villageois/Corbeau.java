@@ -1,11 +1,13 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
 
 public class Corbeau extends VillageoisSpecial{
@@ -15,7 +17,7 @@ public class Corbeau extends VillageoisSpecial{
 	
 	public Corbeau() {
 		super(IDROLE, statsCorbeau);
-		this.personnageCorbeauter = null;
+		personnageCorbeauter = null;
 	}
 	
 	@Override
@@ -30,7 +32,7 @@ public class Corbeau extends VillageoisSpecial{
 		personnageCorbeauter = this.getVillage().getPersonnageParId(idPersonnage);
 		Logger.log("Le corbeau a corbeauter " + personnageCorbeauter, TypeDeLog.role);
 		
-		this.getStatsCorbeau().corbeauter(personnageCorbeauter);
+		getStatsCorbeau().corbeauter(personnageCorbeauter);
 	}
 	
 

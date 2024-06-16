@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
 
 public class SimpleVillageois extends Villageois {
 	public final static int IDROLE = 21;

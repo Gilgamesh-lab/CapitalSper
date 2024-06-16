@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +8,10 @@ import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSalvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
 public class Meute {
 	
@@ -129,13 +130,13 @@ public class Meute {
 				
 			}
 			personnageDevorer.getStatut().setAEteAttaqueParLaMeute(true);
-			this.getStatsMeute().vote(personnageDevorer);
+			getStatsMeute().vote(personnageDevorer);
 		}
 		
 		else {
 			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer, TypeDeLog.role);
 			Salvateur.getStatsSalvateur().incrementerNbProtectionReussie();
-			this.getStatsMeute().incrementerNbSurvivants();
+			getStatsMeute().incrementerNbSurvivants();
 		}
 		this.estRassasier = true;
 	}
