@@ -30,7 +30,7 @@ public class Corbeau extends VillageoisSpecial{
 	public void corbeauter(int idPersonnage) {
 		this.getVillage().getTableauDeVotes().put(idPersonnage, 2);
 		personnageCorbeauter = this.getVillage().getPersonnageParId(idPersonnage);
-		Logger.log("Le corbeau a corbeauter " + personnageCorbeauter, TypeDeLog.role);
+		Logger.log(this + " a corbeauter " + personnageCorbeauter, TypeDeLog.role);
 		
 		getStatsCorbeau().corbeauter(personnageCorbeauter);
 	}
@@ -43,13 +43,17 @@ public class Corbeau extends VillageoisSpecial{
 	
 	@Override
 	public String toString() {
+		String nom;
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
-			return "le corbeau" + this.getId();
+			nom = "le corbeau" + this.getId();
 		}
 		else {
-			return "le corbeau";
+			nom = "le corbeau";
 		}
-		
+		if(this.getStatut().isInfecter()) {
+			nom += "(infecté)";
+		}
+		return nom;
 	}
 
 	public static StatsCorbeau getStatsCorbeau() {

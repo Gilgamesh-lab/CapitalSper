@@ -8,6 +8,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 
 public class Voyante extends VillageoisSpecial {
@@ -17,6 +18,10 @@ public class Voyante extends VillageoisSpecial {
 
 	public Voyante() {
 		super(IDROLE, statsVoyante);
+	}
+	
+	public Voyante(LoupGarou infecter) {
+		super(IDROLE, infecter);
 	}
 	
 	public ArrayList<TypeDePouvoir> init() {
@@ -116,13 +121,17 @@ public class Voyante extends VillageoisSpecial {
 
 	@Override
 	public String toString() {
+		String nom;
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
-			return "la voyante" + this.getId();
+			nom = "la voyante" + this.getId();
 		}
 		else {
-			return "la voyante";
+			nom = "la voyante";
 		}
-		
+		if(this.getStatut().isInfecter()) {
+			nom += "(infecté)";
+		}
+		return nom;
 	}
 	
 

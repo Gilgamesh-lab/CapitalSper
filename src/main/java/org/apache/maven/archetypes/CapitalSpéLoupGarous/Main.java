@@ -1,5 +1,6 @@
 package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Cupidon;
@@ -19,7 +20,7 @@ public class Main {
 		
 		int nbVillageois = 0;
 		int nbLoupGarous = 3;
-		int nbPartie = 100000;//100000
+		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -32,10 +33,10 @@ public class Main {
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		//logger.setModeSpectateurOn();
-		logger.setModeStatistiqueOn();
+		logger.setModeSpectateurOn();
+		//logger.setModeStatistiqueOn();
 		
-		Cupidon cupidon = new Cupidon();
+		/*Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
 		Chasseur chasseur = new Chasseur();
 		village.ajouterPersonnage( chasseur);
@@ -48,11 +49,13 @@ public class Main {
 		village.ajouterPersonnage(salvateur);
 		village.ajouterPersonnage(Corbeau.IDROLE);
 		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
+		village.ajouterPersonnage(InfectPereDesLoups.IDROLE);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);
-		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
+		village.ajouterPersonnage(montreurDOurs);*/
+		village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
+		village.ajouterPersonnage(InfectPereDesLoups.IDROLE);
 		village.onMaire();
-		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
+		village.ajouterPlusieursPersoIdentique(Corbeau.IDROLE, 4);
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
 		
 		

@@ -4,6 +4,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
 
@@ -12,6 +13,12 @@ public abstract class VillageoisSpecial extends Villageois {
 	
 	protected VillageoisSpecial(int idDeRole) {
 		super(idDeRole, true);
+		this.typeDePouvoir = this.init();
+		
+	}
+	
+	protected VillageoisSpecial(int idDeRole, Personnage infecter) {
+		super(idDeRole, true, infecter);
 		this.typeDePouvoir = this.init();
 		
 	}

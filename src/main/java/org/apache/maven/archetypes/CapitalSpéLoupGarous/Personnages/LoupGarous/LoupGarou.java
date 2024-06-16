@@ -3,7 +3,7 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
 
-public class LoupGarou extends Personnage {
+public abstract class LoupGarou extends Personnage {
 	private Meute meute;
 	
 	public LoupGarou(int idRole, boolean aUnPouvoirSpecial) {
@@ -30,7 +30,6 @@ public class LoupGarou extends Personnage {
 	@Override
 	public void agir() {
 		this.meute.attaquerVillage();
-		
 	}
 
 

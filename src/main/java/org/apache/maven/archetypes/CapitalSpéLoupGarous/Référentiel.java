@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.Infecter;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
@@ -34,6 +36,8 @@ public class Référentiel {
 		classesParRole.put(MontreurDOurs.IDROLE, MontreurDOurs.class);// 11
 		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
 		classesParRole.put(DeuxSoeurs.IDROLE, DeuxSoeurs.class);// 8
+		classesParRole.put(InfectPereDesLoups.IDROLE, InfectPereDesLoups.class);// 17
+		classesParRole.put(Infecter.IDROLE, Infecter.class);// 99
 	}
 	
 	public static Personnage conversionDeIdRoleVersPersonnage(int idRole) {
@@ -45,7 +49,7 @@ public class Référentiel {
 		    try {
 				return classePersonnage.newInstance();
 			} catch (InstantiationException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
+				System.out.println("Erreur création, id = " + idRole);
 				e.printStackTrace();
 				return null;
 			}

@@ -11,6 +11,15 @@ public abstract class Villageois extends Personnage {
 		
 	}
 	
+	protected Villageois(int idRole, boolean aUnPouvoirSpecial, Personnage infecter) {
+		super(true, idRole, aUnPouvoirSpecial);
+		
+		
+		
+	}
+	
+	
+	
 	protected Villageois(int idRole, boolean aUnPouvoirSpecial, Statistiques statPersonnage) {
 		super(true, idRole, aUnPouvoirSpecial, statPersonnage);
 		

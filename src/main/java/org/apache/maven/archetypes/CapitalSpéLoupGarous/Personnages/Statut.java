@@ -9,6 +9,7 @@ public class Statut {
 	private boolean aEteAttaquerParLaMeute;
 	private Integer tueur;
 	private boolean protéger;
+	private boolean infecter;
 
 	public Statut(Personnage personnage) {
 		this.estAmoureux = false;
@@ -17,6 +18,7 @@ public class Statut {
 		this.aEteAttaquerParLaMeute = false;
 		this.tueur = null;
 		this.protéger = false;
+		this.infecter = false;
 	}
 	
 	
@@ -37,7 +39,18 @@ public class Statut {
 	public void setTueur(Integer tueur) {
 		this.tueur = tueur;
 	}
+	
 
+
+
+	public boolean isInfecter() {
+		return infecter;
+	}
+
+
+	public void setInfecter(boolean infecter) {
+		this.infecter = infecter;
+	}
 
 
 	public void setAmoureux(Personnage personnage) {

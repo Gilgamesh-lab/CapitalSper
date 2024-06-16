@@ -11,6 +11,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.Infecter;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarou;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.Meute;
@@ -168,7 +169,16 @@ public  class Village  implements Cloneable {
 	
 	
 	public Personnage getPersonnageParId(int id) {
-		return this.village.stream().filter(x->x.getId() == id).findFirst().get();
+		
+		try {
+			return this.village.stream().filter(x->x.getId() == id).findFirst().get();
+		}
+		catch (Exception e) {
+			System.out.println(id);
+			System.out.println(this.village);
+			throw e;
+		}
+		
 	}
 	
 	public Personnage getPersonnageParIdRole(int idRole) {
@@ -442,6 +452,10 @@ public  class Village  implements Cloneable {
 		}
 		if(maire != null) {
 			this.maire.reset();
+		}
+		if(this.estPresent(Infecter.IDROLE)) {
+			this.village.add(((Infecter) this.getPersonnageParIdRole(Infecter.IDROLE)).getPersoInfecter());
+			this.village.remove(this.getPersonnageParIdRole(Infecter.IDROLE));
 		}
 		
 	}

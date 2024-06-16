@@ -20,18 +20,6 @@ public abstract class LoupGarouSpecial extends LoupGarou {
 		
 	}
 	
-	public boolean aCePouvoir(TypeDePouvoir typeDePouvoir) {
-		return this.getTypeDePouvoir().contains(typeDePouvoir);
-	}
 	
-	public void perdrePouvoir(TypeDePouvoir typeDePouvoir) {
-		this.typeDePouvoir.remove(typeDePouvoir);
-	}
-	
-	public abstract ArrayList<TypeDePouvoir> init() ;
-
-	public List<TypeDePouvoir> getTypeDePouvoir() {
-		return typeDePouvoir;
-	}
 
 }
