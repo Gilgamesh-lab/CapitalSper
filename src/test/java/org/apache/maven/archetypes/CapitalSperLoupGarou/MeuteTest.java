@@ -58,7 +58,7 @@ public class MeuteTest {
 		Assert.assertEquals(0, this.village.getNbVillageois());
 		Assert.assertEquals(1, this.village.getNbLoupGarou());
 		
-		assertEquals(0, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(0, Meute.getStatsMeute().getNbSperVoter(), delta);
 		assertEquals(0, Meute.getStatsMeute().getNbSurvivants(), delta);
 		assertEquals(1, Meute.getStatsMeute().getNbVote(), delta);
 		assertEquals(this.village.getPersonnageParId(0).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
@@ -67,7 +67,7 @@ public class MeuteTest {
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
 		
-		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(1, Meute.getStatsMeute().getNbSperVoter(), delta);
 		assertEquals(0, Meute.getStatsMeute().getNbSurvivants(), delta);
 		assertEquals(2, Meute.getStatsMeute().getNbVote(), delta);
 		assertEquals(this.village.getPersonnageParId(2).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
@@ -78,7 +78,7 @@ public class MeuteTest {
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
 		
-		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(1, Meute.getStatsMeute().getNbSperVoter(), delta);
 		assertEquals(1, Meute.getStatsMeute().getNbSurvivants(), delta);
 		assertEquals(3, Meute.getStatsMeute().getNbVote(), delta);
 		
@@ -92,7 +92,7 @@ public class MeuteTest {
 		this.village.bilanTuerLaNuit();
 		assertEquals(this.village.getPersonnageParId(4).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
 		Meute.getStatsMeute().ASurvecu(this.village.getVillage());
-		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(2, Meute.getStatsMeute().getNbSperVoter(), delta);
 		assertEquals(2, Meute.getStatsMeute().getNbSurvivants(), delta);
 		assertEquals(4, Meute.getStatsMeute().getNbVote(), delta);
 		
