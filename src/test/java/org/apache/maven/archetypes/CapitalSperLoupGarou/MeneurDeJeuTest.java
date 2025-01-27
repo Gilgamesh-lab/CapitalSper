@@ -91,7 +91,7 @@ public class MeneurDeJeuTest {
 		Assert.assertEquals(0, this.village.getNbVillageois());
 		this.village.ajouterPersonnage(simpleVillageois);
 		this.village.voter('1');
-		Assert.assertEquals(1, this.village.getMeute().getMeute().size());
+		Assert.assertEquals(1, this.village.getMeute().getLoupGarouEnVie().size());
 	}
 	
 	@Test

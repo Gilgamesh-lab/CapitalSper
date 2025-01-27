@@ -172,7 +172,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public int getNbLoupGarou() {
-		return (int) this.getMeute().getMeute().stream().filter(x->x.estEnvie()).count();
+		return (int) this.getMeute().getLoupGarouEnVie().stream().filter(x->x.estEnvie()).count();
 	}
 	
 	
@@ -191,24 +191,39 @@ public  class Village  implements Cloneable {
 	
 	Comparator<Personnage> comparator = Comparator.comparing(obj -> obj.getIdDeRole());
 	
+	public void initVoleur() {
+		this.ajouterPlusieursPersoIdentique(SimpleVillageois.IDROLE, 2);
+		
+		Personnage persoRandom1 = this.getRandomPerso();
+		while(persoRandom1.getIdDeRole() == Voleur.IDROLE) {
+			persoRandom1 = this.getRandomPerso();
+		}
+		
+		this.village.remove(persoRandom1);
+		
+		Personnage persoRandom2 = this.getRandomPerso();
+		while(persoRandom2.getIdDeRole() == Voleur.IDROLE) {
+			persoRandom2 = this.getRandomPerso();
+		}
+		this.village.remove(persoRandom2);
+
+		
+		if(!persoRandom1.estUnVillageois()) {
+			this.meute.getMeute().remove(persoRandom1);
+		}
+		
+		if(!persoRandom2.estUnVillageois()) {
+			this.meute.getMeute().remove(persoRandom2);
+			
+		}
+		
+		Voleur voleur = (Voleur) this.getPersonnageParIdRole(Voleur.IDROLE);
+		voleur.initPartie(persoRandom1, persoRandom2);
+	}
+	
 	public void premièreNuit() {
 		if(this.estPresent(Voleur.IDROLE)) { // si le voleur est en jeu
-			this.ajouterPlusieursPersoIdentique(SimpleVillageois.IDROLE, 2);
-			Personnage persoRandom1 = this.getRandomPerso();
-			this.village.remove(persoRandom1);
-			Personnage persoRandom2 = this.getRandomPerso();
-			this.village.remove(persoRandom2);
-			
-			if(!persoRandom1.estUnVillageois()) {
-				this.meute.getMeute().remove(persoRandom1);
-			}
-			
-			if(!persoRandom2.estUnVillageois()) {
-				this.meute.getMeute().remove(persoRandom2);
-			}
-			
-			Voleur voleur = (Voleur) this.getPersonnageParIdRole(Voleur.IDROLE);
-			voleur.initPartie(persoRandom1, persoRandom2);
+			this.initVoleur();
 		}
 		this.getHabitantsEnVie().stream().sorted(comparator).forEach(x->x.agirPremiereNuit());
 		this.nuit();

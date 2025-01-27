@@ -28,6 +28,10 @@ public class Meute {
 
 
 	public ArrayList<LoupGarou> getMeute() {
+		return this.meute;
+	}
+	
+	public ArrayList<LoupGarou> getLoupGarouEnVie(){
 		return (ArrayList<LoupGarou>) this.meute.stream().filter(x->x.estEnvie()).collect(Collectors.toList());
 	}
 	
@@ -82,7 +86,7 @@ public class Meute {
 		}
 		
 		for(int i = 0 ; i < this.getNbLgEnVie() ; i++) {
-			votant = this.getMeute().get(i);
+			votant = this.getLoupGarouEnVie().get(i);
 			vote  = votant.voter();
 			if(votant.getId() == vote) {
 				System.out.println("erreur détecté : " + votant + " a voté contre lui-même");
@@ -118,7 +122,7 @@ public class Meute {
 		
 		if(!personnageDevorer.getStatut().isProtéger()) {
 			if(personnageDevorer.getIdDeRole() == LoupGarouSimple.IDROLE) {
-				if(this.getMeute().stream().anyMatch(x->x.estAmoureux())){
+				if(this.getLoupGarouEnVie().stream().anyMatch(x->x.estAmoureux())){
 					Logger.log("L'amour ayant semé la discorde dans la meute et les loups ne pouvant pas s'entretuer, il n'y a pas de mort", TypeDeLog.role);
 					return;
 				}

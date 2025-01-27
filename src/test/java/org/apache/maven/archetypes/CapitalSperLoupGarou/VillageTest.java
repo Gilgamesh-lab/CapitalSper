@@ -71,8 +71,8 @@ public class VillageTest {
 		
 		Assert.assertEquals(0, this.village.getNbVillageois());
 		this.village.ajouterPersonnage(simpleVillageois);
-		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getMeute().get(0).voter());
-		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getMeute().get(1).voter());
+		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getLoupGarouEnVie().get(0).voter());
+		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getLoupGarouEnVie().get(1).voter());
 		this.village.tribunal();
 		
 		this.village.finVillage();
@@ -84,7 +84,7 @@ public class VillageTest {
 	@Test
 	public void voterTest2()  {
 		this.village = new Village(2,1);
-		this.village.getVillageois().stream().forEach(x->x.ajouterEnnemie(this.village.getMeute().getMeute().get(0)));
+		this.village.getVillageois().stream().forEach(x->x.ajouterEnnemie(this.village.getMeute().getLoupGarouEnVie().get(0)));
 		
 		Assert.assertEquals(2, this.village.getNbVillageois());
 		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
