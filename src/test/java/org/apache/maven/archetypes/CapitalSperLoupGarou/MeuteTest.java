@@ -92,7 +92,7 @@ public class MeuteTest {
 		this.village.bilanTuerLaNuit();
 		assertEquals(this.village.getPersonnageParId(4).getId(), Meute.getStatsMeute().getDernierePersonneDevorer(), delta);
 		Meute.getStatsMeute().ASurvecu(this.village.getVillage());
-		assertEquals(1, Meute.getStatsMeute().getNbSperTuer(), delta);
+		assertEquals(2, Meute.getStatsMeute().getNbSperTuer(), delta);
 		assertEquals(2, Meute.getStatsMeute().getNbSurvivants(), delta);
 		assertEquals(4, Meute.getStatsMeute().getNbVote(), delta);
 		

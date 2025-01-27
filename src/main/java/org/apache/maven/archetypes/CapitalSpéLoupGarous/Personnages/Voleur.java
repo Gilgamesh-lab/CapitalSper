@@ -70,12 +70,6 @@ public class Voleur extends VillageoisSpecial {
 			this.personnageChoisie = perso2;
 		}
 		
-		if(this.personnageChoisie != null && !this.personnageChoisie.estUnVillageois()) {
-			this.setAlliés(this.personnageChoisie.getAlliés());
-			for(int i = 0; i < (this.getVillage().getMeute().getMeute().size()); i++) {
-				this.getVillage().getMeute().getMeute().get(i).ajouterAllié(this);
-			}
-		}
 		
 		
 		
@@ -146,6 +140,55 @@ public class Voleur extends VillageoisSpecial {
 		}
 	}
 	
+	public void ajouterAllié(Personnage allié) {
+		if(this.personnageChoisie != null) {
+			this.personnageChoisie.ajouterAllié(allié);
+		}
+		else {
+			super.ajouterAllié(allié);
+		}
+	}
+	
+	public void tomberAmoureux(Personnage amoureux) {
+		if(this.personnageChoisie != null) {
+			this.personnageChoisie.tomberAmoureux(amoureux);
+		}
+		else {
+			super.tomberAmoureux(amoureux);
+		}
+	}
+	
+	public void resetListeDeVote() {
+		if(this.personnageChoisie != null) {
+			this.personnageChoisie.resetListeDeVote();
+		}
+		else {
+			super.resetListeDeVote();
+		}
+	}
+	
+	
+	public int voter() {
+		if(this.personnageChoisie != null) {
+			return this.personnageChoisie.voter();
+		}
+		else {
+			return super.voter();
+		}
+	}
+	
+	public int elire() {
+		if(this.personnageChoisie != null) {
+			return this.personnageChoisie.elire();
+		}
+		else {
+			return super.elire();
+		}
+	}
+	
+	public void tuer(Personnage personnage) {
+		
+	}
 	
 	
 	public ArrayList<Personnage> getPersonnageNonMisEnJeu() {
