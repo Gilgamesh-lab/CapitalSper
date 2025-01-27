@@ -209,11 +209,11 @@ public  class Village  implements Cloneable {
 
 		
 		if(!persoRandom1.estUnVillageois()) {
-			this.meute.getMeute().remove(persoRandom1);
+			this.meute.denrolerUnLoupGarou((LoupGarou) persoRandom1);
 		}
 		
 		if(!persoRandom2.estUnVillageois()) {
-			this.meute.getMeute().remove(persoRandom2);
+			this.meute.denrolerUnLoupGarou((LoupGarou) persoRandom2);
 			
 		}
 		

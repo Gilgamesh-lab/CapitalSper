@@ -34,6 +34,7 @@ public class Voleur extends VillageoisSpecial {
 		this.personnageNonMisEnJeu.add(perso2);
 		Logger.log("Les personnages non mis en jeu sont " + perso1 + " et " + perso2, TypeDeLog.role);
 		Logger.log("", TypeDeLog.role);
+		statsVoleur.initPartie(perso1, perso2);
 	}
 	
 	@Override
@@ -72,6 +73,18 @@ public class Voleur extends VillageoisSpecial {
 		
 		
 		
+		if(this.personnageChoisie == null ) {
+			statsVoleur.voler(new SimpleVillageois());
+		}
+		else {
+			this.personnageChoisie.ajouterAllié(this);
+			this.getVillage().getMeute().getMeute().stream().forEach(x->x.ajouterAllié(this)); // corriger
+			if(!this.personnageChoisie.estUnVillageois()) {
+				this.getVillage().getMeute().enrolerUnLoupGarou( (LoupGarou) this.personnageChoisie);
+			}
+			
+			statsVoleur.voler(this.personnageChoisie);
+		}
 		
 		
 	}

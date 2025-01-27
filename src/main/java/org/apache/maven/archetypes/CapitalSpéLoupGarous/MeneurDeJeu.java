@@ -308,7 +308,7 @@ public class MeneurDeJeu {
 			Logger.log("Nombre de victoire des loups-garous = " + (int) this.nbVictoireLoupGarou , TypeDeLog.pourcentage);
 			Logger.log("", TypeDeLog.pourcentage);
 		}
-		
+		this.init();
 		this.nbTourTotale = MeneurDeJeu.listeTours.stream().reduce(0, (x, y) -> x + y );
 		this.pourcentWinLoupGarous = (double) ((this.nbVictoireLoupGarou / compteur) * 100 );
 		this.pourcentWinVillage = (double) ((this.nbVictoireVillage / compteur) * 100 );

@@ -59,6 +59,16 @@ public class Meute {
 		}
 		this.meute.add(loupGarou);
 	}
+	
+	public void denrolerUnLoupGarou(LoupGarou loupGarou) {
+		for(int i = 0; i < this.meute.size(); i++) {
+			loupGarou.getAlliés().clear();
+		}
+		for(int i = 0; i < this.meute.size(); i++) {
+			this.meute.get(i).getAlliés().remove(loupGarou);
+		}
+		this.meute.remove(loupGarou);
+	}
 
 	public void setVillage(Village village) {
 		this.village = village;
@@ -128,6 +138,9 @@ public class Meute {
 				}
 				else {
 					System.out.println("erreur");
+					this.meute.stream().forEach(x-> System.out.println(x + " : " + x.getAlliés()));
+					System.out.println("Victime : " + personnageDevorer);
+					System.out.println(this.getMeute().get(0).getAlliés().contains(personnageDevorer));
 					personnageDevorer.getFonction().getPersonnage();
 				}
 				
