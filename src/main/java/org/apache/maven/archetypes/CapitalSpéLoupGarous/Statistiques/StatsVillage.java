@@ -28,7 +28,7 @@ public class StatsVillage extends Statistiques {
 	
 	public void decompteNbSurvivants(ArrayList<Personnage> personnages) {
 		this.nbSurvivants += personnages.stream().filter(x->x.estEnvie()).count();
-		if(this.nbPersonnageTotal == 0) {
+		if(this.nbPersonnageTotal == 0) {// initialisation
 			this.nbPersonnageTotal = personnages.size() * super.getNbPartie();
 		}
 	}

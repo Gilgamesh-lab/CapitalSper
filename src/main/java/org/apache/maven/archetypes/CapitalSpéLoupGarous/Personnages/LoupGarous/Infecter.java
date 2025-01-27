@@ -20,11 +20,11 @@ public class Infecter extends LoupGarouSpecial {
 		this.tuer(persoInfecter);
 		persoInfecter.infecter(this);
 		if(this.persoInfecter.estAmoureux()) {
-			this.tomberAmoureux(persoInfecter.getStatut().getAmoureux());
+			this.tomberAmoureux(persoInfecter.getStatut().getAmoureux());// bancal correction à faire pour l'autre amoureux
 		}
 		persoInfecter.ajouterAllié(this);
 		
-		//this.getVillage().getVillage().remove(persoInfecter);
+		//this.getVillage().getVillage().remove(persoInfecter); on le supprime pas pour pouvoir le récupérer lors de la prochaine partie
 	}
 	
 	@Override

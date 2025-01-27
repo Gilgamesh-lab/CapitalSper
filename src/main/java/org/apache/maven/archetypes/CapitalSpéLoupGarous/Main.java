@@ -18,22 +18,22 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 0;
-		int nbLoupGarous = 3;
+		int nbVillageois = 6;
+		int nbLoupGarous = 2;
 		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
 		
 		
-		//logger.setDetailVoteVillage(true);
+		logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		//logger.setOnAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
-		//logger.setOnAfficherLogDetailsRoleAction();
+		logger.setOnAfficherLogDetailsRoleAction();
 		
-		logger.setModeSpectateurOn();
+		//logger.setModeSpectateurOn();
 		//logger.setModeStatistiqueOn();
 		
 		/*Cupidon cupidon = new Cupidon();
@@ -52,10 +52,11 @@ public class Main {
 		village.ajouterPersonnage(InfectPereDesLoups.IDROLE);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);*/
-		village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
-		village.ajouterPersonnage(InfectPereDesLoups.IDROLE);
+		
+		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
+		//village.ajouterPersonnage(InfectPereDesLoups.IDROLE);
 		village.onMaire();
-		village.ajouterPlusieursPersoIdentique(Corbeau.IDROLE, 4);
+		//village.ajouterPlusieursPersoIdentique(Corbeau.IDROLE, 4);
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
 		
 		
@@ -66,7 +67,8 @@ Sur 100000 parties, les loups-garous ont eu un taux de victoire de 43.1459999084
 Sur 100000 parties, les amoureux ont eu un taux de victoire de 25.376998901367188%
 		 */
 		
-		meneurDeJeu.lancerDesParties(nbPartie);
+		//meneurDeJeu.lancerDesParties(nbPartie);
+		meneurDeJeu.exploration();
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		

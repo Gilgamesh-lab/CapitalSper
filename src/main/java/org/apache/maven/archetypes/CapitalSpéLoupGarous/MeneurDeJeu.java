@@ -102,6 +102,7 @@ public class MeneurDeJeu {
 		MeneurDeJeu.listeTours.add(this.nbTour);
 		Logger.log("");
 		Logger.log("Le village est constitué de " + this.village.getHabitantsEnVie());
+		
 		if(this.conditionVictoireAmoureux()) {
 			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
@@ -155,7 +156,8 @@ public class MeneurDeJeu {
 			this.nbTour++;
 			
 		}
-		
+		Logger.log("");
+		Logger.log("Le pourcentage de chance que cette branche arrive est de " + pourcentageBranche * 100 + "%");
 		if(this.conditionVictoireLoupGarous()) {
 			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours");
 			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
@@ -213,8 +215,8 @@ public class MeneurDeJeu {
 		this.pourcentÉgalité = this.pourcentÉgalité * 100;
 		
 		Logger.log("");
-		Logger.log("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage + "%");
-		Logger.log("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous  + "%");
+		Logger.log("Avec cette composition, les villageois ont un taux de victoire de " + this.pourcentWinVillage + "%");
+		Logger.log("Avec cette composition, les loups-garous ont un taux de victoire de " + this.pourcentWinLoupGarous  + "%");
 		if(this.nbÉgalité > 0) {
 			Logger.log("Sur " + compteur + " parties, les villageois et les loups-garous ont terminés sur une égalité avec un taux de " + this.pourcentÉgalité + "%");
 		}
@@ -264,7 +266,7 @@ public class MeneurDeJeu {
 	
 	private void init() {
 		this.nbTour = 0;
-		
+		Logger.log("");
 		if(MeneurDeJeu.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() != LoupGarouSimple.IDROLE)) { // Pas d'ajouts directe des persoonages car les status ne s'effacent et causes des erreurs
 			ArrayList<Personnage> personnages = this.référentiel.conversionDeVillageVersListePersonnagesSeulementSpecial(MeneurDeJeu.savegardeVillage);
 			this.village = new Village(MeneurDeJeu.savegardeVillage.getNbVillageois() - personnages.size(), MeneurDeJeu.savegardeVillage.getNbLoupGarou(), personnages);

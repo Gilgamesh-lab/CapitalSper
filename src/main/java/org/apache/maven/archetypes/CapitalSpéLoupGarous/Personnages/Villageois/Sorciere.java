@@ -142,7 +142,7 @@ public class Sorciere extends VillageoisSpecial{
 
 	@Override
 	public void agirAprèsNuit() {
-		if(!this.actions.contains(0) && this.aCePouvoir(TypeDePouvoir.Vie)) {// pour le salvateur
+		if(!this.actions.contains(0) && this.aCePouvoir(TypeDePouvoir.Vie)) {// pour savoir si le salvateur à sauvé quelqu'un je l'ai pas mis dans agir
 			this.perdrePouvoir(TypeDePouvoir.Vie);
 		}
 		

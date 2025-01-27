@@ -29,11 +29,14 @@ public class InfectPereDesLoups extends LoupGarouSpecial {
 	
 	@Override
 	public void agir() {
-		int pileOuFace = (int) (Math.random() * ( 1 - 0 ));
-		if(pileOuFace == 0 && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) && this.aInfection) {
-			this.infecter();
-			this.aInfection = false;
+		if(this.aInfection){
+			int pileOuFace = (int) (Math.random() * ( 1 - 0 ));
+			if(pileOuFace == 0 && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute())) {
+				this.infecter();
+				this.aInfection = false;
+			}
 		}
+		
 	}
 	
 	public void infecter() {
