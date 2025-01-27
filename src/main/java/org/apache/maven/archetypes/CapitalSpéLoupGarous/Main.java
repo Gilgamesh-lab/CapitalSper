@@ -7,6 +7,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 
@@ -17,9 +18,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 0;
+		int nbVillageois = 4;
 		int nbLoupGarous = 3;
-		int nbPartie = 100000;//100000
+		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -28,12 +29,12 @@ public class Main {
 		//logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
-		//logger.setOnAfficherLogStats();
+		logger.setOffAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		//logger.setModeSpectateurOn();
-		logger.setModeStatistiqueOn();
+		logger.setModeSpectateurOn();
+		//logger.setModeStatistiqueOn();
 		
 		Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
@@ -48,6 +49,7 @@ public class Main {
 		village.ajouterPersonnage(salvateur);
 		village.ajouterPersonnage(Corbeau.IDROLE);
 		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
+		village.ajouterPersonnage(Voleur.IDROLE);
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);
 		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
@@ -56,12 +58,6 @@ public class Main {
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
 		
 		
-		
-		/*
-		 * Sur 100000 parties, les villageois ont eu un taux de victoire de 31.477001190185547%
-Sur 100000 parties, les loups-garous ont eu un taux de victoire de 43.145999908447266%
-Sur 100000 parties, les amoureux ont eu un taux de victoire de 25.376998901367188%
-		 */
 		
 		meneurDeJeu.lancerDesParties(nbPartie);
 		/*double lg = partie.getPourcentWinLoupGarous();

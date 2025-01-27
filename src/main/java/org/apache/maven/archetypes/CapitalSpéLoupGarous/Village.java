@@ -18,6 +18,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
@@ -136,6 +137,14 @@ public  class Village  implements Cloneable {
 		return (int) this.village.stream().filter(x->x.estEnvie()).count();
 	}
 	
+	public int getNbPersonnageAvantPartie() {
+		int nbPersonnage = this.village.size();
+		if(this.estPresent(DeuxSoeurs.IDROLE)) {
+			nbPersonnage++;
+		}
+		return nbPersonnage;
+	}
+	
 	public ArrayList<Personnage> getVillageois() {
 		return new ArrayList<Personnage>(this.village.stream().filter(x->x.estEnvie() && x.estUnVillageois()).collect(Collectors.toList()));
 	}
@@ -183,6 +192,24 @@ public  class Village  implements Cloneable {
 	Comparator<Personnage> comparator = Comparator.comparing(obj -> obj.getIdDeRole());
 	
 	public void premièreNuit() {
+		if(this.estPresent(Voleur.IDROLE)) { // si le voleur est en jeu
+			this.ajouterPlusieursPersoIdentique(SimpleVillageois.IDROLE, 2);
+			Personnage persoRandom1 = this.getRandomPerso();
+			this.village.remove(persoRandom1);
+			Personnage persoRandom2 = this.getRandomPerso();
+			this.village.remove(persoRandom2);
+			
+			if(!persoRandom1.estUnVillageois()) {
+				this.meute.getMeute().remove(persoRandom1);
+			}
+			
+			if(!persoRandom2.estUnVillageois()) {
+				this.meute.getMeute().remove(persoRandom2);
+			}
+			
+			Voleur voleur = (Voleur) this.getPersonnageParIdRole(Voleur.IDROLE);
+			voleur.initPartie(persoRandom1, persoRandom2);
+		}
 		this.getHabitantsEnVie().stream().sorted(comparator).forEach(x->x.agirPremiereNuit());
 		this.nuit();
 	}
@@ -438,8 +465,12 @@ public  class Village  implements Cloneable {
 		this.village.stream().forEach(x->x.reset());
 		if(this.estPresent(DeuxSoeurs.IDROLE)) {
 			this.village.remove(this.getPersonnageParIdRole(DeuxSoeurs.IDROLE));
-			
 		}
+		
+		if(this.estPresent(Voleur.IDROLE)) {
+			this.village.addAll(((Voleur) this.getPersonnageParIdRole(Voleur.IDROLE)).getPersonnageNonMisEnJeu() );
+		}
+		
 		if(maire != null) {
 			this.maire.reset();
 		}

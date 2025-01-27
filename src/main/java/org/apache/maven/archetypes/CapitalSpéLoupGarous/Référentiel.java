@@ -14,6 +14,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
 public class Référentiel {
@@ -34,6 +35,7 @@ public class Référentiel {
 		classesParRole.put(MontreurDOurs.IDROLE, MontreurDOurs.class);// 11
 		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
 		classesParRole.put(DeuxSoeurs.IDROLE, DeuxSoeurs.class);// 8
+		classesParRole.put(Voleur.IDROLE, Voleur.class);// 1
 	}
 	
 	public static Personnage conversionDeIdRoleVersPersonnage(int idRole) {
@@ -75,10 +77,10 @@ public class Référentiel {
 	}
 	
 	public String messageDebutPartie(Village village) {
-		int nbSpecial = (int) (village.getNbVillageois() - village.getHabitantsEnVie().stream().filter(x -> x.aUnPouvoirSpecial()).count());
+		int nbSpecial = (int) (village.getNbPersonnageAvantPartie() - village.getHabitantsEnVie().stream().filter(x -> x.aUnPouvoirSpecial()).count());
 		String message = nbSpecial + " simple(s) villageois";
 		for(int i = 0; i < village.getNbPersonnageEnVie() ; i++) {
-			if(village.getPersonnage(i).aUnPouvoirSpecial()) {
+			if(village.getPersonnage(i).aUnPouvoirSpecial() && village.getPersonnage(i).getIdDeRole() != LoupGarouSimple.IDROLE) {
 				if(village.getPersonnage(i).getClass() == DeuxSoeurs.class) {
 					message += " , 2 soeurs";
 				}
