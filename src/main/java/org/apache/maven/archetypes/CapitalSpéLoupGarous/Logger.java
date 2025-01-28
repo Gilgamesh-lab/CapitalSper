@@ -14,6 +14,8 @@ public class Logger {
 	private static boolean afficherLogDetailsPourcentage;
 	private static boolean afficherLogDetailsRoleAction;
 	private static boolean afficherLogStats;
+	private static boolean sauvegardePartie;
+	private static String logPartie;
 	
 	
 	
@@ -25,6 +27,8 @@ public class Logger {
 		this.afficherLogDetailsPourcentage = false;
 		this.afficherLogDetailsRoleAction = false ;
 		this.afficherLogStats = true;
+		this.sauvegardePartie = false;
+		this.logPartie = "";
 	}
 	
 	public void setModeSpectateurOn() {
@@ -38,6 +42,18 @@ public class Logger {
 	
 	
 	
+	
+	
+	
+	
+	public String getLogPartie() {
+		return logPartie;
+	}
+
+	public static void setSauvegardePartie(boolean sauvegardePartie) {
+		Logger.sauvegardePartie = sauvegardePartie;
+	}
+
 	public static boolean isAfficherLogStats() {
 		return afficherLogStats;
 	}
@@ -126,9 +142,14 @@ public class Logger {
 	
 	public static void  log (String log) {
 		if(afficherLogDetailsPartie) {
-			System.out.println(log);
-			if(fichierOutput) {
-				writer.println(log);
+			if(sauvegardePartie) {
+				logPartie += log + "\n";
+			}
+			else {
+				System.out.println(log);
+				if(fichierOutput) {
+					writer.println(log);
+				}
 			}
 		}
 	}
@@ -137,36 +158,56 @@ public class Logger {
 		
 		if(TypeDeLog.vote.equals(typeDeLog)) {
 			if(detailVoteVillage) {
-				System.out.println(messageDeLog);
-				if(fichierOutput) {
-					writer.println(messageDeLog);
+				if(sauvegardePartie) {
+					logPartie += messageDeLog + "\n";
 				}
-				
+				else {
+					System.out.println(messageDeLog);
+					if(fichierOutput) {
+						writer.println(messageDeLog);
+					}
+				}
 			}
 		}
+		
 		else if (TypeDeLog.pourcentage.equals(typeDeLog)) {
 			if(afficherLogDetailsPourcentage) {
-				System.out.println(messageDeLog);
-				if(fichierOutput) {
-					writer.println(messageDeLog);
+				if(sauvegardePartie) {
+					logPartie += messageDeLog + "\n";
+				}
+				else{
+					System.out.println(messageDeLog);
+					if(fichierOutput) {
+						writer.println(messageDeLog);
+					}
 				}
 			}
 		}
 		
 		else if (TypeDeLog.role.equals(typeDeLog)) {
 			if(afficherLogDetailsRoleAction) {
-				System.out.println(messageDeLog);
-				if(fichierOutput) {
-					writer.println(messageDeLog);
+				if(sauvegardePartie) {
+					logPartie += messageDeLog + "\n";
+				}
+				else {
+					System.out.println(messageDeLog);
+					if(fichierOutput) {
+						writer.println(messageDeLog);
+					}
 				}
 			}
 		}
 		
 		else if (TypeDeLog.statistique.equals(typeDeLog)) {
 			if(afficherLogStats) {
-				System.out.println(messageDeLog);
-				if(fichierOutput) {
-					writer.println(messageDeLog);
+				if(sauvegardePartie) {
+					logPartie += messageDeLog + "\n";
+				}
+				else {
+					System.out.println(messageDeLog);
+					if(fichierOutput) {
+						writer.println(messageDeLog);
+					}
 				}
 			}
 		}

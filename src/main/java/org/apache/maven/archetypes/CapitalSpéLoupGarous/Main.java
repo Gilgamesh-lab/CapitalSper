@@ -21,7 +21,7 @@ public class Main {
 		
 		int nbVillageois = 4;
 		int nbLoupGarous = 3;
-		int nbPartie = 100000;//100000
+		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -34,8 +34,8 @@ public class Main {
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		//logger.setModeSpectateurOn();
-		logger.setModeStatistiqueOn();
+		logger.setModeSpectateurOn();
+		//logger.setModeStatistiqueOn();
 		
 		village.ajouterPersonnage(Voleur.IDROLE);
 		//System.out.println(StatsVoleur.);
