@@ -27,7 +27,7 @@ public class MeneurDeJeu {
 	private double pourcentWinAmoureux = 0;
 	private int compteur;
 	private List<String> listeBranches = new ArrayList<String>();
-	private Référentiel référentiel;
+	private Referentiel référentiel;
 	public static Integer nbPartie = null;
 	public static Integer nbTourTotale = null;
 	
@@ -36,7 +36,7 @@ public class MeneurDeJeu {
 		this.village = village;
 		this.log = new Logger();
 		this.nbTour = 0;
-		this.référentiel = new Référentiel();
+		this.référentiel = new Referentiel();
 	}
 	public Village getVillage() {
 		return village;
@@ -53,7 +53,7 @@ public class MeneurDeJeu {
 		this.village = village;
 		this.log = log;
 		this.nbTour = 0;
-		this.référentiel = new Référentiel();
+		this.référentiel = new Referentiel();
 	}
 	
 	public boolean conditionFinPartie() {

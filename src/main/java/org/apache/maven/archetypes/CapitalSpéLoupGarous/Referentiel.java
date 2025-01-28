@@ -2,7 +2,9 @@ package org.apache.maven.archetypes.CapitalSpéLoupGarous;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
@@ -17,10 +19,10 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
 
-public class Référentiel {
+public class Referentiel {
 	static Map<Integer, Class<? extends Personnage>> classesParRole = new HashMap<>();
 
-	public Référentiel() {
+	public Referentiel() {
 		this.build();
 	}
 	
@@ -58,6 +60,15 @@ public class Référentiel {
 		  
 	}
 	
+	
+	
+	public static List<Integer> getIdPersonnageDisponible() {
+		if(classesParRole.isEmpty()) {
+			build();
+		}
+		return classesParRole.entrySet().stream().map(Map.Entry::getKey).collect(Collectors.toList());
+	}
+
 	public ArrayList<Personnage> conversionDeVillageVersListePersonnagesSeulementSpecial(Village village) {
 		ArrayList<Personnage> personnages = new ArrayList<Personnage>();
 		for(int i = 0; i < village.getNbPersonnageEnVie() ; i++) {

@@ -1,8 +1,12 @@
 package SpringBot;
 
+import java.util.ArrayList;
+
 public class Partie {
 	private int nbSimpleVillageois;
 	private int nbLoupGarou;
+	private boolean aUnMaire;
+	private ArrayList<Integer> listeIdRolePersonnageSpecial;
 	
 	public int getNbSimpleVillageois() {
 		return nbSimpleVillageois;
@@ -16,6 +20,22 @@ public class Partie {
 	public void setNbLoupGarou(int nbLoupGarou) {
 		this.nbLoupGarou = nbLoupGarou;
 	}
+	public void setaUnMaire(boolean aUnMaire) {
+		this.aUnMaire = aUnMaire;
+	}
+	public boolean isaUnMaire() {
+		return aUnMaire;
+	}
+	public ArrayList<Integer> getListeIdRolePersonnageSpecial() {
+		return listeIdRolePersonnageSpecial;
+	}
+	public void setListeIdRolePersonnageSpecial(ArrayList<Integer> listeIdRolePersonnageSpecial) {
+		this.listeIdRolePersonnageSpecial = listeIdRolePersonnageSpecial;
+	}
+	
+	
+	
+	
 	
 	
 

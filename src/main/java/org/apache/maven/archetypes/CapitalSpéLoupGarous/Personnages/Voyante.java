@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Référentiel;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Referentiel;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVoyante;
 

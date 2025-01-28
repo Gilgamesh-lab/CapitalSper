@@ -25,7 +25,7 @@ public class Main {
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
-		
+		System.out.println(Referentiel.getIdPersonnageDisponible());
 		
 		//logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
@@ -62,7 +62,7 @@ public class Main {
 		
 		
 		
-		meneurDeJeu.lancerDesParties(nbPartie);
+		//meneurDeJeu.lancerDesParties(nbPartie);
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		

@@ -9,3 +9,6 @@ sonar:
 	
 run:
 	mvn spring-boot:run
+	
+tree:
+	mvn dependency:tree

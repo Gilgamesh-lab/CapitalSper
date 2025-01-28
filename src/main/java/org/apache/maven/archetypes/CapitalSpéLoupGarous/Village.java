@@ -20,6 +20,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvo
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
 
@@ -68,6 +69,16 @@ public  class Village  implements Cloneable {
 		}
 	}
 	
+	public void initRequete() {
+		if(this.getStatsVillage().getNbVote() != 0) {
+			this.setStatsVillage(new StatsVillage());
+    	}
+    	
+    	if(this.getMeute().getStatsMeute().getNbVote() != 0) {
+    		this.getMeute().setStatsMeute(new StatsMeute());
+    	}
+	}
+	
 	public boolean estPresent(int idRole) {
 		return this.getVillage().stream().anyMatch(x->x.getIdDeRole() == idRole);
 	}
@@ -103,13 +114,13 @@ public  class Village  implements Cloneable {
 	
 	public void ajouterPlusieursPersoIdentique(int idDeRole, int nb) {
 		for(int i = 0 ; i < nb ; i++) {
-			Personnage perso = Référentiel.conversionDeIdRoleVersPersonnage(idDeRole);
+			Personnage perso = Referentiel.conversionDeIdRoleVersPersonnage(idDeRole);
 			this.ajouterPersonnage(perso);
 		}
 	}
 	
 	public void ajouterPersonnage(int idDeRole) {
-		Personnage perso = Référentiel.conversionDeIdRoleVersPersonnage(idDeRole);
+		Personnage perso = Referentiel.conversionDeIdRoleVersPersonnage(idDeRole);
 		this.ajouterPersonnage(perso);
 
 	}
@@ -496,6 +507,15 @@ public  class Village  implements Cloneable {
 	public void onMaire() {
 		this.maire = new Maire(); 
 		this.maire.setVillage(this);
+	}
+	
+	public void setMaire(boolean aUnMaire) {
+		if(aUnMaire) {
+			this.onMaire();
+		}
+		else {
+			this.maire = null;
+		}
 	}
 	
 	
