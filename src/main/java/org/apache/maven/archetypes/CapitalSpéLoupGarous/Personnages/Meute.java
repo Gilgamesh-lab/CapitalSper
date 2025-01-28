@@ -12,6 +12,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsSalvateur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
+
 public class Meute {
 	
 	private ArrayList<LoupGarou> meute;

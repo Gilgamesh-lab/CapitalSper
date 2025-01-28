@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
+
 public class StatsVillage extends Statistiques {
 	private float nbVote;
 	private float nbLoupGarouTuer;

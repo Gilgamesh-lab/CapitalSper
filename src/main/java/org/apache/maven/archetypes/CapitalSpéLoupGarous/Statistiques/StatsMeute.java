@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
+import org.springframework.web.context.annotation.RequestScope;
+
 
 public class StatsMeute extends Statistiques {
 	private float nbVote;
