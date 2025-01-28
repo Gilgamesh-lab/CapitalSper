@@ -11,7 +11,14 @@
   <name>CapitalSpéLoupGarou</name>
   <description>A simple CapitalSpéLoupGarou.</description>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://capitalsper.web.app/</url>
+  
+   <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.2</version> <!-- Vérifiez la version actuelle -->
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,12 +54,17 @@
 	    <artifactId>maven-assembly-plugin</artifactId>
 	    <version>3.1.0</version>
 	</dependency>
-		<dependency>
-	    <groupId>com.amashchenko.maven.plugin</groupId>
-	    <artifactId>gitflow-maven-plugin</artifactId>
-	    <version>1.13.0</version> 
-    </dependency>
-
+    <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	    <version>3.4.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-test</artifactId>
+	    <version>3.3.4</version>
+	    <scope>test</scope>
+	</dependency>
 
   </dependencies>
 
@@ -109,7 +121,14 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <mainClass>SpringBot.main</mainClass> 
+            </configuration>
+        </plugin>
+
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
