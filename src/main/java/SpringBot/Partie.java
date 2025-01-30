@@ -7,6 +7,7 @@ public class Partie {
 	private int nbLoupGarou;
 	private boolean aUnMaire;
 	private ArrayList<Integer> listeIdRolePersonnageSpecial;
+	private int nbPartie;
 	
 	public int getNbSimpleVillageois() {
 		return nbSimpleVillageois;
@@ -31,6 +32,12 @@ public class Partie {
 	}
 	public void setListeIdRolePersonnageSpecial(ArrayList<Integer> listeIdRolePersonnageSpecial) {
 		this.listeIdRolePersonnageSpecial = listeIdRolePersonnageSpecial;
+	}
+	public int getNbPartie() {
+		return nbPartie;
+	}
+	public void setNbPartie(int nbPartie) {
+		this.nbPartie = nbPartie;
 	}
 	
 	

@@ -8,6 +8,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMaire
 
 public class Maire extends Fonction {
 	private static StatsMaire statsMaire = new StatsMaire(); 
+	public final static int IDROLE = 97;
 
 	public Maire() {
 		super(true);

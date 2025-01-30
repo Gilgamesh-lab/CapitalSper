@@ -53,7 +53,7 @@ public class StatsVillage extends Statistiques {
 	@Override
 	public String getStats() {
 		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le village a effectuer en moyenne " + ((double) ((this.nbVote / super.getNbPartie()))) + " vote par partie" ;
-		String stats2 = "Sur " + (int) this.nbVote + " votes, la personne exécuter était un loup-garou dans " + ((double) ((this.nbLoupGarouTuer / this.nbVote) * 100 )) + "% des cas" ;
+		String stats2 = "Sur " + (int) this.nbVote + " votes, la personne éliminée par le village était un loup-garou dans " + ((double) ((this.nbLoupGarouTuer / this.nbVote) * 100 )) + "% des cas" ;
 		String stats3 = "Sur " + (int) super.getNbPartie() + " parties, " + ((double) ((1 - (this.nbSurvivants / this.nbPersonnageTotal)) * 100 )) + "% des habitants du village ont trouvé la mort en moyenne par partie" ;
 		return stats1 + "\n" + stats2 + "\n" + stats3;
 	}

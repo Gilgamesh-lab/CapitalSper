@@ -53,6 +53,12 @@ public class Logger {
 	public static void setSauvegardePartie(boolean sauvegardePartie) {
 		Logger.sauvegardePartie = sauvegardePartie;
 	}
+	
+	
+
+	public static boolean isSauvegardePartie() {
+		return sauvegardePartie;
+	}
 
 	public static boolean isAfficherLogStats() {
 		return afficherLogStats;
