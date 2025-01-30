@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "3e5aeacf-f055-4112-ae79-7cdf5ad8cdbd",
+		"name": "CapitalSper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30618723",
+		"_collection_link": "https://solar-firefly-771998.postman.co/workspace/My-Workspace~e0e2a34c-01a4-461f-8429-138de78ad018/collection/30618723-3e5aeacf-f055-4112-ae79-7cdf5ad8cdbd?action=share&source=collection_link&creator=30618723"
+	},
+	"item": [
+		{
+			"name": "getPersonnages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/getPersonnages"
+			},
+			"response": []
+		},
+		{
+			"name": "hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/hello"
+			},
+			"response": []
+		},
+		{
+			"name": "lancerUnePartie",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nbSimpleVillageois\" : 10,\r\n    \"nbLoupGarou\" : 2,\r\n    \"aUnMaire\" : true,\r\n    \"listeIdRolePersonnageSpecial\" : [3, 22, 19, 4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/lancerUnePartie"
+			},
+			"response": []
+		}
+	]
+}
