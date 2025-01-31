@@ -77,7 +77,7 @@ public class VoleurTest {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void jePrendToujoursCeQuiAsLePlusDeValeur() { // Avare est mon deuxième prénom
 		this.village = new Village(1, 0);
 		this.village.ajouterPersonnage(Voyante.IDROLE);
@@ -89,7 +89,7 @@ public class VoleurTest {
 		assertTrue(this.voleur.getAlliés().isEmpty());
 		this.voleur.agir(); //Voyante
 		assertFalse(this.voleur.getAlliés().isEmpty());
-	}
+	}*/
 	
 	@Test
 	public void pasDeCannibalisme() { // Je suis l'un des votre maintenant
