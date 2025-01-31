@@ -133,21 +133,16 @@
                 </execution>
             </executions>
             <configuration>
-				<archive>
-                    <manifest>
-                		<mainClass>SpringBot.main</mainClass> 
-                	</manifest>
-                </archive>
-            </configuration>
+				<mainClass>SpringBot.main</mainClass> 
+			</configuration>
         </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.0</version>
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>SpringBot.main</mainClass>
+                        <mainClass>src/main/java/SpringBot.main</mainClass>
                     </manifest>
                 </archive>
             </configuration>
