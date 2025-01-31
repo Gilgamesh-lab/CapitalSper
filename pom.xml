@@ -139,10 +139,11 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
+            <version>2.1.6.RELEASE</version>
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>src/main/java/SpringBot.main</mainClass>
+                        <mainClass>SpringBot.main</mainClass>
                     </manifest>
                 </archive>
             </configuration>
