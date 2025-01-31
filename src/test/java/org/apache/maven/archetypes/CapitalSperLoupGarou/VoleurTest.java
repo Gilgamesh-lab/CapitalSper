@@ -7,13 +7,13 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.NoSuchElementException;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voyante;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsChasseur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voyante;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsChasseur;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

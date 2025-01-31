@@ -1,14 +1,14 @@
 package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Chasseur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Cupidon;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Sorciere;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.MeneurDeJeu;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Chasseur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Salvateur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Sorciere;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

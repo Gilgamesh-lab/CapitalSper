@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Corbeau;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsCorbeau;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

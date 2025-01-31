@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Referentiel;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.MeneurDeJeu;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Referentiel;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

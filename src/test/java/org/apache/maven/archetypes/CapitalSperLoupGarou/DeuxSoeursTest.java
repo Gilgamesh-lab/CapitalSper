@@ -2,11 +2,11 @@ package org.apache.maven.archetypes.CapitalSperLoupGarou;
 
 import static org.junit.Assert.assertEquals;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsDeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.DeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsDeuxSoeurs;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
