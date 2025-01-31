@@ -21,6 +21,11 @@ public class StatsChasseur extends Statistiques {
 			this.nbLgTuer++;
 		}
 	}
+	
+	public void reset() {
+		this.nbTire = 0;
+		this.nbLgTuer = 0;
+	}
 
 	@Override
 	public String getStats() {

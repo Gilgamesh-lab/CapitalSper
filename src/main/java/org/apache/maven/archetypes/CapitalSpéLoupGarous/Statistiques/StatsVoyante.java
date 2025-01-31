@@ -17,6 +17,13 @@ public class StatsVoyante extends Statistiques {
 		this.nbLgVoter = 0;
 	}
 	
+	public void reset() {
+		this.nbDevination = 0;
+		this.nbLoupGarouTrouver = 0;
+		this.nbVote = 0;
+		this.nbLgVoter = 0;
+	}
+	
 	public void voyance(Personnage personnage) {
 		this.nbDevination++;
 		if(!personnage.estUnVillageois()) {

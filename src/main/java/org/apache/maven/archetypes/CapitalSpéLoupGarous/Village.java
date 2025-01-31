@@ -20,6 +20,7 @@ import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvo
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMaire;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute;
 import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
 
@@ -77,6 +78,13 @@ public  class Village  implements Cloneable {
     	if(this.getMeute().getStatsMeute().getNbVote() != 0) {
     		this.getMeute().setStatsMeute(new StatsMeute());
     	}
+    	Maire test = new Maire();
+    	if(test.getStatsMaire().getNbMaire() != 0) {
+			this.maire.setStatsMaire(new StatsMaire());
+		}
+    	
+    	this.village.stream().filter(x->x.getStatPersonnage() != null ).forEach(x->x.getStatPersonnage().reset());
+    	
 	}
 	
 	public boolean estPresent(int idRole) {
@@ -205,6 +213,7 @@ public  class Village  implements Cloneable {
 	
 	public void initVoleur() {
 		this.ajouterPlusieursPersoIdentique(SimpleVillageois.IDROLE, 2);
+		Logger.log("Suite à la présence du Voleur, ajout de 2 simples villageois dans la composition", TypeDeLog.role);
 		
 		Personnage persoRandom1 = this.getRandomPerso();
 		while(persoRandom1.getIdDeRole() == Voleur.IDROLE) {
@@ -507,6 +516,7 @@ public  class Village  implements Cloneable {
 	public void onMaire() {
 		this.maire = new Maire(); 
 		this.maire.setVillage(this);
+		
 	}
 	
 	public void setMaire(boolean aUnMaire) {

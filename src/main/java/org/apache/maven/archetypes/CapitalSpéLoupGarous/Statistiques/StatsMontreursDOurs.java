@@ -25,6 +25,18 @@ public class StatsMontreursDOurs extends Statistiques {
 		this.nbLgVoter = 0;
 	}
 	
+	public void reset(){
+		this.nbGrognement = 0;
+		this.nbVoisinDifférent = 0;
+		this.nbZeroLoupGarouVoisin = 0;
+		this.nbUnLoupGarouVoisin = 0;
+		this.nbDeuxLoupGarouVoisin = 0;
+		this.nbMort = 0;
+		this.nbVoisinLoupGarouTrouverDuPremierCoups = 0;
+		this.nbVote = 0;
+		this.nbLgVoter = 0;
+	}
+	
 	public void incrementerNbGrognement() {
 		this.nbGrognement++;
 	}

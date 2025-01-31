@@ -47,6 +47,12 @@ public class MeneurDeJeu {
 	}
 
 
+	public void initRequete() {
+		nbPartie = 0 ;
+		nbTourTotale = 0;
+		nbTour = 0 ;
+		listeTours = new ArrayList<Integer>();
+	}
 
 	public MeneurDeJeu(Village village, Logger log) {
 		this.savegardeVillage = village;

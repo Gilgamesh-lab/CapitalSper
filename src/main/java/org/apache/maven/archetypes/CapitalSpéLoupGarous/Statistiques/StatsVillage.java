@@ -20,6 +20,13 @@ public class StatsVillage extends Statistiques {
 		this.nbPersonnageTotal = 0;
 	}
 	
+	public void reset() {
+		this.nbVote = 0;
+		this.nbLoupGarouTuer = 0;
+		this.nbSurvivants = 0;
+		this.nbPersonnageTotal = 0;
+	}
+	
 	public void vote(Personnage personnage) {
 		this.nbVote++;
 		if(!personnage.estUnVillageois()) {

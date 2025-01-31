@@ -19,13 +19,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 4;
-		int nbLoupGarous = 3;
+		int nbVillageois = 5;
+		int nbLoupGarous = 1;
 		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
-		System.out.println(Referentiel.getIdPersonnageDisponible());
+		//System.out.println(Referentiel.getIdPersonnageDisponible());
 		
 		//logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
@@ -34,10 +34,10 @@ public class Main {
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		logger.setModeSpectateurOn();
+		//logger.setModeSpectateurOn();
 		//logger.setModeStatistiqueOn();
 		
-		village.ajouterPersonnage(Voleur.IDROLE);
+		//village.ajouterPersonnage(Voleur.IDROLE);
 		//System.out.println(StatsVoleur.);
 		/*Cupidon cupidon = new Cupidon();
 		village.ajouterPersonnage(cupidon);
@@ -56,9 +56,10 @@ public class Main {
 		MontreurDOurs montreurDOurs = new MontreurDOurs();
 		village.ajouterPersonnage(montreurDOurs);*/
 		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
-		village.onMaire();
+		//village.onMaire();
 		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
+		meneurDeJeu.exploration();
 		
 		
 		

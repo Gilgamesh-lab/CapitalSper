@@ -19,6 +19,14 @@ public class StatsVoleur extends Statistiques {
 		this.fullSimpleVillageois = 0;
 	}
 	
+	public void reset() {
+		this.nbLoupGarou = 0;
+		this.nbVillageoisSpecial = 0;
+		this.fullSpe = 0;
+		this.fullLoupGarou = 0;
+		this.fullSimpleVillageois = 0;
+	}
+	
 	public void initPartie(Personnage perso1, Personnage perso2) {
 		if(perso1.estUnVillageois() && perso2.estUnVillageois()) {
 			if(perso1.aUnPouvoirSpecial() && perso2.aUnPouvoirSpecial()) {

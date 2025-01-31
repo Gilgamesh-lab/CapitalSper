@@ -17,6 +17,14 @@ public class StatsSalvateur extends Statistiques {
 		this.nbInnocentIdentiferGraceSalvation = 0;
 	}
 	
+	
+	public void reset(){
+		this.nbSalvation = 0;
+		this.nbProtectionReussie = 0;
+		this.nbVillageoisSalvater = 0;
+		this.nbInnocentIdentiferGraceSalvation = 0;
+	}
+	
 	public void incrementerNbSalvation() {
 		this.nbSalvation++;
 	}

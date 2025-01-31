@@ -18,6 +18,13 @@ public class StatsCupidon extends Statistiques{
 		this.nbDeMortCouple = 0;
 	}
 	
+	public void reset() {
+		this.nbCoupleVillageois = 0;
+		this.nbCoupleLoupGarou = 0;
+		this.nbCoupleTraitre = 0;
+		this.nbDeMortCouple = 0;
+	}
+	
 	public void amoureux(Personnage amoureux1, Personnage amoureux2) {
 		if(amoureux1.estUnVillageois() == amoureux2.estUnVillageois()) {
 			if(amoureux1.estUnVillageois()) {

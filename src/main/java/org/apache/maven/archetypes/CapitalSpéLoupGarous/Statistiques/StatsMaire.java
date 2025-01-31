@@ -28,6 +28,15 @@ public class StatsMaire extends Statistiques {
 		this.nbLoupGarouMaire = 0;
 	}
 	
+	public void reset(){
+		this.nbVote = 0;
+		this.nbEgaliter = 0;
+		this.nbMaire = 0;
+		this.nbVoteDecisifDuMaire = 0;
+		this.nbSperMaire = 0;
+		this.nbLoupGarouMaire = 0;
+	}
+	
 
 	public void vote(Map<Integer, Integer> tableauVotes, int voteMaire) {
 		this.nbVote++;

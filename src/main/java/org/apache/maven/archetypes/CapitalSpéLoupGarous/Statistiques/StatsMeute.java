@@ -23,6 +23,14 @@ public class StatsMeute extends Statistiques {
 		this.dernierePersonneDevorer = null;
 	}
 	
+	
+	public void reset(){
+		this.nbVote = 0;
+		this.nbSperVoter = 0;
+		this.nbSurvivants = 0;
+		this.dernierePersonneDevorer = null;
+	}
+	
 	public void enregistrer(Personnage personnage){
 		this.dernierePersonneDevorer = personnage.getId();
 	}

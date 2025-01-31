@@ -46,8 +46,21 @@ public class Controller {
 
     @PostMapping("/lancerUnePartie")
     public ResponseEntity  lancerUnePartie(@RequestBody Partie partie) {
+    	Map<String, Object> response = new HashMap<>();
+    	
+    	if(partie.getNbPartie() <= 0) {
+    		response.put("erreur", "Le nombre de partie doit au moins être supérieur à 0");
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    	}
+    	
+    	else if(partie.getNbPartie() > 100) {
+    		response.put("erreur", "Le nombre de partie doit être inférieur ou égale à 100");
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    	}
+    	
+    	
+    	
     	Village village = new Village(partie.getNbSimpleVillageois(),partie.getNbLoupGarou());
-    	village.initRequete();
     	village.setMaire(partie.isaUnMaire());
     	
     	if(partie.getListeIdRolePersonnageSpecial() != null ) {
@@ -62,6 +75,23 @@ public class Controller {
         	}
     	}
     	
+    	if(village.getVillage().size() < 3) {
+    		response.put("erreur", "Le village doit être composé d'au moins 3 personnages");
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    	}
+    	
+    	else if(village.getVillage().size() > 25) {
+    		response.put("erreur", "Le village peut-être composé au maximun de 25 personnages");
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    	}
+    	
+    	boolean camp = village.getVillage().get(0).estUnVillageois();
+    	if(village.getVillage().stream().allMatch(x->x.estUnVillageois() == camp)) {
+    		response.put("erreur", "La composition du village doit au moins avoir deux personnages d'un camps différents");
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    	}
+    	
+    	village.initRequete();
     	Logger logger = new Logger();
     	logger.setSauvegardePartie(true);
     	
@@ -74,9 +104,19 @@ public class Controller {
     	}
     	
     	MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
-		meneurDeJeu.lancerDesParties(partie.getNbPartie());
+    	meneurDeJeu.initRequete();
+    	
+    	try {
+    		meneurDeJeu.lancerDesParties(partie.getNbPartie());
+    	}
+    	
+    	catch (Exception e) {
+    		response.put("erreur", "Une erreur est survenue lors de l'execution de la simulation : " + e);
+    		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    	}
 		
-		Map<String, Object> response = new HashMap<>();
+		
+		
 		
         response.put("log", logger.getLogPartie());
         

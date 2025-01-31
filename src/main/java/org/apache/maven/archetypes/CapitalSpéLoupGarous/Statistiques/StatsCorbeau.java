@@ -25,6 +25,12 @@ public class StatsCorbeau extends Statistiques {
 		}
 	}
 	
+	public void reset() {
+		this.nbCorbeautage = 0;
+		this.nbCorbeautageSurLoupGarou = 0;
+		nbCorbeautageDecisif = 0;
+	}
+	
 	public static void corbeautage  (int id, Map<Integer, Integer> tableauVotes) {
 		Integer plusGrandNombreDeVotesPourUnePersonne = tableauVotes.entrySet().stream()
 				  .map(Map.Entry::getValue)

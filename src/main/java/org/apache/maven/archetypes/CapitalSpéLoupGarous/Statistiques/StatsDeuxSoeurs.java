@@ -18,6 +18,11 @@ public class StatsDeuxSoeurs extends Statistiques {
 			this.nbLgVoter++;
 		}
 	}
+	
+	public void reset() {
+		this.nbVote = 0;
+		this.nbLgVoter = 0;
+	}
 
 	@Override
 	public String getStats() {

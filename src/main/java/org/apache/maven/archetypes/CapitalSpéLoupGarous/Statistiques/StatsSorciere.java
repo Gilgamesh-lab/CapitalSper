@@ -20,6 +20,14 @@ public class StatsSorciere extends Statistiques  {
 		this.nbAutoProtection = 0;
 	}
 	
+	public void reset(){
+		this.nbPotionDeMort = 0;
+		this.nbPotionDeVie = 0;
+		this.nbDeuxPotion = 0;
+		this.nbLoupGarouTuer = 0;
+		this.nbAutoProtection = 0;
+	}
+	
 	public void incrementerNbUtilisationPotionDeMort() {
 		this.nbPotionDeMort++;
 	}

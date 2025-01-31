@@ -28,5 +28,7 @@ public abstract class Statistiques {
 	}
 	
 	public abstract String getStats();
+	
+	public abstract void reset();
 
 }
