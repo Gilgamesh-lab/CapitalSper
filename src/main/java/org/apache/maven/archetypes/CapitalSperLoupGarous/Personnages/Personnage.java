@@ -106,7 +106,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void ajouterEnnemie(Personnage ennemies) {
 		if(!this.alliés.contains(ennemies)) {
-			Logger.log( this + " considère maintenant " + ennemies +  " comme un ennemie", TypeDeLog.vote);
+			Logger.log( this + " considère maintenant " + ennemies +  " comme un ennemie.", TypeDeLog.vote);
 			this.listeEnnemie.add(ennemies);
 		}
 		
@@ -125,7 +125,7 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void ajouterAllié(Personnage allié) {
 		if(!this.alliés.contains(allié)) {
-			Logger.log( this + " considère maintenant " + allié +  " comme un allié", TypeDeLog.vote);
+			Logger.log( this + " considère maintenant " + allié +  " comme un allié.", TypeDeLog.vote);
 			this.alliés.add(allié);
 		}
 	}
@@ -133,7 +133,7 @@ public abstract class Personnage  implements Cloneable {
 	public void ajouterEnnemies(ArrayList<Personnage> ennemies) {
 		for( Personnage ennemie : ennemies ) {
 			if(!this.alliés.contains(ennemie)) {
-				Logger.log( this + " considère maintenant " + ennemie +  " comme un ennemie", TypeDeLog.vote);
+				Logger.log( this + " considère maintenant " + ennemie +  " comme un ennemie.", TypeDeLog.vote);
 				this.listeEnnemie.add(ennemie);
 			}
 		}
@@ -143,7 +143,7 @@ public abstract class Personnage  implements Cloneable {
 	public void ajouterAlliés(ArrayList<Personnage> allier) {
 		for( Personnage allié : allier ) {
 			if(!this.alliés.contains(allié)) {
-				Logger.log( this + " considère maintenant " + allié +  " comme un allié", TypeDeLog.vote);
+				Logger.log( this + " considère maintenant " + allié +  " comme un allié.", TypeDeLog.vote);
 				this.alliés.add(allié);
 			}
 		}
@@ -210,7 +210,7 @@ public abstract class Personnage  implements Cloneable {
 			this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().remove(this);
 			if(!this.estUnVillageois()) {
 				if(!this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().isEmpty()) {
-					Logger.log("Vue que "+ this + " était un loup-garous, les soupçons sur " + this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().get(0) +  " suite aux révélations du Montreurs d' Ours sont lévées");
+					Logger.log("Vue que "+ this + " était un loup-garous, les soupçons sur " + this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().get(0) +  " suite aux révélations du Montreurs d' Ours sont lévées.");
 					MontreurDOurs.getStatsMontreursDOurs().incrementerNbVoisinLoupGarouTrouverDuPremierCoups();
 				}
 				this.getVillage().getPersoDevoilerCommeEnnemieParMontreursDOurs().clear();
@@ -219,7 +219,7 @@ public abstract class Personnage  implements Cloneable {
 		}
 		
 		if(this.estAmoureux() && this.statut.getAmoureux().getStatut().estEnVie()) {
-			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin");
+			Logger.log("Suite à la mort de " + this + " , " + this.statut.getAmoureux() +  " fut emporté par le chagrin.");
 			this.statut.getAmoureux().getStatut().setTueur(Cupidon.IDROLE);
 			this.statut.getAmoureux().meurt();
 			Cupidon.getStatCupidon().ASurvecuCoupleNonTraitre();

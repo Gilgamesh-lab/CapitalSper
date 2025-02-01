@@ -68,11 +68,11 @@ public class StatsSalvateur extends Statistiques {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur les " + (int) super.getNbToursTotale() +  " tours de jeu, le salvateur a été en vie durant " + ((double) ((this.getNbSalvation() / super.getNbToursTotale()) * 100)) + "% d'entre eux" ;
-		String stats2 = "Le salvateur a effectué en moyenne " + ((double) ((this.nbSalvation / super.getNbPartie()))) + " salvations par partie" ;
-		String stats3 = "Sur les " + (int) this.nbSalvation + " salvations, le salavateur a salvater un villageois dans " + ((double) ((this.nbVillageoisSalvater / this.nbSalvation) * 100 )) + "% des cas";
-		String stats4 = "Sur les " + (int) this.nbSalvation + " salvations, dans " + ((double) ((this.nbProtectionReussie / this.nbSalvation) * 100 )) + "% des cas cela a sauvé une vie";
-		String stats5 = "Sur les " + (int) this.nbProtectionReussie + " protections réussie, dans " + ((double) ((this.nbInnocentIdentiferGraceSalvation / this.nbProtectionReussie) * 100 )) + "% des cas cela a permit de connaitre un innocent";
+		String stats1 = "Sur les " + (int) super.getNbToursTotale() +  " tours de jeu, le salvateur a été en vie durant " + ((double) ((this.getNbSalvation() / super.getNbToursTotale()) * 100)) + "% d'entre eux." ;
+		String stats2 = "Le salvateur a effectué en moyenne " + ((double) ((this.nbSalvation / super.getNbPartie()))) + " salvations par partie." ;
+		String stats3 = "Sur les " + (int) this.nbSalvation + " salvations, le salavateur a salvater un villageois dans " + ((double) ((this.nbVillageoisSalvater / this.nbSalvation) * 100 )) + "% des cas.";
+		String stats4 = "Sur les " + (int) this.nbSalvation + " salvations, dans " + ((double) ((this.nbProtectionReussie / this.nbSalvation) * 100 )) + "% des cas cela a sauvé une vie.";
+		String stats5 = "Sur les " + (int) this.nbProtectionReussie + " protections réussie, dans " + ((double) ((this.nbInnocentIdentiferGraceSalvation / this.nbProtectionReussie) * 100 )) + "% des cas cela a permit de connaitre un innocent.";
 		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4 + "\n" + stats5;
 	}
 

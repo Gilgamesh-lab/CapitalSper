@@ -49,9 +49,9 @@ public class StatsCorbeau extends Statistiques {
 	
 	@Override
 	public String getStats() {
-		String stats1 = "Le corbeau a effectué en moyenne " + ((double) ((this.getNbCorbeautage() / super.getNbPartie()))) + " corbeautages par partie" ;
-		String stats2 = "Sur les " + (int) this.getNbCorbeautage() + " corbeautages,  le corbeau a corbeauter un loup-garou dans " + ((double) ((this.getNbCorbeautageSurLoupGarou()  / this.getNbCorbeautage()) * 100 )) + "% d'entre eux";
-		String stats3 = "Sur " + (int) this.getNbCorbeautage() +  " corbeautages, "  + ((double) (this.getNbCorbeautageDecisif() / this.getNbCorbeautage()) * 100) + "% d'entre eux ont changé l'issue du vote du village";
+		String stats1 = "Le corbeau a effectué en moyenne " + ((double) ((this.getNbCorbeautage() / super.getNbPartie()))) + " corbeautages par partie." ;
+		String stats2 = "Sur les " + (int) this.getNbCorbeautage() + " corbeautages,  le corbeau a corbeauter un loup-garou dans " + ((double) ((this.getNbCorbeautageSurLoupGarou()  / this.getNbCorbeautage()) * 100 )) + "% d'entre eux.";
+		String stats3 = "Sur " + (int) this.getNbCorbeautage() +  " corbeautages, "  + ((double) (this.getNbCorbeautageDecisif() / this.getNbCorbeautage()) * 100) + "% d'entre eux ont changé l'issue du vote du village.";
 		return stats1 + "\n" + stats2 + "\n" + stats3;
 	}
 

@@ -213,7 +213,7 @@ public  class Village  implements Cloneable {
 	
 	public void initVoleur() {
 		this.ajouterPlusieursPersoIdentique(SimpleVillageois.IDROLE, 2);
-		Logger.log("Suite à la présence du Voleur, ajout de 2 simples villageois dans la composition", TypeDeLog.role);
+		Logger.log("Suite à la présence du Voleur, ajout de 2 simples villageois dans la composition.", TypeDeLog.role);
 		
 		Personnage persoRandom1 = this.getRandomPerso();
 		while(persoRandom1.getIdDeRole() == Voleur.IDROLE) {
@@ -260,7 +260,7 @@ public  class Village  implements Cloneable {
 		this.getHabitantsEnVie().stream().filter(x->x.getStatut().isProtéger()).forEach(x->x.getStatut().setProtéger(false));
 		int nbHabitantAprès = this.getNbPersonnageEnVie();
 		if(nbHabitantAvant == nbHabitantAprès) {
-			Logger.log("Personne n'a été tué durant la nuit ");
+			Logger.log("Personne n'a été tué durant la nuit.");
 			this.nuitSansMort = true;
 		}
 		if((this.getNbPersonnageEnVie() > 2) ) {// si la partie est pas terminé
@@ -271,7 +271,7 @@ public  class Village  implements Cloneable {
 	public void bilanTuerLaNuit() {
 		String messageMort;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {
-			messageMort =  " a été tué la nuit par les loups-garous";
+			messageMort =  " a été tué la nuit par les loups-garous.";
 		}
 		else {
 			messageMort= " a été tué durant la nuit";
@@ -298,7 +298,7 @@ public  class Village  implements Cloneable {
 			if(tableauDeVotes.get(k) > 0) {
 				persoMaudit = this.getPersonnageParId(k);
 				if(persoMaudit.estEnvie()) {
-					Logger.log("Le corbeau a corbeauter " + persoMaudit + " ce qui lui ajoute 2 vote en plus", TypeDeLog.vote);
+					Logger.log("Le corbeau a corbeauter " + persoMaudit + " ce qui lui ajoute 2 vote en plus.", TypeDeLog.vote);
 				}
 				else {
 					tableauDeVotes.put(k, 0);// Si la personne médis par le corbeau est morte
@@ -313,7 +313,7 @@ public  class Village  implements Cloneable {
 				voteMaire  = vote;
 			}
 			votant.resetListeDeVote();
-			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote) + " avec " + votant.getNbVote() + " voix ", TypeDeLog.vote);
+			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote) + " avec " + votant.getNbVote() + " voix.", TypeDeLog.vote);
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		if(this.aUnMaire()) {
@@ -362,20 +362,20 @@ public  class Village  implements Cloneable {
 				}
 				if(coupables.contains(maire.getPersonnage())) {
 					coupables.remove(maire.getPersonnage());
-					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables + " et lui");
+					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables + " et lui.");
 				}
 				else {
-					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables);
+					Logger.log("Le maire(" + maire.getPersonnage() + ") a voté contre " + personnageCondamner + " suite à l'égalité entre " + coupables + ".");
 				}
 				maire.getPersonnage().resetListeDeVote();
-				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
+				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote.");
 				Logger.log("", TypeDeLog.vote);
 				
 			}
 			else {
 				idPersonneAyantPlusDeVotes = listeIdPersonneAyantPlusDeVotes.get((int) (Math.random() * ( listeIdPersonneAyantPlusDeVotes.size() - 0 )));
 				personnageCondamner = this.getHabitantsEnVie().stream().filter(x-> x.getId() == idPersonneAyantPlusDeVotes   ).findAny().get();
-				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote sur une égalité");
+				Logger.log(personnageCondamner + " a été éliminer à l'issue du vote sur une égalité.");
 			}
 			
 		}
@@ -389,11 +389,11 @@ public  class Village  implements Cloneable {
 				throw e;
 			}
 			Logger.log("", TypeDeLog.vote);
-			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote");
+			Logger.log(personnageCondamner + " a été éliminer à l'issue du vote.");
 		}
 		Logger.log("");
-		Logger.log("Le village est composé de : " + this.getHabitantsEnVie(), TypeDeLog.vote);
-		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui ", TypeDeLog.vote);
+		Logger.log("Le village est composé de : " + this.getHabitantsEnVie() + ".", TypeDeLog.vote);
+		Logger.log(personnageCondamner +  " est envoyé au buché avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote contre lui.", TypeDeLog.vote);
 		
 		this.executer(personnageCondamner);
 		
@@ -415,7 +415,7 @@ public  class Village  implements Cloneable {
 			votant = this.getHabitantsEnVie().get(i);
 			vote  = votant.elire();
 			votant.resetListeDeVote();
-			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote), TypeDeLog.vote);
+			Logger.log(votant + " a voté pour " + this.getPersonnageParId(vote) + ".", TypeDeLog.vote);
 			tableauDeVotesElecttion.put(vote, tableauDeVotesElecttion.get(vote) + votant.getNbVote());
 			
 		}
@@ -442,7 +442,7 @@ public  class Village  implements Cloneable {
 			
 		}
 		if(Logger.isDetailVoteVillageOn()) {
-			message += " avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote pour lui ";
+			message += " avec  " + plusGrandNombreDeVotesPourUnePersonne + " vote pour lui.";
 		}
 		Logger.log(message);
 		tableauDeVotesElecttion.clear();
@@ -453,11 +453,11 @@ public  class Village  implements Cloneable {
 		Personnage personnageCondamner;
 		if(vote == '0') {
 			personnageCondamner = this.getHabitantsEnVie().stream().filter(x->x.estUnVillageois()).findAny().get();
-			Logger.log("Un villageois a été tué lors du vote");
+			Logger.log("Un villageois a été tué lors du vote.");
 		}
 		else {
 			personnageCondamner = this.getHabitantsEnVie().stream().filter(x->!x.estUnVillageois()).findAny().get();
-			Logger.log("Un loup-garou a été tué lors du vote");
+			Logger.log("Un loup-garou a été tué lors du vote.");
 		}
 		personnageCondamner.meurt();
 	}

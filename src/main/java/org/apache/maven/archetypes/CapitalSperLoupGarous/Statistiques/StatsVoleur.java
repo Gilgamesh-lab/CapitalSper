@@ -53,12 +53,12 @@ public class StatsVoleur extends Statistiques {
 	@Override
 	public String getStats() {
 		//String stats6 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est devenue un villageois dans " + ((double) (((  this.nbLoupGarou / super.getNbPartie() ) - 1) / super.getNbPartie() * 100 ) ) + "% d'entre elles" ;
-		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est devenue un villageois spécial dans " + ((double) ((this.nbVillageoisSpecial / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
-		String stats2 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est devenue un loup garou dans " + ((double) ((this.nbLoupGarou / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
+		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est devenue un villageois spécial dans " + ((double) ((this.nbVillageoisSpecial / super.getNbPartie()) * 100 )) + "% d'entre elles." ;
+		String stats2 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est devenue un loup garou dans " + ((double) ((this.nbLoupGarou / super.getNbPartie()) * 100 )) + "% d'entre elles." ;
 		
-		String stats3 = "Sur " + (int) super.getNbPartie() +  " parties, les cartes proposés aux voleur étaient que des villagois spécial dans " + ((double) ((this.fullSpe / super.getNbPartie()) * 100 )) + "% des cas" ;
-		String stats4 = "Sur " + (int) super.getNbPartie() +  " parties, les cartes proposés aux voleur étaient que des simples villageois dans " + ((double) ((this.fullSimpleVillageois / super.getNbPartie()) * 100 )) + "% des cas" ;
-		String stats5 = "Sur " + (int) super.getNbPartie() +  " parties, les cartes proposés aux voleur étaient que des loups-garous dans " + ((double) ((this.fullLoupGarou / super.getNbPartie()) * 100 )) + "% des cas" ;
+		String stats3 = "Sur " + (int) super.getNbPartie() +  " parties, les cartes proposés aux voleur étaient que des villagois spécial dans " + ((double) ((this.fullSpe / super.getNbPartie()) * 100 )) + "% des cas." ;
+		String stats4 = "Sur " + (int) super.getNbPartie() +  " parties, les cartes proposés aux voleur étaient que des simples villageois dans " + ((double) ((this.fullSimpleVillageois / super.getNbPartie()) * 100 )) + "% des cas." ;
+		String stats5 = "Sur " + (int) super.getNbPartie() +  " parties, les cartes proposés aux voleur étaient que des loups-garous dans " + ((double) ((this.fullLoupGarou / super.getNbPartie()) * 100 )) + "% des cas." ;
 		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4 + "\n" + stats5; // + "\n" + stats6;
 	}
 	

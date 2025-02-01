@@ -16,7 +16,7 @@ public class Maire extends Fonction {
 	
 	public void entrerEnFonction(Personnage personnage) {
 		if(this.getPersonnage() != null) {
-			Logger.log(this.getPersonnage() + " a choisi " + personnage + " pour lui succéder en tant que maire du village");
+			Logger.log(this.getPersonnage() + " a choisi " + personnage + " pour lui succéder en tant que maire du village.");
 		}
 		
 		super.setPersonnage(personnage);

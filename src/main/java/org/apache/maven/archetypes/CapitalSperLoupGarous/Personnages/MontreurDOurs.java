@@ -138,7 +138,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 	}
 	
 	public boolean aTrouverUnLoup() {
-		Logger.log("Le montreurs d'ours a pour voisins " + this.getVoisins() , TypeDeLog.role );
+		Logger.log("Le montreurs d'ours a pour voisins " + this.getVoisins() + "." , TypeDeLog.role );
 		return this.aTrouverUnLoup;
 	}
 	
@@ -146,12 +146,12 @@ public class MontreurDOurs extends VillageoisSpecial {
 		ArrayList<Personnage> listeVoisinsEnVie = new ArrayList<Personnage>(this.getVoisins().stream().filter(x->x.estEnvie()).collect(Collectors.toList()));
 		if(this.aTrouverUnLoup != null) {
 			if(this.aTrouverUnLoup) { // si un loups parmis ses voisins
-				Logger.log("Suite à la mort du montreurs d'ours, " + listeVoisinsEnVie + " sont considérer comme potentiellement coupables" );
+				Logger.log("Suite à la mort du montreurs d'ours, " + listeVoisinsEnVie + " sont considérer comme potentiellement coupables." );
 				this.getVillage().setPersoDevoilerCommeEnnemieParMontreursDOurs(listeVoisinsEnVie);
 				
 			}
 			else {// sinon
-				Logger.log("Suite à la mort du montreurs d'ours, " + listeVoisinsEnVie + " sont considérer comme innocent" );
+				Logger.log("Suite à la mort du montreurs d'ours, " + listeVoisinsEnVie + " sont considérer comme innocent." );
 				this.getVillage().setPersoDevoilerCommeAlliéeParMontreursDOurs(listeVoisinsEnVie);
 			}
 		}
@@ -175,7 +175,7 @@ public class MontreurDOurs extends VillageoisSpecial {
 	public void agirAprèsNuit() {
 		this.traquerLoupGarous();
 		if(this.aTrouverUnLoup()) {
-			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins());
+			Logger.log("Le montreur d'ours a trouvé au moins un loup garous parmis ses voisins qui sont " + this.getVoisins() + ".");
 		}
 		
 	}

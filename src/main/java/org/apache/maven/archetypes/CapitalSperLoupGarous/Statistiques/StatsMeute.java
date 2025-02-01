@@ -80,9 +80,9 @@ public class StatsMeute extends Statistiques {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, la meute a effectuer en moyenne " + ((double) ((this.nbVote / super.getNbPartie()))) + " attaque nocturne par partie" ;
-		String stats2 = "Sur " + (int) this.nbVote + " votes, la personne choisie par la meute était un personnage spécial dans " + ((double) ((this.nbSperVoter / this.nbVote) * 100 )) + "% des cas" ;
-		String stats3 = "Sur " + (int) this.nbVote + " attaques noctures, dans " + ((double) (((this.nbSurvivants / this.nbVote)) * 100 )) + "% des cas la victime a été sauvé par un rôle de protection" ;
+		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, la meute a effectuer en moyenne " + ((double) ((this.nbVote / super.getNbPartie()))) + " attaque nocturne par partie." ;
+		String stats2 = "Sur " + (int) this.nbVote + " votes, la personne choisie par la meute était un personnage spécial dans " + ((double) ((this.nbSperVoter / this.nbVote) * 100 )) + "% des cas." ;
+		String stats3 = "Sur " + (int) this.nbVote + " attaques noctures, dans " + ((double) (((this.nbSurvivants / this.nbVote)) * 100 )) + "% des cas la victime a été sauvé par un rôle de protection." ;
 		return stats1 + "\n" + stats2 + "\n" + stats3;
 	}
 

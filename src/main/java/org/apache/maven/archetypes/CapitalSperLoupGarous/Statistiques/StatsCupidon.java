@@ -57,10 +57,10 @@ public class StatsCupidon extends Statistiques{
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le couple etait composés de deux villageois dans " + ((double) ((this.nbCoupleVillageois / super.getNbPartie()) * 100)) + "% des cas";
-		String stats2 = "Sur " + (int) super.getNbPartie() +  " parties, le couple etait composés de deux loups-garous dans " + ((double) ((this.nbCoupleLoupGarou / super.getNbPartie()) * 100)) + "% des cas";
-		String stats3 = "Sur " + (int) super.getNbPartie() +  " parties, le couple etait un couple traitre " + ((double) ((this.nbCoupleTraitre / super.getNbPartie()) * 100)) + "% des cas";
-		String stats4 = "Sur " + (int) super.getNbPartie() +  " parties, un couple non traitre a survécu dans " + ((double) ((1 - (this.nbDeMortCouple / super.getNbPartie())) * 100)) + "% des cas";
+		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le couple etait composés de deux villageois dans " + ((double) ((this.nbCoupleVillageois / super.getNbPartie()) * 100)) + "% des cas.";
+		String stats2 = "Sur " + (int) super.getNbPartie() +  " parties, le couple etait composés de deux loups-garous dans " + ((double) ((this.nbCoupleLoupGarou / super.getNbPartie()) * 100)) + "% des cas.";
+		String stats3 = "Sur " + (int) super.getNbPartie() +  " parties, le couple etait un couple traitre " + ((double) ((this.nbCoupleTraitre / super.getNbPartie()) * 100)) + "% des cas.";
+		String stats4 = "Sur " + (int) super.getNbPartie() +  " parties, un couple non traitre a survécu dans " + ((double) ((1 - (this.nbDeMortCouple / super.getNbPartie())) * 100)) + "% des cas.";
 		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4;
 	}
 

@@ -7,13 +7,4 @@ public class SimpleVillageois extends Villageois {
 		super(IDROLE, false);
 	}
 
-	
-
-
-	
-	/*@Override
-	public String toString() {
-		return "SimpleVillageois " + this.getId();
-	}*/
-
 }

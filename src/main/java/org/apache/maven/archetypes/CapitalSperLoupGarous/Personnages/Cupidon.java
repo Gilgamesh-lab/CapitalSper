@@ -29,7 +29,7 @@ public class Cupidon extends VillageoisSpecial {
 		statCupidon.amoureux(personnageAmoureux, personnageAmoureux2);
 		personnageAmoureux.tomberAmoureux(personnageAmoureux2);
 		personnageAmoureux2.tomberAmoureux(personnageAmoureux);
-		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de " + this, TypeDeLog.role);
+		Logger.log(personnageAmoureux + " et " + personnageAmoureux2 +  " sont tombés amoureux grâce à la magie de " + this + ".", TypeDeLog.role);
 		this.perdrePouvoir(TypeDePouvoir.Mort);
 	}
 	

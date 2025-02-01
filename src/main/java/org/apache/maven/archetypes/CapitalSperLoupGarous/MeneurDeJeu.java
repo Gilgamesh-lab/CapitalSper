@@ -86,7 +86,7 @@ public class MeneurDeJeu {
 	private void lancerUnePartie() {
 		init();
 		Logger.log("");
-		Logger.log("Lancement de la partie avec un village de " + this.village.getNbPersonnageAvantPartie() + " personnages composé de " +  this.référentiel.messageDebutPartie(this.village));
+		Logger.log("Lancement de la partie avec un village de " + this.village.getNbPersonnageAvantPartie() + " personnages composé de " +  this.référentiel.messageDebutPartie(this.village) + ".");
 		Logger.log("");
 		if(!this.conditionFinPartie()) {
 			this.nbTour++;
@@ -106,29 +106,29 @@ public class MeneurDeJeu {
 		this.village.finVillage();
 		this.listeTours.add(this.nbTour);
 		Logger.log("");
-		Logger.log("Le village est constitué de " + this.village.getHabitantsEnVie());
+		Logger.log("Le village est constitué de " + this.village.getHabitantsEnVie() + ".");
 		if(this.conditionVictoireAmoureux()) {
-			Logger.log("Victoire des amoureux en " + this.nbTour + " tours");
-			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants");
+			Logger.log("Victoire des amoureux en " + this.nbTour + " tours.");
+			Logger.log(this.village.getNbVillageois() + " villageois et " +  this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivants.");
 			this.nbVictoireAmoureux++;
 		}
 		
 		else if(this.conditionVictoireLoupGarous()) {
-			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours");
-			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s)");
+			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours.");
+			Logger.log(this.village.getNbLoupGarou() + " Loup(s)-Garou(s) survivant(s).");
 			this.nbVictoireLoupGarou++;
 		}
 		else if (this.conditionVictoireVillageois()) { 
-			Logger.log("Victoire des villageois en " + this.nbTour + " tours");
-			Logger.log(this.village.getNbVillageois() + " villageois survivant(s)");
+			Logger.log("Victoire des villageois en " + this.nbTour + " tours.");
+			Logger.log(this.village.getNbVillageois() + " villageois survivant(s).");
 			this.nbVictoireVillage++;
 		}
 		
 		else {
 			if(this.conditionEgaliter() && this.getVillage().getNbPersonnageEnVie() > 0) {
-				Logger.log(this.getVillage().getVillageois().get(0) + " et le loups-garous survivant s'entretuent");
+				Logger.log(this.getVillage().getVillageois().get(0) + " et le loups-garous survivant s'entretuent.");
 			}
-			Logger.log("Égalité en " + this.nbTour + " tours");
+			Logger.log("Égalité en " + this.nbTour + " tours.");
 			this.nbÉgalité++;
 		}
 	}
@@ -325,23 +325,23 @@ public class MeneurDeJeu {
 		
 		log.setOnAfficherLogDetailsPartie();
 		Logger.log("", TypeDeLog.statistique);
-		Logger.log("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%", TypeDeLog.statistique);
-		Logger.log("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%", TypeDeLog.statistique);
+		Logger.log("Sur " + compteur + " parties, les villageois ont eu un taux de victoire de " + this.pourcentWinVillage  + "%.", TypeDeLog.statistique);
+		Logger.log("Sur " + compteur + " parties, les loups-garous ont eu un taux de victoire de " + this.pourcentWinLoupGarous + "%.", TypeDeLog.statistique);
 		savegardeVillage.reset();
 		if(this.savegardeVillage.getHabitantsEnVie().stream().anyMatch(x -> x.getIdDeRole() == Cupidon.IDROLE)) {
-			Logger.log("Sur " + compteur + " parties, les amoureux ont eu un taux de victoire de " + this.pourcentWinAmoureux  + "%", TypeDeLog.statistique);
+			Logger.log("Sur " + compteur + " parties, les amoureux ont eu un taux de victoire de " + this.pourcentWinAmoureux  + "%.", TypeDeLog.statistique);
 		}
 		if(this.nbÉgalité > 0) {
-			Logger.log("Sur " + compteur + " parties, les villageois et les loups-garous ont terminés sur une égalité avec un taux de " + this.pourcentÉgalité + "%", TypeDeLog.statistique);
+			Logger.log("Sur " + compteur + " parties, les villageois et les loups-garous ont terminés sur une égalité avec un taux de " + this.pourcentÉgalité + "%.", TypeDeLog.statistique);
 		}
 		Logger.log("");
-		Logger.log("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get(), TypeDeLog.statistique);
-		Logger.log("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get(), TypeDeLog.statistique);
-		Logger.log("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble(), TypeDeLog.statistique);
+		Logger.log("Le nombre minimun de tour est de " +  this.listeTours.stream().reduce(Integer::min).get() + ".", TypeDeLog.statistique);
+		Logger.log("Le nombre maximun de tour est de " +  this.listeTours.stream().reduce(Integer::max).get() + ".", TypeDeLog.statistique);
+		Logger.log("Le nombre moyen de tour est de " +  this.listeTours.stream().mapToInt(e -> e).average().getAsDouble() + ".", TypeDeLog.statistique);
 		Logger.log("");
-		Logger.log("Au moins 25% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 4) + " tours ou moins", TypeDeLog.statistique); // premier quartile
-		Logger.log("Au moins 50% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 2) + " tours ou moins", TypeDeLog.statistique); // deuxième quartile ou médiane
-		Logger.log("Au moins 75% des parties se sont terminés en " +  this.listeTours.get((int) (this.listeTours.size() *  3) / 4) + " tours ou moins", TypeDeLog.statistique); // troisième quartile
+		Logger.log("Au moins 25% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 4) + " tours ou moins.", TypeDeLog.statistique); // premier quartile
+		Logger.log("Au moins 50% des parties se sont terminés en " +  this.listeTours.get((int) this.listeTours.size() / 2) + " tours ou moins.", TypeDeLog.statistique); // deuxième quartile ou médiane
+		Logger.log("Au moins 75% des parties se sont terminés en " +  this.listeTours.get((int) (this.listeTours.size() *  3) / 4) + " tours ou moins.", TypeDeLog.statistique); // troisième quartile
 		Logger.log("");
 		
 		// stat perso "simple" ex : taux de survie ?
@@ -361,7 +361,7 @@ public class MeneurDeJeu {
 		long minute = (endTime-startTime) / 60000;
 		long seconde = (  (endTime-startTime) -(minute*60000)) / 1000;
 		Logger.log("");
-		Logger.log("Le temps d'exécution de la simulation est de : " + minute +  " minutes et " + seconde + " secondes ", TypeDeLog.statistique);
+		Logger.log("Le temps d'exécution de la simulation est de " + minute +  " minutes et " + seconde + " secondes.", TypeDeLog.statistique);
 		log.setOffAfficherLogDetailsPartie();
 		log.finish();
 		/*Log.println("Les villageois ont gagnés " + nbVictoireVillage + " sur " + compteur + " parties" );

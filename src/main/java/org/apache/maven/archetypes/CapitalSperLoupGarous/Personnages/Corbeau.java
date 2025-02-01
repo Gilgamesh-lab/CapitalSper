@@ -28,7 +28,7 @@ public class Corbeau extends VillageoisSpecial{
 	public void corbeauter(int idPersonnage) {
 		this.getVillage().getTableauDeVotes().put(idPersonnage, 2);
 		personnageCorbeauter = this.getVillage().getPersonnageParId(idPersonnage);
-		Logger.log("Le corbeau a corbeauter " + personnageCorbeauter, TypeDeLog.role);
+		Logger.log("Le corbeau a corbeauter " + personnageCorbeauter + ".", TypeDeLog.role);
 		
 		this.getStatsCorbeau().corbeauter(personnageCorbeauter);
 	}

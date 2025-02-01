@@ -29,8 +29,8 @@ public class StatsChasseur extends Statistiques {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est mort et a pu utiliser son pouvoir dans " + ((double) ((this.nbTire / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
-		String stats2 = "Sur " + (int) this.nbTire + " tires, le chasseur a tuer un loups-garous dans " + ((double) ((this.nbLgTuer / this.nbTire) * 100 )) + "% des cas" ;
+		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le chasseur est mort et a pu utiliser son pouvoir dans " + ((double) ((this.nbTire / super.getNbPartie()) * 100 )) + "% d'entre elles." ;
+		String stats2 = "Sur " + (int) this.nbTire + " tires, le chasseur a tuer un loups-garous dans " + ((double) ((this.nbLgTuer / this.nbTire) * 100 )) + "% des cas." ;
 		return stats1 + "\n" + stats2;
 	}
 

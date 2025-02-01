@@ -26,7 +26,7 @@ public class StatsDeuxSoeurs extends Statistiques {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur " + (int) this.nbVote + " votes, les deux soeurs ont voter contre un loups-garous dans " + ((double) ((this.nbLgVoter / this.nbVote) * 100 )) + "% des cas" ;
+		String stats1 = "Sur " + (int) this.nbVote + " votes, les deux soeurs ont voter contre un loups-garous dans " + ((double) ((this.nbLgVoter / this.nbVote) * 100 )) + "% des cas." ;
 		return stats1 ;
 	}
 

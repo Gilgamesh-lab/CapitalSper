@@ -33,7 +33,7 @@ public class Sorciere extends VillageoisSpecial{
 	public void agir() {
 		if((this.getStatut().aEteAttaquerParLaMeute() && this.isaUnePotionDeVie())) {
 			this.potionDeVie(this);
-			Logger.log(this + " s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
+			Logger.log(this + " s'est sauvé elle-même de l'attaque des Loups-garous grâce à sa potion de vie.", TypeDeLog.role);
 			this.statsSorciere.incrementerNbAutoProtection();
 		}
 		
@@ -42,7 +42,6 @@ public class Sorciere extends VillageoisSpecial{
 		}
 		if(this.action == null) {
 			this.action = (int) (Math.random() * ( this.actions.size() - 0 ));
-			//this.action = this.actions.get(action);
 		}
 		
 		this.statsSorciere.incrementerNbDeuxPotionsUtiliser(this.action);
@@ -50,7 +49,7 @@ public class Sorciere extends VillageoisSpecial{
 		if((this.isaUnePotionDeVie() && ((this.action == 0 || this.action == 3)  || (this.estAmoureux() && this.getAmoureux().getStatut().aEteAttaquerParLaMeute()))) && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute()) ) {
 			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findAny().get();
 			this.potionDeVie(personnageASauver);
-			Logger.log(this + " a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie", TypeDeLog.role);
+			Logger.log(this + " a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie.", TypeDeLog.role);
 			
 		}// potion de vie avant car elle connait l'innocent tuer par les loups-garous, ce qui est à prendre en compte pour la potion de mort
 		
@@ -93,10 +92,10 @@ public class Sorciere extends VillageoisSpecial{
 		
 		String messageMort;
 		if(Logger.isAfficherLogDetailsRoleActionOn()) {
-			messageMort = this + " a tué " + personnageATuer +  " avec sa potion de mort";
+			messageMort = this + " a tué " + personnageATuer +  " avec sa potion de mort.";
 		}
 		else {
-			messageMort = personnageATuer +  " a été tué durant la nuit";
+			messageMort = personnageATuer +  " a été tué durant la nuit.";
 		}
 		Logger.log(messageMort, TypeDeLog.role);
 		this.tuer(personnageATuer);

@@ -32,16 +32,16 @@ public class Voyante extends VillageoisSpecial {
 		dernierPersonnageSonder = super.voteCibleAction();
 		 statsVoyante.voyance(dernierPersonnageSonder);
 		 if(dernierPersonnageSonder.equals(this)) {
-				System.out.println("erreur vovo détecté : " + this + "s'est choisi elle-même");
+				System.out.println("erreur vovo détecté : " + this + "s'est choisi elle-même.");
 			}
 		 if(dernierPersonnageSonder.estUnVillageois()) {
-			 Logger.log(this + " a décidé de sonder " + dernierPersonnageSonder + " qui s'est révélé être innocent", TypeDeLog.role);
+			 Logger.log(this + " a décidé de sonder " + dernierPersonnageSonder + " qui s'est révélé être innocent.", TypeDeLog.role);
 			 //this.ajouterAlliés(dernierPersonnageSonder.getAlliés());
 			 this.ajouterAllié(dernierPersonnageSonder);
 			 
 		 }
 		 else {
-			 Logger.log(this + " a décidé de sonder " + dernierPersonnageSonder + " qui s'est révélé être un ennemie du village", TypeDeLog.role);
+			 Logger.log(this + " a décidé de sonder " + dernierPersonnageSonder + " qui s'est révélé être un ennemie du village.", TypeDeLog.role);
 			 this.ajouterEnnemie(dernierPersonnageSonder);
 			 
 		 }

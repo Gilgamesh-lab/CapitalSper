@@ -25,7 +25,7 @@ public class Chasseur extends VillageoisSpecial {
 			Personnage cible = this.getVillage().getPersonnageParId(this.voter());
 			statsChasseur.tirer(cible);
 			this.resetListeDeVote();
-			Logger.log("Dans son dernier souffle " + this + " a décidé d'emporter avec lui " + cible);
+			Logger.log("Dans son dernier souffle " + this + " a décidé d'emporter avec lui " + cible + ".");
 			this.tuer(cible);
 			this.perdrePouvoir(TypeDePouvoir.Mort);
 		}

@@ -46,7 +46,7 @@ public class DeuxSoeurs extends VillageoisSpecial {
 		DeuxSoeurs jumelle =  this.getVillage().initDeuxSoeurs();
 		this.ajouterAllié(jumelle);
 		jumelle.ajouterAllié(this);
-		Logger.log("Les deux soeurs " + this + " et " + jumelle  + " se sont reconnus et peuvent ce faire confiance maintenant", TypeDeLog.role);
+		Logger.log("Les deux soeurs " + this + " et " + jumelle  + " se sont reconnus et peuvent ce faire confiance maintenant.", TypeDeLog.role);
 	}
 	
 	@Override

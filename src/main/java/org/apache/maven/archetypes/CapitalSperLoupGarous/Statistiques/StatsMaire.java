@@ -85,12 +85,12 @@ public class StatsMaire extends Statistiques {
 	
 	@Override
 	public String getStats() {
-		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le maire a participer en moyenne " + ((double) ((this.nbVote / super.getNbPartie()))) + " vote par partie" ;
-		String stats2 = "Sur " + (int) super.getNbPartie() + " parties, il y a eu en moyenne " + ((double) (this.nbMaire / super.getNbPartie())) + " maire par partie" ;
-		String stats3 = "Sur " + (int) this.nbMaire + " maires,  " + ((double) (this.nbLoupGarouMaire / this.nbMaire) * 100) + "% d'entre eux étaient des loups-garous" ;
-		String stats4 = "Sur " + (int) this.nbMaire + " maires,  " + ((double) (this.nbSperMaire / this.nbMaire) * 100) + "% d'entre eux étaient des villageois spéciaux" ;
-		String stats5 = "Sur " + (int) this.nbVote + " votes du village,  " + ((double) (this.nbEgaliter / this.nbVote) * 100) + "% des votes se sont terminés sur une égalité" ;
-		String stats6 = "Sur " + (int) this.nbVote +  " votes du village, la présence du maire a changé l'issue de "  + ((double) (this.nbVoteDecisifDuMaire / this.nbVote) * 100) + "% d'entre eux";
+		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, le maire a participer en moyenne " + ((double) ((this.nbVote / super.getNbPartie()))) + " vote par partie.";
+		String stats2 = "Sur " + (int) super.getNbPartie() + " parties, il y a eu en moyenne " + ((double) (this.nbMaire / super.getNbPartie())) + " maire par partie.";
+		String stats3 = "Sur " + (int) this.nbMaire + " maires,  " + ((double) (this.nbLoupGarouMaire / this.nbMaire) * 100) + "% d'entre eux étaient des loups-garous.";
+		String stats4 = "Sur " + (int) this.nbMaire + " maires,  " + ((double) (this.nbSperMaire / this.nbMaire) * 100) + "% d'entre eux étaient des villageois spéciaux.";
+		String stats5 = "Sur " + (int) this.nbVote + " votes du village,  " + ((double) (this.nbEgaliter / this.nbVote) * 100) + "% des votes se sont terminés sur une égalité.";
+		String stats6 = "Sur " + (int) this.nbVote +  " votes du village, la présence du maire a changé l'issue de "  + ((double) (this.nbVoteDecisifDuMaire / this.nbVote) * 100) + "% d'entre eux.";
 		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4 + "\n" + stats5 + "\n" + stats6;
 	}
 	

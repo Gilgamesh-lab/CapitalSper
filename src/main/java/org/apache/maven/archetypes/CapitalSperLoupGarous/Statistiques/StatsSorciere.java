@@ -78,11 +78,11 @@ public class StatsSorciere extends Statistiques  {
 
 	@Override
 	public String getStats() {
-		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, la sorcière a utiliser une potion de mort dans " + ((double) ((this.nbPotionDeMort / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
-		String stats2 = "Sur " + (int) this.nbPotionDeMort + " potions de mort utilisé, la sorcière a tuer un loups-garous dans " + ((double) ((this.nbLoupGarouTuer / this.nbPotionDeMort) * 100 )) + "% des cas";
-		String stats3 = "Sur " + (int) super.getNbPartie() +  " parties, la sorcière a utiliser une potion de vie dans " + ((double) ((this.nbPotionDeVie / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
-		String stats4 = "Sur " + (int) this.nbPotionDeVie + " potions de vie utilisé, la sorcière c'est sauvé elle-même dans " + ((double) ((this.nbAutoProtection / this.nbPotionDeVie) * 100 )) + "% des cas" ;
-		String stats5 = "Sur " + (int) super.getNbPartie() +  " parties, la sorcière a utilisé ses deux potions en même temps dans " + ((double) ((this.nbDeuxPotion / super.getNbPartie()) * 100 )) + "% d'entre elles" ;
+		String stats1 = "Sur " + (int) super.getNbPartie() +  " parties, la sorcière a utiliser une potion de mort dans " + ((double) ((this.nbPotionDeMort / super.getNbPartie()) * 100 )) + "% d'entre elles." ;
+		String stats2 = "Sur " + (int) this.nbPotionDeMort + " potions de mort utilisé, la sorcière a tuer un loups-garous dans " + ((double) ((this.nbLoupGarouTuer / this.nbPotionDeMort) * 100 )) + "% des cas.";
+		String stats3 = "Sur " + (int) super.getNbPartie() +  " parties, la sorcière a utiliser une potion de vie dans " + ((double) ((this.nbPotionDeVie / super.getNbPartie()) * 100 )) + "% d'entre elles." ;
+		String stats4 = "Sur " + (int) this.nbPotionDeVie + " potions de vie utilisé, la sorcière c'est sauvé elle-même dans " + ((double) ((this.nbAutoProtection / this.nbPotionDeVie) * 100 )) + "% des cas." ;
+		String stats5 = "Sur " + (int) super.getNbPartie() +  " parties, la sorcière a utilisé ses deux potions en même temps dans " + ((double) ((this.nbDeuxPotion / super.getNbPartie()) * 100 )) + "% d'entre elles." ;
 		return stats1 + "\n" + stats2 + "\n" + stats3 + "\n" + stats4 + "\n" + stats5;
 	}
 
