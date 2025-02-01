@@ -3,6 +3,7 @@ package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsDeuxSoeurs;
 
 public class DeuxSoeurs extends VillageoisSpecial {
@@ -45,6 +46,7 @@ public class DeuxSoeurs extends VillageoisSpecial {
 		DeuxSoeurs jumelle =  this.getVillage().initDeuxSoeurs();
 		this.ajouterAllié(jumelle);
 		jumelle.ajouterAllié(this);
+		Logger.log("Les deux soeurs " + this + " et " + jumelle  + " se sont reconnus et peuvent ce faire confiance maintenant", TypeDeLog.role);
 	}
 	
 	@Override

@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController // Préfixe commun pour les routes de ce contrôleur
+@RestController 
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api") // Préfixe commun pour les routes de ce contrôleur
 public class Controller {
 
-    // Route GET /api/hello
+
 	
 	
 	@GetMapping("/ping")
@@ -38,10 +38,12 @@ public class Controller {
 
     
     @GetMapping("/getPersonnages")
-    public List<Integer> getPersonnages() {
+    public ResponseEntity getPersonnages() {
+    	Map<String, Object> response = new HashMap<>();
     	List<Integer> liste = Referentiel.getIdPersonnageDisponible();
     	liste.add(98); // maire
-        return liste;
+    	response.put("liste", liste);
+        return ResponseEntity.status(HttpStatus.OK).header("Content-Type", "application/json").body(response);
     }
 
     @PostMapping("/lancerUnePartie")
@@ -58,19 +60,22 @@ public class Controller {
     		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     	}
     	
-    	
-    	
     	Village village = new Village(partie.getNbSimpleVillageois(),partie.getNbLoupGarou());
     	village.setMaire(partie.isaUnMaire());
     	
     	if(partie.getListeIdRolePersonnageSpecial() != null ) {
     		List<Integer> liste = Referentiel.getIdPersonnageDisponible();
     		for(int i : partie.getListeIdRolePersonnageSpecial()) {
-        		if(liste.contains(i)) {
+    			if(village.estPresent(i)) {
+    				response.put("erreur", "Le village ne peut pas être composé de deux personnages spécial identique");
+    	    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    			}
+    			else if(liste.contains(i)) {
         			village.ajouterPersonnage(i);
         		}
         		else {
-        			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erreur : l'id " + i + " est introuvable");
+        			response.put("erreur", "Erreur : le personnage à l'id " + i + " est introuvable");
+        			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         		}
         	}
     	}
@@ -111,15 +116,11 @@ public class Controller {
     	}
     	
     	catch (Exception e) {
-    		response.put("erreur", "Une erreur est survenue lors de l'execution de la simulation : " + e);
+    		response.put("erreur", "Une erreur est survenue lors de l'execution de la simulation :( ");
     		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     	}
 		
-		
-		
-		
-        response.put("log", logger.getLogPartie());
-        
+		response.put("log", logger.getLogPartie());
 		return ResponseEntity.status(HttpStatus.OK).header("Content-Type", "application/json").body(response);
 
     }
