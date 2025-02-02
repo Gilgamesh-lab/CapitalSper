@@ -10,3 +10,15 @@ Victoire des Loups-Garous en 4 tours
 
 ==================================================
 
+Lancement de la partie avec un village de 3 personnages composé de 1 simple(s) villageois , 1 Corbeau et 1 simple(s) loup-garous.
+
+Le corbeau a corbeauter SimpleVillageois0.
+
+SimpleVillageois0 a été tué la nuit par les loups-garous.
+
+Le village est constitué de [LoupGarouSimple1, le corbeau].
+le corbeau et le loups-garous survivant s'entretuent.
+Égalité en 1 tours.
+
+
+====================================================

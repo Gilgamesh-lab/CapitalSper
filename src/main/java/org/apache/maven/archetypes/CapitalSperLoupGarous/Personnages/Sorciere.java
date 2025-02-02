@@ -50,6 +50,9 @@ public class Sorciere extends VillageoisSpecial{
 			Personnage personnageASauver = this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findAny().get();
 			this.potionDeVie(personnageASauver);
 			Logger.log(this + " a sauvé " + personnageASauver +  " de l'attaque des Loups-garous grâce à sa potion de vie.", TypeDeLog.role);
+			if(this != personnageASauver) {
+				Logger.log("Puisque " + personnageASauver +  " a été victime de l'attaque des loups-garous, " + this + " sait que s'en n'est pas un.", TypeDeLog.role);
+			}
 			
 		}// potion de vie avant car elle connait l'innocent tuer par les loups-garous, ce qui est à prendre en compte pour la potion de mort
 		
