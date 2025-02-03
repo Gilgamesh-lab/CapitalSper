@@ -36,7 +36,7 @@ public class Corbeau extends VillageoisSpecial{
 
 	@Override
 	public ArrayList<TypeDePouvoir> init() {
-		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort));
+		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Vote));
 	}
 	
 	@Override
