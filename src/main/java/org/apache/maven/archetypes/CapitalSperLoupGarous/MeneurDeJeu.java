@@ -91,17 +91,33 @@ public class MeneurDeJeu {
 		if(!this.conditionFinPartie()) {
 			this.nbTour++;
 			this.village.premièreNuit();
-			while(!this.conditionFinPartie()) {
-				if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnageEnVie() > 2) {
-					this.village.getMaire().election();
+			try {
+				while(!this.conditionFinPartie()) {
+					if(this.nbTour == 1 && this.village.aUnMaire() && this.village.getNbPersonnageEnVie() > 2) {
+						this.village.getMaire().election();
+					}
+					this.village.tribunal();
+					if(!this.conditionFinPartie()){
+						this.nbTour++;
+						this.village.nuit();
+					}
+					
 				}
-				this.village.tribunal();
-				if(!this.conditionFinPartie()){
-					this.nbTour++;
-					this.village.nuit();
-				}
-				
 			}
+			
+			catch(Exception e1) {
+				//System.out.println(this.conditionVictoireVillageois());
+				//System.out.println(this.conditionVictoireLoupGarous());
+				//System.out.println(this.conditionVictoireAmoureux());
+				System.out.println(this.conditionEgaliter());
+				System.out.println("Nb loup garous " + this.village.getNbLoupGarou());
+				System.out.println("nb villageois " + this.village.getNbVillageois());
+				System.out.println("nb " + this.village.getNbPersonnageEnVie());
+				System.out.println(this.village.getNbSpéEnVieACePouvoir(TypeDePouvoir.Mort));
+				//System.out.println(this.conditionFinPartie());
+				throw e1;
+			}
+			
 		}
 		this.village.finVillage();
 		this.listeTours.add(this.nbTour);

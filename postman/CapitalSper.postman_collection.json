@@ -1,60 +1,100 @@
 {
 	"info": {
-		"_postman_id": "3e5aeacf-f055-4112-ae79-7cdf5ad8cdbd",
+		"_postman_id": "32107094-a4ac-4658-b0bb-eee05b880e20",
 		"name": "CapitalSper",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "30618723",
-		"_collection_link": "https://solar-firefly-771998.postman.co/workspace/My-Workspace~e0e2a34c-01a4-461f-8429-138de78ad018/collection/30618723-3e5aeacf-f055-4112-ae79-7cdf5ad8cdbd?action=share&source=collection_link&creator=30618723"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41622223"
 	},
 	"item": [
 		{
-			"name": "getPersonnages",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "http://localhost:8080/api/lancerUnePartie",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"nbSimpleVillageois\" : 5,\r\n    \"nbLoupGarou\" : 3,\r\n    \"aUnMaire\" : true,\r\n    \"nbPartie\" : 1,\r\n    \"listeIdRolePersonnageSpecial\" : [3 , 22 , 19, 4, 8]\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/getPersonnages"
+				"url": {
+					"raw": "http://localhost:8080/api/lancerUnePartie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"lancerUnePartie"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "hello",
+			"name": "http://localhost:8080/api/hello",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/hello"
+				"url": {
+					"raw": "http://localhost:8080/api/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ping"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "lancerUnePartie",
+			"name": "http://localhost:4200/personnages/5",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nbSimpleVillageois\" : 10,\r\n    \"nbLoupGarou\" : 2,\r\n    \"aUnMaire\" : true,\r\n    \"listeIdRolePersonnageSpecial\" : [3, 22, 19, 4]\r\n}",
+					"raw": "{\r\n    \"messages\": [ \r\n    { \"role\": \"system\", \"content\": \"You are a helpful coding assistant.\" },\r\n    { \"role\": \"user\", \"content\": \"How do I init and update a git submodule?\" }\r\n  ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/lancerUnePartie"
+				"url": {
+					"raw": "http://localhost:8080/api/getPersonnages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"getPersonnages"
+					]
+				}
 			},
 			"response": []
 		}

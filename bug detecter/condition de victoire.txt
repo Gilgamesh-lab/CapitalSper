@@ -10,15 +10,18 @@ Victoire des Loups-Garous en 4 tours
 
 ==================================================
 
-Lancement de la partie avec un village de 3 personnages composé de 1 simple(s) villageois , 1 Corbeau et 1 simple(s) loup-garous.
+le chasseur a été tué la nuit par les loups-garous.
+Dans son dernier souffle le chasseur a décidé d'emporter avec lui la voyante.
+Le montreurs d'ours a pour voisins [le salvateur, Cupidon].
+Le maire(Cupidon) a voté contre LoupGarouSimple2 suite à l'égalité entre [LoupGarouSimple2] et lui.
+LoupGarouSimple2 a été éliminer à l'issue du vote.
 
-Le corbeau a corbeauter SimpleVillageois0.
+Suite à la mort de LoupGarouSimple2 , le montreur d'ours fut emporté par le chagrin.
+Suite à la mort du montreurs d'ours, [le salvateur, Cupidon] sont considérer comme innocent.
 
-SimpleVillageois0 a été tué la nuit par les loups-garous.
-
-Le village est constitué de [LoupGarouSimple1, le corbeau].
-le corbeau et le loups-garous survivant s'entretuent.
-Égalité en 1 tours.
+Le village est constitué de [Cupidon, le salvateur].
+Victoire des Loups-Garous en 4 tours.
+1 Loup(s)-Garou(s) survivant(s).
 
 
 ====================================================

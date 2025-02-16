@@ -2,6 +2,7 @@ package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsVoleur;
@@ -65,10 +66,12 @@ public class Voleur extends VillageoisSpecial {
 		else if(perso1.aUnPouvoirSpecial() && !perso2.aUnPouvoirSpecial()) {
 			Logger.log("Le Voleur a choisie la carte " + perso1 + " entre cette carte et  "  + perso2 + "." , TypeDeLog.role);
 			this.personnageChoisie = perso1;
+			perso2.meurt();
 		}
 		else if(perso2.aUnPouvoirSpecial() && !perso1.aUnPouvoirSpecial()) {
 			Logger.log("Le Voleur a choisie la carte " + perso2 + " entre cette carte et  "  + perso1 + "." , TypeDeLog.role);
 			this.personnageChoisie = perso2;
+			perso1.meurt();
 		}
 		
 		
@@ -78,9 +81,9 @@ public class Voleur extends VillageoisSpecial {
 		}
 		else {
 			this.personnageChoisie.ajouterAllié(this);
-			this.getVillage().getMeute().getMeute().stream().forEach(x->x.ajouterAllié(this)); // corriger
 			if(!this.personnageChoisie.estUnVillageois()) {
 				this.getVillage().getMeute().enrolerUnLoupGarou( (LoupGarou) this.personnageChoisie);
+				this.getVillage().getMeute().getMeute().stream().forEach(x->x.ajouterAllié(this)); // corriger
 			}
 			
 			statsVoleur.voler(this.personnageChoisie);
@@ -114,6 +117,14 @@ public class Voleur extends VillageoisSpecial {
 	}
 	
 	@Override
+	public void meurt() {
+		if(this.personnageChoisie != null) {
+			 this.personnageChoisie.meurt();
+		}
+		super.meurt();
+	}
+	
+	@Override
 	public int getId() {
 		if(this.personnageChoisie != null) {
 			return this.personnageChoisie.getId();
@@ -144,6 +155,21 @@ public class Voleur extends VillageoisSpecial {
 	}
 	
 	@Override
+	public List<TypeDePouvoir> getTypeDePouvoir() {
+		if(this.personnageChoisie != null && this.personnageChoisie.aUnPouvoirSpecial()) {
+			if(this.personnageChoisie.estUnVillageois()) {
+				return ((VillageoisSpecial) this.personnageChoisie).getTypeDePouvoir() ;
+			}
+			else {
+				return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort));
+			}
+		}
+		else {
+			return new ArrayList<>(Arrays.asList(TypeDePouvoir.Metamorphose));
+		}
+	}
+	
+	@Override
 	public ArrayList<Personnage> getEnnemies() {
 		if(this.personnageChoisie != null) {
 			return this.personnageChoisie.getEnnemies();
@@ -162,14 +188,6 @@ public class Voleur extends VillageoisSpecial {
 		}
 	}
 	
-	public void tomberAmoureux(Personnage amoureux) {
-		if(this.personnageChoisie != null) {
-			this.personnageChoisie.tomberAmoureux(amoureux);
-		}
-		else {
-			super.tomberAmoureux(amoureux);
-		}
-	}
 	
 	public void resetListeDeVote() {
 		if(this.personnageChoisie != null) {

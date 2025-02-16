@@ -145,7 +145,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public long getNbSpéEnVieACePouvoir(TypeDePouvoir typeDePouvoir) {
-		return this.getHabitantsEnVie().stream().filter(VillageoisSpecial.class::isInstance).map(c -> (VillageoisSpecial) c).filter(x->x.aCePouvoir(typeDePouvoir)).count();
+		return this.getHabitantsEnVie().stream().filter(VillageoisSpecial.class::isInstance).map(c -> (VillageoisSpecial) c).filter(x->x.aCePouvoir(typeDePouvoir) && x.estUnVillageois()).count();
 	}
 	
 	public boolean estEnVie(int idRole) {
@@ -154,7 +154,7 @@ public  class Village  implements Cloneable {
 	
 	
 	public int getNbPersonnageEnVie() {
-		return (int) this.village.stream().filter(x->x.estEnvie()).count();
+		return (int) this.getHabitantsEnVie().size();
 	}
 	
 	public int getNbPersonnageAvantPartie() {
@@ -182,7 +182,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public int getNbVillageois() {
-		return this.getNbPersonnageEnVie() - this.getNbLoupGarou() ;
+		return  (int) this.getHabitantsEnVie().stream().filter(x -> x.estUnVillageois()).count() ;
 	}
 	
 	
@@ -192,7 +192,7 @@ public  class Village  implements Cloneable {
 	}
 	
 	public int getNbLoupGarou() {
-		return (int) this.getMeute().getLoupGarouEnVie().stream().filter(x->x.estEnvie()).count();
+		return (int) this.getMeute().getNbLgEnVie();
 	}
 	
 	
