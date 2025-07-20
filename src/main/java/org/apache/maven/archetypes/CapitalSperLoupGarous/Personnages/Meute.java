@@ -147,13 +147,13 @@ public class Meute {
 				
 			}
 			personnageDevorer.getStatut().setAEteAttaqueParLaMeute(true);
-			this.getStatsMeute().vote(personnageDevorer);
+			getStatsMeute().vote(personnageDevorer);
 		}
 		
 		else {
 			Logger.log("Les loups-garous se sont heurtés à la protection du salvateur et n'ont pas pu dévorer " + personnageDevorer + ".", TypeDeLog.role);
 			Salvateur.getStatsSalvateur().incrementerNbProtectionReussie();
-			this.getStatsMeute().incrementerNbSurvivants();
+			getStatsMeute().incrementerNbSurvivants();
 		}
 		this.estRassasier = true;
 	}

@@ -3,9 +3,11 @@ package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
 
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsCorbeau;
 
 public class Corbeau extends VillageoisSpecial{
@@ -15,7 +17,7 @@ public class Corbeau extends VillageoisSpecial{
 	
 	public Corbeau() {
 		super(IDROLE, statsCorbeau);
-		this.personnageCorbeauter = null;
+		personnageCorbeauter = null;
 	}
 	
 	@Override
@@ -30,7 +32,7 @@ public class Corbeau extends VillageoisSpecial{
 		personnageCorbeauter = this.getVillage().getPersonnageParId(idPersonnage);
 		Logger.log("Le corbeau a corbeauter " + personnageCorbeauter + ".", TypeDeLog.role);
 		
-		this.getStatsCorbeau().corbeauter(personnageCorbeauter);
+		getStatsCorbeau().corbeauter(personnageCorbeauter);
 	}
 	
 
@@ -41,13 +43,17 @@ public class Corbeau extends VillageoisSpecial{
 	
 	@Override
 	public String toString() {
+		String nom;
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
-			return "le corbeau" + this.getId();
+			nom = "le corbeau" + this.getId();
 		}
 		else {
-			return "le corbeau";
+			nom = "le corbeau";
 		}
-		
+		if(this.getStatut().isInfecter()) {
+			nom += "(infecté)";
+		}
+		return nom;
 	}
 
 	public static StatsCorbeau getStatsCorbeau() {

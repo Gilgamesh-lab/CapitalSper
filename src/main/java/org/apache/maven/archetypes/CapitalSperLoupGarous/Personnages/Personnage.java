@@ -1,10 +1,13 @@
 package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
 
 public abstract class Personnage  implements Cloneable {
@@ -21,6 +24,7 @@ public abstract class Personnage  implements Cloneable {
 	private int nbVote = 1;
 	private Fonction fonction = null;
 	private Statistiques statPersonnage;
+	private ArrayList<TypeDePouvoir> typeDePouvoir;
 	
 	
 	protected Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial, Statistiques statPersonnage) {
@@ -32,6 +36,7 @@ public abstract class Personnage  implements Cloneable {
 		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
 		this.listeEnnemie = new ArrayList<>();
 		this.statPersonnage  = statPersonnage;
+		this.typeDePouvoir = this.init();
 	}
 	
 	protected Personnage(Boolean estUnVillageois, int idDeRole, boolean aUnPouvoirSpecial) {
@@ -43,11 +48,26 @@ public abstract class Personnage  implements Cloneable {
 		this.aUnPouvoirSpecial = aUnPouvoirSpecial;
 		this.listeEnnemie = new ArrayList<>();
 		this.statPersonnage  = null;
+		this.typeDePouvoir = this.init();
 	}
 	
 	public void tuer(Personnage personnage) {
 		personnage.getStatut().setTueur(this.getIdDeRole());
 		personnage.meurt();
+	}
+	
+	public boolean aCePouvoir(TypeDePouvoir typeDePouvoir) {
+		return this.getTypeDePouvoir().contains(typeDePouvoir);
+	}
+	
+	public void perdrePouvoir(TypeDePouvoir typeDePouvoir) {
+		this.typeDePouvoir.remove(typeDePouvoir);
+	}
+	
+	public abstract ArrayList<TypeDePouvoir> init() ;
+
+	public List<TypeDePouvoir> getTypeDePouvoir() {
+		return typeDePouvoir;
 	}
 	
 	
@@ -380,6 +400,12 @@ public abstract class Personnage  implements Cloneable {
 	
 	public void incrementerNbVote(int vote) {
 		this.nbVote += vote;
+	}
+	
+	public void infecter(Personnage infecter) {
+		this.setAlliés(infecter.getAlliés());
+		this.setEnnemies(infecter.getEnnemies());
+		this.getStatut().setInfecter(true);
 	}
 	
 	

@@ -2,8 +2,7 @@ package org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques;
 
 import java.util.ArrayList;
 
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
-
+import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
 
 public class StatsVillage extends Statistiques {
 	private float nbVote;
@@ -36,7 +35,7 @@ public class StatsVillage extends Statistiques {
 	
 	public void decompteNbSurvivants(ArrayList<Personnage> personnages) {
 		this.nbSurvivants += personnages.stream().filter(x->x.estEnvie()).count();
-		if(this.nbPersonnageTotal == 0) {
+		if(this.nbPersonnageTotal == 0) {// initialisation
 			this.nbPersonnageTotal = personnages.size() * super.getNbPartie();
 		}
 	}

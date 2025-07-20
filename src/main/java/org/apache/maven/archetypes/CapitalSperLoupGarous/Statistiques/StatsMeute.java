@@ -60,7 +60,7 @@ public class StatsMeute extends Statistiques {
 		return nbVote;
 	}
 
-	public float getNbSperTuer() {
+	public float getNbSperVoter() {
 		return nbSperVoter;
 	}
 

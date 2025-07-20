@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsCupidon;
 
 public class Cupidon extends VillageoisSpecial {

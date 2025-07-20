@@ -1,10 +1,18 @@
 package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
-public class LoupGarou extends Personnage {
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
+
+public abstract class LoupGarou extends Personnage {
 	private Meute meute;
 	
 	public LoupGarou(int idRole, boolean aUnPouvoirSpecial) {
 		super(false, idRole, aUnPouvoirSpecial);
+	}
+	
+	public LoupGarou(int idRole, boolean aUnPouvoirSpecial, Statistiques statPersonnage) {
+		super(true, idRole, aUnPouvoirSpecial, statPersonnage);
+		
 	}
 	
 	public Meute getMeute() {
@@ -22,14 +30,13 @@ public class LoupGarou extends Personnage {
 	@Override
 	public void agir() {
 		this.meute.attaquerVillage();
-		
 	}
 
 
 	@Override
 	public void agirAprèsNuit() {
 		if(this.getVillage().getNuitSansMort()) {
-			this.getMeute().getStatsMeute().ASurvecu(this.getVillage().getVillage());
+			Meute.getStatsMeute().ASurvecu(this.getVillage().getVillage());
 		}
 		
 		
