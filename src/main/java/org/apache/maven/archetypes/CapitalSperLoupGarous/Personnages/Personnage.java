@@ -1,14 +1,14 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Cupidon;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.MontreurDOurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
 
 public abstract class Personnage  implements Cloneable {
 	

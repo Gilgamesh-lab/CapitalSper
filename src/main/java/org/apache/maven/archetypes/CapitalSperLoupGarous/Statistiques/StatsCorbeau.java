@@ -1,10 +1,10 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 
 public class StatsCorbeau extends Statistiques {
 	private float nbCorbeautage;

@@ -1,9 +1,9 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques;
 
 import java.util.ArrayList;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.SimpleVillageois;
 
 public class StatsMeute extends Statistiques {
 	private float nbVote;

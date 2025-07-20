@@ -1,10 +1,10 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
 
 public class Logger {
 	private static boolean detailVoteVillage;

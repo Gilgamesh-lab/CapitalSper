@@ -1,10 +1,10 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
 
 public abstract class LoupGarouSpecial extends LoupGarou {
 	private ArrayList<TypeDePouvoir> typeDePouvoir;

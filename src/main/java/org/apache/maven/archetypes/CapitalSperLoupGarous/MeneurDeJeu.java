@@ -1,16 +1,16 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.Meute;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Maire;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.Meute;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
 
 public class MeneurDeJeu {
 	private static Village savegardeVillage;

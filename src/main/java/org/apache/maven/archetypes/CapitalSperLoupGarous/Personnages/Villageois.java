@@ -1,7 +1,7 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
 
 public abstract class Villageois extends Personnage {
 	

@@ -1,14 +1,14 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMontreursDOurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsMontreursDOurs;
 
 public class MontreurDOurs extends VillageoisSpecial {
 	private Personnage voisinDeDroite;

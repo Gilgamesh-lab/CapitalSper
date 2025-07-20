@@ -1,6 +1,6 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 
 public class StatsMontreursDOurs extends Statistiques {
 	private float nbGrognement;

@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Logger;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsMeute;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Salvateur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsMeute;
 
 public class Meute {
 	

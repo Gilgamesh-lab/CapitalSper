@@ -1,7 +1,7 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.Statistiques;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
 
 public abstract class LoupGarou extends Personnage {
 	private Meute meute;

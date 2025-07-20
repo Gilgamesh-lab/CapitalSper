@@ -1,6 +1,6 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
 
 public abstract class Fonction {
 	private Personnage personnage;

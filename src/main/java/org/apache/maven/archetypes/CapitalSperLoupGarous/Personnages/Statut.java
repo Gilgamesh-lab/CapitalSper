@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 
 public class Statut {

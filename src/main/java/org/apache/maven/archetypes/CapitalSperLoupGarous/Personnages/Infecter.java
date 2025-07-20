@@ -1,12 +1,12 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
 
 public class Infecter extends LoupGarouSpecial {
 	public final static int IDROLE = 99;

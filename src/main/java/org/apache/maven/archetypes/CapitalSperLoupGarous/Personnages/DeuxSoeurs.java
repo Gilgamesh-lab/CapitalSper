@@ -1,10 +1,10 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsDeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsDeuxSoeurs;
 
 public class DeuxSoeurs extends VillageoisSpecial {
 	public final static int IDROLE = 8;

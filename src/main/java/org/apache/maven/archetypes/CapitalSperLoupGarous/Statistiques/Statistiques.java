@@ -1,6 +1,6 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.MeneurDeJeu;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.MeneurDeJeu;
 
 public abstract class Statistiques {
 	

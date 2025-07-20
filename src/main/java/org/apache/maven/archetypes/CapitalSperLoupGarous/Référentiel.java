@@ -1,22 +1,22 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.Infecter;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Chasseur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Cupidon;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.MontreurDOurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Sorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Voyante;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.Infecter;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Chasseur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Corbeau;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.DeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Salvateur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Sorciere;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Voyante;
 
 public class Référentiel {
 	static Map<Integer, Class<? extends Personnage>> classesParRole = new HashMap<>();

@@ -1,14 +1,14 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Chasseur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Corbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Cupidon;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.MontreurDOurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Salvateur;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Sorciere;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Villageois.Voyante;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Chasseur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Corbeau;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.DeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Salvateur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Sorciere;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Voyante;
 
 
 

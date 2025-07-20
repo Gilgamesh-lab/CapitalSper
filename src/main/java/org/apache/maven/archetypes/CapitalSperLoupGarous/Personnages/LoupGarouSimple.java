@@ -1,9 +1,9 @@
-package org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
 
 public class LoupGarouSimple extends LoupGarou {
 	public final static int IDROLE = 15;
