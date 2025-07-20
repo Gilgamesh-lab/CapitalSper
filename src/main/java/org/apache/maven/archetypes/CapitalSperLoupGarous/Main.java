@@ -10,7 +10,7 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voyante;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsVoleur;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.InfectPereDesLoups;
 
 
 
@@ -20,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 0;
+		int nbVillageois = 4;
 		int nbLoupGarous = 3;
 		int nbPartie = 100000;//100000
 		
@@ -28,40 +28,39 @@ public class Main {
 		Logger logger = new Logger();
 		//System.out.println(Referentiel.getIdPersonnageDisponible());
 		
-		logger.setDetailVoteVillage(true);
+		//logger.setDetailVoteVillage(true);
 		//logger.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		//logger.setOffAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
-		logger.setOnAfficherLogDetailsRoleAction();
+		//logger.setOnAfficherLogDetailsRoleAction();
 		
 		//logger.setModeSpectateurOn();
 		logger.setModeStatistiqueOn();
 		
-		Cupidon cupidon = new Cupidon();
-		village.ajouterPersonnage(cupidon);
-		Chasseur chasseur = new Chasseur();
-		village.ajouterPersonnage( chasseur);
-		Sorciere sorcière = new Sorciere();
-		village.ajouterPersonnage(sorcière);
-		Voyante voyante = new Voyante();
-		village.ajouterPersonnage(voyante);
-		
-		Salvateur salvateur = new Salvateur();
-		village.ajouterPersonnage(salvateur);
-		/*village.ajouterPersonnage(Corbeau.IDROLE);
+		village.ajouterPersonnage(Cupidon.IDROLE);
+		village.ajouterPersonnage(Chasseur.IDROLE);
+		village.ajouterPersonnage(Sorciere.IDROLE);
+		village.ajouterPersonnage(Voyante.IDROLE);
+		village.ajouterPersonnage(Salvateur.IDROLE);
+		village.ajouterPersonnage(Corbeau.IDROLE);
 		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
-		MontreurDOurs montreurDOurs = new MontreurDOurs();
-		village.ajouterPersonnage(montreurDOurs);
-		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
+		village.ajouterPersonnage(MontreurDOurs.IDROLE);
+		//village.ajouterPersonnage(Voleur.IDROLE);
 		village.onMaire();
-		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
+		
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
+		meneurDeJeu.lancerDesParties(nbPartie);
+		
+		//village.ajouterPlusieursPersoIdentique(Voyante.IDROLE, 6);
+		
+		//village.ajouterPlusieursPersoIdentique(Cupidon.IDROLE, 4);
+		
 		//meneurDeJeu.exploration();
 		
 		
 		
-		//meneurDeJeu.lancerDesParties(nbPartie);
+		//;
 		meneurDeJeu.exploration();
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/

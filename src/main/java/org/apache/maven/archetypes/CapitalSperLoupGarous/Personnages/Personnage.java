@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Village;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.MontreurDOurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;
 
 public abstract class Personnage  implements Cloneable {

@@ -11,9 +11,9 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Maire;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.Meute;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Meute;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Cupidon;
 
 public class MeneurDeJeu {
 	private static Village savegardeVillage;
@@ -372,7 +372,7 @@ public class MeneurDeJeu {
 		Logger.log(Village.getStatsVillage().getStats(), TypeDeLog.statistique);
 		Logger.log("", TypeDeLog.statistique);
 		this.village.getMeute();
-		Logger.log(Meute.getStatsMeute().getStats(), TypeDeLog.statistique);
+		Logger.log(this.getVillage().getMeute().getStatsMeute().getStats(), TypeDeLog.statistique);
 		Logger.log("", TypeDeLog.statistique);
 		if(this.village.aUnMaire()) {
 			this.village.getMaire();

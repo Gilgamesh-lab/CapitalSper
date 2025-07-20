@@ -2,7 +2,7 @@ package org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques;
 
 import java.util.ArrayList;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 
 public class StatsVillage extends Statistiques {
 	private float nbVote;

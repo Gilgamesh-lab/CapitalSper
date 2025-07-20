@@ -6,13 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-<<<<<<<< HEAD:src/main/java/org/apache/maven/archetypes/CapitalSperLoupGarous/Referentiel.java
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Chasseur;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Cupidon;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Maire;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.MontreurDOurs;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Salvateur;
@@ -20,32 +17,15 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.SimpleVilla
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Sorciere;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voyante;
-========
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.InfectPereDesLoups;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.Infecter;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Chasseur;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Corbeau;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Cupidon;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.MontreurDOurs;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Salvateur;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Sorciere;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois.Voyante;
->>>>>>>> infecter:src/main/java/org/apache/maven/archetypes/CapitalSperLoupGarous/Référentiel.java
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Infecter;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.InfectPereDesLoups;
 
 public class Referentiel {
 	static Map<Integer, Class<? extends Personnage>> classesParRole = new HashMap<>();
 
-<<<<<<<< HEAD:src/main/java/org/apache/maven/archetypes/CapitalSperLoupGarous/Referentiel.java
 	public Referentiel() {
 		this.build();
-========
-	public Référentiel() {
-		build();
->>>>>>>> infecter:src/main/java/org/apache/maven/archetypes/CapitalSperLoupGarous/Référentiel.java
 	}
 	
 	private static void build() {
@@ -59,12 +39,9 @@ public class Referentiel {
 		classesParRole.put(MontreurDOurs.IDROLE, MontreurDOurs.class);// 11
 		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
 		classesParRole.put(DeuxSoeurs.IDROLE, DeuxSoeurs.class);// 8
-<<<<<<<< HEAD:src/main/java/org/apache/maven/archetypes/CapitalSperLoupGarous/Referentiel.java
 		classesParRole.put(Voleur.IDROLE, Voleur.class);// 1
-========
 		classesParRole.put(InfectPereDesLoups.IDROLE, InfectPereDesLoups.class);// 17
 		classesParRole.put(Infecter.IDROLE, Infecter.class);// 99
->>>>>>>> infecter:src/main/java/org/apache/maven/archetypes/CapitalSperLoupGarous/Référentiel.java
 	}
 	
 	public static Personnage conversionDeIdRoleVersPersonnage(int idRole) {

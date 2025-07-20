@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Villageois;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.Statistiques;

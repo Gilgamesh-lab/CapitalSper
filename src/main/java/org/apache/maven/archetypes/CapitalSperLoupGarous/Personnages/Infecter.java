@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous;
+package org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages;
 
 
 import java.util.ArrayList;

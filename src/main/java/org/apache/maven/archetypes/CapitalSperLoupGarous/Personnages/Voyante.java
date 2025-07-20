@@ -8,7 +8,6 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Logger;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.LoupGarou;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsVoyante;
 
 public class Voyante extends VillageoisSpecial {
@@ -20,9 +19,6 @@ public class Voyante extends VillageoisSpecial {
 		super(IDROLE, statsVoyante);
 	}
 	
-	public Voyante(LoupGarou infecter) {
-		super(IDROLE, infecter);
-	}
 	
 	public ArrayList<TypeDePouvoir> init() {
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Voyance));

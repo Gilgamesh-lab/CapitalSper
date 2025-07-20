@@ -7,20 +7,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Map;
 
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Corbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.DeuxSoeurs;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarou;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.LoupGarouSimple;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Maire;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Meute;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.Personnage;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.SimpleVillageois;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDeLog;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.TypeDePouvoir;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Personnages.VillageoisSpecial;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsCorbeau;
-import org.apache.maven.archetypes.CapitalSpéLoupGarous.Statistiques.StatsVillage;
-import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarous.Infecter;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Corbeau;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.DeuxSoeurs;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarou;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Maire;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Meute;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Personnage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.SimpleVillageois;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.VillageoisSpecial;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsCorbeau;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsMaire;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsMeute;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsVillage;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Infecter;
 
 public  class Village  implements Cloneable {
 
