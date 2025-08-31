@@ -40,8 +40,8 @@ public class Referentiel {
 		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
 		classesParRole.put(DeuxSoeurs.IDROLE, DeuxSoeurs.class);// 8
 		classesParRole.put(Voleur.IDROLE, Voleur.class);// 1
-		classesParRole.put(InfectPereDesLoups.IDROLE, InfectPereDesLoups.class);// 17
-		classesParRole.put(Infecter.IDROLE, Infecter.class);// 99
+		//classesParRole.put(InfectPereDesLoups.IDROLE, InfectPereDesLoups.class);// 17
+		//classesParRole.put(Infecter.IDROLE, Infecter.class);// 99
 	}
 	
 	public static Personnage conversionDeIdRoleVersPersonnage(int idRole) {

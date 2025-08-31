@@ -20,8 +20,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 4;
-		int nbLoupGarous = 3;
+		int nbVillageois = 5;
+		int nbLoupGarous = 1;
 		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
@@ -38,16 +38,16 @@ public class Main {
 		//logger.setModeSpectateurOn();
 		logger.setModeStatistiqueOn();
 		
-		village.ajouterPersonnage(Cupidon.IDROLE);
-		village.ajouterPersonnage(Chasseur.IDROLE);
-		village.ajouterPersonnage(Sorciere.IDROLE);
-		village.ajouterPersonnage(Voyante.IDROLE);
-		village.ajouterPersonnage(Salvateur.IDROLE);
-		village.ajouterPersonnage(Corbeau.IDROLE);
-		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
-		village.ajouterPersonnage(MontreurDOurs.IDROLE);
+		//village.ajouterPersonnage(Cupidon.IDROLE);
+		//village.ajouterPersonnage(Chasseur.IDROLE);
+		//village.ajouterPersonnage(Sorciere.IDROLE);
+		//village.ajouterPersonnage(Voyante.IDROLE);
+		//village.ajouterPersonnage(Salvateur.IDROLE);
+		//village.ajouterPersonnage(Corbeau.IDROLE);
+		//village.ajouterPersonnage(DeuxSoeurs.IDROLE);
+		//village.ajouterPersonnage(MontreurDOurs.IDROLE);
 		//village.ajouterPersonnage(Voleur.IDROLE);
-		village.onMaire();
+		//village.onMaire();
 		
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
 		meneurDeJeu.lancerDesParties(nbPartie);
