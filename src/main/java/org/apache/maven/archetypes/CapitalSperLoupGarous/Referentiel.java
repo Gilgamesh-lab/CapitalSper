@@ -19,6 +19,7 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voyante;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Infecter;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouBlanc;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.InfectPereDesLoups;
 
 public class Referentiel {
@@ -40,6 +41,7 @@ public class Referentiel {
 		classesParRole.put(Corbeau.IDROLE, Corbeau.class);// 12
 		classesParRole.put(DeuxSoeurs.IDROLE, DeuxSoeurs.class);// 8
 		classesParRole.put(Voleur.IDROLE, Voleur.class);// 1
+		classesParRole.put(LoupGarouBlanc.IDROLE, LoupGarouBlanc.class);// 1
 		//classesParRole.put(InfectPereDesLoups.IDROLE, InfectPereDesLoups.class);// 17
 		//classesParRole.put(Infecter.IDROLE, Infecter.class);// 99
 	}
@@ -105,7 +107,7 @@ public class Referentiel {
 				
 			}
 		}
-		message += " et " + village.getNbLoupGarou() + " simple(s) loup-garous";
+		message += " et " + village.getMeute().getNbSimpleLoupGarou() + " simple(s) loup-garous";
 		if(village.aUnMaire()) {
 			message += " présidé par un maire";
 		}

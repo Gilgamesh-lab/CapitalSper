@@ -23,7 +23,7 @@ public class Chasseur extends VillageoisSpecial {
 	@Override
 	public void meurt() {
 		super.meurt();
-		if(this.getVillage().getNbLoupGarou() > 0) {
+		if(this.getVillage().getNbLoupGarouEnVie() > 0) {
 			Personnage cible = this.getVillage().getPersonnageParId(this.voter());
 			statsChasseur.tirer(cible);
 			this.resetListeDeVote();

@@ -53,7 +53,7 @@ private Village village;
 			this.village.getMeute().attaquerVillage();
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(1, this.village.getHabitantsEnVie().size());
-			Assert.assertEquals(1, this.village.getNbLoupGarou());
+			Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
 			Assert.assertTrue(Salvateur.getStatsSalvateur().getNbSalvation() == 2);// Car Equals déprécié pour float, trouver une autre alternative
 			Assert.assertTrue(Salvateur.getStatsSalvateur().getNbVillageoisSalvater() == 1);
 			Assert.assertTrue(Salvateur.getStatsSalvateur().getNbProtectionReussie() == 1);
@@ -69,7 +69,7 @@ private Village village;
 			this.village.getMeute().attaquerVillage();
 			this.village.bilanTuerLaNuit();
 			Assert.assertEquals(1, this.village.getHabitantsEnVie().size());
-			Assert.assertEquals(1, this.village.getNbLoupGarou());
+			Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
 			Assert.assertTrue(Salvateur.getStatsSalvateur().getNbSalvation() == 3);
 			Assert.assertTrue(Salvateur.getStatsSalvateur().getNbVillageoisSalvater() == 1);
 			Assert.assertTrue(Salvateur.getStatsSalvateur().getNbProtectionReussie() == 1);

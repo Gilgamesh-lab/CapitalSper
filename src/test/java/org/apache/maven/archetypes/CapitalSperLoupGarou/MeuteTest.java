@@ -41,7 +41,7 @@ public class MeuteTest {
 	@Test
 	public void ajouterPersonnageTest()  {
 		this.village.ajouterPersonnage(new LoupGarouSimple());
-		Assert.assertEquals(1, this.village.getNbLoupGarou());
+		Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
 		Assert.assertEquals(1, this.village.getMeute().getNbLgEnVie());
 	}
 	
@@ -52,11 +52,11 @@ public class MeuteTest {
 		this.village.ajouterPersonnage(new LoupGarouSimple());
 		
 		Assert.assertEquals(1, this.village.getNbVillageois());
-		Assert.assertEquals(1, this.village.getNbLoupGarou());
+		Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
 		this.village.getMeute().attaquerVillage();
 		this.village.bilanTuerLaNuit();
 		Assert.assertEquals(0, this.village.getNbVillageois());
-		Assert.assertEquals(1, this.village.getNbLoupGarou());
+		Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
 		
 		assertEquals(0, Meute.getStatsMeute().getNbSperVoter(), delta);
 		assertEquals(0, Meute.getStatsMeute().getNbSurvivants(), delta);

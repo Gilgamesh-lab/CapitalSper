@@ -41,7 +41,14 @@ public class Meute {
 	public static StatsMeute getStatsMeute() {
 		return statsMeute;
 	}
-
+	
+	
+	public int getNbSimpleLoupGarou() {
+		return (int) this.getMeute().stream().filter(x -> x.getIdDeRole() == LoupGarouSimple.IDROLE).count();
+	}
+	
+	
+	
 	public static void setStatsMeute(StatsMeute statsMeute) {
 		Meute.statsMeute = statsMeute;
 	}

@@ -42,13 +42,13 @@ public class VillageTest {
 	public void ajouterPersonnageTest()  {
 		this.village.ajouterPersonnage(loupGarou);
 		
-		Assert.assertEquals(1, this.village.getNbLoupGarou());
+		Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
 		Assert.assertEquals(0, this.village.getNbVillageois());
 		Assert.assertEquals(1 ,this.village.getNbPersonnageEnVie());
 		
 		this.village.ajouterPersonnage(simpleVillageois);
 		
-		Assert.assertEquals(1 , this.village.getNbLoupGarou());
+		Assert.assertEquals(1 , this.village.getNbLoupGarouEnVie());
 		Assert.assertEquals(1, this.village.getNbVillageois());
 		Assert.assertEquals(2, this.village.getNbPersonnageEnVie());
 		

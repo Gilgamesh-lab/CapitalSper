@@ -11,6 +11,7 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voyante;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsVoleur;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.InfectPereDesLoups;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouBlanc;
 
 
 
@@ -20,9 +21,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 5;
+		int nbVillageois = 14;
 		int nbLoupGarous = 1;
-		int nbPartie = 100000;//100000
+		int nbPartie = 1;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -35,8 +36,8 @@ public class Main {
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		//logger.setModeSpectateurOn();
-		logger.setModeStatistiqueOn();
+		logger.setModeSpectateurOn();
+		//logger.setModeStatistiqueOn();
 		
 		//village.ajouterPersonnage(Cupidon.IDROLE);
 		//village.ajouterPersonnage(Chasseur.IDROLE);
@@ -48,6 +49,7 @@ public class Main {
 		//village.ajouterPersonnage(MontreurDOurs.IDROLE);
 		//village.ajouterPersonnage(Voleur.IDROLE);
 		//village.onMaire();
+		village.ajouterPersonnage(LoupGarouBlanc.IDROLE);
 		
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
 		meneurDeJeu.lancerDesParties(nbPartie);
@@ -61,7 +63,7 @@ public class Main {
 		
 		
 		//;
-		meneurDeJeu.exploration();
+		//meneurDeJeu.exploration();
 		/*double lg = partie.getPourcentWinLoupGarous();
 		double vi = partie.getPourcentWinVillage();*/
 		

@@ -11,7 +11,7 @@ public abstract class LoupGarou extends Personnage {
 	}
 	
 	public LoupGarou(int idRole, boolean aUnPouvoirSpecial, Statistiques statPersonnage) {
-		super(true, idRole, aUnPouvoirSpecial, statPersonnage);
+		super(false, idRole, aUnPouvoirSpecial, statPersonnage);
 		
 	}
 	

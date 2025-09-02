@@ -133,7 +133,9 @@ public  class Village  implements Cloneable {
 
 	}
 	
-	
+	public int getNbSimpleVillageois() {
+		return (int) this.getVillageois().stream().filter(x -> x.getIdDeRole() == SimpleVillageois.IDROLE).count();
+	}
 	
 	
 	public Map<Integer, Integer> getTableauDeVotes() {
@@ -191,7 +193,7 @@ public  class Village  implements Cloneable {
 		return this.getHabitantsEnVie().get(nb);
 	}
 	
-	public int getNbLoupGarou() {
+	public int getNbLoupGarouEnVie() {
 		return (int) this.getMeute().getNbLgEnVie();
 	}
 	

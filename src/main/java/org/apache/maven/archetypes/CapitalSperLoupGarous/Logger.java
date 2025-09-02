@@ -140,7 +140,7 @@ public class Logger {
 	public int[] referentiel(Village village) {
 		int tab[] = new int[2];
 		tab[0] = village.getNbVillageois();
-		tab[1] = village.getNbLoupGarou();
+		tab[1] = village.getNbLoupGarouEnVie();
 		
 		return tab;
 		

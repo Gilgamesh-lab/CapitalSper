@@ -56,11 +56,11 @@ public class DeuxSoeursTest {
 		deuxSoeurs.trouverJumelle();
 		
 		assertEquals(0 ,DeuxSoeurs.getStatsDeuxSoeurs().getNbVote(), delta);
-		assertEquals(1 ,this.village.getNbLoupGarou());
+		assertEquals(1 ,this.village.getNbLoupGarouEnVie());
 		
 		this.village.tribunal();
 		
-		assertEquals(0 ,this.village.getNbLoupGarou());
+		assertEquals(0 ,this.village.getNbLoupGarouEnVie());
 		assertEquals(2 ,DeuxSoeurs.getStatsDeuxSoeurs().getNbVote(), delta);
 		assertEquals(2 ,DeuxSoeurs.getStatsDeuxSoeurs().getNbLgVoter(), delta);
 		

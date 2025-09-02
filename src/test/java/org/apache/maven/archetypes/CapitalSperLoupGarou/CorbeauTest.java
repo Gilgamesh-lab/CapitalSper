@@ -48,7 +48,7 @@ private Village village = new Village(0,0);
 		this.village.tribunal();
 		
 		assertEquals(1 ,this.village.getNbPersonnageEnVie());
-		assertEquals(0 ,this.village.getNbLoupGarou());
+		assertEquals(0 ,this.village.getNbLoupGarouEnVie());
 		
 		assertEquals(1, Corbeau.getStatsCorbeau().getNbCorbeautage(), delta);
 		assertEquals(1, Corbeau.getStatsCorbeau().getNbCorbeautageSurLoupGarou(), delta);
