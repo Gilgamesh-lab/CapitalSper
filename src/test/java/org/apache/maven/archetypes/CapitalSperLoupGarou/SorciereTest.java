@@ -107,7 +107,7 @@ public class SorciereTest {
 		sorcière.agir();
 		this.village.bilanTuerLaNuit();
 		Assert.assertFalse(lg.estEnvie());
-		Assert.assertTrue(this.village.getNbVillageois() == 21);
+		Assert.assertTrue(this.village.getNbVillageoisEnVie() == 21);
 		Assert.assertFalse(this.sorcière.isaUnePotionDeVie());
 		Assert.assertFalse(this.sorcière.isaUnePotionDeMort());
 		Assert.assertTrue(this.sorcière.getStatsSorciere().getNbPotionDeMort() == 1);

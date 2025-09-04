@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Corbeau;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.DeuxSoeurs;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarou;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouBlanc;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.LoupGarouSimple;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Maire;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Meute;
@@ -183,7 +184,7 @@ public  class Village  implements Cloneable {
 		return this.meute ;
 	}
 	
-	public int getNbVillageois() {
+	public int getNbVillageoisEnVie() {
 		return  (int) this.getHabitantsEnVie().stream().filter(x -> x.estUnVillageois()).count() ;
 	}
 	
@@ -556,6 +557,12 @@ public  class Village  implements Cloneable {
 	
 	public void finVillage() {
 		statsVillage.decompteNbSurvivants(village);
+	}
+	
+	public void statsVictoireLoupGarou() {
+		if(this.estPresent(LoupGarouBlanc.IDROLE)) {
+			LoupGarouBlanc.getStatsLoupGarouBlanc().incrementerNbVictoireLoupGarouEnETantEnVie(this);
+		}
 	}
 
 

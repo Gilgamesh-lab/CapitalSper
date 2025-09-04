@@ -21,9 +21,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 14;
+		int nbVillageois = 7;
 		int nbLoupGarous = 1;
-		int nbPartie = 1;//100000
+		int nbPartie = 10;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
@@ -39,7 +39,7 @@ public class Main {
 		logger.setModeSpectateurOn();
 		//logger.setModeStatistiqueOn();
 		
-		//village.ajouterPersonnage(Cupidon.IDROLE);
+		village.ajouterPersonnage(Cupidon.IDROLE);
 		//village.ajouterPersonnage(Chasseur.IDROLE);
 		//village.ajouterPersonnage(Sorciere.IDROLE);
 		//village.ajouterPersonnage(Voyante.IDROLE);

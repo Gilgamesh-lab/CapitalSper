@@ -61,7 +61,7 @@ public class ChasseurTest {
 		this.village.ajouterPersonnage(chasseur);
 		chasseur.meurt();
 		assertEquals(1 ,this.village.getNbPersonnageEnVie());
-		assertEquals(1, this.village.getNbVillageois());
+		assertEquals(1, this.village.getNbVillageoisEnVie());
 		
 	}
 	
@@ -78,7 +78,7 @@ public class ChasseurTest {
 		chasseur.meurt();
 		assertFalse(lg.estEnvie());
 		assertEquals(chasseur , this.village.getPersonnageParIdRole(lg.getStatut().getTueur()));
-		assertEquals(99 ,this.village.getNbVillageois());
+		assertEquals(99 ,this.village.getNbVillageoisEnVie());
 		
 	}
 	
@@ -99,7 +99,7 @@ public class ChasseurTest {
 		System.out.println(this.village.getPersonnageParId(1));
 		assertFalse(lg.estEnvie());
 		assertEquals(chasseur , this.village.getPersonnageParIdRole(lg.getStatut().getTueur()));
-		assertEquals(1 ,this.village.getNbVillageois());
+		assertEquals(1 ,this.village.getNbVillageoisEnVie());
 		
 	}
 

@@ -88,7 +88,7 @@ public class MeneurDeJeuTest {
 	public void injectionTest()  {
 		this.village = new Village(1,2);
 		this.village.voter('0');
-		Assert.assertEquals(0, this.village.getNbVillageois());
+		Assert.assertEquals(0, this.village.getNbVillageoisEnVie());
 		this.village.ajouterPersonnage(simpleVillageois);
 		this.village.voter('1');
 		Assert.assertEquals(1, this.village.getMeute().getLoupGarouEnVie().size());

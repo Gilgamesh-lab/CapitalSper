@@ -31,20 +31,33 @@ public class LoupGarouBlanc extends LoupGarouSpecial {
 		LoupGarouBlanc.statsLoupGarouBlanc = statsLoupGarouBlanc;
 	}
 	
-	public StatsLoupGarouBlanc getStatsLoupGarouBlanc() {
+	public static StatsLoupGarouBlanc getStatsLoupGarouBlanc() {
 		return LoupGarouBlanc.statsLoupGarouBlanc;
 	}
 	
 	public void tuerUnLoupGarou(LoupGarou lg) {
 		this.tuer(lg);
 		Logger.log("Le Loup-Garou Blanc s'est réveillé et a décidé de dévorer " + lg, TypeDeLog.role);
+		this.statsLoupGarouBlanc.incrementerNbLgTUer();
 	}
 	
 	public LoupGarou getUnAutreLoupGarou() {
-		ArrayList<LoupGarou> autreLoupGarou = (this.getMeute().getLoupGarouEnVie());
+		ArrayList<LoupGarou> autreLoupGarou = this.getMeute().getLoupGarouEnVie();
 		autreLoupGarou.remove(this);
+		if(this.estAmoureux() && !this.getAmoureux().estUnVillageois()) {
+			autreLoupGarou.remove(this.getAmoureux());
+		}
 		int nbLg = (int) (Math.random() * ( autreLoupGarou.size() - 0 ));
 		return autreLoupGarou.get(nbLg);
+	}
+	
+	public boolean pasDeVictimePossible() {
+		ArrayList<LoupGarou> autreLoupGarou = this.getMeute().getLoupGarouEnVie();
+		autreLoupGarou.remove(this);
+		if(this.estAmoureux() && !this.getAmoureux().estUnVillageois()) {
+			autreLoupGarou.remove(this.getAmoureux());
+		}
+		return autreLoupGarou.size() == 0;
 	}
 	
 	@Override
@@ -56,11 +69,12 @@ public class LoupGarouBlanc extends LoupGarouSpecial {
 	public void agir() {
 		super.agir(); // Si pas de simple simple loup-garou la meute est quand même appelée
 		if(this.peutSeReveiller && this.getMeute().getNbLgEnVie() > 1) {
-			int nbVi = this.getVillage().getNbVillageois();
-			int nbLg = this.getVillage().getNbLoupGarouEnVie();
-			
-			if(nbLg + 2 >= nbVi) {
+			this.statsLoupGarouBlanc.incrementerNbFoisReveiller();
+			if(this.getVillage().getNbLoupGarouEnVie() + 2 >= this.getVillage().getNbVillageoisEnVie() && !this.pasDeVictimePossible()) {
 				this.tuerUnLoupGarou(this.getUnAutreLoupGarou());
+			}
+			else {
+				Logger.log("Le Loup-Garou Blanc s'est réveillé et a décidé de ne pas tuer un autre loup-garou", TypeDeLog.role);
 			}
 		}
 		this.peutSeReveiller = !this.peutSeReveiller;

@@ -43,16 +43,16 @@ public class VillageTest {
 		this.village.ajouterPersonnage(loupGarou);
 		
 		Assert.assertEquals(1, this.village.getNbLoupGarouEnVie());
-		Assert.assertEquals(0, this.village.getNbVillageois());
+		Assert.assertEquals(0, this.village.getNbVillageoisEnVie());
 		Assert.assertEquals(1 ,this.village.getNbPersonnageEnVie());
 		
 		this.village.ajouterPersonnage(simpleVillageois);
 		
 		Assert.assertEquals(1 , this.village.getNbLoupGarouEnVie());
-		Assert.assertEquals(1, this.village.getNbVillageois());
+		Assert.assertEquals(1, this.village.getNbVillageoisEnVie());
 		Assert.assertEquals(2, this.village.getNbPersonnageEnVie());
 		
-		this.village.finVillage();
+		//this.village.finVillage();
 		assertEquals(2, Village.getStatsVillage().getNbPersonnageTotal(), delta);
 		assertEquals(2, Village.getStatsVillage().getNbSurvivants(), delta);
 		
@@ -62,14 +62,14 @@ public class VillageTest {
 	@Test
 	public void voterTest()  {
 		this.village = new Village(1,2);
-		Assert.assertEquals(1, this.village.getNbVillageois());
+		Assert.assertEquals(1, this.village.getNbVillageoisEnVie());
 		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
 		this.village.tribunal();
 		assertEquals(1, Village.getStatsVillage().getNbVote(), delta);
 		assertEquals(0, Village.getStatsVillage().getNbLoupGarouTuer(), delta);
 		
 		
-		Assert.assertEquals(0, this.village.getNbVillageois());
+		Assert.assertEquals(0, this.village.getNbVillageoisEnVie());
 		this.village.ajouterPersonnage(simpleVillageois);
 		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getLoupGarouEnVie().get(0).voter());
 		Assert.assertEquals(this.village.getVillageois().get(0).getId(), this.village.getMeute().getLoupGarouEnVie().get(1).voter());
@@ -86,7 +86,7 @@ public class VillageTest {
 		this.village = new Village(2,1);
 		this.village.getVillageois().stream().forEach(x->x.ajouterEnnemie(this.village.getMeute().getLoupGarouEnVie().get(0)));
 		
-		Assert.assertEquals(2, this.village.getNbVillageois());
+		Assert.assertEquals(2, this.village.getNbVillageoisEnVie());
 		Assert.assertEquals(3, this.village.getNbPersonnageEnVie());
 		this.village.tribunal();
 		assertEquals(1, Village.getStatsVillage().getNbVote(), delta);
