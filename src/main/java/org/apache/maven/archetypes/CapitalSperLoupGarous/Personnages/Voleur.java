@@ -36,59 +36,64 @@ public class Voleur extends VillageoisSpecial {
 		Logger.log("Les personnages non mis en jeu sont " + perso1 + " et " + perso2 + ".", TypeDeLog.role);
 		Logger.log("", TypeDeLog.role);
 		statsVoleur.initPartie(perso1, perso2);
+		this.agirPremiereNuit();
 	}
 	
 	@Override
 	public void agirPremiereNuit() {
-		Personnage perso1 = this.personnageNonMisEnJeu.get(0);
-		Personnage perso2 = this.personnageNonMisEnJeu.get(1);
-		
-		if(!perso1.aUnPouvoirSpecial() && !perso2.aUnPouvoirSpecial()) { // deux simples villageois
-			int nb = (int) (Math.random() * ( this.personnageNonMisEnJeu.size() + 1    - 0 ));
-			if(nb != this.personnageNonMisEnJeu.size()  ) {
-				Logger.log("Le voleur a choisie la carte " + this.personnageNonMisEnJeu.get(nb) + " parmis ces cartes  "  + this.personnageNonMisEnJeu + "." , TypeDeLog.role);
-				this.personnageChoisie = this.personnageNonMisEnJeu.get(nb);
+		if(this.personnageChoisie == null) {
+			Personnage perso1 = this.personnageNonMisEnJeu.get(0);
+			Personnage perso2 = this.personnageNonMisEnJeu.get(1);
+			
+			if(!perso1.aUnPouvoirSpecial() && !perso2.aUnPouvoirSpecial()) { // deux simples villageois
+				int nb = (int) (Math.random() * ( this.personnageNonMisEnJeu.size() + 1    - 0 ));
+				if(nb != this.personnageNonMisEnJeu.size()  ) {
+					Logger.log("Le voleur a choisie la carte " + this.personnageNonMisEnJeu.get(nb) + " parmis ces cartes  "  + this.personnageNonMisEnJeu + "." , TypeDeLog.role);
+					this.personnageChoisie = this.personnageNonMisEnJeu.get(nb);
+				}
+				else {
+					Logger.log("Le voleur n'a choisie aucune carte entre "  + perso1 + " et " + perso2 + ".", TypeDeLog.role);
+				}
+			}
+			
+			else if(perso1.aUnPouvoirSpecial() && perso2.aUnPouvoirSpecial()) { // deux spés
+				int nb = (int) (Math.random() * ( this.personnageNonMisEnJeu.size()  - 0 ));
+				if(nb != this.personnageNonMisEnJeu.size()  ) {
+					Logger.log("Le voleur a choisie la carte " + this.personnageNonMisEnJeu.get(nb) + " parmis ces cartes  "  + this.personnageNonMisEnJeu + "." , TypeDeLog.role);
+					this.personnageChoisie = this.personnageNonMisEnJeu.get(nb);
+				}
+				
+			}
+			
+			else if(perso1.aUnPouvoirSpecial() && !perso2.aUnPouvoirSpecial()) {
+				Logger.log("Le Voleur a choisie la carte " + perso1 + " entre cette carte et  "  + perso2 + "." , TypeDeLog.role);
+				this.personnageChoisie = perso1;
+				perso2.meurt();
+			}
+			else if(perso2.aUnPouvoirSpecial() && !perso1.aUnPouvoirSpecial()) {
+				Logger.log("Le Voleur a choisie la carte " + perso2 + " entre cette carte et  "  + perso1 + "." , TypeDeLog.role);
+				this.personnageChoisie = perso2;
+				perso1.meurt();
+			}
+			
+			
+			
+			if(this.personnageChoisie == null ) {
+				statsVoleur.voler(new SimpleVillageois());
 			}
 			else {
-				Logger.log("Le voleur n'a choisie aucune carte entre "  + perso1 + " et " + perso2 + ".", TypeDeLog.role);
+				this.personnageChoisie.ajouterAllié(this);
+				if(!this.personnageChoisie.estUnVillageois()) {
+					this.getVillage().getMeute().enrolerUnLoupGarou( (LoupGarou) this.personnageChoisie);
+					this.getVillage().getMeute().getMeute().stream().forEach(x->x.ajouterAllié(this)); // corriger
+				}
+				
+				statsVoleur.voler(this.personnageChoisie);
 			}
-		}
-		
-		else if(perso1.aUnPouvoirSpecial() && perso2.aUnPouvoirSpecial()) { // deux spés
-			int nb = (int) (Math.random() * ( this.personnageNonMisEnJeu.size()  - 0 ));
-			if(nb != this.personnageNonMisEnJeu.size()  ) {
-				Logger.log("Le voleur a choisie la carte " + this.personnageNonMisEnJeu.get(nb) + " parmis ces cartes  "  + this.personnageNonMisEnJeu + "." , TypeDeLog.role);
-				this.personnageChoisie = this.personnageNonMisEnJeu.get(nb);
-			}
-			
-		}
-		
-		else if(perso1.aUnPouvoirSpecial() && !perso2.aUnPouvoirSpecial()) {
-			Logger.log("Le Voleur a choisie la carte " + perso1 + " entre cette carte et  "  + perso2 + "." , TypeDeLog.role);
-			this.personnageChoisie = perso1;
-			perso2.meurt();
-		}
-		else if(perso2.aUnPouvoirSpecial() && !perso1.aUnPouvoirSpecial()) {
-			Logger.log("Le Voleur a choisie la carte " + perso2 + " entre cette carte et  "  + perso1 + "." , TypeDeLog.role);
-			this.personnageChoisie = perso2;
-			perso1.meurt();
-		}
-		
-		
-		
-		if(this.personnageChoisie == null ) {
-			statsVoleur.voler(new SimpleVillageois());
 		}
 		else {
-			this.personnageChoisie.ajouterAllié(this);
-			if(!this.personnageChoisie.estUnVillageois()) {
-				this.getVillage().getMeute().enrolerUnLoupGarou( (LoupGarou) this.personnageChoisie);
-				this.getVillage().getMeute().getMeute().stream().forEach(x->x.ajouterAllié(this)); // corriger
-			}
-			
-			statsVoleur.voler(this.personnageChoisie);
+			this.personnageChoisie.agirPremiereNuit();
 		}
-		
 		
 	}
 	
@@ -118,10 +123,11 @@ public class Voleur extends VillageoisSpecial {
 	
 	@Override
 	public void meurt() {
+		super.meurt(); 
 		if(this.personnageChoisie != null) {
 			 this.personnageChoisie.meurt();
 		}
-		super.meurt();
+		
 	}
 	
 	@Override

@@ -143,12 +143,12 @@ public class MeneurDeJeu {
 		}
 		
 		else if(this.conditionVictoireLoupGarouBlanc()) {
-			Logger.log("Victoire du Loup-Garou Blanc en " + this.nbTour + " tours.");
+			Logger.log("Victoire du loup-garou Blanc en " + this.nbTour + " tours.");
 			this.nbVictoireLoupGarouBlanc++;
 		}
 		
 		else if(this.conditionVictoireLoupGarous()) {
-			Logger.log("Victoire des Loups-Garous en " + this.nbTour + " tours.");
+			Logger.log("Victoire des loups-garous en " + this.nbTour + " tours.");
 			Logger.log(this.village.getNbLoupGarouEnVie() + " Loup(s)-Garou(s) survivant(s).");
 			this.nbVictoireLoupGarou++;
 			village.statsVictoireLoupGarou();

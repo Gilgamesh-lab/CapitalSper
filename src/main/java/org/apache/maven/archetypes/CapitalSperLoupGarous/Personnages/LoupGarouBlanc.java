@@ -36,8 +36,8 @@ public class LoupGarouBlanc extends LoupGarouSpecial {
 	}
 	
 	public void tuerUnLoupGarou(LoupGarou lg) {
-		this.tuer(lg);
 		Logger.log("Le Loup-Garou Blanc s'est réveillé et a décidé de dévorer " + lg, TypeDeLog.role);
+		lg.getStatut().setTuerParLeLoupGarouBlanc(true);
 		this.statsLoupGarouBlanc.incrementerNbLgTUer();
 	}
 	
@@ -89,10 +89,10 @@ public class LoupGarouBlanc extends LoupGarouSpecial {
 	@Override
 	public String toString() {
 		if(this.getVillage() != null && this.getVillage().getVillage().stream().anyMatch(x->x.getIdDeRole() == this.getIdDeRole() && x != this)) {
-			return "le LoupGarouBlanc" + this.getId();
+			return "le Loup-garou blanc" + this.getId();
 		}
 		else {
-			return "le LoupGarouBlanc";
+			return "le Loup-garou blanc";
 		}
 		
 	}

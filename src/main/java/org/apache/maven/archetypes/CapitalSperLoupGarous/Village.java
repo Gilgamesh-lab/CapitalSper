@@ -20,6 +20,7 @@ import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDeLog;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.TypeDePouvoir;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.VillageoisSpecial;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voleur;
+import org.apache.maven.archetypes.CapitalSperLoupGarous.Personnages.Voyante;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsCorbeau;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsMaire;
 import org.apache.maven.archetypes.CapitalSperLoupGarous.Statistiques.StatsMeute;
@@ -36,6 +37,7 @@ public  class Village  implements Cloneable {
 	private Boolean nuitSansMort;
 	private static StatsVillage statsVillage = new StatsVillage();
 	private Map<Integer, Integer> tableauDeVotes;
+	private int compteurId;
 	
 	public Village() {
 		this.village = new ArrayList<Personnage>();
@@ -45,6 +47,7 @@ public  class Village  implements Cloneable {
 		this.persoDevoilerCommeEnnemieParMontreursDOurs = new ArrayList<>();
 		this.nuitSansMort = false;
 		this.tableauDeVotes = new HashMap<>();
+		this.compteurId = -1;
 	}
 	
 	public Village(int nbVillageois, int nbLoupGarous) {
@@ -101,9 +104,14 @@ public  class Village  implements Cloneable {
 	public void setNuitSansMort(Boolean nuitSansMort) {
 		this.nuitSansMort = nuitSansMort;
 	}
+	
+	public int getIdPersonnage() {
+		this.compteurId++;
+		return this.compteurId;
+	}
 
 	public void ajouterPersonnage(Personnage personnage) {
-		personnage.setId(this.village.size());
+		personnage.setId(this.getIdPersonnage());
 		this.village.add(personnage);
 		personnage.setVillage(this);
 		if(!personnage.estUnVillageois()) {
@@ -113,11 +121,8 @@ public  class Village  implements Cloneable {
 	
 	public DeuxSoeurs initDeuxSoeurs() {
 		DeuxSoeurs jumelle = new DeuxSoeurs();
-		jumelle.setId(this.village.size());
-		this.village.add(jumelle);
-		jumelle.setVillage(this);
+		this.ajouterPersonnage(jumelle);
 		jumelle.setOrdreDeNaissance(2);
-		 
 		return jumelle;
 	}
 	
@@ -291,6 +296,12 @@ public  class Village  implements Cloneable {
 		
 		
 		this.getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).forEach(z->{Logger.log(z + messageMort);this.getMeute().devorer(z);z.getStatut().setAEteAttaqueParLaMeute(false);});
+		
+		if(this.estPresent(LoupGarouBlanc.IDROLE)) {
+			Personnage lgBlanc = this.getPersonnageParIdRole(LoupGarouBlanc.IDROLE);  // Classe Personnage et non pas LoupGarouBlanc à cause du voleur
+			this.getHabitantsEnVie().stream().filter(x->x.getStatut().isTuerParLeLoupGarouBlanc()).forEach(z->{lgBlanc.tuer(z);z.getStatut().setTuerParLeLoupGarouBlanc(false);}); // car la sorcière fait un filtre sur les personnes mortes
+			
+		}
 		Logger.log("", TypeDeLog.vote);
 		this.getMeute().setEstRassasier(false);
 	}
@@ -298,9 +309,8 @@ public  class Village  implements Cloneable {
 	public void tribunal() {
 		Personnage votant;
 		Personnage persoMaudit;
-		
 		int vote;
-		for(int i = 0 ; i < this.getHabitantsEnVie().stream().map(x->x.getId()).reduce(Integer::max).get() + 1 ; i++) {
+		for(int i = 0 ; i < this.compteurId + 1 ; i++) {
 			tableauDeVotes.putIfAbsent(i, 0);
 		}
 		
@@ -326,6 +336,11 @@ public  class Village  implements Cloneable {
 			}
 			votant.resetListeDeVote();
 			Logger.log(votant + " a voté contre " + this.getPersonnageParId(vote) + " avec " + votant.getNbVote() + " voix.", TypeDeLog.vote);
+			if(!this.getPersonnageParId(vote).estEnvie()) {
+				System.out.println("Erreur " + votant + "/" + this.getPersonnageParId(vote));
+				int crash = 16/0;
+			}
+			
 			tableauDeVotes.put(vote, tableauDeVotes.get(vote) + votant.getNbVote());
 		}
 		if(this.aUnMaire()) {

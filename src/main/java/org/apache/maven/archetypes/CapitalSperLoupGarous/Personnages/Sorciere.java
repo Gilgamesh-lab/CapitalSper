@@ -31,6 +31,15 @@ public class Sorciere extends VillageoisSpecial{
 		return new ArrayList<>(Arrays.asList(TypeDePouvoir.Mort,TypeDePouvoir.Vie, TypeDePouvoir.Voyance));
 	}
 	
+	public boolean pasDeVictimePossible() {
+		ArrayList<Personnage> autresPersonnages = this.getVillage().getVillage();
+		autresPersonnages.remove(this);
+		if(this.estAmoureux()) {
+			autresPersonnages.remove(this.getAmoureux());
+		}
+		return autresPersonnages.size() == 0;
+	}
+	
 	@Override
 	public void agir() {
 		if((this.getStatut().aEteAttaquerParLaMeute() && this.isaUnePotionDeVie())) {
@@ -59,7 +68,7 @@ public class Sorciere extends VillageoisSpecial{
 		}// potion de vie avant car elle connait l'innocent tuer par les loups-garous, ce qui est à prendre en compte pour la potion de mort
 		
 		
-		if ((this.action == 1 || this.action == 3) && this.isaUnePotionDeMort()) {
+		if ((this.action == 1 || this.action == 3) && this.isaUnePotionDeMort() ) {
 			if(this.isaUnePotionDeVie() && this.getVillage().getHabitantsEnVie().stream().anyMatch(x->x.getStatut().aEteAttaquerParLaMeute())) {
 				this.ajouterAllié(this.getVillage().getHabitantsEnVie().stream().filter(x->x.getStatut().aEteAttaquerParLaMeute()).findFirst().get());// ne pas tuer la victime des loups-garous (innocent sure)
 			}

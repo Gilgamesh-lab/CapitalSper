@@ -286,7 +286,9 @@ public abstract class Personnage  implements Cloneable {
 				
 			}
 		}
+		
 		if(this.getListeDeVote().isEmpty()) {// si pas de vote possible
+			
 			if(this.estAmoureux()) {// si amoureux on vire tout le monde sauf amoureux "alliés" compris
 				this.listeDeVote = new ArrayList<Personnage>(this.village.getAutreHabitantsEnVie(this).stream().filter(x->this.getAmoureux() != x).collect(Collectors.toList()));
 				nb = (int) (Math.random() * ( this.getListeDeVote().size()    - 0 ));

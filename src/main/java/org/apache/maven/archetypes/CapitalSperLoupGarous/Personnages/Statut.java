@@ -10,6 +10,7 @@ public class Statut {
 	private Integer tueur;
 	private boolean protéger;
 	private boolean infecter;
+	private boolean tuerParLeLoupGarouBlanc;
 
 	public Statut(Personnage personnage) {
 		this.estAmoureux = false;
@@ -19,6 +20,7 @@ public class Statut {
 		this.tueur = null;
 		this.protéger = false;
 		this.infecter = false;
+		this.tuerParLeLoupGarouBlanc = false;
 	}
 	
 	
@@ -34,14 +36,21 @@ public class Statut {
 		return tueur;
 	}
 
+	
 
+
+	public boolean isTuerParLeLoupGarouBlanc() {
+		return tuerParLeLoupGarouBlanc;
+	}
+
+
+	public void setTuerParLeLoupGarouBlanc(boolean tuerParleLoupGarouBlanc) {
+		this.tuerParLeLoupGarouBlanc = tuerParleLoupGarouBlanc;
+	}
 
 	public void setTueur(Integer tueur) {
 		this.tueur = tueur;
 	}
-	
-
-
 
 	public boolean isInfecter() {
 		return infecter;

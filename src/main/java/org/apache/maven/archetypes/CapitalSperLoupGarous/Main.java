@@ -21,34 +21,34 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int nbVillageois = 7;
-		int nbLoupGarous = 1;
-		int nbPartie = 10;//100000
+		int nbVillageois = 5;
+		int nbLoupGarous = 2;
+		int nbPartie = 100000;//100000
 		
 		Village village = new Village(nbVillageois,nbLoupGarous);
 		Logger logger = new Logger();
 		//System.out.println(Referentiel.getIdPersonnageDisponible());
 		
 		//logger.setDetailVoteVillage(true);
-		//logger.setOnFichierOutput();
+		logger.setOnFichierOutput();
 		//logger.setOffAfficherLogDetailsPartie();
 		//logger.setOffAfficherLogStats();
 		//logger.setOnAfficherLogDetailsPourcentage();
 		//logger.setOnAfficherLogDetailsRoleAction();
 		
-		logger.setModeSpectateurOn();
-		//logger.setModeStatistiqueOn();
+		//logger.setModeSpectateurOn();
+		logger.setModeStatistiqueOn();
 		
 		village.ajouterPersonnage(Cupidon.IDROLE);
-		//village.ajouterPersonnage(Chasseur.IDROLE);
-		//village.ajouterPersonnage(Sorciere.IDROLE);
-		//village.ajouterPersonnage(Voyante.IDROLE);
-		//village.ajouterPersonnage(Salvateur.IDROLE);
-		//village.ajouterPersonnage(Corbeau.IDROLE);
-		//village.ajouterPersonnage(DeuxSoeurs.IDROLE);
-		//village.ajouterPersonnage(MontreurDOurs.IDROLE);
-		//village.ajouterPersonnage(Voleur.IDROLE);
-		//village.onMaire();
+		village.ajouterPersonnage(Chasseur.IDROLE);
+		village.ajouterPersonnage(Sorciere.IDROLE);
+		village.ajouterPersonnage(Voyante.IDROLE);
+		village.ajouterPersonnage(Salvateur.IDROLE);
+		village.ajouterPersonnage(Corbeau.IDROLE);
+		village.ajouterPersonnage(DeuxSoeurs.IDROLE);
+		village.ajouterPersonnage(MontreurDOurs.IDROLE);
+		village.ajouterPersonnage(Voleur.IDROLE);
+		village.onMaire();
 		village.ajouterPersonnage(LoupGarouBlanc.IDROLE);
 		
 		MeneurDeJeu meneurDeJeu = new MeneurDeJeu(village, logger);
